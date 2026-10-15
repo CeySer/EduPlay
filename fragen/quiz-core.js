@@ -1,0 +1,973 @@
+        // ============================================================
+        //  QUIZ LOGIK
+        // ============================================================
+        let currentQuestions = [],
+            qIndex = 0;
+        let quizMode = 'mc';
+
+        function setQuizMode(m) {
+            quizMode = m;
+            document.getElementById("qmode-mc").className =
+                `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'mc' ? 'active' : ''}`;
+            document.getElementById("qmode-flashcards").className =
+                `flex-1 py-2 px-1 rounded-lg font-bold transition-all text-sm ${m === 'flashcards' ? 'active' : ''}`;
+        }
+
+        function showQuizSetup() {
+            switchView('quiz-setup');
+            setupCategorySelectors("quiz-area", "sub-category", "lernen");
+            const count = currentPlayer && currentPlayer.wrongQuestions ? currentPlayer.wrongQuestions.length : 0;
+            const btn = document.getElementById("wrong-questions-btn");
+            if (btn) {
+                if (count > 0) {
+                    btn.classList.remove("hidden");
+                    btn.querySelector("span.wq-count").innerText = count;
+                } else { btn.classList.add("hidden"); }
+            }
+        }
+
+        function shuffleAnswers(q) {
+            if (!q || !Array.isArray(q.answers) || q.noShuffle) return q;
+            const order = q.answers.map((_, i) => i);
+            for (let i = order.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [order[i], order[j]] = [order[j], order[i]];
+            }
+            return Object.assign({}, q, {
+                answers: order.map(i => q.answers[i]),
+                correct: order.indexOf(q.correct)
+            });
+        }
+
+        function prepareQuestions(list) {
+            return (list || []).map(shuffleAnswers);
+        }
+
+        function showLessonResultScreen() {
+            endSoloStudySession();
+            vergissSoloFortschritt();
+            if (typeof currentLektion !== 'undefined' && currentLektion && typeof handleLektionStepEnd === 'function') {
+                if (handleLektionStepEnd()) return;
+            }
+            // Nur nach einer echten Wissen-Quiz-Runde (nicht innerhalb einer Kurs-Lektion,
+            // die endet oben per return) neu bewerten, ob ein Kurs zu einem schwachen Thema
+            // vorgeschlagen werden soll.
+            if (typeof pruefeUndEmpfiehlKurs === "function") pruefeUndEmpfiehlKurs();
+            const total = testAnsweredCount || 0;
+            const correct = testCorrectCount || 0;
+            const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+            const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪";
+            const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" : "Dranbleiben, das wird noch!";
+            document.getElementById("test-result-content").innerHTML = `
+        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(99,102,241,0.2);">
+            <div class="text-7xl">${emoji}</div>
+            <h2 class="text-2xl font-black text-white">${msg}</h2>
+            <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
+            <div class="text-gray-400 font-bold">${pct}% richtig</div>
+            <div class="flex gap-3 mt-4">
+                <button onclick="replayLesson()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
+                <button onclick="switchView('menu')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Beenden</button>
+            </div>
+        </div>`;
+            switchView('test-result');
+        }
+
+        function replayLesson() {
+            if (window.lastLessonQuestions && window.lastLessonQuestions.length) {
+                launchQuiz(window.lastLessonQuestions);
+            } else {
+                switchView('quiz-setup');
+            }
+        }
+
+        function endLesson() {
+            // Sofort still sein, noch vor Ergebnisbildschirm und Ansichtswechsel.
+            if (typeof stopSpeaking === "function") stopSpeaking();
+            if (testMode) { leaveQuiz('menu'); return; }
+            if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
+                showLessonResultScreen();
+            } else {
+                switchView('menu');
+            }
+        }
+
+        let soloSessionStartedAt = null;
+        let soloStudyFlushTimer = null;
+        const STUDY_VIEWS = ["quiz", "vokabeln", "lesen", "suchsel-play"];
+
+        function trackStudySeconds(seconds) {
+            if (testMode) return; // Tests zählen nicht zur Lernzeit / zum Auftrag
+            if (!currentPlayer || !activePlayerKey || !(seconds > 0)) return;
+            const day = new Date().toISOString().slice(0, 10);
+            if (!currentPlayer.studyLog) currentPlayer.studyLog = {};
+            currentPlayer.studyLog[day] = (currentPlayer.studyLog[day] || 0) + Math.round(seconds);
+            // nur letzte 60 Tage behalten
+            const keys = Object.keys(currentPlayer.studyLog).sort();
+            while (keys.length > 60) {
+                delete currentPlayer.studyLog[keys.shift()];
+            }
+            // Lernauftrag (Zeit-Ziel) gerade jetzt erreicht -> einmalig Bonus-Zeit
+            const goal = currentPlayer.studyGoal;
+            if (goal && goal.minutes && (!goal.day || goal.day === day) && !goal.rewarded
+                && currentPlayer.studyLog[day] >= goal.minutes * 60) {
+                goal.rewarded = true;
+                if (typeof addZeit === "function") addZeit(10);
+                if (typeof showToast === "function") showToast("Auftrag erledigt: +10 Bonus-Minuten ⏳", "success");
+            }
+            if (typeof savePlayerProgress === "function") savePlayerProgress();
+            if (typeof renderStudyGoalCard === "function") renderStudyGoalCard();
+        }
+
+        function startSoloStudySession() {
+            if (soloSessionStartedAt) return;
+            soloSessionStartedAt = Date.now();
+            if (soloStudyFlushTimer) clearInterval(soloStudyFlushTimer);
+            // alle 60s zwischenspeichern (App-Crash / Tab zu)
+            soloStudyFlushTimer = setInterval(function () {
+                if (!soloSessionStartedAt) return;
+                const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
+                if (sec >= 15) {
+                    trackStudySeconds(sec);
+                    soloSessionStartedAt = Date.now();
+                }
+            }, 60000);
+        }
+
+        function endSoloStudySession() {
+            if (soloStudyFlushTimer) {
+                clearInterval(soloStudyFlushTimer);
+                soloStudyFlushTimer = null;
+            }
+            if (soloSessionStartedAt) {
+                const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
+                if (sec >= 15) trackStudySeconds(sec);
+                soloSessionStartedAt = null;
+            }
+            if (window.__eduplayBlitzActive) {
+                window.__eduplayBlitzActive = false;
+                if (typeof dismissWeaknessSuggestion === "function") dismissWeaknessSuggestion(true, window.__eduplayBlitzCat);
+            }
+        }
+
+        function onStudyViewChange(viewId) {
+            if (STUDY_VIEWS.indexOf(viewId) !== -1 && !testMode) startSoloStudySession();
+            else endSoloStudySession();
+        }
+
+        // Tab/App verlassen → Zeit sichern
+        if (typeof document !== "undefined") {
+            document.addEventListener("visibilitychange", function () {
+                if (document.visibilityState === "hidden" && soloSessionStartedAt) {
+                    const sec = Math.round((Date.now() - soloSessionStartedAt) / 1000);
+                    if (sec >= 15) {
+                        trackStudySeconds(sec);
+                        soloSessionStartedAt = Date.now();
+                    }
+                }
+            });
+        }
+
+        function launchQuiz(questions) {
+            if (!questions || questions.length === 0) { showToast("Keine Fragen gefunden!", "error"); return false; }
+            let pool = [...questions];
+            // Frische Fragen zuerst – IDs erst merken, wenn eine Frage wirklich gezeigt wird
+            if (typeof pickPreferFresh === "function") pool = pickPreferFresh(pool, pool.length);
+            else pool = pool.sort(() => Math.random() - 0.5);
+            currentQuestions = prepareQuestions(pool);
+
+            testMode = false;
+            testAnsweredCount = 0;
+            testCorrectCount = 0;
+            window.lastLessonQuestions = questions;
+            document.getElementById("test-timer-bar").classList.add("hidden");
+            qIndex = 0;
+            switchView('quiz');
+            if (typeof SFX !== "undefined" && SFX.bookOpen) SFX.bookOpen();
+            showQuestion();
+            merkeSoloFortschritt();
+            return true;
+        }
+
+        function startFormulaSession() {
+            if (typeof FORMULA_DATABASE === 'undefined') { showToast("Formeln nicht geladen!", "error"); return; }
+            const key = document.getElementById("formel-area")?.value;
+            const block = key && FORMULA_DATABASE[key];
+            if (!block || !block.formulas || !block.formulas.length) { showToast("Keine Formeln für diese Klasse!", "error"); return; }
+            const formulas = block.formulas.slice();
+            let questions;
+            if (quizMode === 'flashcards') {
+                questions = formulas.map(function (f) {
+                    return {
+                        category: "formel_" + key,
+                        question: f.name,
+                        answers: [f.formula],
+                        correct: 0,
+                        explanation: f.explanation || f.formula
+                    };
+                });
+            } else {
+                const pool = [...new Set(formulas.map(f => f.formula))];
+                questions = formulas.map(f => {
+                    const distr = pool.filter(x => x !== f.formula).sort(() => Math.random() - 0.5).slice(0, 3);
+                    return {
+                        category: "formel_" + key,
+                        question: `Wie lautet die Formel für: ${f.name}?`,
+                        answers: [f.formula, ...distr], correct: 0,
+                        explanation: f.formula + (f.explanation ? " — " + f.explanation : "")
+                    };
+                });
+            }
+            questions.sort(() => Math.random() - 0.5);
+            launchQuiz(questions);
+        }
+
+        async function startQuiz() {
+            const formelView = document.getElementById('view-formel-setup');
+            if (formelView && !formelView.classList.contains('hidden')) return startFormulaSession();
+            if (typeof QUESTIONS_DATABASE === 'undefined') {
+                showToast("Fehler: Datenbank nicht geladen!", "error");
+                return;
+            }
+            const keys = (typeof collectCategoryKeysFor === "function")
+                ? collectCategoryKeysFor("quiz")
+                : [document.getElementById("sub-category")?.value].filter(Boolean);
+            if (!keys.length) {
+                showToast("Bitte mindestens ein Thema auswählen!", "error");
+                return;
+            }
+            if (typeof ladeFragenFuer === "function") {
+                try {
+                    await ladeFragenFuer(keys);
+                } catch (e) {
+                    const offline = (typeof navigator !== "undefined" && navigator.onLine === false);
+                    showToast(offline
+                        ? "📴 Offline – Thema noch nicht geladen. WLAN prüfen oder anderes Thema wählen."
+                        : "Fragen konnten nicht geladen werden. Verbindung prüfen und erneut versuchen.", "error");
+                    return;
+                }
+            }
+            let questions = (keys.length > 1 && typeof buildMixedQuestions === "function")
+                ? buildMixedQuestions(keys, 9999)
+                : (questionsForKey(keys[0]) || []);
+            if (!questions.length) {
+                const offline = (typeof navigator !== "undefined" && navigator.onLine === false);
+                showToast(offline
+                    ? "📴 Offline und keine Fragen im Speicher. Einmal online das Thema öffnen."
+                    : "Keine Fragen für dieses Thema gefunden – anderes Thema wählen.", "error");
+                return;
+            }
+            if (keys.length === 1 && typeof pickPreferFresh === "function") {
+                questions = pickPreferFresh(questions, questions.length);
+            } else if (keys.length === 1) {
+                questions = questions.slice().sort(() => Math.random() - 0.5);
+            }
+            if (typeof merkeLetzteAktivitaet === "function") merkeLetzteAktivitaet(keys[0]);
+            launchQuiz(questions);
+        }
+
+        function startWrongQuestionsQuiz() {
+            if (!currentPlayer || !currentPlayer.wrongQuestions || currentPlayer.wrongQuestions.length === 0) {
+                return showToast("Keine offenen Fragen zum Wiederholen! 🎉", "success");
+            }
+            const qs = currentPlayer.wrongQuestions
+                .map(w => QUESTIONS_DATABASE.find(q => q.category === w.category && q.question === w.question))
+                .filter(Boolean).sort(() => Math.random() - 0.5);
+            launchQuiz(qs);
+        }
+
+        async function leaveQuiz(zielView) {
+            // Vor der Rückfrage stoppen – sonst redet die App weiter,
+            // während der Dialog offen steht.
+            if (typeof stopSpeaking === "function") stopSpeaking();
+            if (testMode) {
+                if (!(await appConfirm("Timer stoppt – du kannst den Test später fortsetzen.", {
+                    titel: "Test verlassen?", icon: "⏸", okText: "Verlassen", abbrechenText: "Weitermachen"
+                }))) return;
+                clearInterval(testTimerInterval);
+                testTimerInterval = null;
+                merkeTestFortschritt();
+                testMode = false;
+                const bar = document.getElementById("test-timer-bar");
+                if (bar) bar.classList.add("hidden");
+            } else {
+                endSoloStudySession();
+                vergissSoloFortschritt();
+            }
+            switchView(zielView || 'family-hub');
+        }
+        function showQuestion() {
+            const q = currentQuestions[qIndex];
+            const optsContainer = document.getElementById("options-container");
+            const expBox = document.getElementById("explanation-box");
+            optsContainer.innerHTML = "";
+            expBox.classList.add("hidden");
+            document.getElementById("next-question-btn").classList.add("hidden");
+            // Nur gezeigte Fragen als „kürzlich“ merken (nicht den ganzen Pool beim Start)
+            if (q && typeof rememberQuestionIds === "function") rememberQuestionIds([q]);
+            if (typeof renderFrageGrafik === "function") renderFrageGrafik(q, "question-grafik");
+
+            if (quizMode === 'flashcards') {
+                const speakBtn0 = document.getElementById("question-speak-btn");
+                if (speakBtn0) speakBtn0.classList.add("hidden");
+                document.getElementById("question-text").innerText = "Klicke zum Umdrehen";
+                const front = String(q.question || "").replace(/</g, "&lt;");
+                const backAns = String((q.answers && q.answers[q.correct]) || "").replace(/</g, "&lt;");
+                const backExp = String(q.explanation || "").replace(/</g, "&lt;");
+                optsContainer.innerHTML =
+                    `<div class="flip-card w-full h-64 cursor-pointer" id="solo-flip-card">
+                                <div class="flip-card-inner shadow-lg">
+                                    <div class="flip-card-front glass-card-glow flex flex-col items-center justify-center font-bold text-xl text-white p-6 text-center" style="background:rgba(99,102,241,0.15);border-color:rgba(99,102,241,0.2);">${front}</div>
+                                    <div class="flip-card-back glass-card-glow flex flex-col items-center justify-center text-white p-6 text-center" style="background:rgba(236,72,153,0.15);border-color:rgba(236,72,153,0.2);">
+                                        <span class="text-yellow-400 font-black mb-3">Lösung: ${backAns}</span>
+                                        <span class="text-sm font-medium bg-black/20 p-3 rounded-lg leading-snug">${backExp}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="triggerNextQuestion()" class="mt-4 btn-primary w-full text-center">Nächste Karte ➔</button>`;
+                bindSoloFlipCard(document.getElementById("solo-flip-card"));
+            } else {
+                document.getElementById("question-text").innerText = q.question;
+                // Lektions-SVG (q.grafik) – HTML, kein <img>
+                let grafikEl = document.getElementById("question-grafik");
+                if (!grafikEl) {
+                    grafikEl = document.createElement("div");
+                    grafikEl.id = "question-grafik";
+                    grafikEl.className = "mx-auto max-w-sm my-2 flex justify-center";
+                    const qt = document.getElementById("question-text");
+                    if (qt && qt.parentNode) qt.parentNode.insertBefore(grafikEl, qt.nextSibling);
+                }
+                if (q.grafik) {
+                    grafikEl.innerHTML = q.grafik;
+                    grafikEl.classList.remove("hidden");
+                } else {
+                    grafikEl.innerHTML = "";
+                    grafikEl.classList.add("hidden");
+                }
+
+                const imgWrap = document.getElementById("question-image-wrap");
+                const imgEl = document.getElementById("question-image");
+                if (imgWrap && imgEl) {
+                    if (q.image || q.imageLocal) {
+                        imgEl.alt = q.imageAlt || "Rätselbild";
+                        const local = q.imageLocal || "";
+                        const remote = q.image || "";
+                        imgEl.onerror = function () {
+                            const cur = imgEl.getAttribute("src") || "";
+                            const tried = imgEl.dataset.flagTry || "";
+                            const codeMatch = cur.match(/([a-z]{2})\.png/i);
+                            const code = codeMatch ? codeMatch[1].toLowerCase() : "";
+                            const alts = [];
+                            if (local) alts.push(local);
+                            if (code) {
+                                alts.push("img/flags/" + code + ".png");
+                                alts.push("IMG/flags/" + code + ".png");
+                                alts.push("IMG/Flags/" + code + ".png");
+                                alts.push("img/Flags/" + code + ".png");
+                            }
+                            if (remote) alts.push(remote);
+                            const next = alts.find(function (u) { return u && tried.indexOf("|" + u + "|") < 0 && u !== cur; });
+                            imgEl.dataset.flagTry = tried + "|" + cur + "|";
+                            if (next) { imgEl.src = next; return; }
+                            imgWrap.classList.add("hidden");
+                        };
+                        imgEl.src = local || remote;
+                        imgWrap.classList.remove("hidden");
+                    } else {
+                        imgEl.removeAttribute("src");
+                        imgEl.onerror = null;
+                        imgWrap.classList.add("hidden");
+                    }
+                }
+                // Kleiner Lautsprecher je Antwort, solange vorgelesen wird –
+                // ein Leseanfänger kann damit jede Möglichkeit einzeln nachhören.
+                const vorleseKlasse = (typeof istVorleseFrage === 'function') ? istVorleseFrage(q) : false;
+                q.answers.forEach((ans, i) => {
+                    const b = document.createElement("button");
+                    b.className =
+                        "w-full p-4 bg-white/5 hover:bg-white/10 rounded-xl font-bold text-white mt-2 border border-white/5 transition-colors"
+                        + (vorleseKlasse ? " flex items-center gap-3 text-left" : "");
+                    if (vorleseKlasse) {
+                        const txt = document.createElement("span");
+                        txt.className = "flex-1";
+                        txt.innerText = ans;
+                        const hoer = document.createElement("span");
+                        hoer.className = "shrink-0 text-lg opacity-60 hover:opacity-100 px-2 py-1 rounded-lg bg-white/5";
+                        hoer.innerText = "🔊";
+                        hoer.setAttribute("role", "button");
+                        hoer.setAttribute("aria-label", "Antwort vorlesen");
+                        hoer.onclick = (ev) => {
+                            ev.stopPropagation();
+                            if (typeof speakAnswerOption === 'function') speakAnswerOption(i);
+                        };
+                        b.appendChild(txt);
+                        b.appendChild(hoer);
+                    } else {
+                        b.innerText = ans;
+                    }
+                    b.onclick = () => checkQuiz(i, q.correct, q.explanation, q.answers[q.correct]);
+                    optsContainer.appendChild(b);
+                });
+                // Erst NACH den Antwort-Knöpfen: das Vorlesen hebt sie einzeln hervor.
+                if (typeof updateSpeakButtonForQuestion === 'function') updateSpeakButtonForQuestion(q);
+            }
+        }
+
+        function checkQuiz(sel, cor, exp, correctAnswerText) {
+            if (testMode && testTimeRemaining <= 0) return;
+            const btns = document.getElementById("options-container").children;
+            for (let i = 0; i < btns.length; i++) {
+                btns[i].disabled = true;
+                if (i === cor) btns[i].className = "w-full p-4 bg-emerald-600 rounded-xl font-bold text-white mt-2 shadow-md";
+                else if (i === sel) btns[i].className = "w-full p-4 bg-rose-600 rounded-xl font-bold text-white mt-2 opacity-60";
+                else btns[i].classList.add("opacity-30");
+            }
+
+            const q = currentQuestions[qIndex];
+            if (currentPlayer) {
+                if (!currentPlayer.stats) currentPlayer.stats = {};
+                if (!currentPlayer.stats[q.category]) currentPlayer.stats[q.category] = { attempts: 0, correct: 0 };
+                currentPlayer.stats[q.category].attempts++;
+                if (!currentPlayer.wrongQuestions) currentPlayer.wrongQuestions = [];
+                if (sel === cor) {
+                    currentPlayer.stats[q.category].correct++;
+                    currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q.category && w.question === q.question));
+                } else {
+                    const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && w.question === q.question);
+                    if (!alreadyThere) currentPlayer.wrongQuestions.push({
+                        category: q.category,
+                        question: q.question
+                    });
+                }
+                // Themen-Statistik (über Kategorie+Thema, damit derselbe Topic-Schlüssel
+                // in verschiedenen Klassen/Fächern nicht vermischt wird) - Basis für die
+                // Kurs-Empfehlung bei schwachen Themen, siehe pruefeUndEmpfiehlKurs().
+                if (q.topic) {
+                    const canonT = (typeof canonTopic === "function") ? canonTopic(q.topic) : q.topic;
+                    const topicKey = q.category + "::" + canonT;
+                    if (!currentPlayer.topicStats) currentPlayer.topicStats = {};
+                    if (!currentPlayer.topicStats[topicKey]) currentPlayer.topicStats[topicKey] = { attempts: 0, correct: 0 };
+                    currentPlayer.topicStats[topicKey].attempts++;
+                    if (sel === cor) currentPlayer.topicStats[topicKey].correct++;
+                }
+            }
+            testAnsweredCount++; if (sel === cor) testCorrectCount++;
+
+            const expBox = document.getElementById("explanation-box");
+            if (sel === cor) {
+                addXP((typeof quizBelohnung === "function") ? quizBelohnung(q) : 10);
+                SFX.correct();
+                expBox.innerHTML =
+                    `<div class="font-black text-emerald-400 mb-1 flex items-center gap-2"><span class="text-2xl">✅</span> Super gemacht!</div><div class="text-gray-300 text-sm mt-2">${exp}</div>`;
+                expBox.className =
+                    "p-4 bg-white/5 border-l-4 border-emerald-500 rounded-xl text-left mt-5 shadow-inner block";
+            } else {
+                savePlayerProgress();
+                SFX.wrong();
+                showToast("Leider falsch!", "error");
+                expBox.innerHTML =
+                    `<div class="font-black text-rose-400 mb-2 flex items-center gap-2"><span class="text-2xl">❌</span> Nicht ganz.</div><div class="text-white font-bold bg-rose-900/20 p-2 rounded-lg mb-3 border border-rose-500/30">Richtig ist: <span class="text-rose-300">${correctAnswerText}</span></div><div class="text-gray-300 text-sm">${exp || ""}</div>${window.ZEIGE_KI_COACH ? `<button type="button" id="ki-explain-btn" class="mt-3 w-full text-sm font-bold py-2.5 px-3 rounded-xl bg-indigo-600/80 hover:bg-indigo-500 text-white border border-indigo-400/30">💡 Mehr erklären (Lerncoach)</button><div id="ki-explain-out" class="hidden mt-2 text-sm text-indigo-100 bg-indigo-950/40 p-3 rounded-lg border border-indigo-500/20"></div>` : ""}`;
+                expBox.className =
+                    "p-4 bg-white/5 border-l-4 border-rose-500 rounded-xl text-left mt-5 shadow-inner block";
+                const kiBtn = document.getElementById("ki-explain-btn");
+                if (kiBtn) {
+                    kiBtn.onclick = async () => {
+                        const out = document.getElementById("ki-explain-out");
+                        if (!out) return;
+                        kiBtn.disabled = true;
+                        kiBtn.textContent = "⏳ Erklärt…";
+                        out.classList.remove("hidden");
+                        out.textContent = "Einen Moment…";
+                        const chosen = (q.answers && q.answers[sel] != null) ? q.answers[sel] : "";
+                        let text = exp || "";
+                        if (window.EduPlayCoach && typeof EduPlayCoach.explainWrong === "function") {
+                            text = await EduPlayCoach.explainWrong({
+                                question: q.question,
+                                answers: q.answers,
+                                chosen: chosen,
+                                correctText: correctAnswerText,
+                                explanation: exp,
+                                category: q.category
+                            });
+                        }
+                        out.textContent = text;
+                        kiBtn.textContent = "💡 Nochmal erklären";
+                        kiBtn.disabled = false;
+                    };
+                }
+            }
+            document.getElementById("next-question-btn").classList.remove("hidden");
+        }
+
+
+        function bindSoloFlipCard(el) {
+            if (!el) return;
+            let lock = false;
+            function flipOnce(ev) {
+                if (ev) {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                }
+                if (lock) return;
+                lock = true;
+                el.classList.toggle("flipped");
+                setTimeout(function () { lock = false; }, 650);
+            }
+            el.addEventListener("pointerup", flipOnce);
+        }
+
+        function triggerNextQuestion() {
+            qIndex++;
+            if (typeof SFX !== "undefined" && SFX.pageFlip) SFX.pageFlip();
+            if (testMode) {
+                if (qIndex < currentQuestions.length && testTimeRemaining > 0) {
+                    showQuestion();
+                    merkeTestFortschritt();
+                } else finishTest();
+            } else {
+                if (qIndex < currentQuestions.length) {
+                    showQuestion();
+                    merkeSoloFortschritt();
+                } else {
+                    endSoloStudySession();
+                    vergissSoloFortschritt();
+                    if (quizMode !== 'flashcards' && testAnsweredCount > 0) {
+                        showLessonResultScreen();
+                    } else {
+                        showToast(window.__eduplayBlitzActive === false || window.__eduplayBlitzCat
+                            ? "Blitz-Übung geschafft! ⚡" : "Fertig! 🎉");
+                        switchView('menu');
+                    }
+                }
+            }
+        }
+
+        // ============================================================
+        //  SOLO-WIEDEREINSTIEG (Absturz mitten im Quiz)
+        // ============================================================
+        const SOLO_MERK_SCHLUESSEL = "eduplaySoloFortschritt";
+        const SOLO_MERK_DAUER_MS = 3 * 60 * 60 * 1000; // 3 Stunden
+
+        function merkeSoloFortschritt() {
+            if (testMode) return; // Tests → merkeTestFortschritt()
+            try {
+                // Lektion-Kontext mitspeichern (currentLektion ist nur eine RAM-Variable
+                // und geht sonst beim App-Neustart verloren – dann würde die Runde beim
+                // Wiedereinstieg zwar fertig gespielt, aber nicht als Lektion gewertet
+                // und nicht als bestanden gespeichert).
+                const lektion = (typeof currentLektion !== 'undefined' && currentLektion)
+                    ? { id: currentLektion.id, step: currentLektion.step }
+                    : null;
+                localStorage.setItem(SOLO_MERK_SCHLUESSEL, JSON.stringify({
+                    spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
+                    questions: currentQuestions,
+                    qIndex: qIndex,
+                    quizMode: quizMode,
+                    testAnsweredCount: testAnsweredCount,
+                    testCorrectCount: testCorrectCount,
+                    lektion: lektion,
+                    ts: Date.now()
+                }));
+            } catch (e) { /* */ }
+        }
+
+        function vergissSoloFortschritt() {
+            try { localStorage.removeItem(SOLO_MERK_SCHLUESSEL); } catch (e) { }
+        }
+
+        function gemerkterSoloFortschritt() {
+            try {
+                const roh = localStorage.getItem(SOLO_MERK_SCHLUESSEL);
+                if (!roh) return null;
+                const d = JSON.parse(roh);
+                if (!d || !Array.isArray(d.questions) || !d.questions.length) return null;
+                if (typeof d.qIndex !== 'number' || d.qIndex >= d.questions.length) return null;
+                if (Date.now() - (d.ts || 0) > SOLO_MERK_DAUER_MS) { vergissSoloFortschritt(); return null; }
+                return d;
+            } catch (e) { return null; }
+        }
+
+        const TEST_MERK_SCHLUESSEL = "eduplayTestFortschritt";
+        const TEST_MERK_DAUER_MS = 24 * 60 * 60 * 1000; // 24h
+
+        let testStartedAt = null;
+        let testTimeLimitSeconds = 0;
+
+        function merkeTestFortschritt() {
+            try {
+                localStorage.setItem(TEST_MERK_SCHLUESSEL, JSON.stringify({
+                    spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
+                    questions: currentQuestions,
+                    qIndex: qIndex,
+                    quizMode: quizMode || 'mc',
+                    testAnsweredCount: testAnsweredCount,
+                    testCorrectCount: testCorrectCount,
+                    testTimeRemaining: Math.max(0, testTimeRemaining | 0),
+                    testStartedAt: testStartedAt || Date.now(),
+                    testTimeLimitSeconds: testTimeLimitSeconds || 0,
+                    ts: Date.now()
+                }));
+            } catch (e) { /* */ }
+        }
+
+        function vergissTestFortschritt() {
+            try { localStorage.removeItem(TEST_MERK_SCHLUESSEL); } catch (e) { }
+        }
+
+        function gemerkterTestFortschritt() {
+            try {
+                const roh = localStorage.getItem(TEST_MERK_SCHLUESSEL);
+                if (!roh) return null;
+                const d = JSON.parse(roh);
+                if (!d || !Array.isArray(d.questions) || !d.questions.length) return null;
+                if (typeof d.qIndex !== 'number' || d.qIndex >= d.questions.length) return null;
+                if (Date.now() - (d.ts || 0) > TEST_MERK_DAUER_MS) { vergissTestFortschritt(); return null; }
+                return d;
+            } catch (e) { return null; }
+        }
+
+        function starteTestTimer() {
+            clearInterval(testTimerInterval);
+            updateTestTimerDisplay();
+            testTimerInterval = setInterval(() => {
+                testTimeRemaining--;
+                updateTestTimerDisplay();
+                if (testTimeRemaining <= 0) {
+                    clearInterval(testTimerInterval);
+                    testTimerInterval = null;
+                    finishTest();
+                }
+            }, 1000);
+        }
+
+        async function biteSoloWiedereinstiegAn() {
+            if (typeof appConfirm !== "function") return;
+
+            // Zuerst pausierten Test anbieten
+            const tMerk = gemerkterTestFortschritt();
+            if (tMerk && (!tMerk.spielerKey || !activePlayerKey || tMerk.spielerKey === activePlayerKey)) {
+                const min = Math.max(0, Math.floor((tMerk.testTimeRemaining || 0) / 60));
+                const sec = Math.max(0, (tMerk.testTimeRemaining || 0) % 60);
+                const okT = await appConfirm(
+                    "Test pausiert · noch " + min + ":" + String(sec).padStart(2, "0") + " · Frage " +
+                    ((tMerk.qIndex || 0) + 1) + "/" + tMerk.questions.length + ". Weitermachen?",
+                    { titel: "Test fortsetzen?", icon: "📝", okText: "Weitermachen", abbrechenText: "Verwerfen" }
+                );
+                if (!okT) { vergissTestFortschritt(); }
+                else {
+                    currentQuestions = tMerk.questions;
+                    qIndex = tMerk.qIndex;
+                    quizMode = tMerk.quizMode || 'mc';
+                    testMode = true;
+                    testAnsweredCount = tMerk.testAnsweredCount || 0;
+                    testCorrectCount = tMerk.testCorrectCount || 0;
+                    testTimeRemaining = Math.max(1, tMerk.testTimeRemaining | 0);
+                    testStartedAt = tMerk.testStartedAt || Date.now();
+                    testTimeLimitSeconds = tMerk.testTimeLimitSeconds || testTimeRemaining;
+                    const bar = document.getElementById("test-timer-bar");
+                    if (bar) bar.classList.remove("hidden");
+                    switchView('quiz');
+                    showQuestion();
+                    starteTestTimer();
+                    return;
+                }
+            }
+
+            const merk = gemerkterSoloFortschritt();
+            if (!merk) return;
+            if (merk.spielerKey && typeof activePlayerKey !== 'undefined' && activePlayerKey && merk.spielerKey !== activePlayerKey) return;
+
+            const ok = await appConfirm(
+                "Deine Runde läuft noch – weiter?",
+                { titel: "Willkommen zurück!", icon: "🧠", okText: "Weitermachen", abbrechenText: "Neu starten" }
+            );
+            if (!ok) { vergissSoloFortschritt(); return; }
+
+            currentQuestions = merk.questions;
+            qIndex = merk.qIndex;
+            quizMode = merk.quizMode || 'mc';
+            testMode = false;
+            testAnsweredCount = merk.testAnsweredCount || 0;
+            testCorrectCount = merk.testCorrectCount || 0;
+            // Lektion-Kontext wiederherstellen, sonst zählt die fertig gespielte Runde
+            // nicht als Lektion (kein "bestanden", keine Freischaltung der nächsten).
+            if (merk.lektion && typeof LEKTIONEN !== 'undefined') {
+                const daten = LEKTIONEN.find(l => l.id === merk.lektion.id);
+                if (daten) currentLektion = { id: merk.lektion.id, data: daten, step: merk.lektion.step };
+            }
+            document.getElementById("test-timer-bar").classList.add("hidden");
+            switchView('quiz');
+            showQuestion();
+        }
+
+        // ============================================================
+        //  TEST-MODUS
+        // ============================================================
+
+        function vocabNorm(s) {
+            return String(s || "").trim().toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^\w\s]/g, "");
+        }
+        function vocabIsSameWord(w) {
+            const a = vocabNorm(w && w.de);
+            const b = vocabNorm(w && w.foreign);
+            return !!(a && b && a === b);
+        }
+        function loadSeenSameVocab() {
+            try {
+                const a = JSON.parse(localStorage.getItem("eduplaySeenSameVocab") || "[]");
+                return Array.isArray(a) ? a : [];
+            } catch (e) { return []; }
+        }
+        function markSeenSameVocab(key) {
+            try {
+                let a = loadSeenSameVocab().filter(x => x !== key);
+                a.push(key);
+                if (a.length > 500) a = a.slice(-500);
+                localStorage.setItem("eduplaySeenSameVocab", JSON.stringify(a));
+            } catch (e) { /* */ }
+        }
+
+        function buildVocabTestQuestions(vocabKeys, dir) {
+            const out = [];
+            if (typeof VOCABULARY_DATABASE === 'undefined') return out;
+            const seenSame = new Set(loadSeenSameVocab());
+            (vocabKeys || []).forEach(vk => {
+                const [, lang, level] = vk.split(':');
+                const set = VOCABULARY_DATABASE?.[lang]?.[level];
+                if (!set || !set.words) return;
+                const words = set.words;
+                // Sicherheitsnetz: die "DE==Fremdsprache nur einmal zeigen"-Regel
+                // darf eine Gruppe nicht leerlaufen lassen. Würde sie den Pool
+                // unter die Mindestmenge drücken, gilt sie diese Runde nicht.
+                const mindestPool = Math.max(3, Math.ceil(words.length / 2));
+                const nochVerfuegbar = words.filter(w => {
+                    if (!w || !w.de || !w.foreign) return false;
+                    if (!vocabIsSameWord(w)) return true;
+                    const k = vocabNorm(w.de) + "|" + vocabNorm(w.foreign) + "|" + (lang || "");
+                    return !seenSame.has(k);
+                }).length;
+                const regelAussetzen = nochVerfuegbar < mindestPool;
+                words.forEach(w => {
+                    if (!w || !w.de || !w.foreign) return;
+                    const sameKey = vocabNorm(w.de) + "|" + vocabNorm(w.foreign) + "|" + (lang || "");
+                    // DE == EN (Hotel, Taxi …): höchstens einmal, danach ausblenden
+                    if (vocabIsSameWord(w) && !regelAussetzen) {
+                        if (seenSame.has(sameKey)) return;
+                        markSeenSameVocab(sameKey);
+                        seenSame.add(sameKey);
+                    }
+                    const thisDir = dir === 'mix' ? (Math.random() < 0.5 ? 'de2f' : 'f2de') : dir;
+                    const askDe = thisDir !== 'f2de';
+                    const prompt = askDe ? w.de : w.foreign;
+                    const answer = askDe ? w.foreign : w.de;
+                    const pool = [...new Set(words.map(x => askDe ? x.foreign : x.de))].filter(x => x !== answer);
+                    const distr = pool.sort(() => Math.random() - 0.5).slice(0, 3);
+                    out.push({
+                        category: vk,
+                        question: `Was heißt „${prompt}"?`,
+                        answers: [answer, ...distr],
+                        correct: 0,
+                        explanation: `${w.de} = ${w.foreign}`
+                    });
+                });
+            });
+            return out;
+        }
+
+        async function startAssignedTest() {
+            if (!currentPlayer || !currentPlayer.pendingTest) {
+                // Profil frisch aus Speicher ziehen (nach Zuweisung ohne Reload)
+                if (activePlayerKey && ALL_PROFILES[activePlayerKey] && ALL_PROFILES[activePlayerKey].pendingTest) {
+                    currentPlayer = ALL_PROFILES[activePlayerKey];
+                } else {
+                    return showToast("Kein offener Test gefunden.", "error");
+                }
+            }
+            const tMerk = gemerkterTestFortschritt();
+            if (tMerk && (!tMerk.spielerKey || tMerk.spielerKey === activePlayerKey)
+                && Array.isArray(tMerk.questions) && tMerk.questions.length
+                && (tMerk.testTimeRemaining | 0) > 0) {
+                currentQuestions = tMerk.questions;
+                qIndex = tMerk.qIndex || 0;
+                quizMode = tMerk.quizMode || 'mc';
+                testMode = true;
+                testAnsweredCount = tMerk.testAnsweredCount || 0;
+                testCorrectCount = tMerk.testCorrectCount || 0;
+                testTimeRemaining = tMerk.testTimeRemaining | 0;
+                testStartedAt = tMerk.testStartedAt || Date.now();
+                testTimeLimitSeconds = tMerk.testTimeLimitSeconds || testTimeRemaining;
+                document.getElementById("test-timer-bar").classList.remove("hidden");
+                switchView('quiz');
+                showQuestion();
+                starteTestTimer();
+                showToast("Test fortgesetzt ⏱", "success");
+                return;
+            }
+            // Fragen ggf. nachladen (Lazy-Load)
+            if (typeof ladeAlleFragen === "function") {
+                try { await ladeAlleFragen(); } catch (e) { /* */ }
+            }
+            const { categories, timeLimitSeconds, vocabDir } = currentPlayer.pendingTest;
+            const qCats = (categories || []).filter(c => !String(c).startsWith('vocab:'));
+            const vCats = (categories || []).filter(c => String(c).startsWith('vocab:'));
+            let pool = [];
+            qCats.forEach(key => {
+                if (typeof questionsForKey === "function") {
+                    pool = pool.concat(questionsForKey(key) || []);
+                } else if (typeof QUESTIONS_DATABASE !== "undefined") {
+                    pool = pool.concat(QUESTIONS_DATABASE.filter(q => q.category === key));
+                }
+            });
+            // Duplikate
+            const seen = new Set();
+            pool = pool.filter(q => {
+                const id = q && (q.id || q.question);
+                if (!id || seen.has(id)) return false;
+                seen.add(id);
+                return true;
+            });
+            pool = pool.concat(buildVocabTestQuestions(vCats, vocabDir || 'de2f'));
+            if (pool.length === 0) {
+                return showToast("Keine Fragen für diesen Test gefunden. Anderes Thema wählen oder Fragen neu laden.", "error");
+            }
+            currentQuestions = prepareQuestions(pool.sort(() => Math.random() - 0.5));
+            testMode = true;
+            testCorrectCount = 0;
+            testAnsweredCount = 0;
+            testTimeRemaining = timeLimitSeconds || 600;
+            testTimeLimitSeconds = testTimeRemaining;
+            testStartedAt = Date.now();
+            quizMode = 'mc';
+            qIndex = 0;
+            vergissTestFortschritt();
+            document.getElementById("test-timer-bar").classList.remove("hidden");
+            switchView('quiz');
+            showQuestion();
+            starteTestTimer();
+        }
+
+        function updateTestTimerDisplay() {
+            const el = document.getElementById("test-timer-display");
+            if (el) el.innerText = Math.max(0, Math.floor(testTimeRemaining / 60)) + ":" + Math.max(0, testTimeRemaining %
+                60).toString().padStart(2, '0');
+        }
+
+        function finishTest() {
+            clearInterval(testTimerInterval);
+            testTimerInterval = null;
+            testMode = false;
+            const durationSec = testTimeLimitSeconds > 0
+                ? Math.max(0, testTimeLimitSeconds - Math.max(0, testTimeRemaining | 0))
+                : (testStartedAt ? Math.round((Date.now() - testStartedAt) / 1000) : 0);
+            vergissTestFortschritt();
+            document.getElementById("test-timer-bar").classList.add("hidden");
+            const total = testAnsweredCount;
+            const pct = total > 0 ? Math.round((testCorrectCount / total) * 100) : 0;
+            if (currentPlayer) {
+                if (!currentPlayer.testHistory) currentPlayer.testHistory = [];
+                const cats = (currentPlayer.pendingTest && Array.isArray(currentPlayer.pendingTest.categories))
+                    ? currentPlayer.pendingTest.categories.slice()
+                    : [];
+                currentPlayer.testHistory.unshift({
+                    date: new Date().toISOString(),
+                    correct: testCorrectCount,
+                    total: total,
+                    durationSec: durationSec,
+                    seenByParent: false,
+                    categories: cats
+                });
+                currentPlayer.testHistory = currentPlayer.testHistory.slice(0, 10);
+                currentPlayer.pendingTest = null;
+                if (pct >= 80 && typeof addZeit === "function") addZeit(10);
+                checkAndAwardBadges();
+                savePlayerProgress();
+                updateMenuGamification();
+            }
+            showTestResultScreen(testCorrectCount, total, pct, durationSec);
+            testStartedAt = null;
+            testTimeLimitSeconds = 0;
+        }
+
+        function formatDurationSec(sec) {
+            sec = Math.max(0, sec | 0);
+            const m = Math.floor(sec / 60);
+            const s = sec % 60;
+            if (m <= 0) return s + " Sek.";
+            return m + " Min. " + String(s).padStart(2, "0") + " Sek.";
+        }
+
+        function showTestResultScreen(correct, total, pct, durationSec) {
+            const emoji = pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪";
+            const msg = pct >= 80 ? "Super gemacht!" : pct >= 50 ? "Gut gemacht, weiter so!" : "Dranbleiben, das wird noch!";
+            const dur = (durationSec != null) ? formatDurationSec(durationSec) : "";
+
+            document.getElementById("test-result-content").innerHTML = `
+        <div class="glass-card-glow p-8 text-center space-y-4" style="border-color:rgba(99,102,241,0.2);">
+            <div class="text-7xl">${emoji}</div>
+            <h2 class="text-2xl font-black text-white">${msg}</h2>
+            <div class="text-5xl font-black text-emerald-400">${correct} / ${total}</div>
+            <div class="text-gray-400 font-bold">${pct}% richtig beantwortet</div>
+            ${dur ? `<div class="text-sm text-indigo-300 font-bold">⏱ Dauer: ${dur}</div>` : ""}
+            <div class="flex gap-3 mt-4">
+                <button onclick="startAssignedTest()" class="flex-1 p-3 bg-blue-600 rounded-xl font-bold text-white shadow-lg hover:bg-blue-500 transition">🔄 Nochmal</button>
+                <button onclick="goToMainMenu(); switchView('menu')" class="flex-1 p-3 bg-emerald-600 rounded-xl font-bold text-white shadow-lg hover:bg-emerald-500 transition">⬅ Zurück</button>
+            </div>
+        </div>`;
+            switchView('test-result');
+        }
+
+        function goToMainMenu() {
+            try {
+                if (typeof stopSpeaking === "function") stopSpeaking();
+                else if (window.speechSynthesis) window.speechSynthesis.cancel();
+            } catch (e) { }
+
+            // Alle offenen Timer stoppen
+            if (typeof focusTimerInterval !== 'undefined' && focusTimerInterval) {
+                clearInterval(focusTimerInterval);
+                focusTimerInterval = null;
+            }
+            if (typeof scrabbleTimerInterval !== 'undefined' && scrabbleTimerInterval) {
+                clearInterval(scrabbleTimerInterval);
+                scrabbleTimerInterval = null;
+            }
+            if (typeof testTimerInterval !== 'undefined' && testTimerInterval) {
+                clearInterval(testTimerInterval);
+                testTimerInterval = null;
+            }
+            if (typeof liveDuelTimerInterval !== 'undefined' && liveDuelTimerInterval) {
+                clearInterval(liveDuelTimerInterval);
+                liveDuelTimerInterval = null;
+            }
+
+            // Alle Views ausblenden
+            document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
+
+            // Lesen-Modul für nächsten Besuch zurücksetzen
+            const _lex = document.getElementById('lesen-exercise');
+            const _lcat = document.getElementById('lesen-categories');
+            if (_lex) _lex.classList.add('hidden');
+            if (_lcat) _lcat.classList.remove('hidden');
+
+            // Hauptmenü anzeigen
+            const menu = document.getElementById('view-menu');
+            if (menu) menu.classList.remove('hidden');
+
+            // Header zurücksetzen
+            const headerFamily = document.getElementById('header-familyhub');
+            const headerMenu = document.getElementById('header-menu');
+            if (headerFamily) headerFamily.classList.add('hidden');
+            if (headerMenu) headerMenu.classList.remove('hidden');
+
+            // Wenn ein Spieler ausgewählt ist, Menü-Gamification aktualisieren
+            if (typeof currentPlayer !== 'undefined' && currentPlayer) {
+                if (typeof updateMenuGamification === 'function') {
+                    updateMenuGamification();
+                }
+            }
+
+            // Drawer schließen
+            if (typeof closeDrawer === 'function') closeDrawer();
+        }
+

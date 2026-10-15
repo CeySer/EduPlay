@@ -1,305 +1,11 @@
         // ============================================================
-        //  CAST / FERNSEHER
+        //  TV-MODUS
+        //  Cast/Receiver (receiver.html, window.open-Popup) wurde am 25.08.2026
+        //  entfernt - es war eingefroren, nicht eingebunden und ein zweites,
+        //  halbfertiges System neben diesem hier. Der TV-Modus laeuft ueber
+        //  Screen-Mirroring: das Handy des Gastgebers ist der Fernseher,
+        //  Mitspieler kommen per 4-stelligem Code oder QR dazu.
         // ============================================================
-        let castConnected = false;
-        let castWindow = null;
-        let castStatusCheck = null;
-        let castLobbyUnsub = null;
-        const CAST_QUESTION_COUNT = 10;
-
-        function castLobbyRef() {
-            if (!currentParentUser) return null;
-            return db.collection('parents').doc(currentParentUser.uid).collection('tv_game').doc('lobby');
-        }
-
-        function buildCastQuestions() {
-            const grade = (typeof playerGrade === 'function') ? playerGrade(currentPlayer) : null;
-            let pool = (grade ? questionsByGrade(grade) : QUESTIONS_DATABASE) || [];
-            if (!pool.length) pool = QUESTIONS_DATABASE || [];
-            const picked = shuffleArray(pool).slice(0, CAST_QUESTION_COUNT).map(shuffleAnswers);
-            return picked.map(function (q) {
-                return {
-                    question: q.question,
-                    answers: q.answers,
-                    correct: q.correct,
-                    explanation: q.explanation || ''
-                };
-            });
-        }
-
-        function toggleCast() {
-            // TV-Cast / Receiver vorerst eingefroren – TV-Quiz (Menü) ist separat und bleibt aktiv.
-            if (castConnected) {
-                disconnectCast();
-                return;
-            }
-            showToast("TV-Anzeige (Cast/Receiver) kommt später. Nutze vorerst „TV-Quiz“ im Menü.", "info", "cast");
-        }
-
-        function buildReceiverUrlWithCode(code) {
-            const u = new URL("receiver.html", window.location.href);
-            if (code) u.searchParams.set("code", code);
-            return u.href;
-        }
-
-        function offerTvDisplay(code) {
-            /* eingefroren */ 
-        }
-        window.offerTvDisplay = offerTvDisplay;
-
-        function buildReceiverUrl(parentId, hostName) {
-            const u = new URL("receiver.html", window.location.href);
-            u.searchParams.set("mode", "cast");
-            u.searchParams.set("parentId", parentId);
-            if (hostName) u.searchParams.set("host", hostName);
-            return u.href;
-        }
-
-        function hideCastQrOverlay() {
-            const el = document.getElementById("castQrOverlay");
-            if (el) el.remove();
-        }
-
-        function showCastQrOverlay(fullUrl, castCode) {
-            hideCastQrOverlay();
-            const qrImg =
-                "https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=8&data=" +
-                encodeURIComponent(fullUrl);
-            const codeBlock = castCode
-                ? ('<div class="py-2"><div class="text-xs text-gray-400 font-bold uppercase">TV-Code (Cast)</div>' +
-                   '<div class="text-5xl font-black tracking-[0.25em] text-white my-1">' + castCode + "</div>" +
-                   '<p class="text-xs text-gray-400">Am TV: eduplayhub.de/receiver.html → Code eingeben</p></div>')
-                : '<p class="text-xs text-amber-300">Kein Kurzcode (Firestore tv_codes). Nutze Link/QR.</p>';
-            const ov = document.createElement("div");
-            ov.id = "castQrOverlay";
-            ov.className = "fixed inset-0 z-[80] flex items-center justify-center p-4";
-            ov.style.cssText = "background:rgba(2,6,23,0.85);backdrop-filter:blur(8px);";
-            ov.innerHTML =
-                '<div class="glass-card max-w-sm w-full p-5 text-center space-y-3 shadow-2xl border border-indigo-500/30">' +
-                '<div class="text-3xl">📺</div>' +
-                '<h3 class="text-lg font-black text-indigo-300">Cast / Receiver</h3>' +
-                '<p class="text-xs text-gray-400">Nicht der große TV-Quiz-Modus – nur die TV-Anzeige.</p>' +
-                codeBlock +
-                '<img src="' + qrImg + '" alt="QR-Code" width="200" height="200" class="mx-auto rounded-xl bg-white p-2" />' +
-                '<p class="text-[11px] text-gray-500 break-all px-1">' + fullUrl.replace(/</g, "") + "</p>" +
-                '<div class="grid grid-cols-2 gap-2">' +
-                '<button type="button" id="castQrCopy" class="btn-secondary text-sm py-2.5">Link kopieren</button>' +
-                '<button type="button" id="castQrTest" class="btn-secondary text-sm py-2.5">Testfenster</button>' +
-                "</div>" +
-                '<button type="button" id="castQrClose" class="btn-primary w-full text-sm py-2.5">Fertig – Steuerung anzeigen</button>' +
-                '<button type="button" id="castQrAbort" class="text-xs text-rose-400 font-bold py-1">Trennen</button>' +
-                "</div>";
-            document.body.appendChild(ov);
-            document.getElementById("castQrCopy").onclick = function () {
-                if (navigator.clipboard && navigator.clipboard.writeText) {
-                    navigator.clipboard.writeText(fullUrl).then(function () {
-                        showToast("Link kopiert", "success", "cast");
-                    }).catch(function () {
-                        showToast("Kopieren fehlgeschlagen", "error", "cast");
-                    });
-                } else {
-                    showToast("Kopieren nicht unterstützt", "error", "cast");
-                }
-            };
-            document.getElementById("castQrTest").onclick = function () {
-                castWindow = window.open(
-                    fullUrl,
-                    "EduPlayTV",
-                    "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no"
-                );
-                if (!castWindow) showToast("Popups erlauben!", "error", "cast");
-            };
-            document.getElementById("castQrClose").onclick = function () {
-                hideCastQrOverlay();
-                showCastPanel(true);
-            };
-            document.getElementById("castQrAbort").onclick = function () {
-                disconnectCast();
-            };
-        }
-
-        async function connectCast() {
-            if (!currentParentUser) {
-                showToast("Bitte zuerst als Elternteil anmelden!", "error", "cast");
-                return;
-            }
-            if (!currentPlayer) {
-                showToast("Bitte zuerst einen Spieler auswählen!", "error", "cast");
-                return;
-            }
-            const parentId = currentParentUser.uid;
-            const playerName = currentPlayer.name || "Host";
-            const fullUrl = buildReceiverUrl(parentId, playerName);
-
-            const castCode = await createTVLobby(parentId, playerName);
-            castConnected = true;
-            updateCastButton();
-            startCastLobbyListener();
-            showCastQrOverlay(fullUrl, castCode || window._activeCastCode || "");
-            showToast(castCode ? ("TV-Code: " + castCode) : "Receiver-Link bereit", "success", "cast");
-        }
-
-        function disconnectCast() {
-            castConnected = false;
-            if (castStatusCheck) {
-                clearInterval(castStatusCheck);
-                castStatusCheck = null;
-            }
-            if (castWindow && !castWindow.closed) { castWindow.close(); }
-            castWindow = null;
-            hideCastQrOverlay();
-            stopCastLobbyListener();
-            showCastPanel(false);
-            updateCastButton();
-            showToast("📺 Verbindung getrennt", "info", "cast");
-        }
-
-        function updateCastButton() {
-            const btn = document.getElementById('castButton');
-            if (btn) {
-                btn.textContent = castConnected ? '📡' : '🖥️';
-                btn.classList.toggle('text-green-400', castConnected);
-                btn.classList.toggle('text-gray-400', !castConnected);
-            }
-        }
-
-        async function createTVLobby(parentId, hostName) {
-            const hostKey = (typeof activePlayerKey !== "undefined" && activePlayerKey)
-                ? activePlayerKey
-                : ("host_" + String(Date.now()).slice(-6));
-            const players = {};
-            players[hostKey] = {
-                name: hostName || "Host",
-                score: 0,
-                hasAnswered: false,
-                lastAnswer: null,
-                isHost: true
-            };
-            // Kurzer Code nur für Cast/Receiver (nicht der große TV-Quiz-Modus)
-            let castCode = "";
-            const alphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-            for (let i = 0; i < 4; i++) castCode += alphabet[Math.floor(Math.random() * alphabet.length)];
-            try {
-                await db.collection("tv_codes").doc(castCode).set({
-                    parentId: parentId,
-                    kind: "cast",
-                    createdAt: Date.now()
-                });
-                window._activeCastCode = castCode;
-            } catch (e) {
-                console.warn("Cast-Code:", e);
-                castCode = "";
-                window._activeCastCode = "";
-            }
-            try {
-                await db.collection("parents").doc(parentId).collection("tv_game").doc("lobby").set({
-                    status: "lobby",
-                    kind: "cast",
-                    players: players,
-                    questions: buildCastQuestions(),
-                    currentIndex: 0,
-                    createdBy: hostName || "Host",
-                    castCode: castCode || null,
-                    createdAt: Date.now()
-                });
-                console.log("✅ Cast-Lobby erstellt", parentId, castCode);
-            } catch (err) {
-                console.error("❌ Cast-Lobby:", err);
-                showToast("Lobby konnte nicht erstellt werden", "error", "cast");
-            }
-            return castCode;
-        }
-
-        function checkCastStatus() {
-            if (castConnected && castWindow && castWindow.closed) {
-                disconnectCast();
-            }
-        }
-        setInterval(checkCastStatus, 5000);
-
-        window.addEventListener('beforeunload', function () {
-            if (castConnected) { disconnectCast(); }
-        });
-
-        function showCastPanel(show) {
-            const p = document.getElementById('castControlPanel');
-            if (p) p.classList.toggle('hidden', !show);
-        }
-
-        function updateCastPanel(status, idx, total) {
-            const el = document.getElementById('castPanelStatus');
-            if (!el) return;
-            let txt = 'Lobby';
-            if (status === 'playing') txt = 'Frage ' + ((idx || 0) + 1) + '/' + (total || 0);
-            else if (status === 'reveal') txt = 'Loesung ' + ((idx || 0) + 1) + '/' + (total || 0);
-            else if (status === 'finished') txt = '🏆 Beendet';
-            else if (status === 'lobby') txt = 'Lobby – bereit';
-            el.textContent = txt;
-        }
-
-        function startCastLobbyListener() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            stopCastLobbyListener();
-            castLobbyUnsub = ref.onSnapshot(function (snap) {
-                const d = snap.data() || {};
-                updateCastPanel(d.status, d.currentIndex || 0, (d.questions || []).length);
-                if (d.hostCommand && d.hostCommand.type) {
-                    const t = d.hostCommand.type;
-                    ref.update({ hostCommand: null }).catch(function () { });
-                    if (t === 'START_QUIZ') castStartQuiz();
-                    else if (t === 'NEXT_QUESTION') castNext();
-                    else if (t === 'RESTART') castRestart();
-                }
-            });
-        }
-
-        function stopCastLobbyListener() {
-            if (castLobbyUnsub) {
-                castLobbyUnsub();
-                castLobbyUnsub = null;
-            }
-        }
-
-        function castStartQuiz() {
-            const ref = castLobbyRef();
-            if (!ref) { showToast('Bitte zuerst mit dem Fernseher verbinden.', 'error', 'cast'); return; }
-            const questions = buildCastQuestions();
-            if (!questions.length) { showToast('Keine Fragen fuer diese Klasse gefunden!', 'error', 'cast'); return; }
-            ref.set({ status: 'playing', currentIndex: 0, questions: questions, updatedAt: Date.now() }, { merge: true });
-        }
-
-        function castReveal() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            ref.set({ status: 'reveal', updatedAt: Date.now() }, { merge: true });
-        }
-
-        function castNext() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            ref.get().then(function (snap) {
-                const d = snap.data() || {};
-                const total = (d.questions || []).length;
-                const idx = (d.currentIndex || 0) + 1;
-                if (idx >= total) {
-                    ref.set({ status: 'finished', updatedAt: Date.now() }, { merge: true });
-                } else {
-                    ref.set({ status: 'playing', currentIndex: idx, updatedAt: Date.now() }, { merge: true });
-                }
-            });
-        }
-
-        function castRestart() {
-            const ref = castLobbyRef();
-            if (!ref) return;
-            ref.set({ status: 'playing', currentIndex: 0, questions: buildCastQuestions(), updatedAt: Date.now() }, { merge: true });
-        }
-
-
-
-
-
 
         // ============================================================
         //  FERNSEHER-ANSICHT (Screen-Mirror: Handy → TV)
@@ -347,6 +53,7 @@
         let tvScrabbleSelected = [];
         let tvScrabbleCurrentLetters = [];
         let tvScrabbleCurrentRequired = "";
+        let tvScrabbleLetzteRunde = -1;
 
         function tvHostPlayEl() {
             return document.getElementById("tv-host-play") || document.getElementById("view-tv-quiz-host");
@@ -398,6 +105,7 @@
                     if (typeof clearTVWrTimers === "function") clearTVWrTimers();
                     stopTVAutoAdvance();
                     stopTVActionMode();
+                    stoppeTVRundenTimer();
                     showTVHostPodium(data.players);
                     merkeTVHost(false);
                     return;
@@ -437,8 +145,14 @@
                     const totalCount = zaehlend.length;
                     const wegCount = alle.length - totalCount;
                     if (!data.answerDeadline) {
-                        const secs = data.mode === "scrabble" ? 60 : 30;
-                        tvGameRef.update({ answerDeadline: Date.now() + secs * 1000 }).catch(() => { });
+                        const scrSecs = (typeof SCRABBLE_ANSWER_SECONDS !== "undefined" && data.difficulty && SCRABBLE_ANSWER_SECONDS[data.difficulty])
+                            ? SCRABBLE_ANSWER_SECONDS[data.difficulty]
+                            : 55;
+                        const secs = data.mode === "scrabble" ? scrSecs : (data.answerSeconds || 30);
+                        tvGameRef.update({
+                            answerDeadline: Date.now() + secs * 1000,
+                            answerDurationMs: secs * 1000
+                        }).catch(() => { });
                     }
                     const restSek = data.answerDeadline
                         ? Math.max(0, Math.ceil((data.answerDeadline - Date.now()) / 1000))
@@ -593,7 +307,12 @@
                 }
             } catch (e) { /* */ }
             try {
-                if (screen.orientation && typeof screen.orientation.lock === "function") {
+                // Nur sperren, wenn wirklich noetig - diese Funktion wird bei
+                // jedem Rundenwechsel neu aufgerufen. Ein wiederholtes Sperren,
+                // obwohl schon quer, hat manche TV-Browser wohl zum Neuladen
+                // der Seite gebracht (Verdacht, nicht bestaetigt).
+                const schonQuer = screen.orientation && String(screen.orientation.type || "").indexOf("landscape") === 0;
+                if (screen.orientation && typeof screen.orientation.lock === "function" && !schonQuer) {
                     screen.orientation.lock("landscape").catch(function () { /* oft nur im Fullscreen */ });
                 }
             } catch (e2) { /* */ }
@@ -710,9 +429,11 @@
         let tvFristTicker = null;
 
         let _tvBarDeadlineKey = null;
+        let _tvLiveDeadline = 0;
         function starteTVRundenTimer(data) {
             if (!data || !data.answerDeadline) return;
             const deadline = data.answerDeadline;
+            _tvLiveDeadline = deadline;
             const barKey = String(deadline) + ":" + (data.currentQuestionIndex || data.currentRound || 0);
 
             // Balken nur einmal pro Runde starten (sonst springt er bei jedem Snapshot zurück)
@@ -721,13 +442,13 @@
                 try {
                     const bar = document.getElementById("tv-kahoot-timer-bar");
                     if (bar) {
-                        // Gesamtdauer der Runde schätzen (Deadline war gerade gesetzt → ~30s/60s)
-                        // Gleichmäßig von jetzt bis Deadline – ein linearer Lauf, kein Neustart
                         const remainMs = Math.max(200, deadline - Date.now());
-                        // Ursprüngliche Länge: wenn fast voll, von 100%; sonst proportional zur Restzeit
-                        // Annahme: Quiz 30s, Scrabble 60s
-                        const fullMs = (data.mode === "scrabble") ? 60000 : 30000;
-                        const startPct = Math.min(100, Math.max(2, (remainMs / fullMs) * 100));
+                        const fullMs = data.answerDurationMs
+                            || ((data.mode === "scrabble")
+                                ? ((typeof SCRABBLE_ANSWER_SECONDS !== "undefined" && data.difficulty && SCRABBLE_ANSWER_SECONDS[data.difficulty])
+                                    ? SCRABBLE_ANSWER_SECONDS[data.difficulty] * 1000 : 60000)
+                                : ((data.answerSeconds || 30) * 1000));
+                        const startPct = Math.min(100, Math.max(1, (remainMs / fullMs) * 100));
                         bar.style.transition = "none";
                         bar.style.width = startPct + "%";
                         void bar.offsetWidth;
@@ -735,25 +456,31 @@
                         bar.style.width = "0%";
                     }
                 } catch (e) { /* */ }
+                if (tvFristTicker) { clearInterval(tvFristTicker); tvFristTicker = null; }
             }
 
-            // Sekunden-Ticker nur einmal laufen lassen
             if (tvFristTicker) return;
             tvFristTicker = setInterval(() => {
                 if (!tvGameRef) return stoppeTVRundenTimer();
-                const rest = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                const ende = _tvLiveDeadline || 0;
+                const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
                 const el = document.getElementById("tv-answer-counter");
                 if (el && el.innerText.indexOf("noch ") !== -1) {
                     el.innerText = el.innerText.replace(/noch \d+s/, "noch " + rest + "s");
                 }
-                if (rest <= 0) {
+                if (ende && rest <= 0) {
                     stoppeTVRundenTimer();
                     if (isResolving) return;
                     isResolving = true;
                     tvGameRef.get().then(d => {
-                        if (!d.exists) return;
+                        if (!d.exists) { isResolving = false; return; }
                         const frisch = d.data();
                         if (frisch.status !== "playing" || frisch.showAnswer) { isResolving = false; return; }
+                        if (frisch.answerDeadline && Date.now() < frisch.answerDeadline - 400) {
+                            isResolving = false;
+                            starteTVRundenTimer(frisch);
+                            return;
+                        }
                         frisch.mode === "scrabble" ? revealTVScrabbleRound(frisch) : revealTVAnswer(frisch);
                     }).catch(() => { isResolving = false; });
                 }
@@ -968,12 +695,7 @@
         function renderTVPlayerList(players) {
             const list = document.getElementById("tv-player-list");
             if (!list) return;
-            const entries = Object.entries(bereinigeTVPlayers(players || {}) || {});
-            // bereinigeTVPlayers may return object or array-like values only
-            const vals = Array.isArray(entries[0]) ? entries : Object.entries(players || {}).filter(function (kv) {
-                return kv[1] && kv[1].name;
-            });
-            const cleaned = typeof bereinigeTVPlayers === "function" ? bereinigeTVPlayers(players || {}) : (players || {});
+            const cleaned = bereinigeTVPlayers(players || {});
             const keys = Object.keys(cleaned);
             if (keys.length === 0) {
                 list.innerHTML = `<div class="tv-lobby-empty">Warte auf Mitspieler…</div>`;
@@ -986,7 +708,7 @@
                 if (da) online++;
                 return `<div class="tv-lobby-player ${da ? "is-on" : "is-off"}">
                     <span class="tv-lobby-player-dot"></span>
-                    <span class="tv-lobby-player-name">${esc(p.name)}</span>
+                    <span class="tv-lobby-player-name">${esc(p.name)}${da ? "" : " · kurz weg"}</span>
                 </div>`;
             }).join("");
             const bar = `<div class="tv-lobby-status">${online}/${keys.length} online</div>`;
@@ -997,12 +719,16 @@
             want = want || 10;
             let list = [];
             try {
-                if (catKeys && catKeys.length > 1 && typeof buildMixedQuestions === "function") {
-                    list = buildMixedQuestions(catKeys, want) || [];
-                } else if (catKeys && catKeys[0] && typeof questionsForKey === "function") {
-                    const raw = questionsForKey(catKeys[0]) || [];
-                    list = (typeof prepareQuestions === "function" ? prepareQuestions(raw) : raw)
-                        .slice().sort(function () { return Math.random() - 0.5; }).slice(0, want);
+                const keys = (catKeys || []).filter(Boolean);
+                if (keys.length && typeof buildMixedQuestions === "function") {
+                    list = buildMixedQuestions(keys, want) || [];
+                } else if (keys[0] && typeof questionsForKey === "function") {
+                    const raw = questionsForKey(keys[0]) || [];
+                    const picked = (typeof pickPreferFresh === "function")
+                        ? pickPreferFresh(raw, want)
+                        : raw.slice().sort(function () { return Math.random() - 0.5; }).slice(0, want);
+                    if (typeof rememberQuestionIds === "function") rememberQuestionIds(picked);
+                    list = (typeof prepareQuestions === "function" ? prepareQuestions(picked) : picked);
                 }
             } catch (e) { console.warn("tvBuildQuestionPool", e); }
             if (list.length < 3 && typeof QUESTIONS_DATABASE !== "undefined" && QUESTIONS_DATABASE.length) {
@@ -1022,6 +748,23 @@
             return list;
         }
 
+        // Fragen fuer Firestore abspecken: nur was der Fernseher zum
+        // Weiterspielen braucht. Verhindert undefined-Felder (die Firestore
+        // ablehnt) und haelt das Lobby-Dokument klein.
+        function tvSlimQuestions(list) {
+            return (list || []).map(function (q) {
+                const slim = {
+                    question: String(q.question || ""),
+                    answers: (q.answers || []).map(function (a) { return String(a); }),
+                    correct: typeof q.correct === "number" ? q.correct : 0,
+                    explanation: String(q.explanation || "")
+                };
+                if (q.grafik && String(q.grafik).indexOf("<svg") === 0) slim.grafik = String(q.grafik);
+                if (q.image) slim.image = String(q.image);
+                return slim;
+            });
+        }
+
         function startTVGameLoop() {
             tvGameRef.get().then(doc => {
                 const data = doc.data();
@@ -1029,6 +772,8 @@
                 if (data.mode === "wortraten") { startTVWortratenRound(data); return; }
                 const catKeys = (data.categoryKeys && data.categoryKeys.length) ? data.categoryKeys : [data.category];
                 tvQuestions = tvBuildQuestionPool(catKeys, 10);
+                if (typeof hinweisFragenPoolDuennt === "function") hinweisFragenPoolDuennt(tvQuestions.length, 10);
+                if (typeof merkeThemaStreak === "function") merkeThemaStreak(catKeys);
                 if (tvQuestions.length < 3) {
                     showToast("Zu wenige Fragen – anderes Thema wählen oder Fragen laden.", "error");
                     return;
@@ -1046,6 +791,7 @@
                     showAnswer: false,
                     answerDeadline: null,
                     players: playersData,
+                    questions: tvSlimQuestions(tvQuestions),
                     correctAnswer: tvQuestions[0].correct,
                     answerCount: tvQuestions[0].answers.length
                 });
@@ -1054,13 +800,31 @@
         }
 
         // EduPlay-TV-Palette (kein Kahoot-Klon): Indigo, Emerald, Amber, Fuchsia
-        const TV_SHOW_COLORS = ["#4f46e5", "#059669", "#d97706", "#c026d3"];
+        // Etwas dunklere Toene als vorher: weisse Schrift darauf ist aus
+        // drei Metern Abstand deutlich besser lesbar (vor allem das Gelb).
+        const TV_SHOW_COLORS = ["#4338ca", "#047857", "#b45309", "#a21caf"];
         const TV_SHOW_LABELS = ["A", "B", "C", "D"];
+
+        // Kleiner Hinweis oben im Bild: solange eine Runde laeuft, koennen
+        // Nachzuegler mit dem Code noch dazukommen (joinTVGame laesst auch
+        // status "playing" zu) - man sah den Code aber nur in der Lobby.
+        function tvJoinChipHTML() {
+            const code = window._activeTVCode || "";
+            if (!code || !isTVHost) return "";
+            return '<span class="tv-show-join">📲 Mitspielen: <b>' + esc(code) + '</b></span>';
+        }
 
         function showTVHostQuestion(index) {
             stopTVRoundTimer();
             isResolving = false;
             tvCurrentQ = tvQuestions[index];
+            if (!tvCurrentQ || !Array.isArray(tvCurrentQ.answers) || !tvCurrentQ.answers.length) {
+                // Kann nach einem Neuladen des Fernsehers passieren. Frueher lief
+                // die Funktion in einen Skriptfehler und das Bild blieb stehen.
+                console.warn("TV: Frage", index, "fehlt");
+                showToast("Die Fragen sind verloren gegangen - bitte neue Runde starten.", "error", "tvq");
+                return;
+            }
             let answersHtml = "";
             (tvCurrentQ.answers || []).forEach((ans, i) => {
                 const bg = TV_SHOW_COLORS[i % 4];
@@ -1077,11 +841,15 @@
                     <div class="tv-show-top">
                         <div class="tv-show-meta">
                             <span class="tv-show-qnum">Frage ${index + 1} / ${tvQuestions.length}</span>
+                            ${tvJoinChipHTML()}
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
                         <div class="tv-show-timer-track" aria-hidden="true">
                             <div id="tv-kahoot-timer-bar" class="tv-show-timer-bar"></div>
                         </div>
+                        ${(tvCurrentQ.grafik && String(tvCurrentQ.grafik).indexOf("<svg") === 0)
+                            ? `<div class="tv-show-grafik mx-auto mb-2" style="max-width:min(280px,40vw)">${tvCurrentQ.grafik}</div>`
+                            : ""}
                         <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                     </div>
                     <div class="tv-show-grid">${answersHtml}</div>
@@ -1104,13 +872,37 @@
             } catch (e) { /* */ }
         }
 
+        // Schreibt ausschliesslich die ausgerechneten Felder pro Spieler statt der
+        // kompletten players-Map. Die Map stammt vom Rundenbeginn; wer in der
+        // Zwischenzeit beigetreten ist, wurde beim Zurueckschreiben wieder
+        // entfernt - und sein Handy stand danach stumm da.
+        function tvPunkteUpdate(playersData, felder, extra) {
+            const update = Object.assign({}, extra || {});
+            Object.keys(playersData || {}).forEach(function (k) {
+                felder.forEach(function (f) {
+                    const wert = playersData[k][f];
+                    update["players." + k + "." + f] = (wert === undefined ? null : wert);
+                });
+            });
+            return update;
+        }
+
         function revealTVAnswer(data) {
             stopTVRoundTimer();
+            stoppeTVRundenTimer();
             window._tvHostRenderKey = null;
             _tvBarDeadlineKey = null;
-            tvGameRef.update({ showAnswer: true });
+            if (!tvCurrentQ && Array.isArray(data.questions) && data.questions.length) {
+                tvQuestions = data.questions;
+                tvCurrentQ = tvQuestions[data.currentQuestionIndex || 0];
+            }
+            if (!tvCurrentQ || !Array.isArray(tvCurrentQ.answers)) {
+                isResolving = false;
+                showToast("Die Fragen sind verloren gegangen - bitte neue Runde starten.", "error", "tvq");
+                return;
+            }
             const correctIndex = data.correctAnswer;
-            const playersData = data.players;
+            const playersData = data.players || {};
 
             // Erster Richtiger (frühestes answeredAt)
             let firstKey = null, firstAt = Infinity;
@@ -1141,7 +933,13 @@
                     p.lastRoundDetail = "";
                 }
             });
-            tvGameRef.update({ players: playersData });
+            // Ein Schreibvorgang statt zwei: showAnswer und Punkte kamen vorher
+            // getrennt an, dazwischen sah der Spieler kurz die alte Punktzahl.
+            tvGameRef.update(tvPunkteUpdate(
+                playersData,
+                ["score", "answerStreak", "lastRoundPoints", "lastRoundDetail"],
+                { showAnswer: true }
+            ));
 
             // Host-Anzeige: Erster + Streak
             try {
@@ -1170,11 +968,18 @@
 
             const ranked = Object.values(playersData || {})
                 .sort(function (a, b) { return (b.score || 0) - (a.score || 0); })
-                .slice(0, 5)
+                .slice(0, 6)
                 .map(function (p, i) {
+                    const ai = p.lastAnswer;
+                    let pick = "keine Antwort";
+                    if (ai != null && tvCurrentQ.answers && tvCurrentQ.answers[ai] != null) {
+                        const lab = TV_SHOW_LABELS[ai % 4] || "";
+                        const ok = ai === correctIndex ? " ✓" : "";
+                        pick = lab + " · " + tvCurrentQ.answers[ai] + ok;
+                    }
                     return `<div class="tv-show-rank-row">
                         <span class="tv-show-rank-pos">${i + 1}</span>
-                        <span class="tv-show-rank-name">${esc(p.name)}</span>
+                        <span class="tv-show-rank-name">${esc(p.name)}<span class="tv-show-rank-pick">${esc(pick)}</span></span>
                         <span class="tv-show-rank-score">${p.score || 0}</span>
                     </div>`;
                 }).join("");
@@ -1185,8 +990,12 @@
                     <div class="tv-show-top">
                         <div class="tv-show-meta">
                             <span class="tv-show-qnum">Auflösung</span>
+                            ${tvJoinChipHTML()}
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?','tv-quiz-setup',function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
+                        ${(tvCurrentQ.grafik && String(tvCurrentQ.grafik).indexOf("<svg") === 0)
+                            ? `<div class="tv-show-grafik mx-auto mb-2" style="max-width:min(280px,40vw)">${tvCurrentQ.grafik}</div>`
+                            : ""}
                         <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                         ${tvCurrentQ.explanation
                             ? `<p class="tv-show-explain">💡 ${esc(tvCurrentQ.explanation)}</p>`
@@ -1229,31 +1038,37 @@
             }
         }
 
-        function startTVAutoAdvance() {
+        function startTVAutoAdvance(nextFn, seconds) {
             stopTVAutoAdvance();
-            let left = tvAutoSeconds();
+            window._tvAutoNextFn = (typeof nextFn === "function") ? nextFn : nextTVQuestion;
+            let left = (typeof seconds === "number") ? seconds : tvAutoSeconds();
+            window._tvAutoLeft = left;
             renderTVAutoControls(left);
             if (!tvAutoAdvanceOn) return;
             tvAutoAdvanceInterval = setInterval(() => {
                 left--;
+                window._tvAutoLeft = left;
                 renderTVAutoControls(left);
                 if (left <= 0) {
                     stopTVAutoAdvance();
-                    nextTVQuestion();
+                    const fn = window._tvAutoNextFn;
+                    if (typeof fn === "function") fn();
                 }
             }, 1000);
         }
 
         function toggleTVAutoAdvance() {
             tvAutoAdvanceOn = !tvAutoAdvanceOn;
-            startTVAutoAdvance();
+            startTVAutoAdvance(window._tvAutoNextFn, window._tvAutoLeft || tvAutoSeconds());
         }
 
         async function nextTVQuestion() {
             stopTVAutoAdvance();
+            stoppeTVRundenTimer();
             const docSnap = await tvGameRef.get();
             const data = docSnap.data();
-            let nextIndex = data.currentQuestionIndex + 1;
+            if (Array.isArray(data.questions) && data.questions.length) tvQuestions = data.questions;
+            let nextIndex = (data.currentQuestionIndex || 0) + 1;
             if (nextIndex >= tvQuestions.length) {
                 await tvGameRef.update({ status: "finished" });
                 showTVHostPodium(data.players);
@@ -1264,28 +1079,40 @@
                     playersData[k].lastAnswer = null;
                 });
                 isResolving = false;
-                await tvGameRef.update({
-                    currentQuestionIndex: nextIndex,
-                    showAnswer: false,
-                    answerDeadline: null,
-                    players: playersData,
-                    correctAnswer: tvQuestions[nextIndex].correct,
-                    answerCount: tvQuestions[nextIndex].answers.length
-                });
+                await tvGameRef.update(tvPunkteUpdate(
+                    playersData,
+                    ["hasAnswered", "lastAnswer"],
+                    {
+                        currentQuestionIndex: nextIndex,
+                        showAnswer: false,
+                        answerDeadline: null,
+                        correctAnswer: tvQuestions[nextIndex].correct,
+                        answerCount: tvQuestions[nextIndex].answers.length
+                    }
+                ));
                 showTVHostQuestion(nextIndex);
             }
         }
 
         function showTVHostPodium(playersData) {
             stopTVAutoAdvance();
+            const _podKey = Object.keys(playersData || {}).sort().map(function (k) {
+                const p = playersData[k] || {};
+                return k + ":" + (p.score || 0);
+            }).join("|");
+            if (window._tvPodiumKey === _podKey && document.getElementById("tv-again-area")) return;
+            window._tvPodiumKey = _podKey;
             if (typeof clearTVWrTimers === "function") clearTVWrTimers();
             stopTVActionMode();
             const sorted = Object.values(playersData || {}).sort((a, b) => (b.score || 0) - (a.score || 0));
             const medals = ["🥇", "🥈", "🥉"];
+            const topScore = (sorted[0] && sorted[0].score) || 0;
+            const tieCount = sorted.filter(p => (p.score || 0) === topScore && topScore > 0).length;
             let ranks = "";
             sorted.forEach((p, i) => {
-                const medal = i < 3 ? medals[i] : (i + 1) + ".";
-                const top = i === 0 ? " is-first" : "";
+                const rank = sorted.filter(x => (x.score || 0) > (p.score || 0)).length;
+                const medal = rank < 3 && (p.score || 0) > 0 ? medals[rank] : (rank + 1) + ".";
+                const top = rank === 0 && (p.score || 0) > 0 ? " is-first" : "";
                 ranks += `<div class="tv-podium-row${top}"><span class="tv-podium-medal">${medal}</span><span class="tv-podium-name">${esc(p.name)}</span><span class="tv-podium-score">${p.score || 0} Pkt</span></div>`;
             });
             const names = esc(sorted.map(p => p.name).join(", "));
@@ -1294,7 +1121,7 @@
                     <div class="tv-rotate-hint">📱 Für die beste TV-Ansicht: Handy <strong>quer</strong> drehen</div>
                     <div class="tv-podium-layout">
                         <div class="tv-podium-left">
-                            <h1 class="tv-podium-title">🏆 Siegerehrung</h1>
+                            <h1 class="tv-podium-title">${tieCount > 1 ? "🤝 Unentschieden" : "🏆 Siegerehrung"}</h1>
                             <div class="tv-podium-list">${ranks}</div>
                         </div>
                         <div class="tv-podium-right">
@@ -1393,7 +1220,20 @@
             if (!tvGameRef) return;
             try {
                 const snap = await tvGameRef.get();
-                if (!snap.exists) return showToast("Diese Runde gibt es nicht mehr.", "error", "round");
+                if (!snap.exists) {
+                    // Lobby-Dokument ist weg (z.B. Verbindungsaussetzer). Statt in einer
+                    // toten Siegerehrung hängen zu bleiben: sauber zurück zum
+                    // Einrichten-Bildschirm, von dort sofort neu erstellbar.
+                    showToast("Lobby ist weg – bitte neu erstellen.", "error", "round");
+                    if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
+                    if (typeof clearTVWrTimers === "function") clearTVWrTimers();
+                    stopTVAutoAdvance();
+                    tvGameRef = null;
+                    isTVHost = false;
+                    merkeTVHost(false);
+                    showTVHostSetup();
+                    return;
+                }
                 const playersData = snap.data().players || {};
                 if (Object.keys(playersData).length === 0) return showToast("Keine Spieler mehr in der Lobby.", "error");
 
@@ -1409,6 +1249,7 @@
                     playersData[k].answeredAt = null;
                 });
                 isResolving = false;
+                window._tvPodiumKey = null;
 
                 if (tvAgainMode === "scrabble") {
                     const difficulty = (document.getElementById("tv-again-scrabble-diff") || {}).value || "mittel";
@@ -1464,6 +1305,7 @@
                     showAnswer: false,
                     answerDeadline: null,
                     players: playersData,
+                    questions: tvSlimQuestions(tvQuestions),
                     correctAnswer: tvQuestions[0].correct,
                     answerCount: tvQuestions[0].answers.length
                 });
@@ -1495,13 +1337,17 @@
         let tvActionChangeCount = 0;
         let tvActionMaxChanges = 0;
         let tvActionTimings = null;
+        let tvActionRoundKey = "";
 
         function startTVActionMode(data) {
             if (!data || !data.actionMode || !tvGameRef) {
                 console.log("TV: Action Mode nicht aktiv");
                 return;
             }
+            const rundKey = String(data.currentRound || 0) + ":" + (data.mode || "scrabble");
+            if (tvActionModeInterval && tvActionRoundKey === rundKey) return;
             stopTVActionMode();
+            tvActionRoundKey = rundKey;
             const timings = (typeof getActionTiming === "function")
                 ? getActionTiming(data.difficulty || "mittel")
                 : { firstChange: 12, maxChanges: 3, minGap: 8, maxGap: 14 };
@@ -1517,14 +1363,10 @@
                     return;
                 }
                 try {
-                    // Genau wie im normalen Gegeneinander-Duell: wenn schon jemand
-                    // sein Wort abgeschickt hat, keine neuen Buchstaben mehr nachschieben.
                     const snap = await tvGameRef.get();
                     const frisch = snap.exists ? snap.data() : null;
-                    const hatSchonGeantwortet = frisch && Object.values(frisch.players || {}).some(p => p && p.hasAnswered === true);
-                    if (!frisch || frisch.status !== "playing" || hatSchonGeantwortet) {
+                    if (!frisch || frisch.status !== "playing" || frisch.showAnswer) {
                         stopTVActionMode();
-                        if (typeof showToast === "function") showToast("⏸ Action-Modus pausiert (jemand hat schon geantwortet)", "info", "cast");
                         return;
                     }
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode || "kids");
@@ -1560,8 +1402,8 @@
             if (tvActionModeInterval) {
                 clearTimeout(tvActionModeInterval);
                 tvActionModeInterval = null;
-                console.log("⏹ Action Mode gestoppt");
             }
+            tvActionRoundKey = "";
         }
 
         // --- TV WORT-RÄTSEL ---
@@ -1608,6 +1450,9 @@
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                roundSolvedBy: null,
+                roundSolvedByName: "",
+                lastSolveAttempt: null,
                 wrTurnDeadline: Date.now() + 25000,
                 usedWords,
                 players,
@@ -1619,6 +1464,25 @@
         }
 
         function showTVHostWortraten(data) {
+            const wrKey = [
+                data.currentRound || 0,
+                data.turnIndex || 0,
+                data.word || "",
+                (data.guessed || []).join(""),
+                data.wrongCount || 0,
+                data.roundOver ? 1 : 0,
+                data.wrTurnDeadline || 0,
+                data.roundSolved ? 1 : 0,
+                Object.keys(data.players || {}).map(function (k) {
+                    const p = data.players[k] || {};
+                    return k + ":" + (p.score || 0);
+                }).join(",")
+            ].join("|");
+            if (window._tvWrHostKey === wrKey && document.getElementById("tv-wr-figure")) {
+                if (!data.roundOver) startTVWrTurnTimer(data);
+                return;
+            }
+            window._tvWrHostKey = wrKey;
             const word = data.word || "";
             const guessed = new Set(data.guessed || []);
             const theme = data.theme || "schneemann";
@@ -1643,9 +1507,12 @@
             if (shouldFlash) tvWrLastFlashKey = flashKey;
             const flashLetter = shouldFlash ? guessedArr[guessedArr.length - 1] : "";
             const flashHit = flashLetter && word.includes(flashLetter);
-            const scores = Object.values(data.players || {}).map(p =>
-                `<div class="tv-wr-score-chip"><span class="tv-wr-score-name">${esc(p.name)}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`
-            ).join("");
+            const scores = Object.keys(data.players || {}).sort().map(function (k) {
+                const p = data.players[k];
+                if (!p) return "";
+                const active = !data.roundOver && k === turnKey;
+                return `<div class="tv-wr-score-chip${active ? " is-turn" : ""}"><span class="tv-wr-score-name">${esc(p.name)}${active ? " · dran" : ""}</span><span class="tv-wr-score-pts">${p.score || 0}</span></div>`;
+            }).join("");
             let footer = "";
             if (data.roundOver) {
                 const who = data.roundSolvedByName || "";
@@ -1671,6 +1538,7 @@
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
                         <div class="tv-wr-scores">${scores}</div>
+                        ${data.roundOver ? "" : `<div class="tv-show-timer-track" aria-hidden="true"><div id="tv-wr-timer-bar" class="tv-show-timer-bar"></div></div>`}
                     </div>
                     <div class="tv-wr-body">
                         <div class="tv-wr-figure-wrap">
@@ -1694,7 +1562,7 @@
             }
             // Zug-Timer: Deadline in Firestore (überlebt Snapshots)
             if (isTVHost && !data.roundOver && !data.wrTurnDeadline) {
-                tvGameRef.update({ wrTurnDeadline: Date.now() + 25000 }).catch(function () {});
+                tvGameRef.update({ wrTurnDeadline: Date.now() + 25000, wrTurnDurationMs: 25000 }).catch(function () {});
             }
             if (data.roundOver) {
                 scheduleTVWrAutoAdvance(data);
@@ -1722,10 +1590,18 @@
             }
             clearTVWrTimers();
             tvWrTimerKey = key;
-            const el = document.getElementById("tv-wr-turn-timer");
             function paint() {
-                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                const el = document.getElementById("tv-wr-turn-timer");
+                const bar = document.getElementById("tv-wr-timer-bar");
+                const leftMs = Math.max(0, deadline - Date.now());
+                const left = Math.ceil(leftMs / 1000);
                 if (el) el.textContent = left > 0 ? ("⏱ Zug: " + left + "s") : "⏱ Zeit um…";
+                if (bar) {
+                    const full = (data && data.wrTurnDurationMs) || 25000;
+                    const pct = Math.max(0, Math.min(100, (leftMs / full) * 100));
+                    bar.style.transition = "none";
+                    bar.style.width = pct + "%";
+                }
                 return left;
             }
             paint();
@@ -1747,12 +1623,15 @@
             if (tvWrTimerKey === key && tvWrAutoAdvanceId) return;
             clearTVWrTimers();
             tvWrTimerKey = key;
-            const el = document.getElementById("tv-wr-turn-timer");
             let left = 5;
-            if (el) el.textContent = "Nächste Runde in " + left + "s…";
+            const malen = function (txt) {
+                const el = document.getElementById("tv-wr-turn-timer");
+                if (el) el.textContent = txt;
+            };
+            malen("Nächste Runde in " + left + "s…");
             tvWrAutoAdvanceId = setInterval(function () {
                 left--;
-                if (el) el.textContent = left > 0 ? ("Nächste Runde in " + left + "s…") : "Weiter…";
+                malen(left > 0 ? ("Nächste Runde in " + left + "s…") : "Weiter…");
                 if (left <= 0) {
                     clearInterval(tvWrAutoAdvanceId);
                     tvWrAutoAdvanceId = null;
@@ -1784,18 +1663,32 @@
                 return;
             }
             usedWords.push(word);
-            const order = data.order || Object.keys(data.players || {});
-            await tvGameRef.update({
+            // Dieselbe Reihenfolge wie ueberall sonst (gefiltert, Nachzuegler
+            // angehaengt). Vorher stand hier die alte, ungefilterte data.order -
+            // dadurch konnte beim Rundenwechsel jemand anderes dran sein als der,
+            // den der Fernseher angezeigt hat.
+            const order = tvWrActiveOrder(data);
+            const update = {
                 currentRound: (data.currentRound || 0) + 1,
                 turnIndex: order.length ? (data.currentRound || 0) % order.length : 0,
+                order: order,
                 word,
                 guessed: [],
                 wrongCount: 0,
                 roundOver: false,
                 roundSolved: false,
+                roundSolvedBy: null,
+                roundSolvedByName: "",
+                // Alter Loesungsversuch muss weg, sonst steht der Tipp aus Runde 1
+                // noch in Runde 3 neben einem voellig anderen Wort.
+                lastSolveAttempt: null,
                 wrTurnDeadline: Date.now() + 25000,
                 usedWords
+            };
+            Object.keys(data.players || {}).forEach(function (k) {
+                update["players." + k + ".lastRoundPoints"] = 0;
             });
+            await tvGameRef.update(update);
         }
 
         // Manuelles Weiterschalten, falls der/die Spieler:in am Zug gerade nicht
@@ -1813,11 +1706,19 @@
                     const order = tvWrActiveOrder(data);
                     if (!order.length) return;
                     const cur = (data.turnIndex || 0) % order.length;
-                    txn.update(tvGameRef, {
-                        turnIndex: (cur + 1) % order.length,
-                        order: order,
-                        wrTurnDeadline: Date.now() + 25000
-                    });
+                    // Verstrichene Zeit zaehlt wie ein falscher Buchstabe - sonst
+                    // kostet Aussitzen nichts, anders als jeder andere Fehlversuch.
+                    const wrongCount = (data.wrongCount || 0) + 1;
+                    const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
+                    const roundOver = wrongCount >= maxW;
+                    const update = { order: order, wrongCount, roundOver, roundSolved: false };
+                    if (roundOver) {
+                        update.wrTurnDeadline = null;
+                    } else {
+                        update.turnIndex = (cur + 1) % order.length;
+                        update.wrTurnDeadline = Date.now() + 25000;
+                    }
+                    txn.update(tvGameRef, update);
                 });
             } catch (e) {
                 handleError("skipTVWortratenTurn", e, "Zug konnte nicht übersprungen werden.");
@@ -1885,6 +1786,21 @@
             const key = activePlayerKey;
             if (!key) return;
             try {
+                // Nur wer am Zug ist, darf das ganze Wort raten. Vorher durfte das
+                // jeder jederzeit - jeder Fehlversuch zaehlte aber auf das
+                // gemeinsame Fehlerkonto, also konnte ein Kind die Runde fuer alle
+                // beenden, ohne je an der Reihe gewesen zu sein.
+                const vorabSnap = await tvGameRef.get();
+                const vorab = vorabSnap.exists ? vorabSnap.data() : null;
+                if (vorab && !vorab.roundOver) {
+                    const ordn = tvWrActiveOrder(vorab);
+                    const dran = ordn.length ? ordn[(vorab.turnIndex || 0) % ordn.length] : null;
+                    if (dran !== key) {
+                        const wer = (dran && vorab.players && vorab.players[dran] && vorab.players[dran].name) || "jemand anderes";
+                        showToast("Erst raten, wenn du dran bist - gerade ist " + wer + " an der Reihe.", "error", "wrsolve");
+                        return;
+                    }
+                }
                 // Tipp für alle sichtbar machen
                 await tvGameRef.update({
                     lastSolveAttempt: {
@@ -1906,7 +1822,9 @@
                     const players = Object.assign({}, data.players || {});
                     if (!players[key]) return;
                     const guessedSet = new Set(data.guessed || []);
-                    // Jeder darf jederzeit lösen (nicht nur am Zug)
+                    const ordnung = tvWrActiveOrder(data);
+                    const amZug = ordnung.length ? ordnung[(data.turnIndex || 0) % ordnung.length] : null;
+                    if (amZug !== key) return;
                     if (guess === target) {
                         const points = (typeof wrPointsForFullSolve === "function")
                             ? wrPointsForFullSolve(word, guessedSet) : 15;
@@ -1915,7 +1833,7 @@
                             lastRoundPoints: points
                         });
                         txn.update(tvGameRef, {
-                            guessed: word.split(""),
+                            guessed: word.split("").filter(function (ch, i, a) { return a.indexOf(ch) === i; }),
                             players,
                             roundOver: true,
                             roundSolved: true,
@@ -1927,11 +1845,14 @@
                         let roundOver = false, roundSolved = false;
                         const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
                         if (wrongCount >= maxW) { roundOver = true; roundSolved = false; }
-                        const order = data.order || [];
-                        const update = { wrongCount, players, roundOver, roundSolved };
-                        if (!roundOver && order.length) {
-                            update.turnIndex = ((data.turnIndex || 0) + 1) % order.length;
+                        const update = { wrongCount, players, roundOver, roundSolved, order: ordnung };
+                        if (!roundOver && ordnung.length) {
+                            update.turnIndex = ((data.turnIndex || 0) + 1) % ordnung.length;
+                            // Frist mitgeben: sonst erbt der Naechste die Restzeit des
+                            // Vorgaengers und wird nach zwei Sekunden uebersprungen.
+                            update.wrTurnDeadline = Date.now() + 25000;
                         }
+                        if (roundOver) update.wrTurnDeadline = null;
                         txn.update(tvGameRef, update);
                     }
                 });
@@ -2013,21 +1934,32 @@
             Object.keys(playersData).forEach(k => {
                 playersData[k].hasAnswered = false;
                 playersData[k].word = "";
+                playersData[k].submittedLetters = [];
+                playersData[k].scoredThisRound = false;
+                playersData[k].lastRoundPoints = 0;
+                playersData[k].wordStatus = null;
+                playersData[k].submittedRequired = "";
                 playersData[k].score = playersData[k].score || 0;
             });
 
             isResolving = false;
 
-            tvGameRef.update({
-                status: "playing",
-                showAnswer: false,
-                answerDeadline: null,
-                currentLetters: letters,
-                currentSolution: rack.solution,
-                currentRequired: rack.required || "",
-                currentRound: round,
-                players: playersData
-            });
+            // Nur die eigenen Felder je Spieler zuruecksetzen. Frueher wurde die
+            // komplette Liste vom Rundenbeginn zurueckgeschrieben - wer waehrend
+            // der Auswertung beigetreten war, verschwand damit wieder.
+            tvGameRef.update(tvPunkteUpdate(
+                playersData,
+                ["hasAnswered", "word", "submittedLetters", "submittedRequired", "score", "scoredThisRound", "lastRoundPoints", "wordStatus"],
+                {
+                    status: "playing",
+                    showAnswer: false,
+                    answerDeadline: null,
+                    currentLetters: letters,
+                    currentSolution: rack.solution,
+                    currentRequired: rack.required || "",
+                    currentRound: round
+                }
+            ));
 
             // NICHT mehr showTVHostScrabbleRound() hier aufrufen - das macht der Listener!
             // showTVHostScrabbleRound(letters, round, data.totalRounds, rack.required || "");
@@ -2089,6 +2021,7 @@
         }
 
         async function revealTVScrabbleRound(data) {
+            stoppeTVRundenTimer();
             stopTVActionMode();
             const playersData = data.players;
 
@@ -2106,14 +2039,21 @@
                     </div>`);
 
             for (const key of Object.keys(playersData)) {
+                if (playersData[key].scoredThisRound) {
+                    playersData[key]._basePoints = 0;
+                    playersData[key]._alreadyScored = true;
+                    continue;
+                }
                 const _cfgMin = (typeof SCRABBLE_DIFFICULTIES !== "undefined" && SCRABBLE_DIFFICULTIES[data.difficulty])
                     ? (SCRABBLE_DIFFICULTIES[data.difficulty].minWord || 3) : 3;
-                // TV: etwas großzügiger – Kinder min. 2 Buchstaben
                 const _minW = (data.wordMode === "kids" || data.difficulty === "leicht")
                     ? 2 : Math.max(2, _cfgMin - (data.difficulty === "mittel" ? 1 : 0));
-                const res = await evaluateScrabbleWord(playersData[key].word, letters, {
+                const _sl = (playersData[key].submittedLetters && playersData[key].submittedLetters.length)
+                    ? playersData[key].submittedLetters : letters;
+                const _sr = playersData[key].submittedRequired || currentRequired;
+                const res = await evaluateScrabbleWord(playersData[key].word, _sl, {
                     minWord: _minW < 2 ? 2 : _minW,
-                    required: currentRequired,
+                    required: _sr,
                     used: tvUsedWords,
                     addToUsed: false
                 });
@@ -2133,6 +2073,7 @@
 
             Object.keys(playersData).forEach(k => {
                 const p = playersData[k];
+                if (p._alreadyScored) return;
                 let finalPoints = p._basePoints || 0;
                 const parts = [];
                 if (data.actionMode && finalPoints > 0 && p.word) {
@@ -2161,7 +2102,11 @@
                     tvUsedWords.add(String(playersData[k].word).toUpperCase());
                 }
             });
-            tvGameRef.update({ showAnswer: true, players: playersData });
+            tvGameRef.update(tvPunkteUpdate(
+                playersData,
+                ["score", "answerStreak", "lastRoundPoints", "lastRoundDetail", "wordStatus"],
+                { showAnswer: true }
+            ));
 
             try {
                 const top = Object.entries(playersData)
@@ -2175,7 +2120,7 @@
             const isLastRound = data.currentRound >= data.totalRounds;
             let rowsHtml = "";
             Object.values(playersData).sort((a, b) => (b.lastRoundPoints || 0) - (a.lastRoundPoints || 0)).forEach(p => {
-                const sInfo = wordStatusInfo(p.wordStatus, p);
+                const sInfo = wordStatusInfo(p.wordStatus, { required: currentRequired, min: 2, word: p.word });
 
                 // Hinweis auf den Action-Bonus in der Auswertung
                 const bonusText = (data.actionMode && p.wordStatus === "valid") ? ' <span class="text-amber-400 text-xs font-bold">(+5 Action-Bonus)</span>' : '';
@@ -2185,6 +2130,9 @@
                     `<div class="flex justify-between items-start bg-white/5 border border-white/5 rounded-xl p-4 gap-3"><div class="font-bold text-white text-lg">${sInfo.icon} ${esc(p.name)}: <span class="text-amber-300">"${esc(p.word || "-")}"</span>${bonusText}${sDetail}</div><div class="font-black text-emerald-400 text-xl shrink-0">+${p.lastRoundPoints || 0} <span class="text-sm text-gray-500">(Σ ${p.score})</span></div></div>`;
             });
 
+            const rackHtml = (typeof scrabbleTilesHTML === "function" && letters && letters.length)
+                ? `<div class="tv-show-scrabble-rack tv-scrabble-review">${scrabbleTilesHTML(letters, true, currentRequired)}</div>`
+                : "";
             setTVHostPlayHTML(`
                 <div class="tv-show-stage">
                     <div class="tv-show-top">
@@ -2192,6 +2140,8 @@
                             <span class="tv-show-qnum">Runde ${data.currentRound} / ${data.totalRounds} – Ergebnisse</span>
                             <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit">✕</button>
                         </div>
+                        <p class="tv-show-question" style="font-size:clamp(0.9rem,2.4vh,1.3rem)">Diese Buchstaben galten:</p>
+                        ${rackHtml}
                         ${data.currentSolution ? `<p class="tv-show-explain">💡 z.B. möglich: ${esc(data.currentSolution)}</p>` : ""}
                     </div>
                     <div class="tv-scrabble-results">${rowsHtml}</div>
@@ -2199,12 +2149,24 @@
                         ${isLastRound
                             ? `<button onclick="tvGameRef.update({status:'finished'})" class="tv-show-next" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1f2937;">Endergebnis 🏆</button>`
                             : `<button onclick="nextTVScrabbleRound()" class="tv-show-next">Nächste Runde ➔</button>`}
+                        <div id="tv-auto-row" class="tv-show-auto">
+                            <span id="tv-auto-label"></span>
+                            <button onclick="toggleTVAutoAdvance()" id="tv-auto-btn" class="tv-show-auto-btn"></button>
+                        </div>
                     </div>
                 </div>
             `);
+            startTVAutoAdvance(function () {
+                if (isLastRound) tvGameRef.update({ status: "finished" });
+                else nextTVScrabbleRound();
+            }, 14);
         }
 
         function nextTVScrabbleRound() {
+            // Ohne das hier laeuft der Auto-Weiter-Timer der vorigen Runde im
+            // Hintergrund weiter und feuert kurz nach diesem Klick nochmal -
+            // das ueberspringt dann die naechste Runde komplett.
+            stopTVAutoAdvance();
             tvGameRef.get().then(doc => startTVScrabbleRound(doc.data()));
         }
 
@@ -2217,9 +2179,11 @@
         async function versucheTVDeepLinkJoin() {
             const code = window._pendingTVCode;
             if (!code || !currentPlayer || isTVHost) return;
-            window._pendingTVCode = null;
             switchView('tv-quiz-player');
             await joinTVGame(code);
+            // Erst jetzt vergessen: klappt der Beitritt nicht (Lobby noch nicht
+            // offen, Profilwechsel), steht der Code beim naechsten Versuch noch da.
+            if (tvGameRef) window._pendingTVCode = null;
         }
 
         // --- TV-QUIZ PLAYER (Handy) ---
@@ -2316,6 +2280,7 @@
 
                 tvGameRef = lobbyRef;
                 isTVHost = false;
+                tvPlayerRenderReset();
                 starteTVLebenszeichen();
 
                 setTVPlayerPlayHTML(`<div class="glass-card-glow p-12 text-center mt-12" style="border-color:rgba(16,185,129,0.15);"><div class="text-8xl mb-6 animate-bounce">🙌</div><h2 class="text-3xl font-black text-emerald-400 mb-4">Du bist drin!</h2><p class="text-lg text-white font-bold">Gleich geht's los. Schau auf den Fernseher!</p></div>`);
@@ -2343,8 +2308,22 @@
                         return;
                     }
                     const data = doc.data();
-                    const myData = data.players[activePlayerKey];
-                    if (!myData) return;
+                    const myData = (data.players || {})[activePlayerKey];
+                    if (!myData) {
+                        // Kann passieren, wenn die Auswertung eine aeltere Spielerliste
+                        // zurueckschreibt. Frueher stand das Handy hier einfach stumm.
+                        if (tvPlayerBrauchtNeu("weg")) {
+                            stoppeTVWrHandyTimer();
+                            setTVPlayerPlayHTML('<div class="glass-card p-8 text-center mt-12 space-y-4">'
+                                + '<div class="text-6xl">🔌</div>'
+                                + '<h2 class="text-xl font-black text-amber-300">Du bist gerade nicht in der Runde</h2>'
+                                + '<p class="text-sm text-gray-400">Das kann beim Rundenwechsel passieren. Tipp auf „Wieder mitspielen“, dann bist du sofort zurück.</p>'
+                                + '<button onclick="joinTVGameLast()" class="btn-primary w-full text-center">Wieder mitspielen</button>'
+                                + '<button onclick="leaveTVGame(true)" class="btn-secondary w-full text-center text-sm">Zurück ins Menü</button>'
+                                + '</div>');
+                        }
+                        return;
+                    }
                     // Profil auf anderem Gerät übernommen
                     if (myData.sessionId && window.DEVICE_SESSION_ID
                         && myData.sessionId !== window.DEVICE_SESSION_ID
@@ -2369,9 +2348,16 @@
 
                     if (data.mode === "wortraten") {
                         if (data.status === "playing") {
-                            const order = data.order || [];
+                            // Dieselbe Reihenfolge wie am Fernseher (gefiltert) - vorher
+                            // stand hier die rohe data.order, die davon abweichen kann.
+                            const order = tvWrActiveOrder(data);
                             const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
                             const isMyTurn = turnKey === activePlayerKey && !data.roundOver;
+                            const _wrKey = "wr:" + (data.currentRound || 0) + ":" + (data.roundOver ? 1 : 0)
+                                + ":" + turnKey + ":" + (data.guessed || []).join("")
+                                + ":" + (data.wrongCount || 0) + ":" + (data.wrTurnDeadline || 0)
+                                + ":" + (myData.score || 0);
+                            if (!tvPlayerBrauchtNeu(_wrKey)) return;
                             const word = data.word || "";
                             const guessed = new Set(data.guessed || []);
                             const mask = word.split("").map(ch =>
@@ -2407,9 +2393,13 @@
                                 const timerLine = (!data.roundOver && data.wrTurnDeadline)
                                     ? `<p id="tv-wr-player-timer" class="text-center text-sky-300 font-black text-sm mb-1">⏱ ${_tl}s</p>`
                                     : "";
-                                const solveBtn = !data.roundOver
-                                    ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
-                                    : "";
+                                // Das ganze Wort darf nur raten, wer am Zug ist - ein
+                                // Fehlversuch zaehlt auf das gemeinsame Fehlerkonto.
+                                const solveBtn = data.roundOver
+                                    ? ""
+                                    : (isMyTurn
+                                        ? `<button type="button" onclick="promptTVWrSolveWord()" class="btn-primary text-xs w-full py-2 mt-2" style="background:var(--gradient-cool);">💡 Ich kenne das Wort!</button>`
+                                        : `<button type="button" disabled class="btn-primary text-xs w-full py-2 mt-2 opacity-40">💡 Wort raten – wenn du dran bist</button>`);
                                 body = `${timerLine}${banner}<div class="grid grid-cols-7 gap-1.5">${kb}</div>${solveBtn}`;
                             }
                             setTVPlayerPlayHTML(`
@@ -2419,12 +2409,16 @@
                                     ${body}
                                     <p class="text-center text-sm font-bold text-sky-200">Gesamt: ${myData.score || 0} Pkt.</p>
                                 </div>`);
+                            if (!data.roundOver && data.wrTurnDeadline) starteTVWrHandyTimer(data.wrTurnDeadline);
+                            else stoppeTVWrHandyTimer();
                         } else if (data.status === "finished") {
+                            if (!tvPlayerBrauchtNeu("wrfin:" + (myData.score || 0))) return;
+                            stoppeTVWrHandyTimer();
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                             if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                                 tvCoinsClaimedLocal.add(_coinKey);
-                                currentPlayer.coins += (myData.score || 0);
-                                savePlayerProgress();
+                                if (typeof addXP === "function") addXP(myData.score || 0);
+                                else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                             }
                             setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(14,165,233,0.15);"><div class="text-7xl mb-4">🧩</div><h2 class="text-3xl font-black text-sky-400 mb-3">Wort-Rätsel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><p class="text-indigo-300 font-black">Du bleibst dabei!</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Zurück ins Menü</button></div>`);
@@ -2436,6 +2430,7 @@
                         if (data.status === "playing") {
                             if (data.showAnswer) {
                                 const points = myData.lastRoundPoints || 0;
+                                if (!tvPlayerBrauchtNeu("sca:" + (data.currentRound || 0) + ":" + points + ":" + (myData.wordStatus || ""))) return;
                                 const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
                                 const pInfo = wordStatusInfo(myData.wordStatus, myData);
                                 const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" :
@@ -2445,8 +2440,25 @@
                                     try { if (typeof confetti === 'function') confetti(); } catch (
                                     e) { } SFX.correct();
                                 } else { SFX.wrong(); }
+                            } else if (myData.hasAnswered) {
+                                const points = myData.lastRoundPoints || 0;
+                                if (!tvPlayerBrauchtNeu("scwait:" + (data.currentRound || 0) + ":" + points + ":" + (myData.wordStatus || ""))) return;
+                                const bg = points > 0 ? "bg-emerald-500" : "bg-gray-700";
+                                const pInfo = (typeof wordStatusInfo === "function")
+                                    ? wordStatusInfo(myData.wordStatus, myData) : { icon: "", text: "" };
+                                const statusText = myData.wordStatus === "valid" ? "Erkannt! ✅" : `${pInfo.icon || ""} ${pInfo.text || ""}`.trim();
+                                setTVPlayerPlayHTML(`<div class="${bg} h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-7xl mb-6">${points > 0 ? "✅" : "😅"}</div><h2 class="text-2xl font-black mb-2">Dein Wort: "${esc(myData.word || "-")}"</h2><p class="text-sm opacity-70 mb-2">${statusText || "gewertet"}</p><p class="text-xl font-bold">+ ${points} Punkte</p><p class="text-sm opacity-80 mt-3">Die anderen spielen noch…</p></div>`);
                             } else if (!myData.hasAnswered) {
                                 const lettersKey = (data.currentLetters || []).join('');
+                                if (!tvPlayerBrauchtNeu("sc:" + (data.currentRound || 0) + ":" + lettersKey + ":" + (data.currentRequired || ""))) return;
+                                // Wechsel mitten in derselben Runde = Action-Modus.
+                                // Am Fernseher gab es dafuer schon einen Hinweis, am
+                                // Handy tauschten die Kacheln bisher wortlos.
+                                const _actionWechsel = !!data.actionMode
+                                    && tvScrabbleLetzteRunde === (data.currentRound || 0)
+                                    && tvScrabbleCurrentLetters.length > 0
+                                    && lettersKey !== tvScrabbleCurrentLetters.join('');
+                                tvScrabbleLetzteRunde = (data.currentRound || 0);
                                 if (lettersKey !== tvScrabbleCurrentLetters.join('')) {
                                     tvScrabbleSelected = [];
                                 }
@@ -2459,7 +2471,7 @@
                                         <div class="text-center text-[11px] font-bold text-gray-500">Dein Wort braucht mindestens ${minLen} Buchstaben</div>
                                         <div class="glass-card p-5 space-y-3">
                                             <div id="tv-scrabble-word-preview" class="input-modern text-xl font-black text-center uppercase tracking-widest text-gray-500">…</div>
-                                            <div id="tv-scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 h-5"></div>
+                                            <div id="tv-scrabble-live-feedback" class="text-center text-sm font-bold text-gray-400 wort-hinweis"></div>
                                             <div class="grid grid-cols-2 gap-2">
                                                 <button id="tv-scrabble-undo-btn" onclick="tvScrabbleUndoTile()" disabled class="btn-secondary w-full text-center disabled:opacity-30">⌫ Entfernen</button>
                                                 <button onclick="tvScrabbleClearTiles()" class="btn-secondary w-full text-center">🗑 Neu anfangen</button>
@@ -2468,13 +2480,18 @@
                                         </div>
                                     </div>`);
                                 renderTVScrabblePreview();
+                                if (_actionWechsel) {
+                                    if (typeof showToast === "function") showToast("⚡ Neue Buchstaben! Dein Wort wurde zurückgesetzt.", "info", "action");
+                                    try { if (typeof SFX !== "undefined" && SFX.tick) SFX.tick(); } catch (e) { }
+                                }
                             }
                         } else if (data.status === "finished") {
+                            if (!tvPlayerBrauchtNeu("scfin:" + (myData.score || 0))) return;
                             const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                             if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                                 tvCoinsClaimedLocal.add(_coinKey);
-                                currentPlayer.coins += (myData.score || 0);
-                                savePlayerProgress();
+                                if (typeof addXP === "function") addXP(myData.score || 0);
+                                else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                                 tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                             }
                             setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü</button></div>`);
@@ -2486,6 +2503,8 @@
                         if (data.showAnswer) {
                             const isCorrect = myData.lastAnswer === data.correctAnswer;
                             const pts = myData.lastRoundPoints || (isCorrect ? 10 : 0);
+                            // Ohne Bremse liefen Konfetti und Ton bei jedem Lebenszeichen erneut.
+                            if (!tvPlayerBrauchtNeu("qa:" + (data.currentQuestionIndex || 0) + ":" + myData.lastAnswer + ":" + pts)) return;
                             const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
                             const icon = isCorrect ? "✅" : "❌";
                             const text = isCorrect ? "Richtig!" : "Leider falsch!";
@@ -2499,6 +2518,8 @@
                                 }
                             } else { SFX.wrong(); }
                         } else if (!myData.hasAnswered) {
+                            if (!tvPlayerBrauchtNeu("q:" + (data.currentQuestionIndex || 0) + ":" + (data.answerCount || 0))) return;
+                            if (Array.isArray(data.questions) && data.questions.length) tvQuestions = data.questions;
                             const q = tvQuestions[data.currentQuestionIndex];
                             const colors = (typeof TV_SHOW_COLORS !== "undefined")
                                 ? TV_SHOW_COLORS
@@ -2515,17 +2536,55 @@
                             setTVPlayerPlayHTML(btnHtml + `</div>`);
                         }
                     } else if (data.status === "finished") {
+                        if (!tvPlayerBrauchtNeu("fin:" + (myData.score || 0))) return;
                         const _coinKey = tvGameRef.id + ":" + activePlayerKey;
                         if (!myData.coinsClaimed && !tvCoinsClaimedLocal.has(_coinKey)) {
                             tvCoinsClaimedLocal.add(_coinKey);
-                            currentPlayer.coins += (myData.score || 0);
-                            savePlayerProgress();
+                            if (typeof addXP === "function") addXP(myData.score || 0);
+                            else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                             tvGameRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                         }
                         setTVPlayerPlayHTML(`<div class="glass-card-glow p-10 text-center mt-12" style="border-color:rgba(245,158,11,0.15);"><div class="text-7xl mb-4">🏆</div><h2 class="text-3xl font-black text-yellow-400 mb-3">Spiel beendet!</h2><p class="text-xl text-white font-bold bg-white/5 p-4 rounded-xl inline-block">+ ${myData.score || 0} Coins verdient!</p><div class="mt-8 p-4 bg-white/5 border border-indigo-800/30 rounded-2xl"><div class="text-4xl mb-2 animate-pulse">⏳</div><p class="text-indigo-300 font-black">Du bleibst dabei!</p><p class="text-xs text-gray-400 mt-1">Sobald am Fernseher eine neue Runde startet, geht es hier automatisch weiter.</p></div><button onclick="leaveTVGame()" class="mt-6 btn-secondary w-full text-center text-sm">Doch beenden & zurück ins Menü</button></div>`);
                     }
                 });
             } catch (error) { handleError("joinTVGame", error, "Beitreten hat nicht geklappt."); }
+        }
+
+        // ============================================================
+        //  RENDER-BREMSE FUERS SPIELER-HANDY
+        //  Ohne sie ersetzte jeder Snapshot die komplette Oberflaeche - und
+        //  Snapshots kommen dauernd: jedes Handy sendet alle 12 Sekunden ein
+        //  Lebenszeichen, bei vier Mitspielern also im Schnitt alle 3 Sekunden.
+        //  Wer genau dann tippte, dessen Knopf verschwand unter dem Finger.
+        // ============================================================
+        let _tvPlayerRenderKey = "";
+        function tvPlayerBrauchtNeu(key) {
+            if (_tvPlayerRenderKey === key) return false;
+            _tvPlayerRenderKey = key;
+            return true;
+        }
+        function tvPlayerRenderReset() {
+            _tvPlayerRenderKey = "";
+            stoppeTVWrHandyTimer();
+        }
+
+        // Sekundenanzeige am Handy laeuft jetzt lokal weiter, statt bei jedem
+        // Snapshot neu gezeichnet zu werden.
+        let _tvWrHandyTimerId = null;
+        function stoppeTVWrHandyTimer() {
+            if (_tvWrHandyTimerId) { clearInterval(_tvWrHandyTimerId); _tvWrHandyTimerId = null; }
+        }
+        function starteTVWrHandyTimer(deadline) {
+            stoppeTVWrHandyTimer();
+            if (!deadline) return;
+            const malen = function () {
+                const el = document.getElementById("tv-wr-player-timer");
+                if (!el) return;
+                const left = Math.max(0, Math.ceil((deadline - Date.now()) / 1000));
+                el.textContent = left > 0 ? ("⏱ " + left + "s") : "⏱ Zeit um…";
+            };
+            malen();
+            _tvWrHandyTimerId = setInterval(malen, 500);
         }
 
         function tvScrabbleCurrentWord() {
@@ -2554,7 +2613,7 @@
                     fb.innerText = result.valid ?
                         `${result.score} Punkte möglich${result.bonus ? " (inkl. +50 Bonus!)" : ""} – wird beim Einreichen geprüft` :
                         "❌ Diese Buchstaben hast du nicht (oder zu oft benutzt)";
-                    fb.className = "text-center text-sm font-bold h-5 " + (result.valid ? "text-emerald-400" : "text-rose-400");
+                    fb.className = "text-center text-sm font-bold wort-hinweis " + (result.valid ? "text-emerald-400" : "text-rose-400");
                 }
             }
         }
@@ -2588,16 +2647,48 @@
                 showToast("Bitte zuerst Buchstaben antippen.", "error", "word");
                 return;
             }
+            const lettersNow = tvScrabbleCurrentLetters.slice();
+            const requiredNow = tvScrabbleCurrentRequired || "";
             tvScrabbleSelected = [];
-            setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-amber-400 mb-4">Eingereicht!</h2><p class="text-lg font-bold text-gray-400">Warte auf die anderen...</p></div>`);
+            tvPlayerRenderReset();
+            setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-6xl mb-6 animate-spin">⏳</div><h2 class="text-2xl font-black text-amber-400 mb-3">Prüfe Wort…</h2></div>`);
+            let data = {};
+            try {
+                const snap = await tvGameRef.get();
+                data = snap.exists ? snap.data() : {};
+            } catch (e) { data = {}; }
+            if ((data.players || {})[activePlayerKey] && data.players[activePlayerKey].hasAnswered) return;
+            const _cfgMin = (typeof SCRABBLE_DIFFICULTIES !== "undefined" && SCRABBLE_DIFFICULTIES[data.difficulty])
+                ? (SCRABBLE_DIFFICULTIES[data.difficulty].minWord || 3) : 3;
+            const _minW = (data.wordMode === "kids" || data.difficulty === "leicht") ? 2 : Math.max(2, _cfgMin);
+            let res = { status: "invalid", points: 0 };
+            try {
+                res = await evaluateScrabbleWord(word, lettersNow, {
+                    minWord: _minW,
+                    required: requiredNow,
+                    used: tvUsedWords,
+                    addToUsed: false,
+                    wordMode: data.wordMode || "kids"
+                });
+            } catch (e) { /* */ }
+            let pts = res.points || 0;
+            if (data.actionMode && pts > 0) pts += 5;
+            const prev = ((data.players || {})[activePlayerKey] || {}).score || 0;
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
                 [`players.${activePlayerKey}.word`]: word,
-                [`players.${activePlayerKey}.answeredAt`]: Date.now()
+                [`players.${activePlayerKey}.answeredAt`]: Date.now(),
+                [`players.${activePlayerKey}.submittedLetters`]: lettersNow,
+                [`players.${activePlayerKey}.submittedRequired`]: requiredNow,
+                [`players.${activePlayerKey}.wordStatus`]: res.status,
+                [`players.${activePlayerKey}.lastRoundPoints`]: pts,
+                [`players.${activePlayerKey}.score`]: prev + pts,
+                [`players.${activePlayerKey}.scoredThisRound`]: true
             });
         }
 
         async function submitTVAnswer(ansIndex) {
+            tvPlayerRenderReset();
             setTVPlayerPlayHTML(`<div class="bg-gray-800 h-[80vh] rounded-3xl flex flex-col items-center justify-center p-8 text-center text-white shadow-inner"><div class="text-8xl mb-8 animate-spin">⏳</div><h2 class="text-3xl font-black text-indigo-400 mb-4">Eingeloggt!</h2><p class="text-lg font-bold text-gray-400">Schau auf den Fernseher...</p></div>`);
             await tvGameRef.update({
                 [`players.${activePlayerKey}.hasAnswered`]: true,
@@ -2634,6 +2725,7 @@
             stoppeTVLebenszeichen();
             stoppeTVRundenTimer();
             stopTVActionMode();
+            tvPlayerRenderReset();
             tvGameRef = null;
             isTVHost = false;
             isResolving = false;
@@ -2658,14 +2750,18 @@
                         window._activeTVCode = null;
                     }
                 } else if (activePlayerKey) {
-                    const snap = await ref.get();
-                    if (!snap.exists) return;
-                    const players = Object.assign({}, snap.data().players || {});
-                    delete players[activePlayerKey];
-                    if (Object.keys(players).length === 0) {
-                        try { await ref.delete(); } catch (e) { }
-                    } else {
-                        await ref.update({ players: players });
+                    // Nie das ganze Lobby-Dokument loeschen: der Fernseher steht
+                    // nicht in players[], also war die Lobby fuer ihn frueher weg,
+                    // sobald der letzte Mitspieler das Spiel verlassen hat.
+                    try {
+                        await ref.update({
+                            ["players." + activePlayerKey]: firebase.firestore.FieldValue.delete()
+                        });
+                    } catch (e) {
+                        // Gaeste duerfen laut Sicherheitsregeln niemanden aus der
+                        // Liste entfernen - dann nur abmelden, der Fernseher
+                        // wartet dank Lebenszeichen nicht auf ein Geraet, das weg ist.
+                        await ref.update({ ["players." + activePlayerKey + ".lastSeen"]: 0 }).catch(function () { });
                     }
                 }
             } catch (e) { /* Lobby evtl. schon weg */ }

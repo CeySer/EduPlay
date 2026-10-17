@@ -159,6 +159,10 @@
     .kr-bar>div{height:100%;background:linear-gradient(90deg,#10b981,#f59e0b);transition:width .25s linear}
     .kr-grid{display:grid;grid-template-columns:repeat(9,1fr);gap:5px}
     .kr-zelle{border-radius:10px;padding:6px 0;text-align:center;font-weight:900;font-size:13px}
+    .kr-schritt{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.07);font-size:20px;font-weight:900;opacity:0;transform:translateY(8px);animation:krEin .4s ease forwards}
+    .kr-schritt:last-child{background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.45)}
+    .kr-schritt-nr{flex:0 0 26px;height:26px;border-radius:99px;background:rgba(245,158,11,.3);font-size:13px;display:flex;align-items:center;justify-content:center}
+    @keyframes krEin{to{opacity:1;transform:none}}
     `;
 
     const HTML = `
@@ -177,6 +181,7 @@
         <div id="kr-stufen" class="space-y-2"></div>
         <div id="kr-fehler-box"></div>
         <div id="kr-1x1-box"></div>
+        <div id="kr-tricks-box"></div>
       </div>
 
       <div id="kr-modus" class="hidden space-y-4">
@@ -188,12 +193,25 @@
           <div class="text-xs font-bold text-gray-400">Welche Reihe?</div>
           <div id="kr-reihen" class="flex flex-wrap gap-2"></div>
         </div>
+        <button id="kr-trick-btn" onclick="kopfTrickAnsehen()" class="w-full flex items-center gap-3 p-4 rounded-2xl text-left glass-card hidden">
+          <span class="text-2xl">💡</span><span><span class="block text-sm font-black">Trick ansehen</span><span id="kr-trick-btn-text" class="block text-[11px] text-gray-400"></span></span>
+        </button>
         <button onclick="kopfStart('blitz')" class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg" style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
           <span class="text-3xl">⚡</span><span><span class="block text-base font-black">Blitzrunde</span><span id="kr-rekord-text" class="block text-xs font-bold opacity-80">60 Sekunden – so viele wie möglich</span></span>
         </button>
         <button onclick="kopfStart('runde')" class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg" style="background:linear-gradient(140deg,#10b981,#0ea5e9);">
           <span class="text-3xl">🎯</span><span><span class="block text-base font-black">Übungsrunde</span><span id="kr-sterne-text" class="block text-xs font-bold opacity-80">20 Aufgaben in Ruhe</span></span>
         </button>
+      </div>
+
+      <div id="kr-trick" class="hidden space-y-4">
+        <div class="glass-card-glow p-5 space-y-3 text-center">
+          <div id="kr-trick-kopf"></div>
+          <p id="kr-trick-text" class="text-sm text-gray-200 text-left leading-relaxed"></p>
+          <div id="kr-trick-schritte" class="space-y-2 text-left"></div>
+        </div>
+        <button id="kr-trick-ueben" onclick="kopfTrickUeben()" class="btn-primary w-full text-center">🎯 Trick üben (5 Aufgaben)</button>
+        <button id="kr-trick-weiter" onclick="kopfTrickWeiter()" class="btn-secondary w-full text-center"></button>
       </div>
 
       <div id="kr-play" class="hidden space-y-3">
@@ -206,7 +224,7 @@
         <div class="glass-card p-5 space-y-3">
           <div id="kr-task" class="kr-task"></div>
           <div id="kr-input" class="kr-input">&nbsp;</div>
-          <div id="kr-feedback" class="text-center text-sm font-bold" style="min-height:20px"></div>
+          <div id="kr-feedback" class="text-center text-sm font-bold" style="min-height:20px;white-space:pre-line"></div>
         </div>
         <div class="kr-pad">
           <button onclick="kopfTaste('7')">7</button><button onclick="kopfTaste('8')">8</button><button onclick="kopfTaste('9')">9</button><button onclick="kopfTaste('del')">⌫</button>
@@ -223,6 +241,7 @@
           <div id="kr-res-text" class="text-sm text-gray-300"></div>
           <div id="kr-res-extra" class="text-sm font-bold text-amber-300"></div>
         </div>
+        <button id="kr-res-weiter" onclick="kopfNachTrick()" class="btn-primary w-full text-center hidden">▶ Jetzt die richtige Runde</button>
         <button onclick="kopfNochmal()" class="btn-primary w-full text-center">🔄 Nochmal</button>
         <button id="kr-res-share" onclick="kopfHerausfordern()" class="btn-secondary w-full text-center">📤 Freunde herausfordern</button>
         <button onclick="kopfZeigeHome()" class="btn-secondary w-full text-center">⬅ Zur Übersicht</button>
@@ -250,12 +269,226 @@
         dashboardEinbauen();
     }
 
+
+    // ---------------- Tricks ----------------
+    // passt(stufe, reihe) → gehört der Trick zu dieser Auswahl?
+    // schritte: Beispiel Schritt für Schritt. hint(a): kurzer Tipp bei Fehlern.
+    function zweiFaktoren(a) {
+        const m = String(a.t).match(/^(\d+) · (\d+)$/);
+        return m ? [Number(m[1]), Number(m[2])] : null;
+    }
+    function anderer(a) { const f = zweiFaktoren(a); if (!f || !a.r) return null; return f[0] === a.r ? f[1] : f[0]; }
+    const TRICKS = [
+        { id: "verliebt", icon: "💕", titel: "Verliebte Zahlen",
+          passt: function (st) { return st === "k1_10"; },
+          text: "Diese Paare ergeben zusammen genau 10. Wer sie kennt, rechnet blitzschnell.",
+          schritte: ["1 + 9 · 2 + 8 · 3 + 7", "4 + 6 · 5 + 5", "10 − 3 = ? → die Verliebte von 3 ist 7"],
+          hint: function () { return "Verliebte Zahlen: 1+9, 2+8, 3+7, 4+6, 5+5"; } },
+        { id: "zehner", icon: "🔟", titel: "Über die 10 springen",
+          passt: function (st) { return st === "k1_20"; },
+          text: "Rechne erst bis zur 10, dann den Rest. Beim Minus genauso – erst runter bis 10.",
+          schritte: ["8 + 5", "8 + 2 = 10", "10 + 3 = 13"],
+          hint: function (a) {
+              let m = a.t.match(/^(\d+) \+ (\d+)$/);
+              if (m) { const x = +m[1], y = +m[2], z = 10 - x; return "Erst bis 10: " + x + " + " + z + " = 10, dann + " + (y - z); }
+              m = a.t.match(/^(\d+) − (\d+)$/);
+              if (m) { const x = +m[1], y = +m[2], z = x - 10; return "Erst bis 10: " + x + " − " + z + " = 10, dann − " + (y - z); }
+              return null;
+          } },
+        { id: "doppel", icon: "👯", titel: "Zehner und Einer getrennt",
+          passt: function (st) { return st === "k2_doppel"; },
+          text: "Verdopple (oder halbiere) Zehner und Einer einzeln und zähle zusammen.",
+          schritte: ["Doppelte von 36", "30 → 60   ·   6 → 12", "60 + 12 = 72"],
+          hint: function (a) {
+              let m = a.t.match(/Doppelte von (\d+)/);
+              if (m) { const n = +m[1], z = Math.floor(n / 10) * 10, e1 = n % 10; return z ? z + " → " + 2 * z + " und " + e1 + " → " + 2 * e1 : null; }
+              m = a.t.match(/Hälfte von (\d+)/);
+              if (m) { const n = +m[1], z = Math.floor(n / 20) * 20, r = n - z; return z && r ? "Hälfte von " + z + " = " + z / 2 + ", Hälfte von " + r + " = " + r / 2 : null; }
+              return null;
+          } },
+        { id: "zehnerzuerst", icon: "🪜", titel: "Erst Zehner, dann Einer",
+          passt: function (st) { return st === "k2_100" || st === "k3_1000"; },
+          text: "Zerlege die zweite Zahl: erst die Zehner (oder Hunderter) dazu, dann den Rest.",
+          schritte: ["47 + 25", "47 + 20 = 67", "67 + 5 = 72"],
+          hint: function (a) {
+              const m = a.t.match(/^(\d+) ([+−]) (\d+)$/);
+              if (!m) return null;
+              const x = +m[1], y = +m[3], gross = Math.floor(y / 10) * 10, rest = y - gross;
+              if (!gross || !rest) return null;
+              const z1 = m[2] === "+" ? x + gross : x - gross;
+              return x + " " + m[2] + " " + gross + " = " + z1 + ", dann " + m[2] + " " + rest;
+          } },
+        { id: "r2", icon: "✌️", titel: "2er-Reihe: verdoppeln",
+          passt: function (st, r) { return r === 2 && st !== "k3_geteilt"; },
+          text: "2 mal eine Zahl ist einfach das Doppelte.", schritte: ["2 · 7", "7 + 7", "= 14"],
+          hint: function (a) { const b = anderer(a); return b ? "2 · " + b + " = " + b + " + " + b : null; } },
+        { id: "r4", icon: "🍀", titel: "4er-Reihe: doppelt verdoppeln",
+          passt: function (st, r) { return r === 4 && st !== "k3_geteilt"; },
+          text: "Verdopple die Zahl – und dann noch einmal.", schritte: ["4 · 7", "Doppelt: 14", "Nochmal doppelt: 28"],
+          hint: function (a) { const b = anderer(a); return b ? b + " → " + 2 * b + " → " + 4 * b : null; } },
+        { id: "r8", icon: "🐙", titel: "8er-Reihe: dreimal verdoppeln",
+          passt: function (st, r) { return r === 8 && st !== "k3_geteilt"; },
+          text: "Verdopple dreimal hintereinander: ×2, ×2, ×2.", schritte: ["8 · 6", "6 → 12 → 24", "→ 48"],
+          hint: function (a) { const b = anderer(a); return b ? b + " → " + 2 * b + " → " + 4 * b + " → " + 8 * b : null; } },
+        { id: "r5", icon: "🖐️", titel: "5er-Reihe: die Hälfte von 10",
+          passt: function (st, r) { return r === 5 && st !== "k3_geteilt"; },
+          text: "Rechne erst 10 mal, dann nimm die Hälfte.", schritte: ["5 · 8", "10 · 8 = 80", "Hälfte: 40"],
+          hint: function (a) { const b = anderer(a); return b ? "10 · " + b + " = " + 10 * b + ", die Hälfte ist " + 5 * b : null; } },
+        { id: "r9", icon: "🙌", titel: "9er-Reihe: 10 mal minus 1 mal",
+          passt: function (st, r) { return r === 9 && st !== "k3_geteilt"; },
+          text: "9 · n ist fast 10 · n – nur einmal n weniger. Fingertrick: Klappe den n-ten Finger ein, links stehen die Zehner, rechts die Einer.",
+          schritte: ["9 · 6", "10 · 6 = 60", "60 − 6 = 54"],
+          hint: function (a) { const b = anderer(a); return b ? "10 · " + b + " − " + b + " = " + 10 * b + " − " + b : null; } },
+        { id: "r10", icon: "🔟", titel: "10er-Reihe: eine Null dran",
+          passt: function (st, r) { return r === 10 && st !== "k3_geteilt"; },
+          text: "Mal 10 heißt: hänge eine 0 an.", schritte: ["10 · 7", "7 und eine 0", "= 70"],
+          hint: function (a) { const b = anderer(a); return b ? b + " mit einer 0 dran" : null; } },
+        { id: "nachbar", icon: "🤝", titel: "3er, 6er, 7er: Nachbaraufgaben",
+          passt: function (st, r) { return (r === 3 || r === 6 || r === 7) && st !== "k3_geteilt"; },
+          text: "Nutze Aufgaben, die du schon kannst: 2 mal und 5 mal. Dann ein bisschen dazu.",
+          schritte: ["7 · 6", "5 · 6 = 30   und   2 · 6 = 12", "30 + 12 = 42"],
+          hint: function (a) {
+              const b = anderer(a); if (!b) return null;
+              if (a.r === 3) return "2 · " + b + " + " + b + " = " + 2 * b + " + " + b;
+              if (a.r === 6) return "5 · " + b + " + " + b + " = " + 5 * b + " + " + b;
+              return "5 · " + b + " + 2 · " + b + " = " + 5 * b + " + " + 2 * b;
+          } },
+        { id: "kern", icon: "🗝️", titel: "Kernaufgaben als Schlüssel",
+          passt: function (st, r) { return st === "k2_1x1" && !r; },
+          text: "1 mal, 2 mal, 5 mal und 10 mal kannst du schnell. Alle anderen Aufgaben leitest du davon ab.",
+          schritte: ["6 · 7", "5 · 7 = 35", "35 + 7 = 42"],
+          hint: function (a) { return null; } },
+        { id: "umkehr", icon: "🔄", titel: "Geteilt: die Umkehraufgabe",
+          passt: function (st) { return st === "k3_geteilt" || st === "k3_mix"; },
+          text: "Frag dich: Welche Zahl mal den Teiler ergibt die große Zahl? Das ist dein 1×1 rückwärts.",
+          schritte: ["42 : 7 = ?", "? · 7 = 42", "6 · 7 = 42 → also 6"],
+          hint: function (a) { const m = a.t.match(/^(\d+) : (\d+)$/); return m ? "Denk rückwärts: ? · " + m[2] + " = " + m[1] : null; } },
+        { id: "zerlegen", icon: "🧩", titel: "Großes 1×1: zerlegen",
+          passt: function (st) { return st === "k4_gross"; },
+          text: "Zerlege die große Zahl in 10 und den Rest, rechne beides und zähle zusammen.",
+          schritte: ["14 · 6", "10 · 6 = 60   und   4 · 6 = 24", "60 + 24 = 84"],
+          hint: function (a) {
+              const m = a.t.match(/^(\d+) · (\d+)$/); if (!m) return null;
+              const x = +m[1], y = +m[2]; return "10 · " + y + " + " + (x - 10) + " · " + y + " = " + 10 * y + " + " + (x - 10) * y;
+          } },
+        { id: "nullen", icon: "🙈", titel: "Nullen abdecken",
+          passt: function (st) { return st === "k4_zehner"; },
+          text: "Deck die Nullen ab, rechne mit den kleinen Zahlen und häng die Nullen wieder an.",
+          schritte: ["30 · 7", "3 · 7 = 21", "eine Null dran: 210"],
+          hint: function (a) {
+              const m = a.t.match(/^(\d+) ([·:]) (\d+)$/); if (!m) return null;
+              const x = m[1], nul = x.match(/0+$/); if (!nul) return null;
+              if (m[2] === "·") return "Ohne Nullen: " + x.replace(/0+$/, "") + " · " + m[3] + ", dann " + nul[0].length + " Null(en) dran";
+              let k = nul[0].length, vorn = x.slice(0, x.length - k);
+              while (k > 0 && Number(vorn) % Number(m[3]) !== 0) { vorn += "0"; k--; }
+              return "Deck " + k + " Null(en) ab: " + vorn + " : " + m[3] + " = " + Number(vorn) / Number(m[3]) + ", dann " + k + " Null(en) dran";
+          } },
+        { id: "quadrat", icon: "⬛", titel: "Quadratzahlen mit 5 am Ende",
+          passt: function (st) { return st === "k5_quadrat"; },
+          text: "Endet die Zahl auf 5: Nimm die Zehnerziffer mal ihren Nachfolger und hänge 25 an. Für √ fragst du: Welche Zahl mal sich selbst?",
+          schritte: ["15²", "1 · 2 = 2", "25 anhängen: 225"],
+          hint: function (a) {
+              const m = a.t.match(/^(\d+)²$/);
+              if (m && +m[1] % 10 === 5) { const z = Math.floor(+m[1] / 10); return z + " · " + (z + 1) + " = " + z * (z + 1) + ", dann 25 dran"; }
+              if (m) return m[1] + " · " + m[1];
+              const w = a.t.match(/^√(\d+)$/); return w ? "Welche Zahl mal sich selbst ist " + w[1] + "?" : null;
+          } },
+        { id: "bruchteil", icon: "🍰", titel: "Erst teilen, dann malnehmen",
+          passt: function (st) { return st === "k5_bruch"; },
+          text: "Teile durch den Nenner (unten) – so bekommst du ein Teil. Dann mal den Zähler (oben).",
+          schritte: ["3/4 von 32", "32 : 4 = 8", "8 · 3 = 24"],
+          hint: function (a) {
+              const m = a.t.match(/^(\d+)\/(\d+) von (\d+)$/); if (!m) return null;
+              const t = +m[3] / +m[2]; return m[3] + " : " + m[2] + " = " + t + ", dann · " + m[1];
+          } },
+        { id: "komma", icon: "↔️", titel: "Komma wandern lassen",
+          passt: function (st) { return st === "k6_dezimal"; },
+          text: "Mal 10: Komma 1 Stelle nach rechts. Mal 100: 2 Stellen. Durch 10: 1 Stelle nach links. Beim Plus: Zehntel zu Zehnteln, Hundertstel zu Hundertsteln.",
+          schritte: ["2,35 · 10", "Komma 1 nach rechts", "= 23,5"],
+          hint: function (a) {
+              if (/· 10$/.test(a.t)) return "Mal 10: Komma 1 Stelle nach rechts";
+              if (/· 100$/.test(a.t)) return "Mal 100: Komma 2 Stellen nach rechts";
+              if (/: 10$/.test(a.t)) return "Durch 10: Komma 1 Stelle nach links";
+              return "Zehntel zu Zehnteln: 0,7 + 0,5 = 12 Zehntel = 1,2";
+          } },
+        { id: "prozent", icon: "💯", titel: "Prozent-Abkürzungen",
+          passt: function (st) { return st === "k7_prozent"; },
+          text: "10 % = durch 10. 5 % = die Hälfte von 10 %. 50 % = die Hälfte. 25 % = ein Viertel. 1 % = durch 100.",
+          schritte: ["15 % von 80", "10 % = 8   und   5 % = 4", "8 + 4 = 12"],
+          hint: function (a) {
+              const m = a.t.match(/^(\d+) % von (\d+)$/); if (!m) return null;
+              const p = +m[1], g = +m[2];
+              return { 10: "durch 10", 50: "die Hälfte", 25: "ein Viertel: durch 4", 20: "durch 5", 5: "10 % (= " + zahl(g / 10) + ") halbieren", 1: "durch 100", 75: "ein Viertel (" + zahl(g / 4) + ") mal 3" }[p] || null;
+          } },
+        { id: "negativ", icon: "🌡️", titel: "Negative Zahlen am Thermometer",
+          passt: function (st) { return st === "k7_negativ"; },
+          text: "Stell dir ein Thermometer vor: Plus geht hoch, Minus geht runter. Minus einer Minuszahl wird zu Plus. Beim Malnehmen: gleiche Vorzeichen → plus, verschiedene → minus.",
+          schritte: ["3 − (−5)", "Minus minus wird plus", "3 + 5 = 8"],
+          hint: function (a) {
+              if (/− \(−/.test(a.t)) return "Minus minus wird plus";
+              if (/\+ \(−/.test(a.t)) return "Plus minus wird minus";
+              if (/·/.test(a.t)) return "Gleiche Vorzeichen → plus, verschiedene → minus";
+              return "Am Thermometer: hoch bei Plus, runter bei Minus";
+          } }
+    ];
+    function trickFuer(st, r) {
+        return TRICKS.find(function (t) { return r && t.passt(st, r) && /^r\d|nachbar/.test(t.id); })
+            || TRICKS.find(function (t) { return t.passt(st, r || 0); }) || null;
+    }
+    function trickHint(a, st) {
+        if (/^\d+ : \d+$/.test(a.t) && st !== "k4_zehner") st = "k3_geteilt";
+        const t = trickFuer(st || "", a.r || 0) || (a.r ? trickFuer("k2_1x1", a.r) : null);
+        if (!t) return null;
+        try { return (t.hint && t.hint(a)) || null; } catch (er) { return null; }
+    }
+
+    let trickDanach = null;
+    function zeigeTrick(t, modusDanach) {
+        const d = daten();
+        d.tricks = d.tricks || {};
+        if (!d.tricks[t.id]) { d.tricks[t.id] = Date.now(); speichern(); }
+        trickDanach = modusDanach || null;
+        zeigeTeil("kr-trick");
+        document.getElementById("kr-trick-kopf").innerHTML = `<div style="font-size:52px">${t.icon}</div><h2 class="text-xl font-black text-amber-300">${e(t.titel)}</h2>`;
+        document.getElementById("kr-trick-text").innerText = t.text;
+        const box = document.getElementById("kr-trick-schritte");
+        box.innerHTML = t.schritte.map(function (z, i) {
+            return `<div class="kr-schritt" style="animation-delay:${0.35 + i * 0.7}s"><span class="kr-schritt-nr">${i + 1}</span>${e(z)}</div>`;
+        }).join("");
+        const weiter = document.getElementById("kr-trick-weiter");
+        weiter.innerText = modusDanach ? (modusDanach === "blitz" ? "Überspringen – Blitzrunde starten ⚡" : "Überspringen – Runde starten 🎯") : "Zurück";
+        document.getElementById("kr-trick-ueben").classList.toggle("hidden", !akt.stufe);
+    }
+    function kopfTrickAnsehen() {
+        const t = trickFuer(akt.stufe, akt.reihe); if (t) zeigeTrick(t, null);
+    }
+    function kopfTrickWeiter() {
+        if (trickDanach) { const m = trickDanach; trickDanach = null; kopfStart(m, true); }
+        else if (akt.stufe) { zeigeTeil("kr-modus"); modusAnzeigen(); }
+        else kopfZeigeHome();
+    }
+    function kopfTrickUeben() { kopfStart("trick", true); }
+    function kopfTrickSammlung(id) {
+        const t = TRICKS.find(function (x) { return x.id === id; }); if (!t) return;
+        akt.stufe = null; zeigeTrick(t, null);
+    }
+    function tricksHtml() {
+        const d = daten(), ids = Object.keys(d.tricks || {});
+        const alle = TRICKS.length;
+        if (!ids.length) return "";
+        return `<div class="glass-card p-4 space-y-2">
+            <div class="text-sm font-black">💡 Meine Tricks <span class="text-xs text-gray-400">${ids.length} von ${alle}</span></div>
+            <div class="flex flex-wrap gap-2">${TRICKS.filter(function (t) { return d.tricks[t.id]; }).map(function (t) {
+                return `<button class="kr-chip" onclick="kopfTrickSammlung('${t.id}')">${t.icon} ${e(t.titel)}</button>`; }).join("")}</div>
+        </div>`;
+    }
+
     // ---------------- Startseite ----------------
     let gewKlasse = null;
     let akt = { stufe: null, reihe: 0, ziel: 0, aufgabeId: null };
 
     function zeigeTeil(id) {
-        ["kr-home", "kr-modus", "kr-play", "kr-result"].forEach(function (x) {
+        ["kr-home", "kr-modus", "kr-trick", "kr-play", "kr-result"].forEach(function (x) {
             const el = document.getElementById(x); if (el) el.classList.toggle("hidden", x !== id);
         });
     }
@@ -294,6 +527,7 @@
         fb.innerHTML = d.fehler.length ? `<button onclick="kopfStart('fehler')" class="w-full flex items-center gap-4 p-4 rounded-2xl text-white text-left" style="background:linear-gradient(140deg,#8b5cf6,#ec4899);">
             <span class="text-2xl">🔁</span><span><span class="block font-black">Fehler wiederholen</span><span class="block text-xs opacity-80">${d.fehler.length} Aufgabe${d.fehler.length === 1 ? "" : "n"} zum Üben</span></span></button>` : "";
         document.getElementById("kr-1x1-box").innerHTML = einmaleinsHtml(currentPlayer, true);
+        document.getElementById("kr-tricks-box").innerHTML = tricksHtml();
         const cb = document.getElementById("kr-challenge-box");
         if (cb) cb.innerHTML = "";
     }
@@ -342,6 +576,9 @@
                 return `<button class="kr-chip ${r === akt.reihe ? "on" : ""}" onclick="kopfReihe(${r})">${r ? r + "er" : "gemischt"}</button>`;
             }).join("");
         }
+        const tr = trickFuer(akt.stufe, akt.reihe), tb = document.getElementById("kr-trick-btn");
+        tb.classList.toggle("hidden", !tr);
+        if (tr) document.getElementById("kr-trick-btn-text").innerText = tr.icon + " " + tr.titel;
         document.getElementById("kr-rekord-text").innerText = "60 Sekunden – so viele wie möglich" + (d.rekorde[key] ? " · Rekord: " + d.rekorde[key] : "");
         document.getElementById("kr-sterne-text").innerText = RUNDE_N + " Aufgaben in Ruhe · " + sterneText(d.sterne[key] || 0);
     }
@@ -365,11 +602,16 @@
         return a;
     }
 
-    function kopfStart(modus) {
+    function kopfStart(modus, ohneTrick) {
         einbauen();
         stoppeTimer();
         const d = daten();
         if (modus === "fehler" && !d.fehler.length) return kopfZeigeHome();
+        if (!ohneTrick && (modus === "blitz" || modus === "runde")) {
+            const t = trickFuer(akt.stufe, akt.reihe);
+            if (t && !(d.tricks && d.tricks[t.id])) return zeigeTrick(t, modus);
+        }
+        if (modus === "trick") nachTrickModus = trickDanach || nachTrickModus || "runde";
         sp = {
             modus: modus, stufe: akt.stufe, reihe: akt.reihe, richtig: 0, falsch: 0, nr: 0,
             start: Date.now(), ende: modus === "blitz" ? Date.now() + BLITZ_SEK * 1000 : 0,
@@ -377,10 +619,10 @@
             fehlerListe: modus === "fehler" ? d.fehler.slice(0, RUNDE_N) : null
         };
         if (modus === "fehler") sp.gesamt = sp.fehlerListe.length;
-        else sp.gesamt = modus === "blitz" ? 0 : RUNDE_N;
+        else sp.gesamt = modus === "blitz" ? 0 : (modus === "trick" ? 5 : RUNDE_N);
         zeigeTeil("kr-play");
         const inf = document.getElementById("kr-play-info");
-        inf.innerText = modus === "blitz" ? "⚡ " + BLITZ_SEK + " s" : (modus === "fehler" ? "🔁 Fehler" : "🎯 1 / " + sp.gesamt);
+        inf.innerText = modus === "blitz" ? "⚡ " + BLITZ_SEK + " s" : (modus === "fehler" ? "🔁 Fehler" : (modus === "trick" ? "💡 1 / " : "🎯 1 / ") + sp.gesamt);
         naechste();
         if (modus === "blitz") {
             timer = setInterval(function () {
@@ -398,13 +640,13 @@
         if (sp.modus !== "blitz" && sp.nr >= sp.gesamt) return fertig();
         sp.aufgabe = neueAufgabe();
         if (!sp.aufgabe) return fertig();
-        sp.nr++; sp.eingabe = ""; sp.sperre = false; sp.t0 = Date.now();
+        sp.nr++; sp.eingabe = ""; sp.sperre = false; sp.t0 = Date.now(); sp.tippGezeigt = false;
         document.getElementById("kr-task").innerText = sp.aufgabe.t + " =";
         const inp = document.getElementById("kr-input"); inp.className = "kr-input"; inp.innerHTML = "&nbsp;";
         document.getElementById("kr-feedback").innerText = "";
         document.getElementById("kr-play-score").innerText = "✓ " + sp.richtig;
         if (sp.modus !== "blitz") {
-            document.getElementById("kr-play-info").innerText = (sp.modus === "fehler" ? "🔁 " : "🎯 ") + sp.nr + " / " + sp.gesamt;
+            document.getElementById("kr-play-info").innerText = (sp.modus === "fehler" ? "🔁 " : sp.modus === "trick" ? "💡 " : "🎯 ") + sp.nr + " / " + sp.gesamt;
             document.getElementById("kr-bar").style.width = ((sp.nr - 1) / sp.gesamt * 100) + "%";
         }
         const brauchtMinus = sp.aufgabe.l < 0 || sp.stufe === "k7_negativ";
@@ -470,7 +712,9 @@
             sp.falschListe.push(a);
             inp.className = "kr-input falsch";
             inp.innerText = zahl(a.l);
-            fb.innerText = uebersprungen ? "Lösung: " + a.t + " = " + zahl(a.l) : "Richtig ist " + zahl(a.l);
+            const tipp = trickHint(a, sp.stufe);
+            fb.innerText = (uebersprungen ? "Lösung: " + a.t + " = " + zahl(a.l) : "Richtig ist " + zahl(a.l)) + (tipp ? "\n💡 " + tipp : "");
+            sp.tippGezeigt = !!tipp;
             if (typeof SFX !== "undefined" && SFX.wrong) SFX.wrong();
             merkeFehler(a);
             if (a.fe) a.fe.n = 0;
@@ -480,7 +724,7 @@
             if (!sp) return;
             if (sp.modus === "blitz" && Date.now() >= sp.ende) return;
             naechste();
-        }, ok ? 280 : 1300);
+        }, ok ? 280 : (sp.tippGezeigt ? 2600 : 1300));
     }
 
     function kopfAbbrechen() {
@@ -518,6 +762,8 @@
                 const stern = s.falsch <= 1 && sek <= n * 5 ? 3 : (s.falsch <= 3 ? 2 : 1);
                 if (stern > (d.sterne[key] || 0)) d.sterne[key] = stern;
                 titel = sterneText(stern); emoji = stern === 3 ? "🌟" : "👍";
+            } else if (s.modus === "trick") {
+                titel = s.falsch === 0 ? "Trick sitzt!" : "Gut geübt!"; emoji = "💡";
             } else {
                 titel = d.fehler.length ? "Weiter so!" : "Alle Fehler ausgebügelt!";
                 emoji = d.fehler.length ? "🔁" : "🧽";
@@ -535,9 +781,14 @@
         document.getElementById("kr-res-text").innerText = text;
         document.getElementById("kr-res-extra").innerText = extra.join(" · ");
         document.getElementById("kr-res-share").classList.toggle("hidden", s.modus !== "blitz" || !s.richtig);
+        const rw = document.getElementById("kr-res-weiter");
+        rw.classList.toggle("hidden", s.modus !== "trick");
+        rw.innerText = nachTrickModus === "blitz" ? "⚡ Jetzt die Blitzrunde" : "🎯 Jetzt die Übungsrunde";
         zeigeTeil("kr-result");
     }
     let letzteRunde = null;
+    let nachTrickModus = null;
+    function kopfNachTrick() { const m = nachTrickModus || "runde"; nachTrickModus = null; kopfStart(m, true); }
 
     function kopfNochmal() {
         if (!letzteRunde) return kopfZeigeHome();
@@ -747,7 +998,8 @@
     Object.assign(window, {
         kopfOeffnen: kopfOeffnen, kopfZeigeHome: kopfZeigeHome, kopfKlasse: kopfKlasse, kopfStufe: kopfStufe,
         kopfReihe: kopfReihe, kopfReiheUeben: kopfReiheUeben, kopfStart: kopfStart, kopfTaste: kopfTaste,
-        kopfAbbrechen: kopfAbbrechen, kopfNochmal: kopfNochmal, kopfHerausfordern: kopfHerausfordern,
+        kopfAbbrechen: kopfAbbrechen, kopfTrickAnsehen: kopfTrickAnsehen, kopfTrickWeiter: kopfTrickWeiter,
+        kopfTrickUeben: kopfTrickUeben, kopfTrickSammlung: kopfTrickSammlung, kopfNachTrick: kopfNachTrick, KOPF_TRICKS: TRICKS, kopfNochmal: kopfNochmal, kopfHerausfordern: kopfHerausfordern,
         kopfDashToggle: kopfDashToggle, kopfDashReihen: kopfDashReihen, kopfZuweisen: kopfZuweisen,
         kopfZuruecknehmen: kopfZuruecknehmen, kopfNoticeOk: kopfNoticeOk, kopfDashRender: kopfDashRender,
         KOPF_STUFEN: STUFEN

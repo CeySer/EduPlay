@@ -776,8 +776,8 @@
                 const _coinKey = liveDuelRef.id + ":" + activePlayerKey;
                 if (!myData.coinsClaimed && !liveDuelCoinsClaimedLocal.has(_coinKey)) {
                     liveDuelCoinsClaimedLocal.add(_coinKey);
-                    currentPlayer.coins += (myData.score || 0);
-                    savePlayerProgress();
+                    if (typeof addXP === "function") addXP(myData.score || 0);
+                    else { currentPlayer.coins += (myData.score || 0); savePlayerProgress(); }
                     liveDuelRef.update({ [`players.${activePlayerKey}.coinsClaimed`]: true }).catch(() => { });
                 }
                 try {

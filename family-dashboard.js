@@ -79,6 +79,15 @@ auth.createUserWithEmailAndPassword(e, p)
             adminPin = null;
             const codeInp = document.getElementById("guest-code");
             if (codeInp) codeInp.value = "";
+            // Geteilte Lektion (?aufgabe=...) ohne Konto: Speicher-Profil anlegen und direkt los.
+            if (window._pendingAufgabe && window._pendingAufgabe.length) {
+                activePlayerKey = "gast_" + String((currentParentUser && currentParentUser.uid) || "x").slice(0, 12);
+                currentPlayer = { name: "Gast", isGuest: true, coins: 0, xp: 0, learnedWords: [], discColor: GUEST_COLOR };
+                ALL_PROFILES[activePlayerKey] = currentPlayer;
+                window._gastAufgabe = window._pendingAufgabe.slice();
+                versucheAufgabenLink();
+                return;
+            }
             switchView('guest-join');
             // Gäste verlieren beim Neustart alles – wenn ihre Runde noch
             // läuft, kommen sie mit einem Tipp zurück statt neu zu tippen.
@@ -3925,7 +3934,7 @@ auth.createUserWithEmailAndPassword(e, p)
             window._pendingAufgabe = null;
             try { if (typeof ladeLektionen === "function") await ladeLektionen(); } catch (e) { }
             if (typeof LEKTIONEN === "undefined" || typeof KURSE === "undefined") return;
-            if (a.length > 1) {
+            if (a.length > 1 && !currentPlayer.isGuest) {
                 showToast("📚 Deine neuen Aufgaben stehen unter „Aufgaben für dich“.", "success");
                 return;
             }
@@ -3936,15 +3945,80 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             const l = LEKTIONEN.find(z => z.id === x.id);
             if (!l) return;
-            const liste = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(l.kurs) : [];
-            if (typeof istLektionFreigeschaltet === "function" && !istLektionFreigeschaltet(l, liste)) {
-                if (typeof openKurs === "function") openKurs(l.kurs);
-                showToast("Mach zuerst die Lektionen davor – dann ist diese dran.", "info");
-                return;
-            }
+            // Per Link geschickt: auch öffnen, wenn die Lektionen davor noch fehlen.
+            window._linkLektionFrei = l.id;
+            if (typeof openKurs === "function") openKurs(l.kurs);
             if (typeof openLektion === "function") openLektion(l.id);
         }
         window.versucheAufgabenLink = versucheAufgabenLink;
+
+        function aufgabenTitel(a) {
+            if (!a || !a.length || typeof LEKTIONEN === "undefined" || typeof KURSE === "undefined") return "";
+            const x = a[0];
+            if (x.typ === "K") {
+                const k = KURSE.find(z => z.id === x.id);
+                return k ? (k.icon || "🎓") + " " + k.title + " (Klasse " + k.grade + ")" : "";
+            }
+            const l = LEKTIONEN.find(z => z.id === x.id);
+            if (!l) return "";
+            const k = KURSE.find(z => z.id === l.kurs);
+            return (l.icon || "📘") + " " + l.title + (k ? " (Klasse " + k.grade + ")" : "");
+        }
+
+        // Hinweis-Karten auf Anmeldung und Gast-Seite, wenn ein Lektions-Link geöffnet wurde.
+        async function zeigeAufgabeBanner(viewId) {
+            const box = document.getElementById(viewId === "auth" ? "auth-aufgabe-banner" : "guest-aufgabe-banner");
+            if (!box) return;
+            const a = viewId === "auth" ? window._pendingAufgabe : window._gastAufgabe;
+            if (!a || !a.length) { box.classList.add("hidden"); box.innerHTML = ""; return; }
+            try { if (typeof ladeLektionen === "function") await ladeLektionen(); } catch (e) { }
+            const titel = esc(aufgabenTitel(a) || "eine Lektion");
+            box.classList.remove("hidden");
+            box.innerHTML = viewId === "auth"
+                ? `<div class="glass-card p-4 space-y-3 text-left" style="border-color:rgba(245,158,11,0.35);">
+                        <div class="text-sm font-black text-amber-300">📚 Dir wurde eine Lektion geschickt</div>
+                        <div class="text-white font-bold">${titel}</div>
+                        <button type="button" onclick="aufgabeAlsGast()" class="btn-primary w-full text-center">▶ Ohne Konto ausprobieren</button>
+                        <p class="text-[11px] text-gray-400">Oder unten mit dem Familienkonto anmelden – dann wird der Fortschritt gespeichert.</p>
+                    </div>`
+                : `<div class="glass-card p-4 space-y-3" style="border-color:rgba(245,158,11,0.35);">
+                        <div class="text-sm font-black text-amber-300">📚 Deine Lektion</div>
+                        <div class="text-white font-bold">${titel}</div>
+                        <button type="button" onclick="gastAufgabeOeffnen()" class="btn-primary w-full text-center">▶ Lektion öffnen</button>
+                        <p class="text-[11px] text-gray-400">Als Gast wird nichts gespeichert. Mit einem kostenlosen Familienkonto behältst du Fortschritt, Coins und Abzeichen.</p>
+                        <button type="button" onclick="kontoStattGast()" class="btn-secondary w-full text-center text-sm">Kostenloses Familienkonto anlegen</button>
+                    </div>`;
+        }
+        window.zeigeAufgabeBanner = zeigeAufgabeBanner;
+
+        function aufgabeAlsGast() {
+            if (typeof loginAsGuest === "function") loginAsGuest();
+        }
+        function gastAufgabeOeffnen() {
+            if (!window._gastAufgabe) return;
+            window._pendingAufgabe = window._gastAufgabe.slice();
+            versucheAufgabenLink();
+        }
+        function kontoStattGast() {
+            window._gastAufgabe = null;
+            window._pendingAufgabe = null;
+            auth.signOut();
+        }
+        window.aufgabeAlsGast = aufgabeAlsGast;
+        window.gastAufgabeOeffnen = gastAufgabeOeffnen;
+        window.kontoStattGast = kontoStattGast;
+
+        // Teilen aus der Lektion heraus (an Freunde) - nur ein Link, keine Daten.
+        function teileLektion() {
+            if (typeof currentLektion === "undefined" || !currentLektion || !currentLektion.data) return;
+            const d = currentLektion.data;
+            const k = (typeof KURSE !== "undefined") ? KURSE.find(z => z.id === d.kurs) : null;
+            const link = location.origin + location.pathname + "?aufgabe=L." + d.id;
+            const text = `📚 Lern mit mir auf EduPlay Hub!\n${d.icon || "📘"} ${d.title}${k ? " (Klasse " + k.grade + ")" : ""}\n👉 ${link}`;
+            if (navigator.share) navigator.share({ text: text }).catch(() => { });
+            else window.open("https://wa.me/?text=" + encodeURIComponent(text), "_blank");
+        }
+        window.teileLektion = teileLektion;
 
         // ============================================================
         //  SAMMELKARTE "AUFGABEN FUER DICH"

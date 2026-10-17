@@ -17450,7 +17450,7 @@ function openLektion(id) {
     const daten = LEKTIONEN.find(l => l.id === id);
     if (!daten || daten.locked) return;
     const liste = (typeof getLektionenForKurs === "function") ? getLektionenForKurs(daten.kurs) : [];
-    if (!istLektionFreigeschaltet(daten, liste)) {
+    if (!istLektionFreigeschaltet(daten, liste) && window._linkLektionFrei !== id) {
         if (typeof showToast === "function") showToast("Diese Lektion ist noch gesperrt.", "error");
         return;
     }

@@ -132,6 +132,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         EduPlay Hub
                     </div>
                     <p class="text-emerald-400 font-bold text-sm tracking-wide">Familien-Login 👨‍👩‍👧‍👦</p>
+                    <div id="auth-aufgabe-banner" class="hidden max-w-sm mx-auto mt-5"></div>
                     <p class="text-[10px] text-gray-500 mt-1">Version 2.39</p>
                 </div>
                 <div class="glass-card p-6 space-y-4">
@@ -206,6 +207,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                     <p class="text-xs text-gray-500 mt-2">Kein Konto, nichts wird gespeichert – nur Name für diese Runde.</p>
                 </div>
+                <div id="guest-aufgabe-banner" class="hidden"></div>
                 <div class="glass-card p-6 space-y-4" style="border-color:rgba(16,185,129,0.25);">
                     <div>
                         <label for="guest-code" class="text-xs text-gray-400 font-bold block mb-1.5">Lobby-Code (4 Zeichen)</label>
@@ -2386,6 +2388,7 @@ VIEW: QUIZ SETUP
             <div id="lektion-intro-merksatz" class="hidden p-3 bg-amber-500/10 border border-amber-500/30 rounded-xl text-sm text-amber-200 text-left font-bold"></div>
             <button onclick="startLektionUebung('leicht')" class="btn-primary w-full text-center mt-2"
                 style="background:var(--gradient-amber);box-shadow:0 4px 24px rgba(245,158,11,0.3);">Los geht's – leichte Übung ➔</button>
+            <button type="button" onclick="teileLektion()" class="btn-secondary w-full text-center text-sm">📤 Lektion mit Freunden teilen</button>
         </div>
     </div>
 
@@ -2813,7 +2816,7 @@ VIEW: QUIZ SETUP
     <script src="tv-cast.js?v=14.7"></script>
     <script src="live-duel.js?v=10.17"></script>
     <script src="app-misc.js?v=8.9"></script>
-    <script src="lobby-avatar.js?v=10.4"></script>
+    <script src="lobby-avatar.js?v=10.5"></script>
     <script src="konto-loeschen.js?v=8.8"></script>
     <script src="email-bestaetigung.js?v=8.8"></script>
     <script src="fragen-vorladen.js?v=8.8"></script>

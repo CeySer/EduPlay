@@ -18,7 +18,7 @@
     // Reihenfolge zählt: lektionen.js legt KURSE und LEKTIONEN an,
     // die Zusatzdateien hängen danach nur noch an.
     var DATEIEN = [
-        "lektionen.js?v=3.30",
+        "lektionen.js?v=3.31",
         "lektionen_formen_k1k2.js?v=7",
         "lektionen_grundschule_k1k4.js?v=8",
         "lektionen_grundschule_k1k4_teil2.js?v=5",
@@ -55,7 +55,18 @@
         "lektionen_k6_l2.js?v=1",
         "lektionen_k7_l2.js?v=1",
         "lektionen_k8_l2.js?v=1",
-        "lektionen_k10_l3.js?v=1"
+        "lektionen_k10_l3.js?v=1",
+        "lektionen_laengen_gewichte_k3.js?v=1",
+        "lektionen_geometrie_k3.js?v=1",
+        "lektionen_zeit_sach_k3.js?v=1",
+        "lektionen_koerper_k4.js?v=1",
+        "lektionen_massstab_daten_k4.js?v=1",
+        "lektionen_sach_bruch_k4.js?v=1",
+        "lektionen_zahlen_k5.js?v=1",
+        "lektionen_k6_dezimal_l2.js?v=1",
+        "lektionen_dreiecke_zufall_k7.js?v=1",
+        "lektionen_k10_trig.js?v=1",
+        "lektionen_zp10_k10.js?v=1"
     ];
 
     var laufend = null;

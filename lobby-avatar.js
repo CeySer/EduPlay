@@ -543,7 +543,9 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
         const GUEST_ALLOWED_VIEWS = [
             'auth', 'guest-join',
             'live-duel-lobby', 'live-duel-play', 'live-duel-result',
-            'feedback'
+            'feedback',
+            // Geteilte Lektion ohne Konto ausprobieren (siehe versucheAufgabenLink)
+            'kurs-lektionen', 'lektion-intro', 'lektion-uebergang', 'lektion-ergebnis', 'quiz'
         ];
 
         function switchView(viewId) {
@@ -556,6 +558,9 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             if (typeof isAnonGuest !== 'undefined' && isAnonGuest
                 && GUEST_ALLOWED_VIEWS.indexOf(viewId) === -1) {
                 viewId = 'guest-join';
+            }
+            if ((viewId === 'auth' || viewId === 'guest-join') && typeof zeigeAufgabeBanner === "function") {
+                setTimeout(function () { zeigeAufgabeBanner(viewId); }, 0);
             }
             // Header umschalten
             const headerFamily = document.getElementById('header-familyhub');

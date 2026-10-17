@@ -545,7 +545,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             'live-duel-lobby', 'live-duel-play', 'live-duel-result',
             'feedback',
             // Geteilte Lektion ohne Konto ausprobieren (siehe versucheAufgabenLink)
-            'kurs-lektionen', 'lektion-intro', 'lektion-uebergang', 'lektion-ergebnis', 'quiz'
+            'kurs-lektionen', 'lektion-intro', 'lektion-uebergang', 'lektion-ergebnis', 'quiz', 'kopfrechnen'
         ];
 
         function switchView(viewId) {
@@ -846,7 +846,7 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
                 if (join.length === 4) window._pendingJoinCode = join;
                 if (tv.length === 4) window._pendingTVCode = tv;
                 const aufgabe = (params.get("aufgabe") || "").split(",").map(s => s.trim())
-                    .filter(s => /^[LK]\.[A-Za-z0-9_-]{1,80}$/.test(s)).slice(0, 10)
+                    .filter(s => /^[LKR]\.[A-Za-z0-9_~-]{1,80}$/.test(s)).slice(0, 10)
                     .map(s => ({ typ: s[0], id: s.slice(2) }));
                 if (aufgabe.length) window._pendingAufgabe = aufgabe;
                 if (params.has("aufgabe")) {

@@ -2920,6 +2920,7 @@ auth.createUserWithEmailAndPassword(e, p)
                             <div class="label mb-2">🎁 Eingelöste Belohnungen</div>
                             ${rewardHtml}
                         </div>
+                        ${typeof kopfDashboardHtml === "function" ? kopfDashboardHtml(p) : ""}
                     `;
         }
 
@@ -3136,6 +3137,7 @@ auth.createUserWithEmailAndPassword(e, p)
             renderDashAdminTest();
             renderDashRewards();
             if (typeof renderDashRewardRequests === "function") renderDashRewardRequests(true);
+            if (typeof kopfDashRender === "function") kopfDashRender();
             maybeShowParentWeeklyReport();
         }
 
@@ -3917,7 +3919,9 @@ auth.createUserWithEmailAndPassword(e, p)
                 if (!p || p.isGuest) return false;
                 return a.some(x => x.typ === "L"
                     ? offeneLektionen(p).some(o => o.lektionId === x.id)
-                    : offeneKurse(p).some(o => o.kursId === x.id));
+                    : x.typ === "R"
+                        ? (typeof offeneKopfrechnen === "function" && offeneKopfrechnen(p).some(o => x.id.indexOf(o.id) === 0))
+                        : offeneKurse(p).some(o => o.kursId === x.id));
             });
             if (passend.length === 1) {
                 _aufgabeAutoGewaehlt = true;
@@ -3932,6 +3936,10 @@ auth.createUserWithEmailAndPassword(e, p)
             const a = window._pendingAufgabe;
             if (!a || !a.length || !currentPlayer) return;
             window._pendingAufgabe = null;
+            if (a[0].typ === "R") {
+                if (typeof kopfStartAusLink === "function") kopfStartAusLink(a[0].id);
+                return;
+            }
             try { if (typeof ladeLektionen === "function") await ladeLektionen(); } catch (e) { }
             if (typeof LEKTIONEN === "undefined" || typeof KURSE === "undefined") return;
             if (a.length > 1 && !currentPlayer.isGuest) {
@@ -3953,6 +3961,7 @@ auth.createUserWithEmailAndPassword(e, p)
         window.versucheAufgabenLink = versucheAufgabenLink;
 
         function aufgabenTitel(a) {
+            if (a && a.length && a[0].typ === "R") return (typeof kopfTitelAusId === "function") ? kopfTitelAusId(a[0].id) : "🧮 Kopfrechnen";
             if (!a || !a.length || typeof LEKTIONEN === "undefined" || typeof KURSE === "undefined") return "";
             const x = a[0];
             if (x.typ === "K") {
@@ -3976,15 +3985,15 @@ auth.createUserWithEmailAndPassword(e, p)
             box.classList.remove("hidden");
             box.innerHTML = viewId === "auth"
                 ? `<div class="glass-card p-4 space-y-3 text-left" style="border-color:rgba(245,158,11,0.35);">
-                        <div class="text-sm font-black text-amber-300">📚 Dir wurde eine Lektion geschickt</div>
+                        <div class="text-sm font-black text-amber-300">${a[0].typ === "R" ? "🧮 Dir wurde eine Kopfrechen-Aufgabe geschickt" : "📚 Dir wurde eine Lektion geschickt"}</div>
                         <div class="text-white font-bold">${titel}</div>
                         <button type="button" onclick="aufgabeAlsGast()" class="btn-primary w-full text-center">▶ Ohne Konto ausprobieren</button>
                         <p class="text-[11px] text-gray-400">Oder unten mit dem Familienkonto anmelden – dann wird der Fortschritt gespeichert.</p>
                     </div>`
                 : `<div class="glass-card p-4 space-y-3" style="border-color:rgba(245,158,11,0.35);">
-                        <div class="text-sm font-black text-amber-300">📚 Deine Lektion</div>
+                        <div class="text-sm font-black text-amber-300">${a[0].typ === "R" ? "🧮 Deine Aufgabe" : "📚 Deine Lektion"}</div>
                         <div class="text-white font-bold">${titel}</div>
-                        <button type="button" onclick="gastAufgabeOeffnen()" class="btn-primary w-full text-center">▶ Lektion öffnen</button>
+                        <button type="button" onclick="gastAufgabeOeffnen()" class="btn-primary w-full text-center">▶ Öffnen</button>
                         <p class="text-[11px] text-gray-400">Als Gast wird nichts gespeichert. Mit einem kostenlosen Familienkonto behältst du Fortschritt, Coins und Abzeichen.</p>
                         <button type="button" onclick="kontoStattGast()" class="btn-secondary w-full text-center text-sm">Kostenloses Familienkonto anlegen</button>
                     </div>`;
@@ -4042,7 +4051,8 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!card) return;
             const lek = offeneLektionen(currentPlayer);
             const kur = offeneKurse(currentPlayer);
-            const gesamt = lek.length + kur.length;
+            const kr = (typeof offeneKopfrechnen === "function") ? offeneKopfrechnen(currentPlayer) : [];
+            const gesamt = lek.length + kur.length + kr.length;
             if (!gesamt) {
                 card.classList.add("hidden");
                 card.innerHTML = "";
@@ -4050,6 +4060,17 @@ auth.createUserWithEmailAndPassword(e, p)
             }
             const stil = "background:linear-gradient(135deg,rgba(245,158,11,0.18),rgba(239,68,68,0.1));border-color:rgba(245,158,11,0.25);";
 
+            if (gesamt === 1 && kr.length === 1) {
+                const t = kr[0];
+                card.innerHTML =
+                    `<div class="glass-card-glow p-5 text-white" style="${stil}">
+                        <div class="font-black text-lg mb-1">🧮 Kopfrechnen wartet auf dich!</div>
+                        <div class="text-xs opacity-80 mb-3">${esc(t.title)} · ${t.erledigt || 0}/${t.runden || 1}${faelligText(t)}</div>
+                        <button onclick="kopfStartAufgabe('${esc(t.id)}')" class="btn-primary w-full text-center" style="background:linear-gradient(140deg,#f97316,#eab308);">Los geht's</button>
+                    </div>`;
+                card.classList.remove("hidden");
+                return;
+            }
             if (gesamt === 1) {
                 const istLek = lek.length === 1;
                 const t = istLek ? lek[0] : kur[0];
@@ -4082,6 +4103,8 @@ auth.createUserWithEmailAndPassword(e, p)
                     "startAssignedLesson('" + esc(t.lektionId) + "')")))
                 .concat(kur.map(t => zeile("🎓", t.title || t.kursId, "Kurs" + faelligText(t),
                     "startAssignedKurs('" + esc(t.kursId) + "')")))
+                .concat(kr.map(t => zeile("🧮", t.title, "Kopfrechnen · " + (t.erledigt || 0) + "/" + (t.runden || 1) + faelligText(t),
+                    "kopfStartAufgabe('" + esc(t.id) + "')")))
                 .join("");
 
             card.innerHTML =

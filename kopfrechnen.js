@@ -282,7 +282,7 @@
         { id: "verliebt", icon: "💕", titel: "Verliebte Zahlen",
           passt: function (st) { return st === "k1_10"; },
           text: "Diese Paare ergeben zusammen genau 10. Wer sie kennt, rechnet blitzschnell.",
-          schritte: ["1 + 9 · 2 + 8 · 3 + 7", "4 + 6 · 5 + 5", "10 − 3 = ? → die Verliebte von 3 ist 7"],
+          schritte: ["1 + 9,  2 + 8,  3 + 7", "4 + 6,  5 + 5", "10 − 3 = ? → die Verliebte von 3 ist 7"],
           hint: function () { return "Verliebte Zahlen: 1+9, 2+8, 3+7, 4+6, 5+5"; } },
         { id: "zehner", icon: "🔟", titel: "Über die 10 springen",
           passt: function (st) { return st === "k1_20"; },
@@ -298,7 +298,7 @@
         { id: "doppel", icon: "👯", titel: "Zehner und Einer getrennt",
           passt: function (st) { return st === "k2_doppel"; },
           text: "Verdopple (oder halbiere) Zehner und Einer einzeln und zähle zusammen.",
-          schritte: ["Doppelte von 36", "30 → 60   ·   6 → 12", "60 + 12 = 72"],
+          schritte: ["Doppelte von 36", "30 → 60   und   6 → 12", "60 + 12 = 72"],
           hint: function (a) {
               let m = a.t.match(/Doppelte von (\d+)/);
               if (m) { const n = +m[1], z = Math.floor(n / 10) * 10, e1 = n % 10; return z ? z + " → " + 2 * z + " und " + e1 + " → " + 2 * e1 : null; }

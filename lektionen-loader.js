@@ -66,7 +66,8 @@
         "lektionen_k6_dezimal_l2.js?v=1",
         "lektionen_dreiecke_zufall_k7.js?v=1",
         "lektionen_k10_trig.js?v=1",
-        "lektionen_zp10_k10.js?v=1"
+        "lektionen_zp10_k10.js?v=1",
+        "lektionen_nachbarn_k2.js?v=1"
     ];
 
     var laufend = null;

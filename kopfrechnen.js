@@ -39,6 +39,13 @@
             if (Math.random() < 0.5) { const n = pick([rnd(2, 25), rnd(10, 50)]); return { t: "Das Doppelte von " + n, l: 2 * n }; }
             const n = 2 * pick([rnd(1, 25), rnd(10, 50)]); return { t: "Die Hälfte von " + n, l: n / 2 };
         } },
+        { id: "k2_nachbar", kl: 2, icon: "↔️", titel: "Vorgänger & Nachfolger", gen: function () {
+            const t = rnd(0, 3), ueber = Math.random() < 0.35;
+            if (t === 0) { const n = ueber ? rnd(1, 9) * 10 - 1 : rnd(1, 98); return { t: "Nachfolger von " + n, l: n + 1 }; }
+            if (t === 1) { const n = ueber ? rnd(1, 10) * 10 : rnd(2, 99); return { t: "Vorgänger von " + n, l: n - 1 }; }
+            let n = rnd(11, 99); if (n % 10 === 0) n++;
+            return t === 2 ? { t: "Zehner davor von " + n, l: Math.floor(n / 10) * 10 } : { t: "Zehner danach von " + n, l: Math.floor(n / 10) * 10 + 10 };
+        } },
         { id: "k2_100", kl: 2, icon: "💯", titel: "Plus & Minus bis 100", gen: function () {
             const t = rnd(0, 3);
             if (t === 0) { const a = rnd(11, 89), b = rnd(2, 9); return a + b <= 100 ? { t: a + " + " + b, l: a + b } : { t: a + " − " + b, l: a - b }; }
@@ -293,6 +300,19 @@
               if (m) { const x = +m[1], y = +m[2], z = 10 - x; return "Erst bis 10: " + x + " + " + z + " = 10, dann + " + (y - z); }
               m = a.t.match(/^(\d+) − (\d+)$/);
               if (m) { const x = +m[1], y = +m[2], z = x - 10; return "Erst bis 10: " + x + " − " + z + " = 10, dann − " + (y - z); }
+              return null;
+          } },
+        { id: "nachbarn", icon: "↔️", titel: "Vorgänger und Nachfolger",
+          passt: function (st) { return st === "k2_nachbar"; },
+          text: "Vorgänger = 1 weniger, Nachfolger = 1 mehr. Achtung bei 9 und 0 am Ende: Dann ändert sich der Zehner! Nachbarzehner sind die Zehnerzahlen links und rechts.",
+          schritte: ["Nachfolger von 39", "39 + 1: nach der 9 kommt ein neuer Zehner", "= 40"],
+          hint: function (a) {
+              let m = a.t.match(/^Nachfolger von (\d+)$/);
+              if (m) return +m[1] % 10 === 9 ? "Nach der 9 kommt ein neuer Zehner: " + m[1] + " + 1" : m[1] + " + 1";
+              m = a.t.match(/^Vorgänger von (\d+)$/);
+              if (m) return +m[1] % 10 === 0 ? "Vor der 0 wird der Zehner kleiner: " + m[1] + " − 1" : m[1] + " − 1";
+              m = a.t.match(/^Zehner (davor|danach) von (\d+)$/);
+              if (m) { const z = Math.floor(+m[2] / 10) * 10; return m[2] + " liegt zwischen " + z + " und " + (z + 10); }
               return null;
           } },
         { id: "doppel", icon: "👯", titel: "Zehner und Einer getrennt",

@@ -1,0 +1,539 @@
+// ============================================================
+//  KOPFRECHEN-DUELL (60-Sekunden-Sprint)
+//  Live-Duell (jeder am eigenen Handy) und TV-Modus (Fernseher zeigt
+//  das Rennen, Handys rechnen). Jeder rechnet in SEINER Stufe aus dem
+//  Kopfrechen-Trainer (window.KOPF_STUFEN), Punkte = richtige Aufgaben.
+//  Firestore-Felder je Spieler: kopfStufe, score, kRichtig, kFalsch,
+//  kFertig, kSpaet. Am Dokument: sprintId, sprintTs.
+//  Die 60 Sekunden laufen auf jedem Gerät lokal ab dem Startsignal –
+//  dadurch stören falsch gehende Uhren nicht.
+// ============================================================
+(function () {
+    "use strict";
+
+    const DAUER = 60;          // Sekunden
+    const VORLAUF = 3000;      // 3-2-1
+    const NACHLAUF = 8000;     // so lange wartet der Host höchstens auf Nachzügler
+    const SCHREIB_MS = 1000;   // Zwischenstand höchstens 1× pro Sekunde senden
+    const SPAET_MS = 20000;    // wer so spät dazukommt, spielt erst nächste Runde
+    const MIX = ["k4_gross", "k5_quadrat", "k5_bruch", "k6_dezimal", "k7_prozent", "k7_negativ"];
+    const MIX_STUFE = { id: "duell_mix", kl: 8, icon: "🔥", titel: "Profi-Mix (ab Kl. 7)" };
+
+    function ichKey() { return (typeof activePlayerKey !== "undefined" && activePlayerKey) || ""; }
+    function e(s) { return (typeof esc === "function") ? esc(s) : String(s == null ? "" : s); }
+    function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+    function zahl(n) {
+        const s = (Math.round(n * 1000) / 1000).toString().replace(".", ",");
+        return s.replace("-", "−");
+    }
+    function sfx(n) { try { if (typeof SFX !== "undefined" && SFX[n]) SFX[n](); } catch (x) { } }
+
+    // ---------------- Stufen ----------------
+    function alleStufen() { return (window.KOPF_STUFEN || []).concat([MIX_STUFE]); }
+    function stufe(id) { return alleStufen().find(function (s) { return s.id === id; }); }
+    function kurz(id) { const s = stufe(id); return s ? s.icon + " " + s.titel : "🧮"; }
+    function gen(id) {
+        const echt = id === "duell_mix" ? pick(MIX) : id;
+        const s = stufe(echt) || stufe("k2_1x1");
+        const a = s.gen(0);
+        a.st = s.id;
+        return a;
+    }
+    function standardStufe() {
+        try {
+            const m = localStorage.getItem("eduplayKopfDuellStufe:" + (ichKey() || ""));
+            if (m && stufe(m)) return m;
+        } catch (x) { }
+        const g = Number(typeof currentPlayer !== "undefined" && currentPlayer && currentPlayer.grade) || 0;
+        return ({ 1: "k1_20", 2: "k2_1x1", 3: "k3_mix", 4: "k4_gross", 5: "k5_quadrat", 6: "k6_dezimal" })[g] || "duell_mix";
+    }
+    function merkeStufe(id) {
+        try { localStorage.setItem("eduplayKopfDuellStufe:" + (ichKey() || ""), id); } catch (x) { }
+    }
+    function optionen(sel) {
+        return alleStufen().map(function (s) {
+            return `<option value="${s.id}" ${s.id === sel ? "selected" : ""}>${s.kl <= 7 ? "Kl. " + s.kl + " · " : ""}${e(s.icon + " " + s.titel)}</option>`;
+        }).join("");
+    }
+
+    function aktiveSpieler(data) {
+        const pl = data.players || {};
+        return Object.keys(pl).filter(function (k) {
+            const p = pl[k];
+            if (!p || p.pending || p.kSpaet === data.sprintId) return false;
+            return p.kFertig || (typeof istAnwesend === "function" ? istAnwesend(p) : true);
+        });
+    }
+
+    // ---------------- Stufenwahl im Warteraum ----------------
+    let lobbyRef = null, lobbyKey = "";
+    function stufeWaehlen(id) {
+        if (!stufe(id) || !lobbyRef || !ichKey()) return;
+        merkeStufe(id);
+        lobbyRef.update({ ["players." + ichKey() + ".kopfStufe"]: id }).catch(function () { });
+        sfx("tap");
+    }
+    function stufenwahlHtml(data, idSel) {
+        const me = (data.players || {})[ichKey()] || {};
+        const andere = Object.keys(data.players || {}).map(function (k) {
+            const p = data.players[k];
+            return `<div class="flex justify-between gap-2 text-xs"><span class="font-bold text-white truncate">${e(p.name)}</span><span class="text-gray-300 text-right">${e(kurz(p.kopfStufe))}</span></div>`;
+        }).join("");
+        return `<div class="text-xs font-bold text-amber-300">🧮 Deine Stufe – jeder rechnet auf seinem Niveau</div>
+            <select id="${idSel}" class="input-modern font-bold text-sm" onchange="KopfDuell.stufeWaehlen(this.value)">${optionen(me.kopfStufe || standardStufe())}</select>
+            <div class="space-y-1 pt-1">${andere}</div>
+            <p class="text-[11px] text-gray-400">60 Sekunden – wer die meisten Aufgaben richtig hat, gewinnt.</p>`;
+    }
+    function standardSetzen(data, ref) {
+        const me = (data.players || {})[ichKey()];
+        if (me && !me.kopfStufe && ref) {
+            ref.update({ ["players." + ichKey() + ".kopfStufe"]: standardStufe() }).catch(function () { });
+        }
+    }
+    // Live-Duell-Warteraum: Kasten unter der Spielerliste
+    function lobby(data, ref, listEl) {
+        let box = document.getElementById("kd-lobby");
+        if (data.type !== "kopf") { if (box) box.classList.add("hidden"); return; }
+        if (!box && listEl) {
+            box = document.createElement("div");
+            box.id = "kd-lobby";
+            box.className = "glass-card p-4 space-y-2";
+            listEl.insertAdjacentElement("afterend", box);
+        }
+        if (!box) return;
+        box.classList.remove("hidden");
+        lobbyRef = ref;
+        standardSetzen(data, ref);
+        const key = JSON.stringify(Object.keys(data.players || {}).sort().map(function (k) { return [k, data.players[k].name, data.players[k].kopfStufe]; }));
+        const sel = document.getElementById("kd-stufe-sel");
+        if (key === lobbyKey && sel) return;
+        if (sel && document.activeElement === sel) return;
+        lobbyKey = key;
+        box.innerHTML = stufenwahlHtml(data, "kd-stufe-sel");
+    }
+
+    // ---------------- Start / Ende (Host) ----------------
+    async function starten(ref) {
+        if (!ref) return;
+        const snap = await ref.get();
+        if (!snap.exists) return;
+        const players = snap.data().players || {};
+        Object.keys(players).forEach(function (k) {
+            const p = players[k];
+            p.score = 0; p.kRichtig = 0; p.kFalsch = 0; p.kFertig = false; p.kSpaet = null;
+            p.pending = false; p.hasAnswered = false; p.coinsClaimed = false; p.lastRoundPoints = 0;
+        });
+        await ref.update({
+            status: "playing",
+            sprintId: "s" + Date.now().toString(36),
+            sprintTs: Date.now(),
+            dauer: DAUER,
+            answerDeadline: null,
+            players: players
+        });
+    }
+
+    let hostSprint = null, hostFertigGesendet = "", hostTimer = null;
+    function hostPruefen(data, ref) {
+        if (!ref || data.status !== "playing") return;
+        if (!hostSprint || hostSprint.id !== data.sprintId) {
+            hostSprint = { id: data.sprintId, ende: Date.now() + VORLAUF + DAUER * 1000 };
+        }
+        const aktiv = aktiveSpieler(data);
+        const alleFertig = aktiv.length > 0 && aktiv.every(function (k) { return data.players[k].kFertig; });
+        const spaet = Date.now() > hostSprint.ende + NACHLAUF;
+        if ((alleFertig || spaet) && hostFertigGesendet !== data.sprintId) {
+            hostFertigGesendet = data.sprintId;
+            setTimeout(function () {
+                ref.update({ status: "finished", kEnde: Date.now() }).catch(function () { hostFertigGesendet = ""; });
+            }, alleFertig ? 1200 : 0);
+        }
+    }
+    function hostTimerStarten(ref) {
+        if (hostTimer) return;
+        hostTimer = setInterval(function () {
+            if (!hostSprint || !ref) return;
+            if (Date.now() > hostSprint.ende + NACHLAUF && hostFertigGesendet !== hostSprint.id) {
+                ref.get().then(function (d) { if (d.exists) hostPruefen(d.data(), ref); }).catch(function () { });
+            }
+        }, 1000);
+    }
+
+    // ---------------- Spielen am Handy ----------------
+    let sp = null, tick = null;
+
+    function padHtml() {
+        return `<div class="kr-pad">
+          <button onclick="KopfDuell.taste('7')">7</button><button onclick="KopfDuell.taste('8')">8</button><button onclick="KopfDuell.taste('9')">9</button><button onclick="KopfDuell.taste('del')">⌫</button>
+          <button onclick="KopfDuell.taste('4')">4</button><button onclick="KopfDuell.taste('5')">5</button><button onclick="KopfDuell.taste('6')">6</button><button class="kr-ok" onclick="KopfDuell.taste('ok')">OK</button>
+          <button onclick="KopfDuell.taste('1')">1</button><button onclick="KopfDuell.taste('2')">2</button><button onclick="KopfDuell.taste('3')">3</button>
+          <button id="kd-key-minus" onclick="KopfDuell.taste('-')">−</button><button onclick="KopfDuell.taste('0')">0</button><button id="kd-key-komma" onclick="KopfDuell.taste(',')">,</button><button onclick="KopfDuell.taste('skip')" style="font-size:14px">weiter</button>
+        </div>`;
+    }
+    function spielHtml(mitBoard) {
+        return `<div id="kd-root" class="space-y-3">
+            ${mitBoard ? `<div id="kd-board" class="glass-card p-3 space-y-1.5"></div>` : ""}
+            <div class="flex items-center justify-between gap-2">
+              <span id="kd-stufe" class="text-xs font-bold text-gray-400 truncate"></span>
+              <span class="text-sm font-black text-emerald-300" id="kd-score">✓ 0</span>
+              <span id="kd-zeit" class="text-lg font-black text-amber-300 min-w-[3rem] text-right"></span>
+            </div>
+            <div class="kr-bar"><div id="kd-bar" style="width:100%"></div></div>
+            <div class="glass-card p-5 space-y-3" style="position:relative">
+              <div id="kd-task" class="kr-task"></div>
+              <div id="kd-input" class="kr-input">&nbsp;</div>
+              <div id="kd-feedback" class="text-center text-sm font-bold" style="min-height:20px"></div>
+              <div id="kd-overlay" style="position:absolute;inset:0;border-radius:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(10,14,30,.92);font-weight:900;text-align:center;padding:12px"></div>
+            </div>
+            ${padHtml()}
+        </div>`;
+    }
+    function boardHtml(data, gross) {
+        const pl = data.players || {};
+        const keys = Object.keys(pl).filter(function (k) { return !pl[k].pending; })
+            .sort(function (a, b) { return (pl[b].score || 0) - (pl[a].score || 0); });
+        const max = Math.max(1, ...keys.map(function (k) { return pl[k].score || 0; }));
+        const medals = ["🥇", "🥈", "🥉"];
+        return keys.map(function (k, i) {
+            const p = pl[k], ich = k === ichKey() && !gross;
+            const w = Math.round(((p.score || 0) / max) * 100);
+            const rang = keys.filter(function (x) { return (pl[x].score || 0) > (p.score || 0); }).length;
+            const fs = gross ? "clamp(16px,2.6vw,30px)" : "13px";
+            return `<div style="display:flex;align-items:center;gap:${gross ? 14 : 8}px;font-size:${fs};font-weight:800">
+                <span style="width:${gross ? 2.2 : 1.6}em;text-align:center">${(p.score || 0) > 0 && rang < 3 ? medals[rang] : (rang + 1) + "."}</span>
+                <span style="flex:0 0 ${gross ? "28%" : "34%"};overflow:hidden;text-overflow:ellipsis;white-space:nowrap;${ich ? "color:#fcd34d" : ""}">${e(p.name)}${gross ? `<span style="display:block;font-size:.55em;opacity:.65;font-weight:700">${e(kurz(p.kopfStufe))}</span>` : ""}</span>
+                <span style="flex:1;height:${gross ? 26 : 10}px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden"><span style="display:block;height:100%;width:${w}%;background:linear-gradient(90deg,#10b981,#f59e0b);transition:width .4s"></span></span>
+                <span style="min-width:2.2em;text-align:right;color:#6ee7b7">${p.score || 0}${p.kFertig ? " ✓" : ""}</span>
+            </div>`;
+        }).join("");
+    }
+
+    function stopp() {
+        if (tick) { clearInterval(tick); tick = null; }
+        if (sp && sp.schreibTimer) clearTimeout(sp.schreibTimer);
+        sp = null;
+        if (hostTimer) { clearInterval(hostTimer); hostTimer = null; }
+    }
+
+    function senden(final) {
+        if (!sp || !sp.ref) return;
+        const k = sp.key, upd = {};
+        upd["players." + k + ".score"] = sp.richtig;
+        upd["players." + k + ".kRichtig"] = sp.richtig;
+        upd["players." + k + ".kFalsch"] = sp.falsch;
+        if (final) upd["players." + k + ".kFertig"] = true;
+        sp.letztesSenden = Date.now();
+        sp.ref.update(upd).catch(function () { });
+    }
+    function zwischenstand() {
+        if (!sp || sp.schreibTimer) return;
+        const warte = Math.max(0, SCHREIB_MS - (Date.now() - (sp.letztesSenden || 0)));
+        sp.schreibTimer = setTimeout(function () { if (!sp) return; sp.schreibTimer = null; if (!sp.fertig) senden(false); }, warte);
+    }
+
+    function el(id) { return document.getElementById(id); }
+    function overlay(html) {
+        const o = el("kd-overlay"); if (!o) return;
+        if (html) { o.innerHTML = html; o.style.display = "flex"; } else { o.style.display = "none"; }
+    }
+
+    function naechste() {
+        if (!sp) return;
+        let a, n = 0;
+        do { a = gen(sp.stufe); n++; } while (n < 8 && sp.letzte && a.t === sp.letzte);
+        sp.letzte = a.t; sp.aufgabe = a; sp.eingabe = ""; sp.sperre = false;
+        const t = el("kd-task"); if (t) t.innerText = a.t + " =";
+        const inp = el("kd-input"); if (inp) { inp.className = "kr-input"; inp.innerHTML = "&nbsp;"; }
+        const fb = el("kd-feedback"); if (fb) fb.innerText = "";
+        const minus = a.l < 0 || a.st === "k7_negativ";
+        const komma = String(a.l).indexOf(".") !== -1 || a.st === "k6_dezimal" || a.st === "k7_prozent";
+        const km = el("kd-key-minus"), kk = el("kd-key-komma");
+        if (km) km.style.visibility = minus ? "visible" : "hidden";
+        if (kk) kk.style.visibility = komma ? "visible" : "hidden";
+    }
+    function wert(s) { if (!s || s === "-" || s === ",") return NaN; return Number(s.replace(",", ".")); }
+    function zeigeEingabe() { const i = el("kd-input"); if (i) i.innerText = sp.eingabe ? sp.eingabe.replace("-", "−") : " "; }
+
+    function laeuft() { return sp && !sp.fertig && Date.now() >= sp.start && Date.now() < sp.ende; }
+
+    function taste(k) {
+        if (!laeuft() || sp.sperre || !sp.aufgabe) return;
+        if (k === "del") { sp.eingabe = sp.eingabe.slice(0, -1); return zeigeEingabe(); }
+        if (k === "skip") return pruefen(true);
+        if (k === "ok") return pruefen(false);
+        if (k === "-") { sp.eingabe = sp.eingabe.charAt(0) === "-" ? sp.eingabe.slice(1) : "-" + sp.eingabe; return zeigeEingabe(); }
+        if (k === ",") { if (sp.eingabe.indexOf(",") === -1) sp.eingabe += (sp.eingabe && sp.eingabe !== "-" ? "," : "0,"); return zeigeEingabe(); }
+        if (sp.eingabe.replace(/[-,]/g, "").length >= 7) return;
+        sp.eingabe += k;
+        zeigeEingabe();
+        if (Math.abs(wert(sp.eingabe) - sp.aufgabe.l) < 1e-9 && zahl(sp.aufgabe.l).replace("−", "-") === sp.eingabe) pruefen(false);
+    }
+    function pruefen(skip) {
+        if (!laeuft() || sp.sperre) return;
+        if (!skip && sp.eingabe === "") return;
+        const a = sp.aufgabe, ok = !skip && Math.abs(wert(sp.eingabe) - a.l) < 1e-9;
+        sp.sperre = true;
+        const inp = el("kd-input"), fb = el("kd-feedback");
+        if (ok) {
+            sp.richtig++;
+            if (inp) inp.className = "kr-input ok";
+            sfx("correct");
+        } else {
+            sp.falsch++;
+            if (inp) { inp.className = "kr-input falsch"; inp.innerText = zahl(a.l); }
+            if (fb) fb.innerText = a.t + " = " + zahl(a.l);
+            sfx("wrong");
+        }
+        const sc = el("kd-score"); if (sc) sc.innerText = "✓ " + sp.richtig;
+        zwischenstand();
+        setTimeout(function () { if (laeuft()) naechste(); }, ok ? 220 : 1000);
+    }
+
+    function ticken() {
+        if (!sp) return;
+        const now = Date.now();
+        const z = el("kd-zeit"), bar = el("kd-bar");
+        if (now < sp.start) {
+            overlay(`<div style="font-size:15px;opacity:.8">Gleich geht's los!</div><div style="font-size:72px;line-height:1">${Math.ceil((sp.start - now) / 1000)}</div>`);
+            if (z) z.innerText = DAUER + "s";
+            return;
+        }
+        if (now < sp.ende) {
+            if (!sp.gestartet) { sp.gestartet = true; overlay(""); naechste(); sfx("tap"); }
+            const rest = sp.ende - now;
+            if (z) { z.innerText = Math.ceil(rest / 1000) + "s"; z.style.color = rest <= 5000 ? "#fb7185" : ""; }
+            if (bar) bar.style.width = (rest / (DAUER * 10)) + "%";
+            return;
+        }
+        if (!sp.fertig) {
+            sp.fertig = true;
+            if (sp.schreibTimer) { clearTimeout(sp.schreibTimer); sp.schreibTimer = null; }
+            senden(true);
+            sfx("timeUp");
+            if (z) z.innerText = "⏰";
+            if (bar) bar.style.width = "0%";
+            overlay(`<div style="font-size:44px">⏰</div><div style="font-size:22px">Zeit um!</div><div style="font-size:15px;margin-top:6px;color:#6ee7b7">${sp.richtig} richtig · ${sp.falsch} falsch</div><div style="font-size:12px;opacity:.7;margin-top:8px">Warte auf die anderen …</div>`);
+        }
+    }
+
+    // Gemeinsamer Einstieg für Live-Duell und TV-Handy.
+    // setHtml(html) setzt den Spielbereich; mitBoard: Rangliste auf dem Handy zeigen.
+    function spielerRender(data, ref, setHtml, mitBoard) {
+        const me = (data.players || {})[ichKey()];
+        if (!me) return;
+        if (me.pending || me.kSpaet === data.sprintId) {
+            if (!sp || sp.id !== "warte:" + data.sprintId) {
+                stopp();
+                sp = { id: "warte:" + data.sprintId, fertig: true };
+                setHtml(`<div class="glass-card p-8 text-center space-y-3"><div class="text-6xl">⏳</div><h2 class="text-xl font-black">Du bist dabei!</h2><p class="text-sm text-gray-400">Der Sprint läuft schon. In der nächsten Runde rechnest du mit.</p><div id="kd-board" class="space-y-1.5 text-left pt-2"></div></div>`);
+            }
+            const b0 = el("kd-board"); if (b0) b0.innerHTML = boardHtml(data, false);
+            return;
+        }
+        if (!sp || sp.id !== data.sprintId) {
+            stopp();
+            const spaet = data.sprintTs && (Date.now() - data.sprintTs) > SPAET_MS && !me.kRichtig && !me.kFertig;
+            if (spaet) {
+                ref.update({ ["players." + ichKey() + ".kSpaet"]: data.sprintId }).catch(function () { });
+                sp = { id: "warte:" + data.sprintId, fertig: true };
+                setHtml(`<div class="glass-card p-8 text-center space-y-3"><div class="text-6xl">⏳</div><h2 class="text-xl font-black">Du bist dabei!</h2><p class="text-sm text-gray-400">Der Sprint läuft schon. In der nächsten Runde rechnest du mit.</p></div>`);
+                return;
+            }
+            const start = Date.now() + VORLAUF;
+            sp = {
+                id: data.sprintId, ref: ref, key: ichKey(), stufe: me.kopfStufe || standardStufe(),
+                start: start, ende: start + DAUER * 1000, richtig: 0, falsch: 0, eingabe: "",
+                aufgabe: null, sperre: false, fertig: false, gestartet: false
+            };
+            if (!me.kopfStufe) ref.update({ ["players." + ichKey() + ".kopfStufe"]: sp.stufe }).catch(function () { });
+            if (me.kFertig) { sp.fertig = true; sp.richtig = me.kRichtig || 0; sp.falsch = me.kFalsch || 0; sp.start = sp.ende = 0; }
+            setHtml(spielHtml(mitBoard));
+            const st = el("kd-stufe"); if (st) st.innerText = kurz(sp.stufe);
+            if (sp.fertig) overlay(`<div style="font-size:22px">✅ Fertig!</div><div style="font-size:15px;margin-top:6px;color:#6ee7b7">${sp.richtig} richtig</div>`);
+            else { ticken(); tick = setInterval(ticken, 100); }
+        }
+        const b = el("kd-board"); if (b) b.innerHTML = boardHtml(data, false);
+    }
+
+    // ---------------- Live-Duell ----------------
+    function liveRender(data, ref, istHost) {
+        if (data.status !== "playing") return;
+        spielerRender(data, ref, function (h) {
+            const c = document.getElementById("live-duel-play-content"); if (c) c.innerHTML = h;
+        }, true);
+        const s = document.getElementById("live-duel-status");
+        if (s) s.innerText = "🧮 Kopfrechen-Sprint";
+        const cd = document.getElementById("live-duel-countdown"); if (cd) cd.innerText = "";
+        const fr = document.getElementById("live-duel-force-resolve"); if (fr) fr.classList.add("hidden");
+        if (istHost) {
+            if (!hostSprint || hostSprint.id !== data.sprintId) {
+                hostSprint = { id: data.sprintId, ende: (sp && sp.id === data.sprintId && sp.ende) ? sp.ende : Date.now() + VORLAUF + DAUER * 1000 };
+            }
+            hostPruefen(data, ref);
+            hostTimerStarten(ref);
+        }
+    }
+
+    // ---------------- TV: Fernseher ----------------
+    let tvSprintId = "";
+    function tvHost(data, ref, setHtml) {
+        if (tvSprintId !== data.sprintId) {
+            tvSprintId = data.sprintId;
+            hostSprint = { id: data.sprintId, ende: Date.now() + VORLAUF + DAUER * 1000 };
+            setHtml(`<div style="min-height:100vh;padding:3vh 4vw;color:#fff;display:flex;flex-direction:column;gap:2.5vh">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
+                  <div style="font-size:clamp(22px,3.6vw,46px);font-weight:900">🧮 Kopfrechen-Duell</div>
+                  <div id="kd-tv-zeit" style="font-size:clamp(34px,6vw,80px);font-weight:900;color:#fcd34d"></div>
+                </div>
+                <div style="font-size:clamp(13px,1.7vw,20px);color:#a5b4fc;font-weight:700">Jeder rechnet auf seinem Handy – in seiner eigenen Stufe. Wer schafft die meisten?</div>
+                <div id="kd-tv-rows" style="display:flex;flex-direction:column;gap:2vh"></div>
+            </div>`);
+            if (hostTimer) { clearInterval(hostTimer); hostTimer = null; }
+            hostTimer = setInterval(function () {
+                const z = document.getElementById("kd-tv-zeit");
+                if (!hostSprint) return;
+                const now = Date.now(), start = hostSprint.ende - DAUER * 1000;
+                if (z) z.innerText = now < start ? "⏳ " + Math.ceil((start - now) / 1000) : now < hostSprint.ende ? Math.ceil((hostSprint.ende - now) / 1000) + "s" : "⏰";
+                if (now > hostSprint.ende + NACHLAUF && hostFertigGesendet !== hostSprint.id) {
+                    ref.get().then(function (d) { if (d.exists) hostPruefen(d.data(), ref); }).catch(function () { });
+                }
+            }, 250);
+        }
+        const rows = document.getElementById("kd-tv-rows");
+        if (rows) rows.innerHTML = boardHtml(data, true);
+        hostPruefen(data, ref);
+    }
+
+    // ---------------- TV: Handy ----------------
+    const geclaimt = new Set();
+    let tvWarteKey = "";
+    function tvSpieler(data, myData, ref, setHtml) {
+        if (data.status === "waiting") {
+            if (sp) stopp();
+            lobbyRef = ref;
+            standardSetzen(data, ref);
+            const key = "w:" + (myData.kopfStufe || "") + ":" + Object.keys(data.players || {}).map(function (k) { return k + (data.players[k].kopfStufe || ""); }).join(",");
+            const sel = document.getElementById("kd-tv-stufe-sel");
+            if (key === tvWarteKey && sel) return;
+            if (sel && document.activeElement === sel) return;
+            tvWarteKey = key;
+            setHtml(`<div class="glass-card-glow p-6 mt-6 space-y-3 text-center"><div class="text-6xl">🙌</div><h2 class="text-2xl font-black text-emerald-400">Du bist drin!</h2><p class="text-sm text-white font-bold">Gleich startet das Kopfrechen-Duell.</p><div class="text-left space-y-2">${stufenwahlHtml(data, "kd-tv-stufe-sel")}</div></div>`);
+            return;
+        }
+        tvWarteKey = "";
+        if (data.status === "playing") {
+            spielerRender(data, ref, setHtml, false);
+            return;
+        }
+        if (data.status === "finished") {
+            if (sp && !sp.fertig) senden(true);
+            stopp();
+            const ck = ref.id + ":" + data.sprintId + ":" + ichKey();
+            if (!myData.coinsClaimed && !geclaimt.has(ck)) {
+                geclaimt.add(ck);
+                if (typeof addXP === "function") addXP(myData.score || 0);
+                ref.update({ ["players." + ichKey() + ".coinsClaimed"]: true }).catch(function () { });
+            }
+            const key = "f:" + data.sprintId + ":" + (myData.score || 0);
+            if (tvWarteKey === key) return;
+            tvWarteKey = key;
+            setHtml(`<div class="glass-card-glow p-8 text-center mt-8 space-y-3"><div class="text-6xl">🏆</div><h2 class="text-2xl font-black text-yellow-400">Sprint beendet!</h2><p class="text-lg font-bold">${myData.kRichtig || 0} richtig · ${myData.kFalsch || 0} falsch</p><p class="text-xl text-white font-bold bg-white/5 p-3 rounded-xl inline-block">+ ${myData.score || 0} XP</p><p class="text-xs text-gray-400">Schau auf den Fernseher! Eine neue Runde startet hier automatisch.</p><button onclick="leaveTVGame()" class="btn-secondary w-full text-center text-sm">Zurück ins Menü</button></div>`);
+        }
+    }
+
+    // ---------------- Einbau in die Oberfläche ----------------
+    function einbauen() {
+        // Menü-Knopf unter den Live-Duellen
+        const wr = document.querySelector("button[onclick=\"openLiveDuelSetup('wortraten')\"]");
+        if (wr && !document.getElementById("kd-menu-btn")) {
+            const b = document.createElement("button");
+            b.id = "kd-menu-btn";
+            b.setAttribute("onclick", "openLiveDuelSetup('kopf')");
+            b.className = "w-full p-4 rounded-2xl text-white font-black shadow-lg text-sm flex items-center justify-center gap-2 transition hover:scale-[1.02] mt-3";
+            b.style.background = "linear-gradient(135deg,#f59e0b,#ef4444)";
+            b.innerHTML = '<span class="text-2xl">🧮</span> Kopfrechen-Duell <span class="text-xs font-bold opacity-80">· 60 Sek.</span>';
+            wr.parentElement.insertAdjacentElement("afterend", b);
+        }
+        // Optionen im Live-Duell-Setup
+        const q = document.getElementById("live-duel-quiz-options");
+        if (q && !document.getElementById("live-duel-kopf-options")) {
+            const d = document.createElement("div");
+            d.id = "live-duel-kopf-options";
+            d.className = "hidden space-y-2 text-center";
+            d.innerHTML = `<div class="text-5xl">🧮</div>
+                <p class="text-sm font-bold text-white">60 Sekunden – so viele Aufgaben wie möglich.</p>
+                <p class="text-xs text-gray-400">Jeder wählt im Warteraum seine eigene Stufe aus dem Kopfrechen-Trainer. So haben Klein und Groß die gleiche Chance.</p>`;
+            q.insertAdjacentElement("afterend", d);
+        }
+        // TV-Modus: vierter Knopf + Optionen
+        const tw = document.getElementById("tvmode-wortraten");
+        if (tw && !document.getElementById("tvmode-kopf")) {
+            const b = document.createElement("button");
+            b.id = "tvmode-kopf";
+            b.setAttribute("onclick", "setTVHostMode('kopf')");
+            b.textContent = "🧮 Kopfrechnen";
+            tw.insertAdjacentElement("afterend", b);
+            const w = document.getElementById("tv-wortraten-mode-options");
+            if (w) {
+                const d = document.createElement("div");
+                d.id = "tv-kopf-mode-options";
+                d.className = "hidden space-y-2 mb-2";
+                d.innerHTML = `<p class="text-sm text-white font-bold">🧮 60-Sekunden-Sprint</p>
+                    <p class="text-xs text-gray-400">Jeder rechnet auf seinem Handy in seiner eigenen Stufe. Der Fernseher zeigt das Rennen live.</p>`;
+                w.insertAdjacentElement("afterend", d);
+            }
+        }
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", einbauen);
+    else einbauen();
+
+    // ---------------- Live-Duell: Erstellen / Starten / Neue Runde ----------------
+    function typJetzt() { return (typeof liveDuelType !== "undefined") ? liveDuelType : ""; }
+    async function erstellen() {
+        if (!currentPlayer || !ichKey()) return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
+        if (typeof ensureProfileSessionLock === "function" && !(await ensureProfileSessionLock(true))) return;
+        const ref = liveDuelCollectionRef().doc();
+        const lobbyData = {
+            type: "kopf", status: "waiting", dauer: DAUER, createdBy: ichKey(),
+            createdByName: currentPlayer.name, createdAt: Date.now(), hostLastSeen: Date.now(), players: {}
+        };
+        lobbyData.players[ichKey()] = {
+            name: currentPlayer.name, score: 0, hasAnswered: false, lastAnswer: null, word: "",
+            coinsClaimed: false, kopfStufe: standardStufe()
+        };
+        try {
+            await ref.set(lobbyData);
+            liveDuelRef = ref;
+            isLiveDuelCreator = true;
+            liveDuelResolving = false;
+            liveDuelRenderKey = "";
+            liveDuelResolvedRoundKey = "";
+            maybeStartHostHeartbeat();
+            subscribeLiveDuel();
+        } catch (er) { handleError("kopfDuellErstellen", er, "Das Duell konnte nicht erstellt werden."); }
+    }
+    function wickeln() {
+        if (typeof window.createLiveDuel !== "function" || window.createLiveDuel._kd) return;
+        const c0 = window.createLiveDuel, s0 = window.startLiveDuelRound, r0 = window.restartLiveDuel;
+        window.createLiveDuel = function () { return typJetzt() === "kopf" ? erstellen() : c0.apply(this, arguments); };
+        window.createLiveDuel._kd = true;
+        window.startLiveDuelRound = function () {
+            if (typJetzt() !== "kopf") return s0.apply(this, arguments);
+            starten(liveDuelRef).catch(function (er) { handleError("kopfDuellStart", er, "Start hat nicht geklappt."); });
+        };
+        window.restartLiveDuel = async function () {
+            if (typJetzt() !== "kopf" || !liveDuelRef) return r0.apply(this, arguments);
+            try {
+                await starten(liveDuelRef);
+                showToast("Neuer Sprint – alle sind dabei! 🧮");
+            } catch (er) { handleError("kopfDuellNeu", er, "Die neue Runde konnte nicht gestartet werden."); }
+        };
+    }
+    wickeln();
+
+    window.KopfDuell = {
+        stufeWaehlen: stufeWaehlen, taste: taste, lobby: lobby, starten: starten, stopp: stopp,
+        liveRender: liveRender, tvHost: tvHost, tvSpieler: tvSpieler, kurz: kurz,
+        _gen: gen, _stufen: alleStufen, _standard: standardStufe
+    };
+})();

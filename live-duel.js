@@ -53,7 +53,8 @@
 
         function openLiveDuelSetup(type) {
             liveDuelType = type;
-            document.getElementById("live-duel-setup-title").innerText = type === "scrabble" ? "🔤 Live-Wortduell" :
+            document.getElementById("live-duel-setup-title").innerText = type === "kopf" ? "🧮 Kopfrechen-Duell" :
+                type === "scrabble" ? "🔤 Live-Wortduell" :
                 type === "wortraten" ? "🧩 Live-Wort-Rätsel" :
                 type === "vokabel" ? "📚 Vokabel-Duell" :
                 "⚔️ Live-Quizduell";
@@ -63,6 +64,8 @@
             if (wrOpts) wrOpts.classList.toggle("hidden", type !== "wortraten");
             const vkOpts = document.getElementById("live-duel-vokabel-options");
             if (vkOpts) vkOpts.classList.toggle("hidden", type !== "vokabel");
+            const kdOpts = document.getElementById("live-duel-kopf-options");
+            if (kdOpts) kdOpts.classList.toggle("hidden", type !== "kopf");
             if (type === "quiz") setLiveDuelTopicMode(liveDuelTopicMode);
             if (type === "vokabel" && typeof renderVocabGroupCheckboxes === "function") {
                 renderVocabGroupCheckboxes("live-duel-vokabel-checkboxes");
@@ -213,6 +216,7 @@
                 clearInterval(liveDuelTimerInterval);
                 liveDuelTimerInterval = null;
             }
+            if (window.KopfDuell) KopfDuell.stopp();
             if (liveDuelAutoAdvanceTimer) {
                 clearInterval(liveDuelAutoAdvanceTimer);
                 liveDuelAutoAdvanceTimer = null;
@@ -354,6 +358,9 @@
                             sessionId: window.DEVICE_SESSION_ID || null
                         }
                     };
+                    if (data.type === "kopf" && window.KopfDuell) {
+                        joinUpdate[`players.${activePlayerKey}`].kopfStufe = KopfDuell._standard();
+                    }
                     if (data.type === "wortraten" && !midGame) {
                         joinUpdate.order = firebase.firestore.FieldValue.arrayUnion(activePlayerKey);
                     }
@@ -548,7 +555,8 @@
                 clearLiveDuelTimers();
                 const meta = document.getElementById("live-duel-lobby-meta");
                 if (meta) {
-                    const typeLabel = data.type === "scrabble" ? "🔤 Wort-Duell" :
+                    const typeLabel = data.type === "kopf" ? "🧮 Kopfrechnen · 60 Sek." :
+                        data.type === "scrabble" ? "🔤 Wort-Duell" :
                         data.type === "wortraten" ? "🧩 Wort-Rätsel" :
                         data.subject === "vokabel" ? "📚 Vokabeln" : "🧠 Quiz";
                     const modeBits = [];
@@ -581,6 +589,7 @@
                     </div>`;
                     list.innerHTML = bar + (cards || `<p class="col-span-2 text-gray-500 text-sm text-center">Noch niemand…</p>`);
                 }
+                if (window.KopfDuell) KopfDuell.lobby(data, liveDuelRef, list);
                 const _cs = document.getElementById("live-duel-conn-status");
                 if (_cs) {
                     const _n = Object.keys(data.players || {}).length;
@@ -605,6 +614,12 @@
                     qr.innerHTML = "";
                 }
                 switchView('live-duel-lobby');
+                return;
+            }
+
+            if (data.status === "playing" && data.type === "kopf" && window.KopfDuell) {
+                KopfDuell.liveRender(data, liveDuelRef, isLiveDuelCreator);
+                switchView('live-duel-play');
                 return;
             }
 
@@ -2012,7 +2027,7 @@
                     const medal = rank < 3 ? medals[rank] : `${rank + 1}.`;
                     const isWinner = rank === 0 && hasScore;
                     html += `<div class="flex items-center justify-between bg-white/5 border ${isWinner ? 'border-yellow-400' : 'border-white/5'} rounded-xl p-3">
-                                    <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${esc(p.name)}</span></div>
+                                    <div class="flex items-center gap-3"><span class="text-2xl">${medal}</span><span class="font-bold text-white">${esc(p.name)}${data.type === "kopf" && window.KopfDuell ? `<span class="block text-[10px] text-gray-400 font-bold">${esc(KopfDuell.kurz(p.kopfStufe))} · ${p.kFalsch || 0} falsch</span>` : ""}</span></div>
                                     <div class="font-black text-yellow-400">${p.score} Pkt.</div>
                                 </div>`;
                 });
@@ -2048,7 +2063,9 @@
                                 <div class="glass-card p-4 mt-6 space-y-3 text-left" style="border-color:rgba(99,102,241,0.15);">
                                     <p class="text-sm font-black text-indigo-300 text-center">🔄 Gleich weiterspielen</p>
                                     <p class="text-[11px] text-gray-400 text-center -mt-2">Alle bleiben dabei: ${names}</p>
-                                    ${data.type === "quiz" ? `
+                                    ${data.type === "kopf" ? `
+                                        <p class="text-xs text-gray-300 text-center">🧮 Noch ein Sprint – jeder bleibt in seiner Stufe.</p>
+                                    ` : data.type === "quiz" ? `
                                         <div class="dash-sub-nav mb-2">
                                             <button type="button" id="again-topic-spass" class="active" onclick="setAgainTopic('spass')">🎉 Spaß</button>
                                             <button type="button" id="again-topic-lernen" onclick="setAgainTopic('lernen')">📚 Lernen</button>

@@ -102,6 +102,8 @@
                     return;
                 }
                 if (data.status === "finished" && isTVHost) {
+                    if (window.KopfDuell) KopfDuell.stopp();
+                    window._tvLetzterModus = data.mode;
                     if (typeof clearTVWrTimers === "function") clearTVWrTimers();
                     stopTVAutoAdvance();
                     stopTVActionMode();
@@ -112,6 +114,10 @@
                 }
                 if (data.status === "playing" && data.mode === "wortraten") {
                     showTVHostWortraten(data);
+                    return;
+                }
+                if (data.status === "playing" && data.mode === "kopf" && window.KopfDuell) {
+                    KopfDuell.tvHost(data, tvGameRef, setTVHostPlayHTML);
                     return;
                 }
                 if (data.status === "playing" && !data.showAnswer) {
@@ -563,7 +569,7 @@
             if (mode === 'quiz' && !document.getElementById("tv-area").options.length) {
                 setTVTopicMode();
             }
-            ["quiz", "scrabble", "wortraten"].forEach(function (m) {
+            ["quiz", "scrabble", "wortraten", "kopf"].forEach(function (m) {
                 const btn = document.getElementById("tvmode-" + m);
                 if (btn) btn.className = "flex-1 py-2.5 px-1 rounded-lg font-bold transition-all " + (mode === m ? "active" : "");
             });
@@ -573,6 +579,8 @@
             if (q) q.classList.toggle("hidden", mode !== "quiz");
             if (s) s.classList.toggle("hidden", mode !== "scrabble");
             if (w) w.classList.toggle("hidden", mode !== "wortraten");
+            const kd = document.getElementById("tv-kopf-mode-options");
+            if (kd) kd.classList.toggle("hidden", mode !== "kopf");
         }
 
         async function startTVHostLobby() {
@@ -581,7 +589,9 @@
 
             const hostRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
             let lobbyData;
-            if (tvHostMode === 'scrabble') {
+            if (tvHostMode === 'kopf') {
+                lobbyData = { status: "waiting", mode: "kopf", dauer: 60, players: {} };
+            } else if (tvHostMode === 'scrabble') {
                 const difficulty = document.getElementById("tv-scrabble-difficulty").value;
                 const totalRounds = parseInt(document.getElementById("tv-scrabble-rounds").value);
 
@@ -708,7 +718,7 @@
                 if (da) online++;
                 return `<div class="tv-lobby-player ${da ? "is-on" : "is-off"}">
                     <span class="tv-lobby-player-dot"></span>
-                    <span class="tv-lobby-player-name">${esc(p.name)}${da ? "" : " · kurz weg"}</span>
+                    <span class="tv-lobby-player-name">${esc(p.name)}${p.kopfStufe && window.KopfDuell ? " · " + esc(KopfDuell.kurz(p.kopfStufe)) : ""}${da ? "" : " · kurz weg"}</span>
                 </div>`;
             }).join("");
             const bar = `<div class="tv-lobby-status">${online}/${keys.length} online</div>`;
@@ -770,6 +780,10 @@
                 const data = doc.data();
                 if (data.mode === "scrabble") { startTVScrabbleRound(data); return; }
                 if (data.mode === "wortraten") { startTVWortratenRound(data); return; }
+                if (data.mode === "kopf" && window.KopfDuell) {
+                    KopfDuell.starten(tvGameRef).catch(function (e) { handleError("kopfDuellTV", e, "Start hat nicht geklappt."); });
+                    return;
+                }
                 const catKeys = (data.categoryKeys && data.categoryKeys.length) ? data.categoryKeys : [data.category];
                 tvQuestions = tvBuildQuestionPool(catKeys, 10);
                 if (typeof hinweisFragenPoolDuennt === "function") hinweisFragenPoolDuennt(tvQuestions.length, 10);
@@ -1131,6 +1145,7 @@
                                 <button id="againmode-quiz" onclick="setTVAgainMode('quiz')" class="active">🧠 Quiz</button>
                                 <button id="againmode-scrabble" onclick="setTVAgainMode('scrabble')">🔤 Wort-Duell</button>
                                 <button id="againmode-wortraten" onclick="setTVAgainMode('wortraten')">🧩 Wort-Rätsel</button>
+                                <button id="againmode-kopf" onclick="setTVAgainMode('kopf')">🧮 Kopfrechnen</button>
                             </div>
                             <div id="tv-again-quiz-opts">
                                 <div class="dash-sub-nav tv-podium-nav">
@@ -1181,7 +1196,7 @@
                 </div>`;
 
             setTVHostPlayHTML(html);
-            setTVAgainMode("quiz");
+            setTVAgainMode(window._tvLetzterModus === "kopf" ? "kopf" : "quiz");
             try {
                 if (typeof confetti === "function") {
                     confetti();
@@ -1192,8 +1207,8 @@
         }
 
         function setTVAgainMode(mode) {
-            tvAgainMode = (mode === "scrabble" || mode === "wortraten") ? mode : "quiz";
-            ["quiz", "scrabble", "wortraten"].forEach(function (m) {
+            tvAgainMode = (mode === "scrabble" || mode === "wortraten" || mode === "kopf") ? mode : "quiz";
+            ["quiz", "scrabble", "wortraten", "kopf"].forEach(function (m) {
                 const btn = document.getElementById("againmode-" + m);
                 if (btn) btn.classList.toggle("active", tvAgainMode === m);
             });
@@ -1271,6 +1286,13 @@
                     const data = (await tvGameRef.get()).data();
                     startTVScrabbleRound(data);
                     showToast("Wort-Duell gestartet! 🔤");
+                    return;
+                }
+
+                if (tvAgainMode === "kopf" && window.KopfDuell) {
+                    await tvGameRef.update({ mode: "kopf", showAnswer: false, players: playersData });
+                    await KopfDuell.starten(tvGameRef);
+                    showToast("Kopfrechen-Duell gestartet! 🧮");
                     return;
                 }
 
@@ -2346,6 +2368,10 @@
                         return;
                     }
 
+                    if (data.mode === "kopf" && window.KopfDuell) {
+                        KopfDuell.tvSpieler(data, myData, tvGameRef, setTVPlayerPlayHTML);
+                        return;
+                    }
                     if (data.mode === "wortraten") {
                         if (data.status === "playing") {
                             // Dieselbe Reihenfolge wie am Fernseher (gefiltert) - vorher
@@ -2698,6 +2724,7 @@
         }
 
         async function leaveTVGame(force) {
+            if (window.KopfDuell) KopfDuell.stopp();
             if (typeof setTVMirrorDisplay === "function") setTVMirrorDisplay(false);
             if (typeof clearTVWrTimers === "function") clearTVWrTimers();
 

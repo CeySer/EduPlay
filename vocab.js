@@ -55,6 +55,10 @@
         function vocabWordsFor(cat, topic) {
             const pack = VOCABULARY_DATABASE[activeLang] && VOCABULARY_DATABASE[activeLang][cat];
             const all = (pack && pack.words) ? pack.words.slice() : [];
+            if (topic && pack && pack.themen && pack.themen[topic]) {
+                const hit = all.filter(w => w.thema === topic);
+                return hit.length ? hit : all;
+            }
             if (!topic || !VOCAB_TOPIC_BUCKETS[topic]) return all;
             const set = new Set(VOCAB_TOPIC_BUCKETS[topic].words);
             const hit = all.filter(w => set.has(String(w.de || "").toLowerCase()));
@@ -65,6 +69,18 @@
             const sel = document.getElementById("vocab-topic-filter");
             if (!sel) return;
             let html = '<option value="">Alle Themen der Klasse</option>';
+            const pack = VOCABULARY_DATABASE[activeLang] && VOCABULARY_DATABASE[activeLang][cat];
+            if (pack && pack.themen) {
+                Object.keys(pack.themen).forEach(function (k) {
+                    const n = vocabWordsFor(cat, k).length;
+                    if (n) html += `<option value="${k}">└ ${esc(pack.themen[k])} (${n})</option>`;
+                });
+                sel.innerHTML = html;
+                sel.value = "";
+                activeVocabTopic = "";
+                sel.classList.toggle("hidden", sel.options.length < 2);
+                return;
+            }
             Object.keys(VOCAB_TOPIC_BUCKETS).forEach(function (k) {
                 const n = vocabWordsFor(cat, k).length;
                 const allN = vocabWordsFor(cat, "").length;
@@ -246,6 +262,7 @@
                                 <div class="flip-card-back vocab-face vocab-face-back">
                                     <span class="vocab-face-label">Übersetzung</span>
                                     <span class="vocab-face-word">${esc(w.foreign)}</span>
+                                    ${vocabExtraHtml(w)}
                                 </div>
                             </div>
                         </div>
@@ -322,7 +339,7 @@
                 onVocabCorrect(2, { firstTry: true });
                 if (fb) {
                     fb.className = "vocab-feedback vocab-feedback-ok";
-                    fb.innerHTML = `<div class="font-black text-emerald-400">✅ Richtig!</div>`;
+                    fb.innerHTML = `<div class="font-black text-emerald-400">✅ Richtig!</div>` + vocabExtraHtml(currentVocabList[vIndex]);
                 }
             } else {
                 onVocabWrong();
@@ -330,9 +347,26 @@
                 if (fb) {
                     fb.className = "vocab-feedback vocab-feedback-bad";
                     fb.innerHTML = `<div class="font-black text-rose-400 mb-1">💡 Lösung</div>
-                        <div class="text-sm" style="color:var(--text-secondary)">Richtig: <strong style="color:var(--text-primary)">${esc(cor)}</strong></div>`;
+                        <div class="text-sm" style="color:var(--text-secondary)">Richtig: <strong style="color:var(--text-primary)">${esc(cor)}</strong></div>` + vocabExtraHtml(currentVocabList[vIndex]);
                 }
             }
+        }
+
+        // Beispielsatz und unregelmäßige Formen unter der Lösung
+        function vocabExtraHtml(w) {
+            if (!w || (!w.satz && !w.formen)) return "";
+            let h = '<div class="vocab-extra" style="margin-top:10px;font-size:13px;line-height:1.4;text-align:center;opacity:.9">';
+            if (w.formen) h += `<div style="font-weight:800;color:#fcd34d">${esc(w.formen)}</div>`;
+            if (w.satz) h += `<div style="font-style:italic">„${esc(w.satz)}“</div>`;
+            return h + '</div>';
+        }
+        function vocabNormTipp(s) {
+            return String(s || "").toLowerCase().replace(/[’‘`´]/g, "'").replace(/[.!?]+$/g, "").replace(/\s+/g, " ").trim();
+        }
+        function vocabTippOk(val, cor, w) {
+            const v = vocabNormTipp(val), ohneTo = v.replace(/^to /, "");
+            const ok = [cor].concat((w && w.alt) || []).map(vocabNormTipp);
+            return ok.indexOf(v) !== -1 || ok.indexOf(ohneTo) !== -1;
         }
 
         function checkVocabTyping(cor) {
@@ -347,13 +381,14 @@
             if (nextBtn) nextBtn.classList.remove("hidden");
             const fb = document.getElementById("typing-feedback");
 
-            if (val === cor.toLowerCase()) {
+            const wObj = currentVocabList[vIndex];
+            if (vocabTippOk(val, cor, wObj)) {
                 i.classList.add("vocab-input-ok");
                 sessionLearnedWords.add(activeLang + "_" + activeCategory + "_" + cor);
                 onVocabCorrect(5, { firstTry: true });
                 if (fb) {
                     fb.className = "vocab-feedback vocab-feedback-ok";
-                    fb.innerHTML = `<span class="text-emerald-400 font-bold">Perfekt!</span>`;
+                    fb.innerHTML = `<span class="text-emerald-400 font-bold">Perfekt!</span>` + vocabExtraHtml(wObj);
                 }
             } else {
                 i.classList.add("vocab-input-bad");
@@ -362,7 +397,7 @@
                 if (fb) {
                     fb.className = "vocab-feedback vocab-feedback-bad";
                     fb.innerHTML = `<div class="font-black text-rose-400 mb-1">💡 Schreibweise</div>
-                        <div class="text-sm" style="color:var(--text-secondary)">Dein Tipp: ${esc(val)}<br>Korrekt: <strong style="color:var(--text-primary)">${esc(cor)}</strong></div>`;
+                        <div class="text-sm" style="color:var(--text-secondary)">Dein Tipp: ${esc(val)}<br>Korrekt: <strong style="color:var(--text-primary)">${esc(cor)}</strong></div>` + vocabExtraHtml(wObj);
                 }
             }
         }

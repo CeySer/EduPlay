@@ -768,7 +768,7 @@
                         question: `Was heißt „${prompt}"?`,
                         answers: [answer, ...distr],
                         correct: 0,
-                        explanation: `${w.de} = ${w.foreign}`
+                        explanation: `${w.de} = ${w.foreign}` + (w.formen ? ` (${w.formen})` : "") + (w.satz ? ` – „${w.satz}“` : "")
                     });
                 });
             });

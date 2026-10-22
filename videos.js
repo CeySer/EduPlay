@@ -79,6 +79,10 @@
         { id: "maerchen_fabel_sachtext_k3", titel: "Märchen, Fabel, Sachtext, Gedicht", klasse: 3, fach: "deutsch", dauer: 36, kurs: "lesen_k3" },
         { id: "knochen_muskeln_k3", titel: "Knochen, Muskeln, Gelenke", klasse: 3, fach: "sachunterricht", dauer: 38, kurs: "koerper_k3" },
         { id: "stockwerke_wald_k3", titel: "Die Stockwerke des Waldes", klasse: 3, fach: "sachunterricht", dauer: 34, kurs: "wald_k3" },
+        { id: "laengen_gewichte_k3", titel: "Längen und Gewichte", klasse: 3, fach: "mathe", dauer: 49, kurs: "laengen_gewichte_k3" },
+        { id: "koerper_spiegeln_k3", titel: "Körper und Spiegeln", klasse: 3, fach: "mathe", dauer: 44, kurs: "geometrie_k3" },
+        { id: "zeit_kalender_k3", titel: "Uhrzeit, Zeitspannen und Kalender", klasse: 3, fach: "mathe", dauer: 50, kurs: "zeit_kalender_k3" },
+        { id: "sachaufgaben_k3", titel: "Sachaufgaben lösen", klasse: 3, fach: "mathe", dauer: 47, kurs: "sachaufgaben_k3" },
         { id: "umfang_flaeche_k4", titel: "Umfang und Fläche", klasse: 4, fach: "mathe", dauer: 47, kurs: "umfang_flaeche_k4" },
         { id: "koerper_en_k4", titel: "Körperteile auf Englisch", klasse: 4, fach: "englisch", dauer: 32, kurs: "koerper_kleidung_en_k4" },
         { id: "zahlen_million_k4", titel: "Zahlen bis zur Million", klasse: 4, fach: "mathe", dauer: 54, kurs: "zahlen1mio_k4" },
@@ -93,6 +97,10 @@
         { id: "nachbarlaender_k4", titel: "Deutschlands Nachbarländer", klasse: 4, fach: "sachunterricht", dauer: 36, kurs: "de_europa_k4" },
         { id: "ritter_burgen_k4", titel: "Ritter und Burgen im Mittelalter", klasse: 4, fach: "sachunterricht", dauer: 34, kurs: "geschichte_k4" },
         { id: "herz_blut_k4", titel: "Herz und Blutkreislauf", klasse: 4, fach: "sachunterricht", dauer: 34, kurs: "entwicklung_k4" },
+        { id: "netze_wuerfelgebaeude_k4", titel: "Würfelnetze und Würfelgebäude", klasse: 4, fach: "mathe", dauer: 50, kurs: "koerper_k4" },
+        { id: "massstab_k4", titel: "Maßstab und Pläne", klasse: 4, fach: "mathe", dauer: 48, kurs: "massstab_k4" },
+        { id: "daten_zufall_k4", titel: "Diagramme und Zufall", klasse: 4, fach: "mathe", dauer: 46, kurs: "daten_zufall_k4" },
+        { id: "sachaufgaben_k4", titel: "Sachaufgaben clever lösen", klasse: 4, fach: "mathe", dauer: 58, kurs: "sachaufgaben_k4" },
         // Klasse 5
         { id: "bruchteile_k5", titel: "Bruchteile von Mengen", klasse: 5, fach: "mathe", dauer: 41, kurs: "bruchrechnen_k5" },
         { id: "brueche_addieren_k5", titel: "Gleichnamige Brüche addieren", klasse: 5, fach: "mathe", dauer: 45, kurs: "brueche_addieren_k5" },
@@ -122,6 +130,7 @@
         { id: "can_must_mustnt_k5", titel: "can, must und mustn't", klasse: 5, fach: "englisch", dauer: 44, kurs: "modals_k5" },
         { id: "artikel_adverb_k5", titel: "Nomen, Artikel, Adjektiv und Adverb", klasse: 5, fach: "deutsch", dauer: 36, kurs: "wortarten_grundlagen_k5" },
         { id: "go_went_gone_k5", titel: "go – went – gone", klasse: 5, fach: "englisch", dauer: 49, kurs: "dreiformen_k5" },
+        { id: "grosse_zahlen_rechengesetze_k5", titel: "Große Zahlen und Rechengesetze", klasse: 5, fach: "mathe", dauer: 59, kurs: "zahlen_rechengesetze_k5" },
         // Klasse 6
         { id: "dezimalzahlen_k6", titel: "Dezimalzahlen verstehen", klasse: 6, fach: "mathe", dauer: 48, kurs: "dezimalzahlen_k6" },
         { id: "dezimal_addieren_k6", titel: "Dezimalzahlen addieren", klasse: 6, fach: "mathe", dauer: 51, kurs: "dezimal_rechnen_k6" },
@@ -147,6 +156,7 @@
         { id: "word_order_k6", titel: "Word order: place before time", klasse: 6, fach: "englisch", dauer: 43, kurs: "word_order_k6" },
         { id: "past_progressive_k6", titel: "Past Progressive: was/were + -ing", klasse: 6, fach: "englisch", dauer: 41, kurs: "past_progressive_k6" },
         { id: "irregular_verbs_k6", titel: "Mehr unregelmäßige Verben", klasse: 6, fach: "englisch", dauer: 52, kurs: "dreiformen_k6" },
+        { id: "ing_form_k6", titel: "Die -ing-Form", klasse: 6, fach: "englisch", dauer: 49, kurs: "ing_form_k6" },
         // Klasse 7
         { id: "prozentrechnung_k7", titel: "Prozentrechnung", klasse: 7, fach: "mathe", dauer: 42, kurs: "prozentrechnung_k7" },
         { id: "zinsrechnung_k7", titel: "Zinsen berechnen", klasse: 7, fach: "mathe", dauer: 56, kurs: "zinsrechnung_k7" },
@@ -161,6 +171,8 @@
         { id: "will_going_to_k7", titel: "will oder going to?", klasse: 7, fach: "englisch", dauer: 51, kurs: "future_k7" },
         { id: "past_present_perfect_k7", titel: "Simple Past oder Present Perfect?", klasse: 7, fach: "englisch", dauer: 56, kurs: "perfect_past_k7" },
         { id: "formeller_brief_k7", titel: "Der formelle Brief und die E-Mail", klasse: 7, fach: "deutsch", dauer: 48, kurs: "briefe_email_k7k8" },
+        { id: "dreiecke_kongruenz_k7", titel: "Dreiecke: Ungleichung und Kongruenzsätze", klasse: 7, fach: "mathe", dauer: 52, kurs: "dreiecke_k7" },
+        { id: "haeufigkeit_laplace_k7", titel: "Relative Häufigkeit und Wahrscheinlichkeit", klasse: 7, fach: "mathe", dauer: 53, kurs: "haeufigkeit_k7" },
         // Klasse 8
         { id: "lineare_funktionen_k8", titel: "Lineare Funktionen", klasse: 8, fach: "mathe", dauer: 40, kurs: "lineare_funktionen_k8" },
         { id: "binomische_formeln_k8", titel: "Die binomischen Formeln", klasse: 8, fach: "mathe", dauer: 53, kurs: "binomische_formeln_k8" },
@@ -193,6 +205,13 @@
         { id: "relative_clauses_k9", titel: "Relative clauses: who, which, whose", klasse: 9, fach: "englisch", dauer: 48, kurs: "relative_clauses_k9" },
         { id: "conditional_3_k9", titel: "Conditional Type III", klasse: 9, fach: "englisch", dauer: 43, kurs: "conditional_3_k9" },
         { id: "wish_k9", titel: "I wish … und if only …", klasse: 9, fach: "englisch", dauer: 40, kurs: "wish_k9" },
+        { id: "zufall_mehrstufig_k9", titel: "Mehrstufige Zufallsexperimente", klasse: 9, fach: "mathe", dauer: 54, kurs: "zufall_mehrstufig_k9" },
+        { id: "kommasetzung_k9", titel: "Kommasetzung", klasse: 9, fach: "deutsch", dauer: 44, kurs: "kommasetzung_k9" },
+        { id: "drama_k9", titel: "Dramatische Texte", klasse: 9, fach: "deutsch", dauer: 53, kurs: "drama_k9" },
+        { id: "referat_k9", titel: "Referat & Präsentation", klasse: 9, fach: "deutsch", dauer: 46, kurs: "referat_k9" },
+        { id: "participles_k9", titel: "Participle clauses", klasse: 9, fach: "englisch", dauer: 52, kurs: "participles_k9" },
+        { id: "mediation_k9", titel: "Mediation", klasse: 9, fach: "englisch", dauer: 43, kurs: "mediation_k9" },
+        { id: "formal_writing_k9", titel: "Formal letters & emails", klasse: 9, fach: "englisch", dauer: 50, kurs: "formal_writing_k9" },
         // Klasse 10
         { id: "exponentialfunktionen_k10", titel: "Exponentielles Wachstum", klasse: 10, fach: "mathe", dauer: 54, kurs: "exponential_k10" },
         { id: "statistik_k10", titel: "Mittelwert, Median und Spannweite", klasse: 10, fach: "mathe", dauer: 46, kurs: "statistik_k10" },
@@ -207,7 +226,9 @@
         { id: "comment_k10", titel: "Writing a comment", klasse: 10, fach: "englisch", dauer: 49, kurs: "comment_k10" },
         { id: "phrasal_verbs_k10", titel: "Phrasal verbs", klasse: 10, fach: "englisch", dauer: 50, kurs: "phrasal_verbs_k10" },
         { id: "modals_deduction_k10", titel: "must, might, can't – Vermutungen", klasse: 10, fach: "englisch", dauer: 49, kurs: "modals_deduction_k10" },
-        { id: "present_perfect_progressive_k10", titel: "Present perfect progressive", klasse: 10, fach: "englisch", dauer: 45, kurs: "present_perfect_prog_k10" }
+        { id: "present_perfect_progressive_k10", titel: "Present perfect progressive", klasse: 10, fach: "englisch", dauer: 45, kurs: "present_perfect_prog_k10" },
+        { id: "sinusfunktion_k10", titel: "Die Sinusfunktion", klasse: 10, fach: "mathe", dauer: 49, kurs: "sinusfunktion_k10" },
+        { id: "fit_zp10_k10", titel: "Fit für die ZP10", klasse: 10, fach: "mathe", dauer: 60, kurs: "zp10_k10" },
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

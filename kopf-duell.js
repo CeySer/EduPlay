@@ -531,6 +531,84 @@
     }
     wickeln();
 
+    // ---------------- Online-Lobby mit Code (auch für Freunde/Gäste) ----------------
+    function codeEinbauen() {
+        const bv = document.getElementById("coded-type-vokabel");
+        if (bv && !document.getElementById("coded-type-kopf")) {
+            const b = document.createElement("button");
+            b.id = "coded-type-kopf";
+            b.setAttribute("onclick", "setCodedLobbyType('kopf')");
+            b.textContent = "🧮 Rechnen";
+            bv.insertAdjacentElement("afterend", b);
+        }
+        const vo = document.getElementById("coded-lobby-vokabel-options");
+        if (vo && !document.getElementById("coded-lobby-kopf-options")) {
+            const d = document.createElement("div");
+            d.id = "coded-lobby-kopf-options";
+            d.className = "hidden space-y-2 text-center";
+            d.innerHTML = `<div class="text-4xl">🧮</div>
+                <p class="text-sm font-bold text-white">60-Sekunden-Kopfrechen-Sprint</p>
+                <p class="text-xs text-gray-400">Jeder wählt im Warteraum seine eigene Stufe. Wer die meisten Aufgaben richtig hat, gewinnt.</p>`;
+            vo.insertAdjacentElement("afterend", d);
+        }
+        if (typeof window.setCodedLobbyType === "function" && !window.setCodedLobbyType._kd) {
+            const t0 = window.setCodedLobbyType;
+            window.setCodedLobbyType = function (type) {
+                t0.apply(this, arguments);
+                const k = document.getElementById("coded-type-kopf"), o = document.getElementById("coded-lobby-kopf-options");
+                if (k) k.classList.toggle("active", type === "kopf");
+                if (o) o.classList.toggle("hidden", type !== "kopf");
+                const mode = document.getElementById("coded-lobby-mode");
+                const modeBox = mode && mode.parentElement;
+                if (modeBox) modeBox.classList.toggle("hidden", type === "kopf");
+            };
+            window.setCodedLobbyType._kd = true;
+        }
+        if (typeof window.createCodedLobby === "function" && !window.createCodedLobby._kd) {
+            const c0 = window.createCodedLobby;
+            window.createCodedLobby = function () {
+                const k = document.getElementById("coded-type-kopf");
+                return (k && k.classList.contains("active")) ? codeErstellen() : c0.apply(this, arguments);
+            };
+            window.createCodedLobby._kd = true;
+        }
+    }
+    async function codeErstellen() {
+        if (!currentParentUser) return showToast("Bitte zuerst einloggen.", "error");
+        if (!currentPlayer || !ichKey()) return showToast("Bitte zuerst oben deinen Spieler auswählen!", "error");
+        if (typeof reserveAndCreateLobby !== "function") return showToast("Online-Lobby gerade nicht verfügbar.", "error");
+        const name = (currentPlayer.name && String(currentPlayer.name).trim()) || "Gastgeber";
+        const players = {};
+        players[ichKey()] = { name: name, score: 0, hasAnswered: false, lastAnswer: null, word: "", coinsClaimed: false, kopfStufe: standardStufe() };
+        if (typeof showGlobalLoading === "function") showGlobalLoading("Lobby wird erstellt …");
+        try {
+            const res = await reserveAndCreateLobby(function (code) {
+                return {
+                    type: "kopf", mode: "versus", isCoded: true, status: "waiting", dauer: DAUER,
+                    createdBy: ichKey(), createdByName: name, players: players, code: code,
+                    createdAt: Date.now(), hostLastSeen: Date.now(),
+                    hostUid: (typeof auth !== "undefined" && auth.currentUser && auth.currentUser.uid) || null
+                };
+            });
+            liveDuelType = "kopf";
+            liveDuelRef = res.ref;
+            isLiveDuelCreator = true;
+            liveDuelResolving = false;
+            liveDuelRenderKey = "";
+            maybeStartHostHeartbeat();
+            if (typeof merkeLobby === "function") merkeLobby(res.code);
+            subscribeLiveDuel();
+            showToast("Lobby erstellt! Code: " + res.code);
+            setTimeout(function () { if (typeof inviteFriends === "function") inviteFriends(); }, 400);
+        } catch (er) {
+            handleError("kopfDuellCode", er, "Die Lobby konnte nicht erstellt werden.");
+        } finally {
+            if (typeof hideGlobalLoading === "function") hideGlobalLoading(true);
+        }
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", codeEinbauen);
+    else codeEinbauen();
+
     window.KopfDuell = {
         stufeWaehlen: stufeWaehlen, taste: taste, lobby: lobby, starten: starten, stopp: stopp,
         liveRender: liveRender, tvHost: tvHost, tvSpieler: tvSpieler, kurz: kurz,

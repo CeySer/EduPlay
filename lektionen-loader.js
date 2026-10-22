@@ -18,14 +18,14 @@
     // Reihenfolge zählt: lektionen.js legt KURSE und LEKTIONEN an,
     // die Zusatzdateien hängen danach nur noch an.
     var DATEIEN = [
-        "lektionen.js?v=3.31",
+        "lektionen.js?v=3.33",
         "lektionen_formen_k1k2.js?v=7",
         "lektionen_grundschule_k1k4.js?v=8",
         "lektionen_grundschule_k1k4_teil2.js?v=5",
         "lektionen_einmaleins_k3.js?v=4",
         "lektionen_uhr_fuenf_k2.js?v=3",
-        "lektionen_grundschule_k1k4_teil3.js?v=7",
-        "lektionen_englisch_zeiten.js?v=3",
+        "lektionen_grundschule_k1k4_teil3.js?v=8",
+        "lektionen_englisch_zeiten.js?v=4",
         "lektionen_bewerbung_k9k10.js?v=4",
         "lektionen_zahlen20_k1.js?v=4",
         "lektionen_zahlen100_k2.js?v=3",
@@ -45,7 +45,7 @@
         "lektionen_sachunterricht_k2.js?v=1",
         "lektionen_englisch_k2.js?v=1",
         "lektionen_englisch_k3.js?v=1",
-        "lektionen_englisch_k4.js?v=1",
+        "lektionen_englisch_k4.js?v=2",
         "lektionen_deutsch_k3.js?v=1",
         "lektionen_sachunterricht_k3.js?v=1",
         "lektionen_deutsch_k4.js?v=1",
@@ -67,7 +67,9 @@
         "lektionen_dreiecke_zufall_k7.js?v=1",
         "lektionen_k10_trig.js?v=1",
         "lektionen_zp10_k10.js?v=1",
-        "lektionen_nachbarn_k2.js?v=1"
+        "lektionen_nachbarn_k2.js?v=1",
+        "lektionen_k9_ausbau.js?v=1",
+        "lektionen_ing_k6.js?v=1"
     ];
 
     var laufend = null;

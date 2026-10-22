@@ -437,11 +437,11 @@
             clearLiveDuelTimers();
             try {
                 const snap = await liveDuelRef.get();
-                if (snap.exists && snap.data().status === "playing" && !liveDuelResolving) {
+                if (snap.exists && snap.data().status === "playing") {
                     liveDuelResolving = true;
-                    resolveLiveDuelRound(snap.data());
+                    await resolveLiveDuelRound(snap.data());
                 }
-            } catch (e) { }
+            } catch (e) { liveDuelResolving = false; }
         }
 
         // onExpire: optionaler Callback für den Ablauf des Countdowns. Ohne
@@ -474,7 +474,8 @@
                         if (typeof onExpire === "function") {
                             onExpire();
                         } else {
-                            liveDuelRef.get().then(d => { if (d.exists) resolveLiveDuelRound(d.data()); });
+                            liveDuelRef.get().then(d => { if (d.exists) return resolveLiveDuelRound(d.data()); })
+                                .catch(e => { console.warn("Auflösung", e); liveDuelResolving = false; });
                         }
                     }
                 }
@@ -532,8 +533,7 @@
 
             isLiveDuelCreator = (data.createdBy === activePlayerKey);
             // Lebenszeichen läuft für alle, solange das Spiel läuft.
-            if (data.status !== "finished") maybeStartHostHeartbeat();
-            else stopHostHeartbeat();
+            maybeStartHostHeartbeat();
 
             // Host-Übernahme: hat sich der Ersteller lange nicht gemeldet (Tab zu, Akku leer,
             // Netz weg), übernimmt automatisch der Mitspieler mit dem kleinsten Key, damit
@@ -541,7 +541,9 @@
             if (!isLiveDuelCreator && data.status !== "finished") {
                 const lastSeen = data.hostLastSeen || data.createdAt || 0;
                 if (Date.now() - lastSeen > HOST_STALE_MS && !liveDuelHostTakeoverInFlight) {
-                    const activeKeys = Object.keys(data.players || {}).filter(k => !data.players[k].pending).sort();
+                    const activeKeys = Object.keys(data.players || {})
+                        .filter(k => k !== data.createdBy && !data.players[k].pending && (typeof istAnwesend !== "function" || istAnwesend(data.players[k])))
+                        .sort();
                     if (activeKeys[0] === activePlayerKey) {
                         liveDuelHostTakeoverInFlight = true;
                         liveDuelRef.update({ createdBy: activePlayerKey, hostLastSeen: Date.now() })
@@ -549,6 +551,10 @@
                             .finally(() => { liveDuelHostTakeoverInFlight = false; });
                     }
                 }
+            }
+
+            if (data.status !== "finished" && !myData.coinsClaimed && liveDuelRef) {
+                liveDuelCoinsClaimedLocal.delete(liveDuelRef.id + ":" + activePlayerKey);
             }
 
             if (data.status === "waiting") {
@@ -661,28 +667,16 @@
 
                 // NEU: Prüfen ob sich die Buchstaben geändert haben (für Scrabble)
                 const isScrabble = data.type === "scrabble";
-                if (isScrabble && data.currentLetters && !myData.hasAnswered) {
-                    // Prüfen ob sich die Buchstaben seit dem letzten Render geändert haben
-                    const lettersKey = data.currentLetters.join('');
-                    if (lettersKey !== liveDuelRenderKey) {
-                        liveDuelRenderKey = lettersKey;
-                        // UI mit neuen Buchstaben aktualisieren
-                        renderLiveDuelScrabblePlay(data);
-                        // Action-Feedback anzeigen (wenn nicht die erste Runde)
-                        if (data.currentRound > 1 || liveDuelChangeCount > 0) {
-                            showLiveDuelActionFeedback("⚡ Die Buchstaben haben sich geändert!");
-                        }
-                    }
-                }
-
-                // Nur rendern wenn nötig
+                // Nur rendern wenn nötig – bei jedem Lebenszeichen neu zu zeichnen
+                // zeigte fälschlich „Buchstaben geändert“ und schluckte Eingaben.
                 if (!myData.hasAnswered) {
-                    if (data.type === "scrabble") {
-                        // Nur rendern wenn es noch nicht gerendert wurde oder sich was geändert hat
-                        const key = `playing|${data.type}|${data.currentRound}|${data.currentLetters ? data.currentLetters.join('') : ''}|${myData.hasAnswered}`;
-                        if (key !== liveDuelRenderKey || data.currentLetters) {
+                    if (isScrabble) {
+                        const key = `sc|${data.currentRound}|${(data.currentLetters || []).join('')}`;
+                        if (key !== liveDuelRenderKey) {
+                            const gewechselt = String(liveDuelRenderKey).indexOf(`sc|${data.currentRound}|`) === 0;
                             liveDuelRenderKey = key;
                             renderLiveDuelScrabblePlay(data);
+                            if (gewechselt) showLiveDuelActionFeedback("⚡ Die Buchstaben haben sich geändert!");
                         }
                     } else {
                         const key = `playing|${data.type}|${data.currentIndex}|${myData.hasAnswered}`;
@@ -733,7 +727,9 @@
 
                 if (isLiveDuelCreator && !liveDuelResolving && totalCount > 0 && ansCount >= totalCount) {
                     liveDuelResolving = true;
-                    setTimeout(() => resolveLiveDuelRound(data), 400);
+                    setTimeout(() => {
+                        Promise.resolve(resolveLiveDuelRound(data)).catch(e => { console.warn("Auflösung", e); liveDuelResolving = false; });
+                    }, 400);
                 }
                 switchView('live-duel-play');
                 return;
@@ -1161,6 +1157,14 @@
             // ob er selbst gerade dran ist, sonst bekommt ein Zug des
             // Mitspielers nie eine Deadline (vorher: "isMyTurn && isLiveDuelCreator",
             // das griff nur, wenn ausgerechnet der Ersteller selbst dran war).
+            if (isLiveDuelCreator && !data.roundOver && data.wrSolving && (Date.now() - (data.wrSolving.ts || 0)) > 30000) {
+                const secs0 = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 25;
+                liveDuelRef.update({ wrSolving: null, wrTurnDeadline: Date.now() + secs0 * 1000 }).catch(() => { });
+            }
+            // M8: Runde vorbei (auch wenn ein Mitspieler sie beendet hat) → Host schaltet automatisch weiter
+            if (isLiveDuelCreator && data.roundOver && !wrLiveAutoAdvanceTimer) {
+                wrLiveAutoAdvanceTimer = setTimeout(() => { wrLiveAutoAdvanceTimer = null; wrLiveAdvanceRound(); }, 6000);
+            }
             if (!data.roundOver && !data.wrSolving && isLiveDuelCreator) {
                 if (!data.wrTurnDeadline) {
                     const secs = typeof WORTRAETSEL_TURN_SECONDS !== "undefined" ? WORTRAETSEL_TURN_SECONDS : 25;
@@ -1282,6 +1286,7 @@
                     if (!snap.exists) return;
                     const data = snap.data();
                     if (data.status !== "playing" || data.type !== "wortraten" || data.roundOver) return;
+                    if (data.wrSolving && (Date.now() - (data.wrSolving.ts || 0)) < 30000) return;
                     const order = (data.order || []).filter(k => data.players && data.players[k] && !data.players[k].pending);
                     if (order.length === 0) return;
                     const key = wrLiveActivePlayerKey(data);
@@ -1475,7 +1480,7 @@
                 return;
             }
             usedWords.push(nextRound.word);
-            await liveDuelRef.update({
+            await ldSicherUpdate({
                 currentRound: (data.currentRound || 0) + 1,
                 turnIndex: order.length > 0 ? (data.currentRound || 0) % order.length : 0,
                 order,
@@ -1506,11 +1511,68 @@
             return players;
         }
 
-        async function resolveLiveDuelRound(data) {
+        // Schreibt eine ganze players-Map gegen den aktuellen Stand (Transaktion):
+        // Wer inzwischen beigetreten ist, bleibt drin; wer gegangen ist, kommt nicht
+        // zurück; Lebenszeichen/Verlassen-Markierung bleiben erhalten.
+        // pruef(d) darf abbrechen -> Rückgabe false.
+        async function sicherPlayersUpdate(ref, update, pruef) {
+            if (!ref) return false;
+            return db.runTransaction(async function (t) {
+                const s = await t.get(ref);
+                if (!s.exists) return false;
+                const d = s.data();
+                if (pruef && !pruef(d)) return false;
+                const upd = Object.assign({}, update);
+                if (upd.players) {
+                    const frisch = d.players || {};
+                    const neu = {};
+                    Object.keys(frisch).forEach(function (k) {
+                        if (upd.players[k]) {
+                            neu[k] = Object.assign({}, upd.players[k]);
+                            ["lastSeen", "sessionId", "left", "name"].forEach(function (f) {
+                                if (frisch[k][f] !== undefined) neu[k][f] = frisch[k][f];
+                            });
+                        } else {
+                            neu[k] = frisch[k];
+                        }
+                    });
+                    upd.players = neu;
+                }
+                t.update(ref, upd);
+                return true;
+            });
+        }
+        function ldSicherUpdate(update, pruef) {
+            return sicherPlayersUpdate(liveDuelRef, update, pruef);
+        }
+        function ldAntwortSig(players) {
+            return JSON.stringify(Object.keys(players || {}).sort().map(function (k) {
+                const p = players[k] || {};
+                return [k, !!p.hasAnswered, p.lastAnswer === undefined ? null : p.lastAnswer, p.word || "", !!p.scoredThisRound, p.score || 0, !!p.pending];
+            }));
+        }
+
+        async function resolveLiveDuelRound(data, versuch) {
+            if (!liveDuelRef) return;
+            versuch = versuch || 0;
             const fresh = await liveDuelRef.get();
             if (!fresh.exists || fresh.data().status !== "playing") return;
             data = fresh.data();
             const players = data.players;
+            // Nur die erste Auflösung zählt (alter + neuer Host), und wer
+            // in der Zwischenzeit antwortet, wird mitgewertet (neuer Versuch).
+            const sigVorher = ldAntwortSig(players);
+            const runde = { i: data.currentIndex || 0, r: data.currentRound || 0 };
+            let nochmal = false;
+            const pruef = function (d) {
+                if (!d || d.status !== "playing" || d.createdBy !== activePlayerKey) return false;
+                if ((d.currentIndex || 0) !== runde.i || (d.currentRound || 0) !== runde.r) return false;
+                if (ldAntwortSig(d.players) !== sigVorher) { nochmal = true; return false; }
+                return true;
+            };
+            const neuVersuch = function () {
+                if (nochmal && versuch < 3) return resolveLiveDuelRound(null, versuch + 1);
+            };
 
             if (data.type === "quiz") {
                 const q = data.questions[data.currentIndex];
@@ -1556,13 +1618,14 @@
                         wrongNames
                     });
                 }
-                await liveDuelRef.update({
+                const okQ = await ldSicherUpdate({
                     status: "reveal",
-                    players: await mergeLateJoiners(players),
+                    players,
                     correctAnswer: correct,
                     answerDeadline: null,
                     review
-                });
+                }, pruef);
+                if (!okQ) return neuVersuch();
             } else {
                 // ============================================================
                 // SCRABBLE AUSWERTUNG - MIT GESPEICHERTEN BUCHSTABEN
@@ -1638,12 +1701,14 @@
                     delete players[key]._basePoints;
                 });
 
+                Object.keys(players).forEach(k => { delete players[k]._alreadyScored; });
+                const okS = await ldSicherUpdate({ status: "reveal", players, answerDeadline: null }, pruef);
+                if (!okS) return neuVersuch();
                 Object.keys(players).forEach(k => {
                     if (players[k].wordStatus === "valid" && players[k].word) {
                         liveDuelUsedWords.add(String(players[k].word).toUpperCase());
                     }
                 });
-                await liveDuelRef.update({ status: "reveal", players: await mergeLateJoiners(players), answerDeadline: null });
 
                 try {
                     if (activePlayerKey && players[activePlayerKey] && players[activePlayerKey].lastRoundPoints > 0
@@ -1780,7 +1845,7 @@
             });
 
             if (data.type === "quiz") {
-                await liveDuelRef.update({
+                await ldSicherUpdate({
                     status: "playing",
                     currentIndex: data.currentIndex + 1,
                     players,
@@ -1788,7 +1853,7 @@
                 });
             } else {
                 const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-                await liveDuelRef.update({
+                await ldSicherUpdate({
                     status: "playing",
                     currentRound: data.currentRound + 1,
                     currentLetters: rack.letters,
@@ -1828,7 +1893,7 @@
                         players[k].lastRoundPoints = 0;
                     });
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-                    liveDuelRef.update({
+                    ldSicherUpdate({
                         status: "playing",
                         currentRound: 1,
                         currentLetters: rack.letters,
@@ -1855,7 +1920,7 @@
                         players[k].lastAnswer = null;
                         players[k].pending = false;
                     });
-                    liveDuelRef.update({ status: "playing", currentIndex: 0, players, answerDeadline: null });
+                    ldSicherUpdate({ status: "playing", currentIndex: 0, players, answerDeadline: null });
                 });
             }
         }
@@ -1896,7 +1961,7 @@
                     const requireLetter = !!data.requireLetter;
                     liveDuelUsedWords = new Set();
                     const rack = generateScrabbleRack(difficulty, requireLetter, wordMode);
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         difficulty,
                         totalRounds,
@@ -1925,7 +1990,7 @@
                         ? pickFreshQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix"), _vn)
                         : prepareQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix").sort(() => Math.random() - 0.5).slice(0, _vn));
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         questions,
                         currentIndex: 0,
@@ -1961,7 +2026,7 @@
                             .slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         category,
                         questions,
@@ -2350,7 +2415,7 @@
                         answerDeadline: null, correctAnswer: null, players, review: []
                     };
                 }
-                await liveDuelRef.update(update);
+                await ldSicherUpdate(update);
                 liveDuelType = (newType === "vokabel") ? "quiz" : newType;
                 window._liveDuelOnResult = false;
                 liveDuelResolving = false;
@@ -2428,7 +2493,7 @@
                     await ref.delete();
                 } else {
                     await ref.update({
-                        players: players,
+                        ["players." + activePlayerKey]: firebase.firestore.FieldValue.delete(),
                         updatedAt: Date.now(),
                         lastEvent: { type: "left", name: meName || (data.players[activePlayerKey] && data.players[activePlayerKey].name) || "", ts: Date.now() }
                     });
@@ -2503,7 +2568,8 @@
             let html = "";
             snap.forEach(docSnap => {
                 const d = docSnap.data() || {};
-                const alive = (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
+                const jemandDa = Object.values(d.players || {}).some(p => p && p.lastSeen && (now - p.lastSeen) < STALE);
+                const alive = jemandDa || (now - (d.hostLastSeen || d.createdAt || 0)) < STALE;
                 // Fertige Spiele NICHT sofort löschen – sonst verschwindet die
                 // Siegerehrung (Snapshot: doc existiert nicht → Menü).
                 // Erst nach 10 Min. aufräumen, oder wenn niemand mehr online.
@@ -2521,8 +2587,8 @@
                 const count = d.players ? Object.keys(d.players).length : 0;
                 const running = d.status !== "waiting";
                 const isVokabel = d.subject === "vokabel";
-                const icon = isVokabel ? "📚" : d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
-                const typeName = isVokabel ? "Vokabel-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
+                const icon = isVokabel ? "📚" : d.type === "kopf" ? "🧮" : d.type === "scrabble" ? "🔤" : d.type === "wortraten" ? "🧩" : "⚔️";
+                const typeName = isVokabel ? "Vokabel-Duell" : d.type === "kopf" ? "Kopfrechen-Duell" : d.type === "scrabble" ? "Wort-Duell" : d.type === "wortraten" ? "Wort-Rätsel" : "Quiz-Duell";
                 const who = esc(d.createdByName || "jemandem");
                 const state = running ? "läuft – einsteigen" : "offen – beitreten";
                 // Nicht den eigenen Host benachrichtigen
@@ -2943,7 +3009,7 @@
                         players[k].pending = false;
                     });
                     const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-                    liveDuelRef.update({
+                    ldSicherUpdate({
                         status: "playing",
                         currentRound: 1,
                         currentLetters: rack.letters,
@@ -2971,7 +3037,7 @@
                     const order = (data.order && data.order.length ? data.order : Object.keys(players));
                     const round = wrLiveNewRoundFields(data);
                     if (!round.word) { showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error"); return; }
-                    liveDuelRef.update({
+                    ldSicherUpdate({
                         status: "playing",
                         currentRound: 1,
                         turnIndex: 0,
@@ -2993,7 +3059,7 @@
                         players[k].lastAnswer = null;
                         players[k].pending = false;
                     });
-                    liveDuelRef.update({ status: "playing", currentIndex: 0, players, answerDeadline: null });
+                    ldSicherUpdate({ status: "playing", currentIndex: 0, players, answerDeadline: null });
                 });
             }
         };
@@ -3003,28 +3069,44 @@
         advanceLiveDuel = async function () {
             clearLiveDuelTimers();
             stopLiveDuelActionMode(); // <-- Wichtig: Action-Mode stoppen
+            if (!liveDuelRef) return;
 
             const snap = await liveDuelRef.get();
             if (!snap.exists) return;
             const data = snap.data();
             if (data.status !== "reveal") return;
+            const letzteRunde = data.type === "quiz"
+                ? (data.currentIndex >= (data.questions || []).length - 1)
+                : ((data.currentRound || 0) >= (data.totalRounds || 0));
+            if (letzteRunde) {
+                await liveDuelRef.update({ status: "finished", finishedAt: Date.now(), hostLastSeen: Date.now() });
+                return;
+            }
             let players = data.players;
             Object.keys(players).forEach(k => {
                 players[k].hasAnswered = false;
                 players[k].lastAnswer = null;
                 players[k].word = "";
                 players[k].pending = false;
+                players[k].scoredThisRound = false;
+                players[k].lastRoundPoints = 0;
+                players[k].lastRoundDetail = "";
+                players[k].wordStatus = null;
+                players[k].submittedLetters = [];
+                players[k].submittedRequired = "";
+                players[k].submittedSolution = "";
             });
             if (data.type === "quiz") {
-                await liveDuelRef.update({
+                await ldSicherUpdate({
                     status: "playing",
                     currentIndex: data.currentIndex + 1,
                     players,
-                    answerDeadline: null
+                    answerDeadline: null,
+                    hostLastSeen: Date.now()
                 });
             } else {
                 const rack = generateScrabbleRack(data.difficulty, !!data.requireLetter, data.wordMode);
-                await liveDuelRef.update({
+                await ldSicherUpdate({
                     status: "playing",
                     currentRound: data.currentRound + 1,
                     currentLetters: rack.letters,
@@ -3080,7 +3162,7 @@
                     const order = (data.order && data.order.length ? data.order : Object.keys(players));
                     const round = wrLiveNewRoundFields({ wordMode, difficulty, wordTheme, usedWords: [] });
                     if (!round.word) return showToast("Keine passenden Wörter für diese Einstellungen gefunden.", "error");
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         wordMode,
                         difficulty,
@@ -3104,7 +3186,7 @@
                     const requireLetter = !!data.requireLetter;
                     liveDuelUsedWords = new Set();
                     const rack = generateScrabbleRack(difficulty, requireLetter, data.wordMode);
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         difficulty,
                         totalRounds,
@@ -3134,7 +3216,7 @@
                         ? pickFreshQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix"), _vn)
                         : prepareQuestions(buildVocabTestQuestions(data.vocabGroups, data.vocabDir || "mix").sort(() => Math.random() - 0.5).slice(0, _vn));
                     if (questions.length < 3) return showToast("Zu wenige Vokabeln für diese Auswahl!", "error");
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         questions,
                         currentIndex: 0,
@@ -3170,7 +3252,7 @@
                             .slice(0, (parseInt((document.getElementById("live-duel-count") || {}).value) || 10))
                     );
                     if (questions.length < 3) return showToast("Zu wenige Fragen für dieses Thema!", "error");
-                    await liveDuelRef.update({
+                    await ldSicherUpdate({
                         status: "playing",
                         category,
                         questions,

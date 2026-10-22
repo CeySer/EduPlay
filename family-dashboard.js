@@ -122,7 +122,9 @@ auth.createUserWithEmailAndPassword(e, p)
             await joinCodedLobby();
         }
 
-        auth.onAuthStateChanged((user) => {
+        auth.onAuthStateChanged(function authWeiter(user) {
+            // Anmeldung kann schneller sein als der Seitenaufbau
+            if (typeof switchView !== "function") { window.addEventListener("load", function () { authWeiter(user); }, { once: true }); return; }
             if (user) {
                 currentParentUser = user;
                 if (user.isAnonymous) {
@@ -169,6 +171,7 @@ auth.createUserWithEmailAndPassword(e, p)
                 } catch (e) { /* */ }
                 await loadFamilyRewards();
                 if (typeof bumpSignupIfNew === "function") bumpSignupIfNew();
+                if (typeof switchView !== "function") await new Promise(r => window.addEventListener("load", r, { once: true }));
                 renderFamilyHub();
                 switchView('family-hub');
                 setTimeout(function () {

@@ -109,7 +109,7 @@
                     stopTVActionMode();
                     stoppeTVRundenTimer();
                     showTVHostPodium(data.players);
-                    merkeTVHost(false);
+                    merkeTVHost(true, window._activeTVCode);   // Siegerehrung bleibt nach Neuladen übernehmbar
                     return;
                 }
                 if (data.status === "playing" && data.mode === "wortraten") {
@@ -176,8 +176,14 @@
                     if (totalCount > 0 && !isResolving && (ansCount >= totalCount || fristAbgelaufen)) {
                         isResolving = true;
                         stoppeTVRundenTimer();
+                        const ref0 = tvGameRef;
                         setTimeout(() => {
-                            data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
+                            if (!ref0 || tvGameRef !== ref0 || !isTVHost) { isResolving = false; return; }
+                            ref0.get().then(d => {
+                                const f = d.exists ? d.data() : null;
+                                if (!f || f.status !== "playing" || f.showAnswer) { isResolving = false; return; }
+                                f.mode === "scrabble" ? revealTVScrabbleRound(f) : revealTVAnswer(f);
+                            }).catch(() => { isResolving = false; });
                         }, 800);
                     }
                 }
@@ -194,7 +200,7 @@
                 const snap = await ref.get();
                 if (!snap.exists) { merkeTVHost(false); return; }
                 const data = snap.data() || {};
-                if (data.status === "finished") { merkeTVHost(false); return; }
+                if (data.status === "finished" && data.lastEvent && data.lastEvent.type === "host_ended") { merkeTVHost(false); return; }
                 if (typeof appConfirm !== "function") return;
                 const ok = await appConfirm(
                     "TV-Lobby läuft noch (" + (data.status || "?") + "). Als Host fortsetzen?",
@@ -228,6 +234,13 @@
                             <button onclick="leaveTVGame()" class="tv-lobby-cancel">Lobby abbrechen</button>
                         </div>`);
                     renderTVPlayerList(data.players);
+                } else if (data.status === "finished") {
+                    window._tvLetzterModus = data.mode;
+                    showTVHostPodium(data.players || {});
+                } else if (data.status === "playing" && data.showAnswer && (data.mode === "quiz" || data.mode === "scrabble")) {
+                    isResolving = true;
+                    if (Array.isArray(data.questions)) { tvQuestions = data.questions; tvCurrentQ = tvQuestions[data.currentQuestionIndex || 0]; }
+                    data.mode === "scrabble" ? revealTVScrabbleRound(data) : revealTVAnswer(data);
                 } else if (data.status === "playing") {
                     if (data.mode === "wortraten") showTVHostWortraten(data);
                     else if (data.mode === "scrabble") {
@@ -799,7 +812,7 @@
                     playersData[k].score = playersData[k].score || 0;
                 });
                 isResolving = false;
-                tvGameRef.update({
+                sicherPlayersUpdate(tvGameRef, {
                     status: "playing",
                     currentQuestionIndex: 0,
                     showAnswer: false,
@@ -917,6 +930,7 @@
             }
             const correctIndex = data.correctAnswer;
             const playersData = data.players || {};
+            const schonGewertet = !!data.showAnswer;   // z. B. nach Neuladen des Fernsehers
 
             // Erster Richtiger (frühestes answeredAt)
             let firstKey = null, firstAt = Infinity;
@@ -928,7 +942,7 @@
                 }
             });
 
-            Object.keys(playersData).forEach(k => {
+            if (!schonGewertet) Object.keys(playersData).forEach(k => {
                 const p = playersData[k];
                 const isRight = p.lastAnswer === correctIndex;
                 if (isRight) {
@@ -949,7 +963,7 @@
             });
             // Ein Schreibvorgang statt zwei: showAnswer und Punkte kamen vorher
             // getrennt an, dazwischen sah der Spieler kurz die alte Punktzahl.
-            tvGameRef.update(tvPunkteUpdate(
+            if (!schonGewertet && tvGameRef) tvGameRef.update(tvPunkteUpdate(
                 playersData,
                 ["score", "answerStreak", "lastRoundPoints", "lastRoundDetail"],
                 { showAnswer: true }
@@ -1271,7 +1285,7 @@
                     const totalRounds = parseInt((document.getElementById("tv-again-scrabble-rounds") || {}).value || "5", 10);
                     const wordMode = (document.getElementById("tv-again-scrabble-wordmode") || {}).value || "kids";
                     tvUsedWords = new Set();
-                    await tvGameRef.update({
+                    await sicherPlayersUpdate(tvGameRef, {
                         status: "waiting",
                         mode: "scrabble",
                         difficulty,
@@ -1290,14 +1304,14 @@
                 }
 
                 if (tvAgainMode === "kopf" && window.KopfDuell) {
-                    await tvGameRef.update({ mode: "kopf", showAnswer: false, players: playersData });
+                    await sicherPlayersUpdate(tvGameRef, { mode: "kopf", showAnswer: false, players: playersData });
                     await KopfDuell.starten(tvGameRef);
                     showToast("Kopfrechen-Duell gestartet! 🧮");
                     return;
                 }
 
                 if (tvAgainMode === "wortraten") {
-                    await tvGameRef.update({
+                    await sicherPlayersUpdate(tvGameRef, {
                         status: "waiting",
                         mode: "wortraten",
                         wordMode: (document.getElementById("tv-again-wr-wordmode") || {}).value || "kids",
@@ -1319,7 +1333,7 @@
                 if (!category) return showToast("Bitte ein Thema wählen!", "error");
                 tvQuestions = tvBuildQuestionPool([category], 10);
                 if (tvQuestions.length < 3) return showToast("Zu wenige Fragen – anderes Thema wählen oder Fragen laden.", "error");
-                await tvGameRef.update({
+                await sicherPlayersUpdate(tvGameRef, {
                     status: "playing",
                     mode: "quiz",
                     category,
@@ -1429,6 +1443,14 @@
         }
 
         // --- TV WORT-RÄTSEL ---
+        // Wer ist dran? Erst per Schlüssel (turnKey), sonst per Index – geht jemand,
+        // zeigt der alte Index automatisch auf den Nachfolger.
+        function tvWrDranIndex(data, order) {
+            if (!order || !order.length) return 0;
+            const i = (data && data.turnKey) ? order.indexOf(data.turnKey) : -1;
+            return i >= 0 ? i : ((data && data.turnIndex) || 0) % order.length;
+        }
+
         function tvWrActiveOrder(data) {
             const players = (data && data.players) || {};
             let order = Array.isArray(data.order) ? data.order.slice() : Object.keys(players);
@@ -1460,13 +1482,14 @@
                 players[k].score = players[k].score || 0;
                 players[k].lastRoundPoints = 0;
             });
-            tvGameRef.update({
+            sicherPlayersUpdate(tvGameRef, {
                 status: "playing",
                 mode: "wortraten",
                 currentRound: 1,
                 totalRounds: data.totalRounds || 3,
                 order,
                 turnIndex: 0,
+                turnKey: order[0] || null,
                 word,
                 guessed: [],
                 wrongCount: 0,
@@ -1509,7 +1532,7 @@
             const guessed = new Set(data.guessed || []);
             const theme = data.theme || "schneemann";
             const order = tvWrActiveOrder(data);
-            const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
+            const turnKey = order.length ? order[tvWrDranIndex(data, order)] : null;
             const turnName = (turnKey && data.players[turnKey] && data.players[turnKey].name)
                 ? data.players[turnKey].name
                 : (turnKey || "Spieler");
@@ -1693,6 +1716,7 @@
             const update = {
                 currentRound: (data.currentRound || 0) + 1,
                 turnIndex: order.length ? (data.currentRound || 0) % order.length : 0,
+                turnKey: order.length ? order[(data.currentRound || 0) % order.length] : null,
                 order: order,
                 word,
                 guessed: [],
@@ -1727,10 +1751,12 @@
                     if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
                     const order = tvWrActiveOrder(data);
                     if (!order.length) return;
-                    const cur = (data.turnIndex || 0) % order.length;
+                    const cur = tvWrDranIndex(data, order);
                     // Verstrichene Zeit zaehlt wie ein falscher Buchstabe - sonst
-                    // kostet Aussitzen nichts, anders als jeder andere Fehlversuch.
-                    const wrongCount = (data.wrongCount || 0) + 1;
+                    // kostet Aussitzen nichts. Wer gar nicht mehr da ist, kostet nichts.
+                    const amZug = data.players && data.players[order[cur]];
+                    const weg = typeof istAnwesend === "function" && !istAnwesend(amZug);
+                    const wrongCount = (data.wrongCount || 0) + (weg ? 0 : 1);
                     const maxW = typeof wrMaxWrong === "function" ? wrMaxWrong(data.wordMode) : 7;
                     const roundOver = wrongCount >= maxW;
                     const update = { order: order, wrongCount, roundOver, roundSolved: false };
@@ -1738,6 +1764,7 @@
                         update.wrTurnDeadline = null;
                     } else {
                         update.turnIndex = (cur + 1) % order.length;
+                        update.turnKey = order[update.turnIndex];
                         update.wrTurnDeadline = Date.now() + 25000;
                     }
                     txn.update(tvGameRef, update);
@@ -1816,7 +1843,7 @@
                 const vorab = vorabSnap.exists ? vorabSnap.data() : null;
                 if (vorab && !vorab.roundOver) {
                     const ordn = tvWrActiveOrder(vorab);
-                    const dran = ordn.length ? ordn[(vorab.turnIndex || 0) % ordn.length] : null;
+                    const dran = ordn.length ? ordn[tvWrDranIndex(vorab, ordn)] : null;
                     if (dran !== key) {
                         const wer = (dran && vorab.players && vorab.players[dran] && vorab.players[dran].name) || "jemand anderes";
                         showToast("Erst raten, wenn du dran bist - gerade ist " + wer + " an der Reihe.", "error", "wrsolve");
@@ -1845,7 +1872,7 @@
                     if (!players[key]) return;
                     const guessedSet = new Set(data.guessed || []);
                     const ordnung = tvWrActiveOrder(data);
-                    const amZug = ordnung.length ? ordnung[(data.turnIndex || 0) % ordnung.length] : null;
+                    const amZug = ordnung.length ? ordnung[tvWrDranIndex(data, ordnung)] : null;
                     if (amZug !== key) return;
                     if (guess === target) {
                         const points = (typeof wrPointsForFullSolve === "function")
@@ -1869,7 +1896,8 @@
                         if (wrongCount >= maxW) { roundOver = true; roundSolved = false; }
                         const update = { wrongCount, players, roundOver, roundSolved, order: ordnung };
                         if (!roundOver && ordnung.length) {
-                            update.turnIndex = ((data.turnIndex || 0) + 1) % ordnung.length;
+                            update.turnIndex = (tvWrDranIndex(data, ordnung) + 1) % ordnung.length;
+                            update.turnKey = ordnung[update.turnIndex];
                             // Frist mitgeben: sonst erbt der Naechste die Restzeit des
                             // Vorgaengers und wird nach zwei Sekunden uebersprungen.
                             update.wrTurnDeadline = Date.now() + 25000;
@@ -1893,7 +1921,7 @@
                     const data = snap.data();
                     if (data.status !== "playing" || data.mode !== "wortraten" || data.roundOver) return;
                     const order = tvWrActiveOrder(data);
-                    const key = order.length ? order[(data.turnIndex || 0) % order.length] : null;
+                    const key = order.length ? order[tvWrDranIndex(data, order)] : null;
                     if (key !== activePlayerKey) return;
                     const guessed = data.guessed || [];
                     if (guessed.includes(letter)) return;
@@ -1927,6 +1955,7 @@
                         }
                     }
                     const update = { guessed: newGuessed, wrongCount, players, roundOver, roundSolved, order: order };
+                    if (key && order.indexOf(key) >= 0) { update.turnIndex = order.indexOf(key); update.turnKey = key; }
                     if (roundSolved && key) {
                         update.roundSolvedBy = key;
                         update.roundSolvedByName = (players[key] && players[key].name) || "";
@@ -1934,6 +1963,7 @@
                     if (!roundOver && !isHit && order.length) {
                         const cur = order.indexOf(key);
                         update.turnIndex = cur >= 0 ? (cur + 1) % order.length : 0;
+                        update.turnKey = order[update.turnIndex];
                         update.wrTurnDeadline = Date.now() + 25000;
                     } else if (!roundOver && isHit) {
                         update.wrTurnDeadline = Date.now() + 25000;
@@ -2282,6 +2312,7 @@
                 } else {
                     // Nur Lebenszeichen / Name aktualisieren
                     await lobbyRef.update({
+                        [`players.${activePlayerKey}.left`]: false,
                         [`players.${activePlayerKey}.name`]: currentPlayer.name,
                         [`players.${activePlayerKey}.lastSeen`]: Date.now(),
                         [`players.${activePlayerKey}.sessionId`]: window.DEVICE_SESSION_ID || null
@@ -2321,6 +2352,7 @@
                         stoppeTVLebenszeichen();
                         stoppeTVRundenTimer();
                         stopTVActionMode();
+                        if (window.KopfDuell) KopfDuell.stopp();
                         tvGameRef = null;
                         isResolving = false;
                         showTVHostSetup();
@@ -2331,6 +2363,9 @@
                     }
                     const data = doc.data();
                     const myData = (data.players || {})[activePlayerKey];
+                    if (myData && data.status !== "finished" && !myData.coinsClaimed) {
+                        tvCoinsClaimedLocal.delete(tvGameRef.id + ":" + activePlayerKey);
+                    }
                     if (!myData) {
                         // Kann passieren, wenn die Auswertung eine aeltere Spielerliste
                         // zurueckschreibt. Frueher stand das Handy hier einfach stumm.
@@ -2362,6 +2397,7 @@
                         if (tvUnsubscribe) { try { tvUnsubscribe(); } catch (e) { } tvUnsubscribe = null; }
                         stoppeTVLebenszeichen();
                         stopTVActionMode();
+                        if (window.KopfDuell) KopfDuell.stopp();
                         tvGameRef = null;
                         showToast("🚪 " + esc(data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
                         switchView(currentPlayer ? "menu" : "family-hub");
@@ -2377,7 +2413,7 @@
                             // Dieselbe Reihenfolge wie am Fernseher (gefiltert) - vorher
                             // stand hier die rohe data.order, die davon abweichen kann.
                             const order = tvWrActiveOrder(data);
-                            const turnKey = order.length ? order[(data.turnIndex || 0) % order.length] : null;
+                            const turnKey = order.length ? order[tvWrDranIndex(data, order)] : null;
                             const isMyTurn = turnKey === activePlayerKey && !data.roundOver;
                             const _wrKey = "wr:" + (data.currentRound || 0) + ":" + (data.roundOver ? 1 : 0)
                                 + ":" + turnKey + ":" + (data.guessed || []).join("")
@@ -2528,7 +2564,7 @@
                     if (data.status === "playing") {
                         if (data.showAnswer) {
                             const isCorrect = myData.lastAnswer === data.correctAnswer;
-                            const pts = myData.lastRoundPoints || (isCorrect ? 10 : 0);
+                            const pts = (typeof myData.lastRoundPoints === "number") ? myData.lastRoundPoints : 0;
                             // Ohne Bremse liefen Konfetti und Ton bei jedem Lebenszeichen erneut.
                             if (!tvPlayerBrauchtNeu("qa:" + (data.currentQuestionIndex || 0) + ":" + myData.lastAnswer + ":" + pts)) return;
                             const bg = isCorrect ? "bg-emerald-500" : "bg-rose-600";
@@ -2788,7 +2824,10 @@
                         // Gaeste duerfen laut Sicherheitsregeln niemanden aus der
                         // Liste entfernen - dann nur abmelden, der Fernseher
                         // wartet dank Lebenszeichen nicht auf ein Geraet, das weg ist.
-                        await ref.update({ ["players." + activePlayerKey + ".lastSeen"]: 0 }).catch(function () { });
+                        await ref.update({
+                            ["players." + activePlayerKey + ".lastSeen"]: 1,
+                            ["players." + activePlayerKey + ".left"]: true
+                        }).catch(function () { });
                     }
                 }
             } catch (e) { /* Lobby evtl. schon weg */ }

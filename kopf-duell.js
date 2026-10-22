@@ -123,7 +123,8 @@
             p.score = 0; p.kRichtig = 0; p.kFalsch = 0; p.kFertig = false; p.kSpaet = null;
             p.pending = false; p.hasAnswered = false; p.coinsClaimed = false; p.lastRoundPoints = 0;
         });
-        await ref.update({
+        const kdUpd = (typeof sicherPlayersUpdate === "function") ? function (u) { return sicherPlayersUpdate(ref, u); } : function (u) { return ref.update(u); };
+        await kdUpd({
             status: "playing",
             sprintId: "s" + Date.now().toString(36),
             sprintTs: Date.now(),
@@ -346,6 +347,12 @@
                 aufgabe: null, sperre: false, fertig: false, gestartet: false
             };
             if (!me.kopfStufe) ref.update({ ["players." + ichKey() + ".kopfStufe"]: sp.stufe }).catch(function () { });
+            if (!me.kFertig && (me.kRichtig || me.kFalsch) && data.sprintTs) {
+                sp.richtig = me.kRichtig || 0; sp.falsch = me.kFalsch || 0;
+                const soll = data.sprintTs + VORLAUF + DAUER * 1000;
+                sp.start = Date.now();
+                sp.ende = Math.max(Date.now() + 1000, Math.min(soll, Date.now() + DAUER * 1000));
+            }
             if (me.kFertig) { sp.fertig = true; sp.richtig = me.kRichtig || 0; sp.falsch = me.kFalsch || 0; sp.start = sp.ende = 0; }
             setHtml(spielHtml(mitBoard));
             const st = el("kd-stufe"); if (st) st.innerText = kurz(sp.stufe);
@@ -379,7 +386,8 @@
     function tvHost(data, ref, setHtml) {
         if (tvSprintId !== data.sprintId) {
             tvSprintId = data.sprintId;
-            hostSprint = { id: data.sprintId, ende: Date.now() + VORLAUF + DAUER * 1000 };
+            const soll = data.sprintTs ? data.sprintTs + VORLAUF + DAUER * 1000 : 0;
+            hostSprint = { id: data.sprintId, ende: (soll && Math.abs(soll - Date.now()) < 120000) ? soll : Date.now() + VORLAUF + DAUER * 1000 };
             setHtml(`<div style="min-height:100vh;padding:3vh 4vw;color:#fff;display:flex;flex-direction:column;gap:2.5vh">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
                   <div style="font-size:clamp(22px,3.6vw,46px);font-weight:900">🧮 Kopfrechen-Duell</div>

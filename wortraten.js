@@ -220,6 +220,7 @@ function setWortratenTheme(theme) {
 }
 
 function startWortratenGame() {
+    if (wrOfflineAutoContinue) { clearTimeout(wrOfflineAutoContinue); wrOfflineAutoContinue = null; }
     const checked = Array.from(document.querySelectorAll(".wortraten-player-check:checked")).map(c => c.value);
     if (checked.length === 0) return showToast("Bitte mindestens einen Spieler auswählen!", "error");
     const wordmode = (document.getElementById("wortraten-wordmode") || {}).value || "kids";
@@ -501,9 +502,10 @@ function wrEndRound(solved, solverKey) {
             : `🎉 Gelöst! Das Wort war „${s.word}"`)
         : `${wrFigureEmoji(s.theme)} ${wrFigureName(s.theme)} ist fertig gebaut! Das Wort war „${s.word}"`;
     if (wrOfflineAutoContinue) clearTimeout(wrOfflineAutoContinue);
+    const s0 = s;
     wrOfflineAutoContinue = setTimeout(() => {
         wrOfflineAutoContinue = null;
-        if (wortratenState && !wortratenState.roundActive) wrContinueAfterRound();
+        if (wortratenState === s0 && !s0.roundActive && !s0.abgebrochen) wrContinueAfterRound();
     }, 5000);
     document.getElementById("wortraten-round-end-btn").innerText = isLast ? "🏆 Zur Siegerehrung" : "Nächste Runde ➔";
     document.getElementById("wortraten-round-end").classList.remove("hidden");

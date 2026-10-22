@@ -1059,6 +1059,7 @@
             stopActionMode();
 
             const sorted = [...scrabbleState.playerKeys].sort((a, b) => scrabbleState.scores[b] - scrabbleState.scores[a]);
+            sorted.forEach((key, i) => { if (typeof awardXPToProfile === "function") awardXPToProfile(key, i === 0 ? 15 : 5); });
             const wordMode = scrabbleState.wordMode || "kids";
             const modeLabel = wordMode === "adult" ? "🎓 Erwachsene" : "👶 Kinder";
             const difficulty = scrabbleState.difficulty || "mittel";

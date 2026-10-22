@@ -52,6 +52,7 @@
                 window.stopScrabbleTicker();
             } else if (ansicht === 'wortraten-play' && typeof wortratenState !== 'undefined' && wortratenState) {
                 wortratenState.roundActive = false;
+                wortratenState.abgebrochen = true;
             }
         } catch (e) { /* Cleanup best effort */ }
         return true;

@@ -632,6 +632,17 @@ const { code, ref } = await reserveAndCreateLobby((code) => Object.assign({}, lo
             if (!_liveDuelViews.includes(viewId) && typeof liveDuelUnsubscribe !== 'undefined' && liveDuelUnsubscribe) {
                 try { liveDuelUnsubscribe(); } catch (e) { }
                 liveDuelUnsubscribe = null;
+                // Lebenszeichen und Timer mit beenden – sonst hält ein Host, der
+                // über 🏠 rausgeht, alle anderen fest, und der Wiedereinstieg ist gesperrt.
+                try {
+                    if (typeof stopHostHeartbeat === 'function') stopHostHeartbeat();
+                    if (typeof clearLiveDuelTimers === 'function') clearLiveDuelTimers();
+                    if (typeof stopLiveDuelActionMode === 'function') stopLiveDuelActionMode();
+                    if (typeof wrLiveAutoAdvanceTimer !== 'undefined' && wrLiveAutoAdvanceTimer) { clearTimeout(wrLiveAutoAdvanceTimer); wrLiveAutoAdvanceTimer = null; }
+                    if (typeof liveDuelRef !== 'undefined') liveDuelRef = null;
+                    if (typeof isLiveDuelCreator !== 'undefined') isLiveDuelCreator = false;
+                    if (typeof liveDuelResolving !== 'undefined') liveDuelResolving = false;
+                } catch (e) { }
             }
 
             if (typeof setMusicMode === 'function') setMusicMode(viewId);

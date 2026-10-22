@@ -28,9 +28,10 @@
 
         function closeDrawer() {
             // Wir schließen einfach sicherheitshalber beide Drawer
-            document.getElementById('drawer-familyhub').classList.remove('open');
-            document.getElementById('drawer-menu').classList.remove('open');
-            document.getElementById("drawer-backdrop").classList.remove("open");
+            ['drawer-familyhub', 'drawer-menu', 'drawer-backdrop'].forEach(function (id) {
+                const el = document.getElementById(id);
+                if (el) el.classList.remove('open');
+            });
         }
 
         // Drawer mit Escape-Taste schließen

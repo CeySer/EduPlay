@@ -574,7 +574,7 @@
                     id: "enssk4l2_m1", category: "kurs_enss_k4_l2", area: "schule", grade: 4,
                     subject: "englisch", topic: "school_town_k4", difficulty: "mittel", points: 10,
                     question: "Wie viel Uhr ist 'half past three'?", answers: ["3:30", "2:30", "4:30", "3:15"], correct: 0,
-                    explanation: "Half past three heißt halb nach drei – also 3:30."
+                    explanation: "Half past three heißt eine halbe Stunde nach drei – also 3:30, auf Deutsch halb vier."
                 },
                 {
                     id: "enssk4l2_m2", category: "kurs_enss_k4_l2", area: "schule", grade: 4,

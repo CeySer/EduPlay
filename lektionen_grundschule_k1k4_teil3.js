@@ -426,49 +426,49 @@
                     id: "enk2l2_m1", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "mittel", points: 10,
                     question: "green heißt …", answers: ["grün", "rot", "blau", "gelb"], correct: 0,
-                    explanation: "green."
+                    explanation: "green = grün."
                 },
                 {
                     id: "enk2l2_m2", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "mittel", points: 10,
                     question: "yellow heißt …", answers: ["gelb", "grün", "blau", "rot"], correct: 0,
-                    explanation: "yellow."
+                    explanation: "yellow = gelb."
                 },
                 {
                     id: "enk2l2_m3", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "mittel", points: 10,
                     question: "bird heißt …", answers: ["Vogel", "Hund", "Katze", "Fisch"], correct: 0,
-                    explanation: "bird."
+                    explanation: "bird = Vogel."
                 },
                 {
                     id: "enk2l2_m4", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "mittel", points: 10,
-                    question: "I see a dog.", answers: ["Ich sehe einen Hund", "Ich bin ein Hund", "Ich esse", "Danke"], correct: 0,
+                    question: "Was heißt 'I see a dog.'?", answers: ["Ich sehe einen Hund", "Ich bin ein Hund", "Ich sehe eine Katze", "Ich habe einen Hund"], correct: 0,
                     explanation: "see = sehen."
                 }
             ], schwer: [
                 {
                     id: "enk2l2_s1", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "schwer", points: 10,
-                    question: "a red cat heißt …", answers: ["eine rote Katze", "ein blauer Hund", "Danke", "Tschüss"], correct: 0,
+                    question: "a red cat heißt …", answers: ["eine rote Katze", "ein blauer Hund", "eine blaue Katze", "ein roter Hund"], correct: 0,
                     explanation: "Farbe + Tier."
                 },
                 {
                     id: "enk2l2_s2", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "schwer", points: 10,
                     question: "fish heißt …", answers: ["Fisch", "Vogel", "Hund", "Katze"], correct: 0,
-                    explanation: "fish."
+                    explanation: "fish = Fisch."
                 },
                 {
                     id: "enk2l2_s3", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "schwer", points: 10,
-                    question: "The ball is blue.", answers: ["Der Ball ist blau", "Der Ball isst", "Hallo Ball", "Bye"], correct: 0,
-                    explanation: "is blue."
+                    question: "Was heißt 'The ball is blue.'?", answers: ["Der Ball ist blau", "Der Ball ist rot", "Die Katze ist blau", "Ich sehe einen Ball"], correct: 0,
+                    explanation: "ball = Ball, blue = blau."
                 },
                 {
                     id: "enk2l2_s4", category: "kurs_enmini_k2_l2", area: "schule", grade: 2,
                     subject: "englisch", topic: "minisaetze", difficulty: "schwer", points: 10,
-                    question: "I can see a bird.", answers: ["Ich kann einen Vogel sehen", "Ich bin ein kleiner Vogel", "Der Vogel kann mich sehen", "Ich habe einen Vogel gehabt"], correct: 0,
+                    question: "Was heißt 'I can see a bird.'?", answers: ["Ich kann einen Vogel sehen", "Ich bin ein kleiner Vogel", "Der Vogel kann mich sehen", "Ich habe einen Vogel gehabt"], correct: 0,
                     explanation: "can see heißt sehen können: Ich kann einen Vogel sehen."
                 }
             ] },

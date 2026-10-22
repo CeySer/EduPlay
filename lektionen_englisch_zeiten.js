@@ -67,7 +67,7 @@
                 { id: "spk5l2_s2", category: "kurs_sp_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "simple_present", difficulty: "schwer", points: 10,
                     question: "Welche Aussage stimmt?",
                     answers: ["Does + Verb mit extra -s", "Don't + 2. Form went", "Doesn't + 3. Form gone", "Do/does + Grundform, nie zwei -s"], correct: 3,
-                    explanation: "Hilfsverb trägt die Zeit, das Vollverb bleibt grund." },
+                    explanation: "Hilfsverb trägt die Zeit, das Vollverb bleibt in der Grundform." },
                 { id: "spk5l2_s3", category: "kurs_sp_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "simple_present", difficulty: "schwer", points: 10,
                     question: "Welche Frage passt zu einer Gewohnheit?",
                     answers: ["Did she walk yesterday?", "Has she walked today?", "Is she walking now?", "Does she walk to school?"], correct: 3,
@@ -127,7 +127,7 @@
             leicht: [
                 { id: "ppk6l2_l1", category: "kurs_prespf_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "present_perfect", difficulty: "leicht", points: 10,
                     question: "Wofür steht just im Present Perfect?",
-                    answers: ["etwas passiert jede Woche", "etwas passiert morgen", "etwas passierte 2010 klar", "etwas ist gerade passiert"], correct: 3,
+                    answers: ["etwas passiert jede Woche", "etwas passiert morgen", "etwas passierte im Jahr 2010", "etwas ist gerade passiert"], correct: 3,
                     explanation: "I have just arrived." },
                 { id: "ppk6l2_l2", category: "kurs_prespf_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "present_perfect", difficulty: "leicht", points: 10,
                     question: "Wo steht yet meistens?",
@@ -162,7 +162,7 @@
             ],
             schwer: [
                 { id: "ppk6l2_s1", category: "kurs_prespf_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "present_perfect", difficulty: "schwer", points: 10,
-                    question: "Was ist falsch an: I have seen him yesterday.?",
+                    question: "Was ist falsch an 'I have seen him yesterday.'?",
                     answers: ["have ist immer falsch", "seen ist die 2. Form", "yesterday gehört zu will", "yesterday verlangt Simple Past"], correct: 3,
                     explanation: "Genaue Zeit → I saw him yesterday." },
                 { id: "ppk6l2_s2", category: "kurs_prespf_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "present_perfect", difficulty: "schwer", points: 10,
@@ -364,7 +364,7 @@
             ],
             schwer: [
                 { id: "dfk5l2_s1", category: "kurs_dreiformen_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
-                    question: "Was ist falsch: I have went there.?",
+                    question: "Was ist falsch an 'I have went there.'?",
                     answers: ["have ist in diesem Satz verboten", "there darf hier gar nicht stehen", "I braucht immer ein always dabei", "went ist 2. Form, nach have kommt gone"], correct: 3,
                     explanation: "have + gone." },
                 { id: "dfk5l2_s2", category: "kurs_dreiformen_k5_l2", area: "schule", grade: 5, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
@@ -420,7 +420,7 @@
             intro: "In Klasse 6 kommen weitere Dreierreihen dazu. Immer dieselbe Logik: 1. / 2. / 3. Form.",
             beispiele: [
                 "🗣️ speak – spoke – spoken · write – wrote – written",
-                "🪽 fly – flew – flown · drink – drank – drunk",
+                "✈️ fly – flew – flown · drink – drank – drunk",
                 "👕 wear – wore – worn · break – broke – broken",
                 "🎵 sing – sang – sung · know – knew – known"
             ],
@@ -521,7 +521,7 @@
             intro: "Du setzt die 3. Form in echte Sätze: have/has + gone, written, flown, drunk, broken.",
             beispiele: [
                 "✈️ Have you ever flown to Paris?",
-                "📝 She has already written the mail.",
+                "📝 She has already written the email.",
                 "🚫 They haven't drunk it yet.",
                 "📅 Yesterday he broke the cup."
             ],
@@ -570,7 +570,7 @@
                     answers: ["went", "goed", "going", "gone"], correct: 3,
                     explanation: "just → have gone." },
                 { id: "dfk6l2_s2", category: "kurs_dreiformen_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
-                    question: "Was ist falsch: She has wrote it.?",
+                    question: "Was ist falsch an 'She has wrote it.'?",
                     answers: ["has darf hier gar nicht stehen", "She müsste hier They heißen", "it braucht immer ein the davor", "wrote ist 2. Form, richtig written"], correct: 3,
                     explanation: "has + written." },
                 { id: "dfk6l2_s3", category: "kurs_dreiformen_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
@@ -578,7 +578,7 @@
                     answers: ["wore", "weared", "wear", "worn"], correct: 3,
                     explanation: "have + worn." },
                 { id: "dfk6l2_s4", category: "kurs_dreiformen_k6_l2", area: "schule", grade: 6, subject: "englisch", topic: "irregular_verbs", difficulty: "schwer", points: 10,
-                    question: "He _____ the window and has not _____ it.",
+                    question: "He _____ the cup yesterday, but he has never _____ a window.",
                     answers: ["broken / broke", "breaked / broke", "broke / broke", "broke / broken"], correct: 3,
                     explanation: "Past + Perfect: broke / broken." }
             ]

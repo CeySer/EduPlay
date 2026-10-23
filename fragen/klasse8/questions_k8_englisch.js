@@ -149,7 +149,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What happens to the pronoun 'today' when changing from direct to reported speech in the past?",
+    "question": "What happens to the time expression 'today' when changing from direct to reported speech in the past?",
     "answers": [
       "It stays 'today'.",
       "It changes to 'that day'.",
@@ -168,7 +168,7 @@ const questions_k8_englisch = [
     "grade": 8,
     "subject": "englisch",
     "question": "Which relative pronoun is used to refer to people in relative clauses?",
-    "answers": ["Whose, for people.", "Which, for people.", "Where, for people.", "Who."],
+    "answers": ["When.", "Which.", "Where.", "Who."],
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
@@ -180,12 +180,12 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What is the American English word for the British English term 'subway' or 'underground'?",
+    "question": "What is the American English word for the British English term 'underground' or 'tube'?",
     "answers": [
-      "Pavement (BE term for sidewalk).",
-      "Subway (BE: underground / tube).",
-      "Highway (BE term for motorway).",
-      "Elevator (BE term for lift)."
+      "Pavement.",
+      "Subway.",
+      "Motorway.",
+      "Lift."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -342,7 +342,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What is the American English word for British 'fries' / 'chips'?",
+    "question": "What is the American English word for British 'chips'?",
     "answers": [
       "French fries.",
       "Chips or crisps.",
@@ -352,7 +352,7 @@ const questions_k8_englisch = [
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "In den USA heißt Fritten 'French fries', während Kartoffelchips in den USA 'chips' und in UK 'crisps' heißen."
+    "explanation": "In den USA heißen Pommes 'French fries', während Kartoffelchips in den USA 'chips' und in UK 'crisps' heißen."
   },
   {
     "id": "k8_en_021",
@@ -432,7 +432,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What does the abbreviation 'Native Americans' refer to?",
+    "question": "What does the term 'Native Americans' refer to?",
     "answers": [
       "Tourists who travel through North America every single year.",
       "British settlers who built the very first colonies in Jamestown itself.",
@@ -522,7 +522,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "Which US city is famous for Hollywood, the walk of fame, and the film industry?",
+    "question": "Which US city is famous for Hollywood, the Walk of Fame, and the film industry?",
     "answers": [
       "Los Angeles.",
       "Seattle.",
@@ -703,12 +703,12 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What is the American English word for British 'elevator' / 'lift'?",
+    "question": "What is the American English word for British 'lift'?",
     "answers": [
-      "Escalator (in British English: stairs).",
-      "Pavement (in British English: sidewalk).",
-      "Elevator (in British English: lift).",
-      "Lorry (in British English: truck)."
+      "Escalator.",
+      "Sidewalk.",
+      "Elevator.",
+      "Truck."
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -935,8 +935,8 @@ const questions_k8_englisch = [
     "question": "Which clause is correct: 'If you had arrived on time, we ___ (not miss) the train.'?",
     "answers": [
       "would not have missed",
-      "will not miss the train",
-      "had not missed the train",
+      "will not miss",
+      "had not missed",
       "would not miss the train"
     ],
     "correct": 0,
@@ -1006,7 +1006,7 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which relative pronoun cannot be omitted in a defining relative clause?",
     "answers": [
-      "The relative pronoun when it directly follows a preposition.",
+      "The relative pronoun when it refers to a thing.",
       "The relative pronoun when it is used in casual American English.",
       "The relative pronoun when it is the subject of the relative clause.",
       "The relative pronoun when it is the object of the whole relative clause."
@@ -1058,7 +1058,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What does the abbreviation 'US Constitution' represent?",
+    "question": "What does the term 'US Constitution' represent?",
     "answers": [
       "The list of all fifty capital cities in the USA.",
       "The supreme law of the United States of America.",
@@ -1166,7 +1166,7 @@ const questions_k8_englisch = [
       "because",
       "unless",
       "despite",
-      "although"
+      "or"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1219,7 +1219,7 @@ const questions_k8_englisch = [
     "answers": [
       "The Pacific Crest Trail.",
       "The Oregon Trail.",
-      "The Route 66.",
+      "Route 66.",
       "The Appalachian Trail."
     ],
     "correct": 1,
@@ -1243,7 +1243,7 @@ const questions_k8_englisch = [
     "correct": 2,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "'Must not' drücken im Englischen ein striktes Verbot aus, wohingegen 'don't have to' lediglich die Nicht-Notwendigkeit ausdrückt."
+    "explanation": "'Must not' drückt im Englischen ein striktes Verbot aus, wohingegen 'don't have to' lediglich die Nicht-Notwendigkeit ausdrückt."
   },
 
 
@@ -1255,10 +1255,10 @@ const questions_k8_englisch = [
     "subject": "englisch",
     "question": "Which sentence correctly uses a Gerund as the subject of the sentence?",
     "answers": [
-      "Swam in the ocean is my most favorite summer activity.",
-      "Swimming in the ocean is my favorite summer activity.",
-      "Swim in the ocean is my most favorite summer activity.",
-      "To swim in the ocean is my favorite summer activity ever."
+      "Swam in the ocean is my favourite summer activity.",
+      "Swimming in the ocean is my favourite summer activity.",
+      "Swim in the ocean is my favourite summer activity.",
+      "To swim in the ocean is my favourite summer activity."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1271,7 +1271,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What is the American English word for British 'gasoline' or 'petrol'?",
+    "question": "What is the American English word for British 'petrol'?",
     "answers": [
       "Gas or gasoline.",
       "Fuel or oil.",
@@ -1335,7 +1335,7 @@ const questions_k8_englisch = [
     "correct": 1,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Abraham Lincoln war der 16. Präsident der USA und beendete die Sklaverei während des Amerikanischen Bürgerkriegs."
+    "explanation": "Abraham Lincoln war der 16. Präsident der USA und erklärte während des Amerikanischen Bürgerkriegs die Sklaven in den Südstaaten für frei (endgültig abgeschafft wurde die Sklaverei 1865)."
   },
   {
     "id": "k8_en_076",
@@ -1371,7 +1371,7 @@ const questions_k8_englisch = [
     "correct": 3,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "'To carry on' bedeutet 'weiterhandeln' oder 'etwas fortsetzen'."
+    "explanation": "'To carry on' bedeutet 'weitermachen' oder 'etwas fortsetzen'."
   },
   {
     "id": "k8_en_078",
@@ -1397,7 +1397,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What is the American English equivalent of the British word 'trash' or 'rubbish'?",
+    "question": "What is the American English equivalent of the British word 'rubbish'?",
     "answers": [
       "Junk or scrap metal.",
       "Litter or dust bin.",
@@ -1515,7 +1515,7 @@ const questions_k8_englisch = [
     "correct": 0,
     "difficulty": "leicht",
     "points": 10,
-    "explanation": "Das Gegenteil von 'ancient' (uralt/antisch) ist 'modern'."
+    "explanation": "Das Gegenteil von 'ancient' (uralt/antik) ist 'modern'."
   },
   {
     "id": "k8_en_086",
@@ -1559,7 +1559,7 @@ const questions_k8_englisch = [
     "area": "schule",
     "grade": 8,
     "subject": "englisch",
-    "question": "What is the American English term for British 'vacation' or 'holiday'?",
+    "question": "What is the American English term for British 'holiday'?",
     "answers": [
       "Trip abroad.",
       "Short break.",
@@ -1786,7 +1786,29 @@ const questions_k8_englisch = [
     "difficulty": "leicht",
     "points": 10,
     "explanation": "Martin Luther King Jr. forderte in seiner Rede Gleichberechtigung und ein Ende des Rassismus in den USA."
-  }
-
-
+  },
+  {"id": "luecke_en_k4_005", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "He asked me ___ I was fine.", "answers": ["if", "that", "what", "which"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Indirekte Ja/Nein-Frage (Reported Speech): asked + if/whether (= ob)."},
+  {"id": "luecke_en_k4_007", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "I'd rather ___ tea than coffee.", "answers": ["drink", "drinking", "drank", "to drink"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "I'd rather + Grundform (ohne to) = ich würde lieber … ."},
+  {"id": "luecke_en_k4_008", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "She's the girl ___ won the race.", "answers": ["who", "which", "whose", "what"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Relativsatz: „who“ für Personen, „which“ für Dinge, „whose“ = dessen/deren."},
+  {"id": "luecke_en_k4_011", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "I look forward ___ seeing you.", "answers": ["to", "for", "at", "on"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "look forward to + -ing: „to“ ist hier eine Präposition, deshalb folgt das Gerund (seeing)."},
+  {"id": "luecke_en_k4_012", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "Neither Tom ___ Sam came.", "answers": ["nor", "or", "and", "but"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "neither … nor = weder … noch. „or“ gehört zu either … or."},
+  {"id": "luecke_en_k4_020", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "That's the house ___ I grew up.", "answers": ["where", "which", "that", "who"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Relativsatz mit Ortsangabe: where = wo (the house where I grew up)."},
+  {"id": "luecke_en_k5_001", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "She suggested ___ a break.", "answers": ["taking", "to take", "take", "took"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Nach „suggest“ folgt das Gerund (-ing), nicht to + Infinitiv: suggest taking."},
+  {"id": "luecke_en_k5_003", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "The project ___ by next week.", "answers": ["will be finished", "will finish", "finishes", "is finishing"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Passiv im will-future: will be + 3. Form. Das Projekt wird (von jemandem) beendet → will be finished."},
+  {"id": "luecke_en_k5_007", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "This is the book ___ I told you about.", "answers": ["which", "who", "what", "where"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Relativsatz: which/that für Dinge (the book), who für Personen."},
+  {"id": "luecke_en_k5_008", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "She avoided ___ the question.", "answers": ["answering", "to answer", "answer", "answered"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Nach „avoid“ folgt immer das Gerund (-ing): avoid answering."},
+  {"id": "luecke_en_k5_015", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "He's known ___ his honesty.", "answers": ["for", "as", "by", "with"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "be known for = bekannt sein für (known as = bekannt als)."},
+  {"id": "luecke_en_k5_017", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "Please make ___ your mind.", "answers": ["up", "out", "on", "off"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "make up one's mind = sich entscheiden."},
+  {"id": "luecke_en_k6_012", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "She prefers tea ___ coffee.", "answers": ["to", "than", "as", "from"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "prefer A to B = A lieber mögen als B. Bei „prefer“ steht „to“, nicht „than“."},
+  {"id": "luecke_en_k6_016", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "topic": "lueckentext", "question": "He has a talent ___ languages.", "answers": ["for", "in", "at", "to"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "a talent for something = ein Talent für etwas."},
+  {"id": "k6en103", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "Conditionals type 2: If I ___ rich …", "answers": ["am", "was/were", "will be", "been"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "If-Satz Typ 2 (unwahrscheinlich/unwirklich): If + Simple Past → If I was/were rich, I would …", "topic": "erweiterung"},
+  {"id": "k6en106", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "Reported: She said she ___ tired.", "answers": ["is", "was", "be", "were"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Reported Speech: Die Zeit rückt eine Stufe zurück. „I am tired“ → She said she was tired.", "topic": "erweiterung"},
+  {"id": "k6en107", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "Gerund after „mind“: Do you mind ___?", "answers": ["to open", "opening", "opened", "open"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Nach „mind“ folgt das Gerund (-ing): Do you mind opening the window?", "topic": "erweiterung"},
+  {"id": "k6en109", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "„Climate change“ = …", "answers": ["Wetter", "Klimawandel", "Kleidung", "Klasse"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "climate change = Klimawandel (climate = Klima, change = Veränderung).", "topic": "erweiterung"},
+  {"id": "k6en110", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "Relative: the book ___ I read", "answers": ["who", "which/that", "where", "whose"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Relativsatz bei Dingen: which oder that (the book which/that I read). who nur für Personen.", "topic": "erweiterung"},
+  {"id": "k6en121", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "„Responsible for“ + …", "answers": ["to-infinitive always", "noun/-ing", "past only", "adjective only"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Nach der Präposition „for“ (responsible for) folgt ein Nomen oder eine -ing-Form: responsible for cleaning.", "topic": "erweiterung"},
+  {"id": "k6en122", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "Synonym „help“?", "answers": ["assist", "hinder", "stop", "break"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "assist = helfen, unterstützen (formeller als help). hinder = behindern.", "topic": "erweiterung"},
+  {"id": "k6en123", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "„Democracy“ = …", "answers": ["Diktatur", "Demokratie", "Demonstration", "Büro"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "democracy = Demokratie (Herrschaft des Volkes).", "topic": "erweiterung"},
+  {"id": "k6en128", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "„Global warming“ = …", "answers": ["Eiszeit", "globale Erwärmung", "Regen", "Wind"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "global warming = globale Erwärmung (Anstieg der Durchschnittstemperatur der Erde).", "topic": "erweiterung"},
+  {"id": "k6en130", "category": "k8_englisch", "area": "schule", "grade": 8, "subject": "englisch", "question": "„Who“ vs „which“: people →", "answers": ["which", "who", "where", "when"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Relativpronomen: who für Personen, which für Dinge.", "topic": "erweiterung"}
 ];

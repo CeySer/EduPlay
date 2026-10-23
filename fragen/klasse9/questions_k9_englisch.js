@@ -228,7 +228,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which Native American tribe lived in the southwestern US and built pueblo dwellings?",
     "answers": [
-      "Pueblo / Navajo",
+      "Pueblo peoples",
       "Sioux / Cheyenne",
       "Cherokee Nation",
       "Iroquois League"
@@ -437,7 +437,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "englisch",
-    "question": "Which Island in New York Harbor served as the primary immigration inspection station from 1892 to 1954?",
+    "question": "Which island in New York Harbor served as the primary immigration inspection station from 1892 to 1954?",
     "answers": [
       "Ellis Island Station",
       "Liberty Island Ferry",
@@ -711,10 +711,10 @@ const K9_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "How do you report a command like: 'Open the window!' the teacher said.",
     "answers": [
-      "Teacher told us to open",
-      "Teacher told us open",
-      "Teacher told us that open",
-      "Teacher told us opening"
+      "The teacher told us to open",
+      "The teacher told us open",
+      "The teacher told us that open",
+      "The teacher told us opening"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -965,10 +965,10 @@ const K9_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Complete the Conditional III sentence: 'If I _____ harder, I would have passed the test.'",
     "answers": [
-      "had studied hard",
-      "studied hard then",
-      "would study hard",
-      "have studied hard"
+      "had studied",
+      "studied",
+      "would study",
+      "have studied"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -981,12 +981,12 @@ const K9_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "englisch",
-    "question": "Complete the Conditional III sentence: 'If we had taken a taxi, we _____ missed the train.'",
+    "question": "Complete the Conditional III sentence: 'If we had taken a taxi, we _____ the train.'",
     "answers": [
       "would not have missed",
       "would not have caught",
       "should not have missed",
-      "could not have missed"
+      "will not have missed"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1084,7 +1084,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "englisch",
-    "question": "Which prepositional expression requires a Gerund: 'She is interested _____ art'?",
+    "question": "Complete with a gerund: 'She is _____ art.'",
     "answers": [
       "interested in learning",
       "interested to learn",
@@ -1115,7 +1115,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 9,
     "subject": "englisch",
-    "question": "Complete the sentence: 'He apologized for _____ late.'",
+    "question": "Complete the sentence: 'He apologized _____.'",
     "answers": [
       "for being late",
       "for to be late",
@@ -1262,9 +1262,9 @@ const K9_ENGLISCH_QUESTIONS = [
     "question": "Identify the Contact Clause where the pronoun is omitted:",
     "answers": [
       "The book I read yesterday",
-      "The book that is on table",
+      "The book that is on the table",
       "The book, which is red",
-      "The book whose cover torn"
+      "The book whose cover is torn"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1405,7 +1405,7 @@ const K9_ENGLISCH_QUESTIONS = [
       "US word 'fries'",
       "US word 'crisps'",
       "US word 'wedges'",
-      "US word 'hash' Browns"
+      "US word 'hash browns'"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1669,7 +1669,7 @@ const K9_ENGLISCH_QUESTIONS = [
     "answers": [
       "A political cartoon",
       "A comic book panel",
-      "A infographic chart",
+      "An infographic chart",
       "A photographic snapshot"
     ],
     "correct": 0,
@@ -1784,7 +1784,23 @@ const K9_ENGLISCH_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Language mediation means summarizing or conveying essential information from one language into another for a target audience."
-  }
+  },
+  {"id": "luecke_en_k4_016", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "I'm not used ___ getting up early.", "answers": ["to", "for", "at", "with"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "be used to + -ing = an etwas gewöhnt sein. Nicht verwechseln mit used to + Grundform (= früher)."},
+  {"id": "luecke_en_k5_002", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "I wish I ___ taller.", "answers": ["were", "will be", "am", "be"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Wunsch über die Gegenwart: I wish + Past (bei be oft „were“): I wish I were taller."},
+  {"id": "luecke_en_k5_010", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "He denied ___ the window.", "answers": ["breaking", "to break", "break", "broke"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Nach „deny“ (= leugnen) folgt das Gerund (-ing): deny breaking."},
+  {"id": "luecke_en_k5_012", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "The sooner, the ___.", "answers": ["better", "best", "good", "well"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Feste Wendung mit zwei Komparativen: the + Komparativ, the + Komparativ = je …, desto … ."},
+  {"id": "luecke_en_k5_013", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "She succeeded ___ solving it.", "answers": ["in", "on", "at", "to"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "succeed in + -ing = es schaffen, etwas zu tun."},
+  {"id": "luecke_en_k5_014", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "I can't help ___ about it.", "answers": ["thinking", "to think", "think", "thought"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "can't help + -ing = nicht anders können, als …"},
+  {"id": "luecke_en_k5_019", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "She insisted ___ paying.", "answers": ["on", "in", "at", "to"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "insist on + -ing = darauf bestehen, etwas zu tun."},
+  {"id": "luecke_en_k6_006", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "___ the rain, the match continued.", "answers": ["Despite", "Although", "However", "Yet"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "despite + Nomen/-ing = trotz. „although“ braucht einen ganzen Nebensatz mit Verb."},
+  {"id": "luecke_en_k6_009", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "He is capable ___ better work.", "answers": ["of", "to", "for", "in"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "be capable of + Nomen/-ing = zu etwas fähig sein."},
+  {"id": "luecke_en_k6_014", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "topic": "lueckentext", "question": "___ happens, stay calm.", "answers": ["Whatever", "Whenever", "Wherever", "However"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Whatever = was auch immer: Whatever happens, … = was auch passiert, …"},
+  {"id": "k6en101", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "question": "Past perfect: I ___ eaten.", "answers": ["have", "had", "has", "was"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Past Perfect = had + 3. Form (eat – ate – eaten). Es zeigt, was vor einem anderen Ereignis in der Vergangenheit passiert ist.", "topic": "erweiterung"},
+  {"id": "k6en102", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "question": "„Although“ / „despite“: despite + …", "answers": ["clause with verb always", "noun/-ing", "only adjective", "past only"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "despite (= trotz) steht vor einem Nomen oder einer -ing-Form (despite the rain). although braucht einen Satz mit Verb.", "topic": "erweiterung"},
+  {"id": "k6en105", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "question": "„Sustainable“ means …", "answers": ["kurzlebig", "nachhaltig", "laut", "teuer"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "sustainable = nachhaltig, also so, dass Ressourcen auch für die Zukunft erhalten bleiben.", "topic": "erweiterung"},
+  {"id": "k6en111", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "question": "Modal deduction: He ___ be home; lights on.", "answers": ["can’t", "must", "mustn’t", "shouldn’t"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "must + Grundform drückt eine sichere Vermutung aus (= muss wohl): Das Licht ist an → He must be home.", "topic": "erweiterung"},
+  {"id": "k6en115", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "question": "Future continuous: this time tomorrow we ___", "answers": ["fly", "will be flying", "flew", "flying"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Future Progressive (will be + -ing) für eine Handlung, die zu einem Zeitpunkt in der Zukunft gerade abläuft.", "topic": "erweiterung"},
+  {"id": "k6en116", "category": "k9_englisch", "area": "schule", "grade": 9, "subject": "englisch", "question": "„Equality“ means …", "answers": ["Ungleichheit", "Gleichheit", "Qualität", "Menge"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "equality = Gleichheit/Gleichberechtigung (equal = gleich). Gegenteil: inequality.", "topic": "erweiterung"}
 ];
 
 // Einbindung für Browser

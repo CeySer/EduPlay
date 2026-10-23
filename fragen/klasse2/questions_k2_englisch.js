@@ -139,7 +139,7 @@ const K2_ENGLISCH_QUESTIONS = [
     area: "schule",
     grade: 2,
     subject: "englisch",
-    question: "Welche Farbe hat die Sonne auf Englisch: 'yellow'?",
+    question: "Welche Farbe ist 'yellow'?",
     answers: ["Rot", "Gelb", "Lila", "Braun"],
     correct: 1,
     difficulty: "leicht",
@@ -404,7 +404,7 @@ const K2_ENGLISCH_QUESTIONS = [
     correct: 1,
     difficulty: "leicht",
     points: 5,
-    explanation: "'Hand' wird auf Englisch fast genauso geschrieben und heißt Hand."
+    explanation: "'Hand' wird auf Englisch genauso geschrieben und heißt Hand."
   },
 
   // ================================================================

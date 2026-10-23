@@ -1,52 +1,72 @@
 // Fun · Hauptstädte Europa
 const SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS = [
-  
   {
-        id: "eur_002",
-        category: "spass_hauptstaedte_europa",
-        area: "spass",
-        subject: "hauptstaedte_europa",
-        question: "Welche Stadt ist die Regierungs- und Hauptstadt von Polen?",
-        answers: ["Bromberg", "Kattowitz", "Warschau", "Stettin"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Warschau ist seit 1596 die Hauptstadt Polens."
-    },
+    "id": "eur_002",
+    "category": "spass_hauptstaedte_europa",
+    "area": "spass",
+    "subject": "hauptstaedte_europa",
+    "question": "Welche Stadt ist die Regierungs- und Hauptstadt von Polen?",
+    "answers": [
+      "Bromberg",
+      "Kattowitz",
+      "Warschau",
+      "Stettin"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Warschau ist seit 1596 die Hauptstadt Polens."
+  },
   {
-        id: "eur_003",
-        category: "spass_hauptstaedte_europa",
-        area: "spass", subject: "hauptstaedte_europa",
-        question: "Welche Metropole gilt als Hauptstadt der Republik Irland?",
-        answers: ["Belfast", "Dublin", "Cork", "Galway"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Dublin liegt an der Ostküste Irlands."
-    },
+    "id": "eur_003",
+    "category": "spass_hauptstaedte_europa",
+    "area": "spass",
+    "subject": "hauptstaedte_europa",
+    "question": "Welche Metropole gilt als Hauptstadt der Republik Irland?",
+    "answers": [
+      "Belfast",
+      "Dublin",
+      "Cork",
+      "Galway"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Dublin liegt an der Ostküste Irlands."
+  },
   {
-        id: "eur_004",
-        category: "spass_hauptstaedte_europa",
-        area: "spass",
-        subject: "hauptstaedte_europa",
-        question: "Wie heißt die Hauptstadt des skandinavischen Landes Norwegen?",
-        answers: ["Oslo", "Trondheim", "Bergen", "Stavanger"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Oslo liegt im Süden Norwegens am Oslofjord."
-    },
+    "id": "eur_004",
+    "category": "spass_hauptstaedte_europa",
+    "area": "spass",
+    "subject": "hauptstaedte_europa",
+    "question": "Wie heißt die Hauptstadt des skandinavischen Landes Norwegen?",
+    "answers": [
+      "Oslo",
+      "Trondheim",
+      "Bergen",
+      "Stavanger"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Oslo liegt im Süden Norwegens am Oslofjord."
+  },
   {
-        id: "eur_005",
-        category: "spass_hauptstaedte_europa",
-        area: "spass",
-        subject: "hauptstaedte_europa",
-        question: "Welche spanische Stadt ist das politische Zentrum des Landes?",
-        answers: ["Valencia", "Madrid", "Barcelona", "Sevilla"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Madrid liegt im geografischen Zentrum Spaniens."
-    }
+    "id": "eur_005",
+    "category": "spass_hauptstaedte_europa",
+    "area": "spass",
+    "subject": "hauptstaedte_europa",
+    "question": "Was ist die Hauptstadt von Island?",
+    "answers": [
+      "Reykjavík",
+      "Akureyri",
+      "Húsavík",
+      "Selfoss"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Reykjavík ist die nördlichste Hauptstadt der Welt. Geheizt wird dort fast nur mit Erdwärme."
+  }
 ];
 if (typeof window !== "undefined") window.SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS = SPASS_HAUPTSTAEDTE_EUROPA_QUESTIONS;

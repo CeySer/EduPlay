@@ -38,51 +38,51 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welche Figur sagt im Batman-Film 'The Dark Knight': 'Why so serious?'?",
+    "question": "Wer sagt in 'Die Eiskönigin': 'Manche Leute sind es wert, dass man für sie schmilzt'?",
     "answers": [
-      "Bane",
-      "Der Joker",
-      "Harvey Dent",
-      "Mister Freeze"
+      "Sven",
+      "Kristoff",
+      "Olaf",
+      "Anna"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Heath Ledger prägte als Joker diesen unheimlichen Spruch im Christopher-Nolan-Meisterwerk."
+    "explanation": "Der Schneemann Olaf sagt es zu Anna, als er sie am Kamin wärmt – obwohl er dabei zu tauen beginnt."
   },
   {
     "id": "zitat_mc_005",
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Wer ruft im Film 'Gladiator' in die Arena: 'Eure Unterhaltung hat wohl einen Dämpfer erlitten?' ('Are you not entertained?')?",
+    "question": "Wer sagt in 'Der König der Löwen' zu Simba: 'Erinnere dich, wer du bist'?",
     "answers": [
-      "Maximus Decimus Meridius",
-      "Kaiser Commodus Aurelius",
-      "Der Händler Proximo",
-      "Senator Gracchus"
+      "Rafiki",
+      "Scar",
+      "Mufasa",
+      "Timon"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Russell Crowe alias Maximus brüllt diesen Satz nach einem blitzschnellen Kampf zur Menge."
+    "explanation": "Mufasas Geist erscheint Simba in den Wolken und erinnert ihn daran, dass er der rechtmäßige König ist."
   },
   {
     "id": "zitat_mc_006",
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Charakter sagt in 'Pulp Fiction': 'Der Pfad der Gerechten ist zu beiden Seiten eingeschnürt...' (Hesekiel 25:17)?",
+    "question": "Wessen Motto lautet in 'Ratatouille': 'Jeder kann kochen!'?",
     "answers": [
-      "Vincent Vega",
-      "Jules Winnfield",
-      "Marsellus Wallace",
-      "Butch Coolidge"
+      "Remy",
+      "Linguini",
+      "Chefkoch Gusteau",
+      "Anton Ego"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Samuel L. Jackson zitiert als Auftragsmörder Jules diesen Bibelvers vor seinen Exekutionen."
+    "explanation": "Das Motto des Sternekochs Auguste Gusteau macht der Ratte Remy Mut, selbst Koch zu werden."
   },
   {
     "id": "zitat_mc_007",
@@ -96,7 +96,7 @@
       "Thor",
       "Bruce Banner"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Tony Stark (Robert Downey Jr.) schnippt mit dem Infinity-Handschuh und besiegt Thanos."
@@ -140,17 +140,17 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Mafioso sagt im Film 'Der Pate': 'Ich mache ihm ein Angebot, das er nicht ablehnen kann'?",
+    "question": "Wer sagt zu Harry Potter: 'Du bist ein Zauberer, Harry'?",
     "answers": [
-      "Michael Corleone",
-      "Don Vito Corleone",
-      "Sonny Corleone",
-      "Tom Hagen"
+      "Albus Dumbledore",
+      "Ron Weasley",
+      "Hagrid",
+      "Severus Snape"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Marlon Brando spielt den mächtigen Clan-Chef Don Vito Corleone."
+    "explanation": "Hagrid überbringt Harry an seinem elften Geburtstag den Brief aus Hogwarts."
   },
   {
     "id": "zitat_mc_011",
@@ -174,17 +174,17 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welche Figur fordert in 'Matrix' Neo auf, zwischen der roten und der blauen Pille zu wählen?",
+    "question": "Wer erklärt in 'Shrek': 'Oger sind wie Zwiebeln'?",
     "answers": [
-      "Agent Smith",
-      "Morpheus",
-      "Trinity",
-      "Der Orakel"
+      "Shrek",
+      "Der Esel",
+      "Prinzessin Fiona",
+      "Lord Farquaad"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Morpheus (Laurence Fishburne) bietet Neo die Chance, die Wahrheit der Matrix zu erkennen."
+    "explanation": "Shrek meint damit, dass Oger viele Schichten haben – der Esel hätte lieber Torte als Vergleich gehabt."
   },
   {
     "id": "zitat_mc_013",
@@ -242,17 +242,17 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Drogenbaron schreit im Film 'Scarface': 'Sagt Hallo zu meiner kleinen Freundin!'?",
+    "question": "Welche Figur befiehlt in 'Madagascar': 'Einfach lächeln und winken, Männer!'?",
     "answers": [
-      "Manny Ribera",
-      "Tony Montana",
-      "Alejandro Sosa",
-      "Frank Lopez"
+      "Skipper",
+      "Alex",
+      "Marty",
+      "König Julien"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tony Montana (Al Pacino) stürmt mit dem Granatwerfer aus seinem Büro."
+    "explanation": "Pinguin-Anführer Skipper sorgt so dafür, dass niemand merkt, was die Pinguine gerade aushecken."
   },
   {
     "id": "zitat_mc_017",
@@ -276,17 +276,17 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welche Horror-Figur fragt am Telefon: 'Was ist dein Lieblings-Horrorfilm?'?",
+    "question": "Wer sagt in 'Findet Nemo': 'Fische sind Freunde, kein Futter!'?",
     "answers": [
-      "Jason Voorhees",
-      "Ghostface (Scream)",
-      "Freddy Krueger",
-      "Michael Myers"
+      "Marlin",
+      "Der Hai Bruce",
+      "Dorie",
+      "Die Schildkröte Crush"
     ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Killer mit der Scream-Maske nutzt dieses Quiz als tödliches Spiel mit seinen Opfern."
+    "explanation": "Die Haie Bruce, Hammer und Hart wollen keine Fische mehr fressen und treffen sich dafür in einer Selbsthilfegruppe."
   },
   {
     "id": "zitat_mc_019",
@@ -327,51 +327,51 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Cop schreit in 'Stirb Langsam': 'Yippie-ya-yay, Schweinebacke!'?",
+    "question": "Welcher Hund aus 'Oben' wird mitten im Satz mit 'Eichhörnchen!' abgelenkt?",
     "answers": [
-      "John McClane",
-      "Al Powell",
-      "Harry Ellis",
-      "Dwayne T. Robinson"
+      "Kevin",
+      "Russell",
+      "Dug",
+      "Carl"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Bruce Willis prägte diesen legendären Action-Spruch als John McClane im Hochhaus."
+    "explanation": "Dugs Halsband übersetzt seine Gedanken in Sprache – und Eichhörnchen sind für ihn einfach zu spannend (Pixar, 2009)."
   },
   {
     "id": "zitat_mc_022",
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Wer ruft in der Serie 'Game of Thrones' immer wieder das Motto 'Winter is coming' aus?",
+    "question": "Wer singt in 'Die Eiskönigin': 'Willst du einen Schneemann bauen?'?",
     "answers": [
-      "Die Familie Lannister",
-      "Die Familie Stark",
-      "Die Familie Targaryen",
-      "Die Familie Baratheon"
+      "Anna",
+      "Elsa",
+      "Olaf",
+      "Kristoff"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ned Stark und die Mitglieder des Hauses Stark nutzen dieses düstere Motto als ständige Warnung."
+    "explanation": "Die kleine Anna klopft jahrelang an Elsas verschlossene Tür und stellt immer wieder diese Frage."
   },
   {
     "id": "zitat_mc_023",
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Cyborg bringt den Spruch 'Hasta la vista, baby' im Film 'Terminator 2'?",
+    "question": "Wer ruft in 'Toy Story' zu Buzz Lightyear: 'Du bist ein Spielzeug!'?",
     "answers": [
-      "T-800 (Schwarzenegger)",
-      "T-1000 aus Flüssigmetall",
-      "T-X aus Terminator 3",
-      "Marcus Wright"
+      "Woody",
+      "Rex",
+      "Hamm",
+      "Slinky"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der T-800 lernt den Spruch zuvor vom jungen John Connor."
+    "explanation": "Woody versucht Buzz klarzumachen, dass er kein echter Space-Ranger ist, sondern ein Spielzeug wie alle anderen."
   },
   {
     "id": "zitat_mc_024",
@@ -395,7 +395,7 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Hobit nennt den Einen Ring besessen 'Mein Schaaaaatz!'?",
+    "question": "Welche Figur nennt den Einen Ring besessen 'Mein Schaaaaatz!'?",
     "answers": [
       "Frodo Beutlin",
       "Bilbo Beutlin",
@@ -450,7 +450,7 @@
     "answers": [
       "Chuck Noland",
       "Forrest Gump",
-      "Captain Miller",
+      "Woody",
       "Jim Lovell"
     ],
     "correct": 0,
@@ -531,51 +531,51 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Wer offenbart in 'Fight Club' die eiserne Regel: 'Ihr verliert kein Wort über den Fight Club'?",
+    "question": "Wer sagt in 'Die Unglaublichen': 'Keine Capes!'?",
     "answers": [
-      "Der Erzähler",
-      "Tyler Durden",
-      "Robert Paulson",
-      "Angel Face"
+      "Mr. Incredible",
+      "Frozone",
+      "Syndrome",
+      "Edna Mode"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Brad Pitt stellt als Tyler Durden die erste und zweite Regel des Untergrund-Klubs auf."
+    "explanation": "Die Kostümdesignerin Edna verbietet Umhänge, weil sie vielen Superhelden schon zum Verhängnis wurden (Pixar, 2004)."
   },
   {
     "id": "zitat_mc_034",
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Welcher Psychopath fragt in 'Das Schweigen der Lämmer': 'Haben die Lämmer aufgehört zu schreien, Clarice?'?",
+    "question": "Wer verrät in 'Kung Fu Panda': 'Es gibt keine geheime Zutat'?",
     "answers": [
-      "Dr. Hannibal Lecter",
-      "Buffalo Bill (Jame Gumb)",
-      "Ermittler Jack Crawford",
-      "Dr. Frederick Chilton"
+      "Meister Shifu",
+      "Mr. Ping",
+      "Po",
+      "Tigress"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Sir Anthony Hopkins spielt den genialen, hochgefährlichen Kannibalen Dr. Lecter."
+    "explanation": "Pos Vater, die Gans Mr. Ping, gibt zu, dass seine berühmte Nudelsuppe ganz ohne Geheimzutat auskommt."
   },
   {
     "id": "zitat_mc_035",
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Wer ruft im Film '300' die berühmten Worte: 'Das ist Sparta!'?",
+    "question": "Wer singt in 'Der König der Löwen': 'Ich will jetzt gleich König sein'?",
     "answers": [
-      "König Leonidas",
-      "Der Verräter Theron",
-      "Der Bote Daxos",
-      "Xerxes"
+      "Mufasa",
+      "Simba",
+      "Scar",
+      "Timon"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Gerard Butler stößt als König Leonidas den persischen Boten in den Brunnen."
+    "explanation": "Der junge Simba singt es zusammen mit Nala und ärgert dabei den Hofberater Zazu."
   },
   {
     "id": "zitat_mc_036",
@@ -616,17 +616,17 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Wer sagt in 'A Beautiful Mind' den berühmten Satz über Mathematik und Logik?",
+    "question": "Wer sagt in 'Zoomania': 'Jeder kann alles sein'?",
     "answers": [
-      "John Nash",
-      "Charles Herman",
-      "Parcher",
-      "Sol"
+      "Nick Wilde",
+      "Chief Bogo",
+      "Flash",
+      "Judy Hopps"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Russell Crowe spielt das schizophrene Genie John Nash im Oscar-prämierten Drama."
+    "explanation": "Häsin Judy Hopps wird gegen alle Vorurteile die erste Hasen-Polizistin der Stadt (Disney, 2016)."
   },
   {
     "id": "zitat_mc_039",
@@ -650,17 +650,17 @@
     "category": "film_serien_zitate",
     "area": "wer_hats_gesagt",
     "subject": "wissen",
-    "question": "Wer brüllt im Horrorklassiker 'Shining' durch die zeraxten Türspalten: 'Hier ist Jacky!' ('Here's Johnny!')?",
+    "question": "Wer sagt in 'Pinocchio': 'Lass immer dein Gewissen dein Führer sein'?",
     "answers": [
-      "Jack Torrance",
-      "Danny Torrance",
-      "Dick Hallorann",
-      "Lloyd"
+      "Gepetto",
+      "Die blaue Fee",
+      "Kater Figaro",
+      "Jiminy Grille"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Jack Nicholson improvisierte diese ikonische Szene in Stanley Kubricks Psychothriller."
+    "explanation": "Die kleine Grille soll als Pinocchios Gewissen auf ihn aufpassen."
   },
   {
     "id": "zitat_ext_041",
@@ -684,34 +684,34 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt in Star Wars: 'Luke, ich bin dein Vater'?",
+    "question": "Wer sagt in 'Kung Fu Panda': 'Es gibt keine Zufälle'?",
     "answers": [
-      "Darth Vader",
-      "Obi-Wan",
-      "Yoda",
-      "Palpatine"
+      "Meister Shifu",
+      "Po",
+      "Meister Oogway",
+      "Tigress"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Darth Vader (eigentlich: 'Nein, ich bin dein Vater')."
+    "explanation": "Die weise alte Schildkröte wählt Po als Drachenkrieger aus."
   },
   {
     "id": "zitat_ext_043",
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt: 'Hasta la vista, baby'?",
+    "question": "In welchem Film singt die Heldin 'Endlich sehe ich das Licht'?",
     "answers": [
-      "Terminator 2",
-      "Terminator 1",
-      "RoboCop",
-      "Predator"
+      "Die Eiskönigin",
+      "Arielle, die Meerjungfrau",
+      "Vaiana",
+      "Rapunzel – Neu verföhnt"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "John Connor bringt dem T-800 den Spruch bei. Arnold Schwarzenegger sagt ihn 1991 in Terminator 2."
+    "explanation": "Rapunzel und Flynn sehen sich von einem Boot aus die schwebenden Laternen an ihrem Geburtstag an."
   },
   {
     "id": "zitat_ext_044",
@@ -735,17 +735,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'I'll be back'?",
+    "question": "Wer singt in 'Das Dschungelbuch': 'Probier's mal mit Gemütlichkeit'?",
     "answers": [
-      "Terminator",
-      "Predator",
-      "Commando",
-      "True Lies"
+      "Baghira",
+      "King Louie",
+      "Balu",
+      "Kaa"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Satz fällt 1984 vor der Polizeiwache – kurz darauf fährt der Terminator mit dem Auto hinein."
+    "explanation": "Der gemütliche Bär Balu zeigt Mogli, dass man nicht viel braucht, um glücklich zu sein."
   },
   {
     "id": "zitat_ext_046",
@@ -757,7 +757,7 @@
       "Eine Frage der Ehre",
       "Der Pate",
       "JFK",
-      "A Few Good Men"
+      "Philadelphia"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -769,17 +769,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt in Der Pate: 'Ich mache ihm ein Angebot…'?",
+    "question": "In welchem Film singt die Heldin 'Ich bin bereit'?",
     "answers": [
-      "Don Corleone",
-      "Michael",
-      "Sonny",
-      "Tom Hagen"
+      "Vaiana",
+      "Encanto",
+      "Arielle, die Meerjungfrau",
+      "Mulan"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Marlon Brando als Vito Corleone, 1972. Gemeint ist ein Angebot, das man schlecht ablehnen kann."
+    "explanation": "Vaiana singt am Strand davon, wie sehr sie das Meer jenseits des Riffs ruft (Disney, 2016)."
   },
   {
     "id": "zitat_ext_048",
@@ -803,17 +803,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'Why so serious?'?",
+    "question": "Wer singt in einem Disney-Klassiker das Fantasiewort 'Supercalifragilisticexpialigetisch'?",
     "answers": [
-      "The Dark Knight",
-      "Joker 2019",
-      "Batman 1989",
-      "Suicide Squad"
+      "Bert",
+      "Mary Poppins",
+      "Jane Banks",
+      "Mr. Banks"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Heath Ledger als Joker, 2008. Für die Rolle bekam er posthum den Oscar als bester Nebendarsteller."
+    "explanation": "Das lange Wort sagt man laut Mary Poppins dann, wenn einem sonst nichts mehr einfällt (1964)."
   },
   {
     "id": "zitat_ext_050",
@@ -922,17 +922,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'Keep your friends close, but your enemies closer'?",
+    "question": "Wer ruft in 'Alice im Wunderland': 'Ich komme zu spät, ich komme zu spät!'?",
     "answers": [
-      "Der Pate II",
-      "Der Pate",
-      "Scarface",
-      "Goodfellas"
+      "Die Grinsekatze",
+      "Der Hutmacher",
+      "Das weiße Kaninchen",
+      "Die Herzkönigin"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Michael Corleone sagt es 1974 und schreibt es seinem Vater zu – im ersten Teil fällt der Satz aber nie."
+    "explanation": "Das Kaninchen hetzt mit seiner Taschenuhr vorbei – Alice folgt ihm in den Kaninchenbau."
   },
   {
     "id": "zitat_ext_057",
@@ -956,17 +956,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'You talking to me?'?",
+    "question": "Wer singt in 'Die Schöne und das Biest' das Lied 'Sei hier Gast'?",
     "answers": [
-      "Taxi Driver",
-      "Raging Bull",
-      "Goodfellas",
-      "Casino"
+      "Lumière",
+      "Herr von Unruh",
+      "Madame Pottine",
+      "Tassilo"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Robert De Niro spricht 1976 vor dem Spiegel – die Zeile stand so gar nicht im Drehbuch."
+    "explanation": "Der Kerzenleuchter Lumière begrüßt Belle mit einem großen Tanz der verzauberten Teller und Gläser."
   },
   {
     "id": "zitat_ext_059",
@@ -1007,17 +1007,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'I'm going to make him an offer he can't refuse'?",
+    "question": "Wessen Markenspruch ist 'Ka-tschau!'?",
     "answers": [
-      "Der Pate",
-      "Scarface",
-      "Goodfellas",
-      "Casino"
+      "Hook",
+      "Sally",
+      "Lightning McQueen",
+      "Doc Hudson"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Das American Film Institute wählte diese Zeile von 1972 zum berühmtesten Filmzitat aller Zeiten."
+    "explanation": "Lightning McQueen ruft es in 'Cars' – das 'Ka-chow' ahmt das Blitzlicht der Fotografen nach."
   },
   {
     "id": "zitat_ext_062",
@@ -1058,34 +1058,34 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'I see dead people'?",
+    "question": "Wer singt: 'Ich mach mir die Welt, widdewidde wie sie mir gefällt'?",
     "answers": [
-      "The Sixth Sense",
-      "The Others",
-      "Ghost",
-      "Poltergeist"
+      "Annika",
+      "Tommy",
+      "Herr Nilsson",
+      "Pippi Langstrumpf"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Junge Cole flüstert es 1999 – der Film ist für seine Schlusswendung berühmt."
+    "explanation": "Die Zeile stammt aus dem Titellied der Pippi-Langstrumpf-Filme von 1969."
   },
   {
     "id": "zitat_ext_065",
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'Say hello to my little friend'?",
+    "question": "Wer sagt: 'Ich will nie erwachsen werden'?",
     "answers": [
-      "Scarface",
-      "Carlito's Way",
-      "Heat",
-      "Casino"
+      "Peter Pan",
+      "Captain Hook",
+      "Wendy",
+      "Tinkerbell"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Al Pacino als Tony Montana, 1983, in der Schlussszene seiner Villa."
+    "explanation": "Peter Pan lebt im Nimmerland, wo Kinder niemals erwachsen werden."
   },
   {
     "id": "zitat_ext_066",
@@ -1109,17 +1109,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt: 'I am Iron Man'?",
+    "question": "Welcher Elefant ruft in den Hörspielen zur Begrüßung 'Törööö!'?",
     "answers": [
-      "Tony Stark",
-      "Rhodey",
-      "Pepper",
-      "Happy"
+      "Dumbo",
+      "Benjamin Blümchen",
+      "Elmar",
+      "Babar"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tony Stark beendet damit 2008 seine Pressekonferenz – und sagt es 2019 in Endgame ein letztes Mal."
+    "explanation": "Benjamin wohnt im Neustädter Zoo und ist mit dem Jungen Otto befreundet."
   },
   {
     "id": "zitat_ext_068",
@@ -1177,17 +1177,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt: 'This is Sparta!'?",
+    "question": "Wer ruft vor Freude 'Yabba-Dabba-Doo!'?",
     "answers": [
-      "300",
-      "Gladiator",
-      "Troy",
-      "Alexander"
+      "Barney Geröllheimer",
+      "Scooby-Doo",
+      "Fred Feuerstein",
+      "Homer Simpson"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "König Leonidas tritt den persischen Boten 2006 mit diesem Satz in den Brunnen."
+    "explanation": "Fred Feuerstein ruft es in der Steinzeit-Zeichentrickserie 'Familie Feuerstein', die 1960 startete."
   },
   {
     "id": "zitat_ext_072",
@@ -1228,17 +1228,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt: 'I drink and I know things'?",
+    "question": "Welcher Esel aus 'Winnie Puuh' verliert immer wieder seinen Schwanz?",
     "answers": [
-      "Tyrion Lannister",
-      "Jaime Lannister",
-      "Ser Bronn von Blackwater",
-      "Lord Varys"
+      "Tigger",
+      "I-Aah",
+      "Ferkel",
+      "Rabbit"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tyrion Lannister beschreibt damit knapp, was er zum Überleben beiträgt."
+    "explanation": "Der Schwanz von I-Aah ist nur mit einem Nagel befestigt – Christopher Robin bringt ihn immer wieder an."
   },
   {
     "id": "zitat_ext_076",
@@ -1262,17 +1262,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Welches Zitat: 'Why is the rum gone?'?",
+    "question": "Wie heißt das Schiff von Captain Jack Sparrow in 'Fluch der Karibik'?",
     "answers": [
-      "Fluch der Karibik",
-      "Treasure Island",
-      "Hook",
-      "Black Sails"
+      "Flying Dutchman",
+      "Queen Anne's Revenge",
+      "Interceptor",
+      "Black Pearl"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Pirates of the Caribbean."
+    "explanation": "Die Black Pearl mit ihren schwarzen Segeln gilt als schnellstes Schiff der Karibik."
   },
   {
     "id": "zitat_ext_078",
@@ -1296,17 +1296,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt: 'Bazinga!'?",
+    "question": "Welches blaue Monster aus der Sesamstraße ruft am liebsten 'Kekse!'?",
     "answers": [
-      "Sheldon Cooper",
-      "Leonard Hofstadter",
-      "Howard Wolowitz",
-      "Rajesh Koothrappali"
+      "Grobi",
+      "Elmo",
+      "Das Krümelmonster",
+      "Oscar"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sheldon Cooper hängt das Wort an seine Streiche an. Es ist eine Erfindung der Serienautoren."
+    "explanation": "Im Original heißt es 'Cookie Monster' – Kekse sind für ihn das Größte."
   },
   {
     "id": "zitat_ext_080",
@@ -1364,17 +1364,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt: 'I am Groot'?",
+    "question": "Aus welchem Film stammt das Firmenmotto 'Wir erschrecken, weil wir uns sorgen'?",
     "answers": [
-      "Groot",
-      "Rocket",
-      "Star-Lord",
-      "Drax"
+      "Hotel Transsilvanien",
+      "Die Monster AG",
+      "Shrek",
+      "Coco"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Groot kann nur diesen einen Satz sagen. Vin Diesel sprach ihn 2014 in mehreren Sprachen ein."
+    "explanation": "In Monstropolis wird Strom aus Kinderschreien gewonnen – bis die Monster merken, dass Lachen viel mehr Energie liefert."
   },
   {
     "id": "zitat_ext_084",
@@ -1398,17 +1398,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'I'll have what she's having'?",
+    "question": "Wer singt in 'Aladdin' das Lied 'Nur 'n kleiner Freundschaftsdienst'?",
     "answers": [
-      "Harry und Sally",
-      "Pretty Woman",
-      "When Harry Met Sally",
-      "Sleepless in Seattle"
+      "Aladdin",
+      "Der Dschinni",
+      "Jafar",
+      "Abu"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Zeile fällt 1989 im Diner. Gesprochen hat sie die Mutter des Regisseurs Rob Reiner."
+    "explanation": "Der Dschinni zeigt Aladdin mit dem Lied, was er alles zaubern kann – im Original sprach ihn Robin Williams."
   },
   {
     "id": "zitat_ext_086",
@@ -1419,7 +1419,7 @@
     "answers": [
       "Jerry Maguire",
       "Wall Street",
-      "The Wolf of Wall Street",
+      "Rocky",
       "Moneyball"
     ],
     "correct": 0,
@@ -1449,17 +1449,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welcher Serie stammt 'I am the one who knocks'?",
+    "question": "Welcher Kobold ruft: 'Hurra, hurra, der Pumuckl ist da!'?",
     "answers": [
-      "Breaking Bad",
-      "Better Call Saul",
-      "Ozark",
-      "Narcos"
+      "Das Sams",
+      "Das kleine Gespenst",
+      "Urmel",
+      "Pumuckl"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Walter White in Staffel 4 – der Moment, in dem er endgültig zu Heisenberg wird."
+    "explanation": "Der rothaarige Kobold wohnt in der Werkstatt von Schreinermeister Eder in München."
   },
   {
     "id": "zitat_ext_089",
@@ -1483,17 +1483,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'Frankly, my dear, I don't give a damn'?",
+    "question": "Welche Krabbe singt in 'Arielle, die Meerjungfrau' das Lied 'Unter dem Meer'?",
     "answers": [
-      "Vom Winde verweht",
-      "Casablanca",
-      "Citizen Kane",
-      "Rebecca"
+      "Fabius",
+      "König Triton",
+      "Scuttle",
+      "Sebastian"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rhett Butlers Abschiedssatz von 1939 – damals ein Skandal wegen des Wortes 'damn'."
+    "explanation": "Sebastian ist eigentlich Hofkomponist und soll auf Arielle aufpassen."
   },
   {
     "id": "zitat_ext_091",
@@ -1504,7 +1504,7 @@
     "answers": [
       "Homer Simpson",
       "Bart",
-      "Peter Griffin",
+      "Ned Flanders",
       "Fry"
     ],
     "correct": 0,
@@ -1589,7 +1589,7 @@
     "answers": [
       "Star Wars",
       "Indiana Jones",
-      "Alien",
+      "Jurassic Park",
       "Der weiße Hai"
     ],
     "correct": 0,
@@ -1623,7 +1623,7 @@
     "answers": [
       "E.T.",
       "Close Encounters",
-      "Alien",
+      "Lilo & Stitch",
       "Contact"
     ],
     "correct": 0,
@@ -1639,7 +1639,7 @@
     "question": "Wer sagt: 'I am vengeance. I am the night'?",
     "answers": [
       "Batman",
-      "Punisher",
+      "Superman",
       "Daredevil",
       "Arrow"
     ],
@@ -1656,7 +1656,7 @@
     "question": "Aus welchem Film stammt 'Roads? Where we're going we don't need roads'?",
     "answers": [
       "Zurück in die Zukunft",
-      "Mad Max – Fury Road",
+      "Herbie",
       "Cars 2",
       "Speed"
     ],
@@ -1670,17 +1670,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Film stammt 'The first rule of Fight Club is…'?",
+    "question": "Welches Wesen mit Wunschpunkten im Gesicht taucht an einem Samstag bei Herrn Taschenbier auf?",
     "answers": [
-      "Fight Club",
-      "Se7en",
-      "Zodiac",
-      "Gone Girl"
+      "Das Sams",
+      "Pumuckl",
+      "Das kleine Gespenst",
+      "Urmel"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die erste Regel von 1999 lautet: Man verliert kein Wort über den Fight Club."
+    "explanation": "Das Sams stammt aus den Büchern von Paul Maar. Jeder blaue Punkt erfüllt einen Wunsch."
   },
   {
     "id": "zitat_ext_102",
@@ -1704,17 +1704,17 @@
     "category": "film_serien_zitate",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer sagt: 'Valar Morghulis'?",
+    "question": "Welche kleine Hexe beginnt ihre Zaubersprüche mit 'Eene meene …'?",
     "answers": [
-      "Game of Thrones",
-      "The Witcher",
-      "Vikings",
-      "Rome"
+      "Die kleine Hexe",
+      "Bibi Blocksberg",
+      "Hexe Lilli",
+      "Sabrina"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Game of Thrones – All men must die."
+    "explanation": "Bibi Blocksberg fliegt auf dem Besen Kartoffelbrei – die Hörspiele gibt es seit 1980."
   },
   {
     "id": "zitat_ext_104",

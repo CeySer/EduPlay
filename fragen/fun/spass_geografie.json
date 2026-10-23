@@ -4,7 +4,7 @@
     "category": "geografie_geschichte",
     "area": "geschichte",
     "subject": "wissen",
-    "question": "In welchem Jahr fiel die Berliner Mauer und läutete das Ende der Wiedervereinigung ein?",
+    "question": "In welchem Jahr fiel die Berliner Mauer und machte den Weg zur Wiedervereinigung frei?",
     "answers": [
       "1985",
       "1989",
@@ -58,7 +58,7 @@
     "question": "Welcher Vulkan verschüttete im Jahr 79 n. Chr. die antike römische Stadt Pompeji?",
     "answers": [
       "Ätna",
-      "Vesus",
+      "Vesuv",
       "Stromboli",
       "Krakatau"
     ],
@@ -72,7 +72,7 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Wie heisst die Hauptstadt von Japan?",
+    "question": "Wie heißt die Hauptstadt von Japan?",
     "answers": [
       "Kyoto",
       "Osaka",
@@ -106,17 +106,17 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Durch welches europäische Land fließt die Seine?",
+    "question": "Welcher Fluss fließt durch Wien, Bratislava, Budapest und Belgrad?",
     "answers": [
-      "Deutschland",
-      "Frankreich",
-      "Spanien",
-      "Italien"
+      "Donau",
+      "Rhein",
+      "Elbe",
+      "Moldau"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Seine fließt direkt mitten durch die französische Hauptstadt Paris."
+    "explanation": "Die Donau fließt durch zehn Länder – mehr als jeder andere Fluss der Erde."
   },
   {
     "id": "geo_mc_010",
@@ -191,7 +191,7 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Wie heisst die Hauptstadt von Kanada?",
+    "question": "Wie heißt die Hauptstadt von Kanada?",
     "answers": [
       "Toronto",
       "Vancouver",
@@ -242,17 +242,17 @@
     "category": "geografie_geschichte",
     "area": "geschichte",
     "subject": "wissen",
-    "question": "Welche Hochkultur erbaute die Inka-Stadt Machu Picchu hoch in den Anden?",
+    "question": "Welches Volk errichtete die Stadt Tenochtitlan, auf deren Ruinen heute Mexiko-Stadt steht?",
     "answers": [
-      "Azteken",
-      "Maya",
       "Inka",
+      "Maya",
+      "Azteken",
       "Olmeken"
     ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Machu Picchu in Peru war eine Königsstadt des Inka-Reiches im 15. Jahrhundert."
+    "explanation": "Tenochtitlan lag auf einer Insel in einem See und war um 1500 eine der größten Städte der Welt."
   },
   {
     "id": "geo_mc_019",
@@ -412,34 +412,34 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welches Land ist eine Insel und Teil des Vereinigten Königreichs?",
+    "question": "Auf welcher Insel liegen England, Schottland und Wales?",
     "answers": [
-      "Großbritannien",
-      "Neuseeland",
       "Irland",
-      "Island"
+      "Island",
+      "Großbritannien",
+      "Sizilien"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Auf der Insel liegen England, Schottland und Wales. Nordirland gehört zum Königreich, aber nicht zur Insel."
+    "explanation": "Großbritannien ist die größte Insel Europas. Nordirland liegt auf der Nachbarinsel Irland."
   },
   {
     "id": "geo_ext_040",
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welche Stadt ist die Hauptstadt von China?",
+    "question": "Welches ist der höchste Berg Afrikas?",
     "answers": [
-      "Peking",
-      "Shanghai",
-      "Hongkong",
-      "Guangzhou"
+      "Kilimandscharo",
+      "Mount Kenia",
+      "Tafelberg",
+      "Atlas"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Peking hat über 20 Millionen Einwohner. Beijing ist dieselbe Stadt, nur anders übertragen."
+    "explanation": "Der Kilimandscharo in Tansania ist fast 5.900 Meter hoch – auf seinem Gipfel liegt trotz Äquatornähe Schnee."
   },
   {
     "id": "geo_ext_045",
@@ -480,17 +480,17 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welcher Berg ist der höchste in Europa (Alpen-Üblich)?",
+    "question": "Welcher Berg ist der höchste der Alpen?",
     "answers": [
-      "Mont Blanc",
       "Matterhorn",
       "Zugspitze",
-      "Großglockner"
+      "Großglockner",
+      "Mont Blanc"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Mont Blanc oft als höchster Alpengipfel genannt."
+    "explanation": "Der Mont Blanc an der Grenze von Frankreich und Italien ist rund 4.800 Meter hoch."
   },
   {
     "id": "geo_ext_048",
@@ -536,7 +536,7 @@
       "Rom",
       "Athen",
       "Karthago",
-      "Konstantinopel"
+      "Alexandria"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -551,8 +551,8 @@
     "question": "Auf welchem Erdteil landete Kolumbus 1492?",
     "answers": [
       "In Amerika",
-      "In Indien",
-      "In China",
+      "In Asien",
+      "In Afrika",
       "In Australien"
     ],
     "correct": 0,
@@ -616,24 +616,24 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welches Land baute die Chinesische Mauer?",
+    "question": "Wie nannte man die Herrscher im alten Ägypten?",
     "answers": [
-      "China",
-      "Japan",
-      "Mongolei",
-      "Korea"
+      "Kaiser",
+      "Pharaonen",
+      "Zaren",
+      "Sultane"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Gebaut wurde über viele Jahrhunderte hinweg. Die Mauer ist zusammengerechnet über 20.000 Kilometer lang."
+    "explanation": "Der bekannteste ist Tutanchamun – sein Grab wurde 1922 fast unberührt mit goldener Totenmaske gefunden."
   },
   {
     "id": "geo_ext_058",
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Wo standen die Pyramiden von Gizeh?",
+    "question": "Wo stehen die Pyramiden von Gizeh?",
     "answers": [
       "Ägypten",
       "Mexiko",
@@ -706,7 +706,7 @@
       "Kaiser der Franzosen",
       "König von Frankreich",
       "Präsident der Republik",
-      "Erster Konsul auf Zeit"
+      "Herzog von Burgund"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -745,24 +745,24 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Afrika hat 54 anerkannte Staaten. Auf Platz zwei folgt Europa."
+    "explanation": "Afrika hat 54 anerkannte Staaten – mehr als jeder andere Kontinent."
   },
   {
     "id": "geo_ext_066",
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welches Land hat heute die meisten Einwohner?",
+    "question": "Welcher Kontinent ist der größte der Erde?",
     "answers": [
-      "Indien",
-      "China",
-      "USA",
-      "Indonesien"
+      "Asien",
+      "Afrika",
+      "Nordamerika",
+      "Europa"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Indien hat China 2023 überholt. Beide liegen bei rund 1,4 Milliarden Menschen."
+    "explanation": "Asien ist größer als die gesamte Mondoberfläche und Heimat von mehr als der Hälfte aller Menschen."
   },
   {
     "id": "geo_ext_067",
@@ -871,24 +871,24 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welche Stadt ist für den Kölner Dom bekannt?",
+    "question": "In welcher Stadt steht der berühmte Schiefe Turm?",
     "answers": [
-      "Köln",
-      "Bonn",
-      "Düsseldorf",
-      "Aachen"
+      "Pisa",
+      "Rom",
+      "Venedig",
+      "Florenz"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Am Dom wurde über 600 Jahre gebaut – von 1248 bis 1880, mit einer langen Pause dazwischen."
+    "explanation": "Der Glockenturm neigte sich schon während des Baus im 12. Jahrhundert, weil der Boden zu weich ist."
   },
   {
     "id": "geo_ext_075",
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welches Bundesland ist München Hauptstadt?",
+    "question": "Von welchem Bundesland ist München die Hauptstadt?",
     "answers": [
       "Bayern",
       "Baden-Württemberg",
@@ -905,17 +905,17 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welches Bundesland ist Hamburg?",
+    "question": "Welche drei deutschen Bundesländer sind Stadtstaaten?",
     "answers": [
-      "Stadtstaat Hamburg",
-      "Niedersachsen",
-      "Schleswig-Holstein",
-      "Bremen"
+      "Berlin, München und Hamburg",
+      "Hamburg, Köln und Bremen",
+      "Berlin, Hamburg und Bremen",
+      "Berlin, Hamburg und Frankfurt"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Freie und Hansestadt Hamburg."
+    "explanation": "Bei Stadtstaaten ist die Stadt selbst ein eigenes Bundesland."
   },
   {
     "id": "geo_ext_077",
@@ -994,7 +994,7 @@
     "answers": [
       "In Bayern",
       "In Baden-Württemberg",
-      "In Tirol",
+      "In Hessen",
       "In Sachsen"
     ],
     "correct": 0,
@@ -1075,7 +1075,7 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welche Stadt ist die Hauptstadt von Ukraine?",
+    "question": "Welche Stadt ist die Hauptstadt der Ukraine?",
     "answers": [
       "Kiew",
       "Lwiw",
@@ -1109,7 +1109,7 @@
     "category": "geografie_geschichte",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welches Land hat den Amazonas-Regenwald größtenteils?",
+    "question": "In welchem Land liegt der größte Teil des Amazonas-Regenwaldes?",
     "answers": [
       "Brasilien",
       "Peru",
@@ -1129,7 +1129,7 @@
     "question": "Welches Land ist für die Safari in der Serengeti bekannt?",
     "answers": [
       "Tansania",
-      "Kenia",
+      "Namibia",
       "Südafrika",
       "Uganda"
     ],

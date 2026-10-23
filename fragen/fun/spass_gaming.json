@@ -4,17 +4,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welchem Spiel stammt die berühmte Figur 'Lara Croft'?",
+    "question": "Wie heißt die tragbare Nintendo-Konsole von 1989, die mit 'Tetris' ausgeliefert wurde?",
     "answers": [
-      "Uncharted",
-      "Tomb Raider",
-      "Resident Evil",
-      "Far Cry"
+      "Game Boy",
+      "Wii",
+      "Nintendo 64",
+      "Super Nintendo"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lara Croft feierte 1996 ihr Debüt im Action-Adventure-Klassiker Tomb Raider."
+    "explanation": "Der Game Boy hatte einen grünlichen Schwarz-Weiß-Bildschirm und lief mit vier AA-Batterien."
   },
   {
     "id": "gam_mc_002",
@@ -24,7 +24,7 @@
     "question": "Welches ist das meistverkaufte Videospiel aller Zeiten?",
     "answers": [
       "Tetris",
-      "Grand Theft Auto V",
+      "Wii Sports",
       "Minecraft",
       "Super Mario Bros."
     ],
@@ -89,17 +89,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "In welcher fiktiven Stadt spielt das Videospiel 'GTA: Vice City'?",
+    "question": "Welches Pokémon ist die Weiterentwicklung von Pikachu?",
     "answers": [
-      "Los Santos",
-      "Liberty City",
-      "Vice City",
-      "San Fierro"
+      "Pichu",
+      "Raichu",
+      "Elekid",
+      "Voltoball"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Vice City ist stark an das Miami der 1980er-Jahre angelehnt."
+    "explanation": "Pikachu entwickelt sich mit einem Donnerstein zu Raichu. Pichu ist dagegen seine Vorstufe."
   },
   {
     "id": "gam_mc_008",
@@ -123,34 +123,34 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Spielprinzip prägte das Game 'PUBG' und machte es weltberühmt?",
+    "question": "Wie viele Pokémon gab es in der allerersten Spielgeneration (Rot und Blau)?",
     "answers": [
-      "Battle Royale",
-      "Turn-Based RPG",
-      "Match-3 Puzzle",
-      "Rennsimulation"
+      "151",
+      "100",
+      "251",
+      "386"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "PUBG (PlayerUnknown's Battlegrounds) machte das '100 Spieler kämpfen bis einer überlebt'-Genre populär."
+    "explanation": "Die erste Generation von 1996 hatte 151 Pokémon – die Nummer 151 ist Mew."
   },
   {
     "id": "gam_mc_010",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt der Protagonist aus 'The Witcher 3: Wild Hunt'?",
+    "question": "In welchem Nintendo-Spiel färben Tintenfisch-Kinder mit bunter Tinte möglichst viel Fläche ein?",
     "answers": [
-      "Ezio Auditore",
-      "Geralt von Riva",
-      "Kratos",
-      "Arthur Morgan"
+      "Splatoon",
+      "Fortnite",
+      "Paint Party",
+      "Fall Guys"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Geralt von Riva ist ein Hexer (Monsterjäger) und die Hauptfigur der Buch- und Spielereihe."
+    "explanation": "Bei Splatoon (2015) gewinnt das Team, das am Ende mehr Boden mit seiner Farbe bedeckt hat."
   },
   {
     "id": "gam_mc_011",
@@ -174,7 +174,7 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die Heimatwelt von Link und Prinzessin Zelda?",
+    "question": "Wie heißt die Heimatwelt von Link und Prinzessin Zelda?",
     "answers": [
       "Hyrule",
       "Kanto",
@@ -194,9 +194,9 @@
     "question": "In welchem E-Sport-Titel treten zwei Teams aus je 5 Champions an, um den gegnerischen 'Nexus' zu zerstören?",
     "answers": [
       "League of Legends",
-      "Counter-Strike 2",
+      "Mario Kart 8",
       "Rocket League",
-      "Valorant"
+      "Fortnite"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -208,17 +208,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welcher rote Igel ist das offizielle Maskottchen der Firma Sega?",
+    "question": "Welcher rote Ameisenigel ist Sonics Freund und Rivale?",
     "answers": [
-      "Knuckles",
       "Sonic",
       "Tails",
+      "Knuckles",
       "Shadow"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sonic the Hedgehog ist blau – halt! Der Igel Sonic ist natürlich blau, Knuckles ist rot!"
+    "explanation": "Knuckles bewacht den Master Emerald. Sonic selbst ist blau, sein Freund Tails ein Fuchs."
   },
   {
     "id": "gam_mc_014_b",
@@ -242,41 +242,41 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die Hauptfigur der 'God of War'-Reihe?",
+    "question": "In welchem Spiel stolpern knuddelige Bohnen-Figuren durch Hindernis-Parcours?",
     "answers": [
-      "Atreus",
-      "Zeus",
-      "Kratos",
-      "Ares"
+      "Among Us",
+      "Rocket League",
+      "Splatoon",
+      "Fall Guys"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Kratos kämpft sich erst durch die griechische und später durch die nordische Mythologie."
+    "explanation": "Fall Guys (2020) erinnert an eine bunte Spielshow – wer zu oft herunterfällt, scheidet aus."
   },
   {
     "id": "gam_mc_016",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welchem Spiel stammt der Satz 'Finish Him!'?",
+    "question": "Wie heißt Marios gieriger Gegenspieler in gelb-lila Kleidung?",
     "answers": [
-      "Tekken",
-      "Street Fighter",
-      "Mortal Kombat",
-      "Super Smash Bros."
+      "Waluigi",
+      "Luigi",
+      "Toad",
+      "Wario"
     ],
-    "correct": 2,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Mortal Kombat nutzt diesen Satz am Ende eines Kampfes vor dem Ausführen eines 'Fatality'."
+    "explanation": "Wario hat sogar eigene Spiele – in 'WarioWare' jagt eine Mini-Aufgabe die nächste."
   },
   {
     "id": "gam_mc_017",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die virtuelle Währung im Spiel Fortnite?",
+    "question": "Wie heißt die virtuelle Währung im Spiel Fortnite?",
     "answers": [
       "V-Bucks",
       "Minecoins",
@@ -293,34 +293,34 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welcher Entwickler erschuf das Open-World-Epos 'Red Dead Redemption 2'?",
+    "question": "In welchem Spiel baut man eine verlassene Farm im Örtchen Pelican Town wieder auf?",
     "answers": [
-      "Ubisoft",
-      "EA Sports",
-      "Rockstar Games",
-      "CD Projekt Red"
+      "Animal Crossing",
+      "Stardew Valley",
+      "Minecraft",
+      "Harvest Moon"
     ],
-    "correct": 2,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Rockstar Games ist sowohl für RDR2 als auch für die GTA-Serie verantwortlich."
+    "explanation": "Stardew Valley hat ein einziger Entwickler, Eric Barone, über Jahre allein programmiert (2016)."
   },
   {
     "id": "gam_mc_019",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "In welcher berühmten Spielereihe schlüpft man in die Rolle von Assassinen im Kampf gegen Templer?",
+    "question": "Welcher Spielzeughersteller bringt Videospiele heraus, in denen besiegte Figuren in Klötzchen zerfallen?",
     "answers": [
-      "Assassin's Creed",
-      "Watch Dogs Legion",
-      "Far Cry",
-      "Hitman"
+      "LEGO",
+      "Playmobil",
+      "Schleich",
+      "Ravensburger"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "In Assassin's Creed erlebt man historische Epochen über den 'Animus'."
+    "explanation": "In den LEGO-Spielen zu Star Wars, Harry Potter oder Marvel sammelt man Noppen statt Münzen."
   },
   {
     "id": "gam_mc_020",
@@ -361,7 +361,7 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welchem Spiel stammt der gelbe Sternenschiff-Kapitän 'Kirby'?",
+    "question": "Von welcher Firma stammt die rosa Knutschkugel Kirby?",
     "answers": [
       "Nintendo",
       "Bandai Namco",
@@ -371,7 +371,7 @@
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Kirby wurde von Masahiro Sakurai bei HAL Laboratory für Nintendo entwickelt."
+    "explanation": "Kirby wurde 1992 von Masahiro Sakurai bei HAL Laboratory für Nintendo entwickelt. Er saugt Gegner ein und übernimmt ihre Fähigkeiten."
   },
   {
     "id": "gam_mc_023",
@@ -412,17 +412,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die Spieleserie, in der man als 'Dovahkiin' (Drachenblut) Skyrim erkundet?",
+    "question": "Auf welcher Plattform bauen Spieler eigene Spiele und bezahlen mit 'Robux'?",
     "answers": [
-      "The Elder Scrolls",
-      "Dragon Age Origins",
-      "Dark Souls",
-      "The Witcher"
+      "Minecraft",
+      "Fortnite",
+      "Steam",
+      "Roblox"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "The Elder Scrolls V: Skyrim erschien im November 2011 und ist ein Open-World-Klassiker."
+    "explanation": "Robux ist die Währung von Roblox. Viele Spiele dort wurden von Jugendlichen selbst gebaut."
   },
   {
     "id": "gam_mc_026",
@@ -439,7 +439,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Just Dance von Ubisoft lässt Spieler Choreo-Bewegungen nachschtanzen."
+    "explanation": "Just Dance von Ubisoft lässt Spieler Choreo-Bewegungen nachtanzen."
   },
   {
     "id": "gam_mc_027",
@@ -463,34 +463,34 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welchem Spiel stammt das Zitat 'War. War never changes.'?",
+    "question": "Welcher Gegenstand lässt Mario in 'Super Mario Bros.' groß werden?",
     "answers": [
-      "Call of Duty",
-      "Fallout",
-      "Battlefield",
-      "Halo"
+      "Feuerblume",
+      "Superpilz",
+      "Stern",
+      "Münze"
     ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Dieser Satz leitet fast jeden Teil der postapokalyptischen 'Fallout'-Reihe ein."
+    "explanation": "Der rote Superpilz lässt Mario wachsen. Mit der Feuerblume kann er dagegen Feuerbälle werfen."
   },
   {
     "id": "gam_mc_029",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welche Konsole verkaufte sich historisch weltweit am häufigsten?",
+    "question": "Welche ist die meistverkaufte PlayStation aller Zeiten?",
     "answers": [
-      "Nintendo DS",
+      "PlayStation 4",
       "PlayStation 2",
-      "Nintendo Switch",
-      "PlayStation 4"
+      "PlayStation 1",
+      "PlayStation 5"
     ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die PlayStation 2 führt die Liste mit über 155 Millionen verkauften Einheiten an."
+    "explanation": "Von der PS2 wurden über 160 Millionen Stück verkauft – erst die Nintendo Switch kam an diesen Rekord heran."
   },
   {
     "id": "gam_mc_030",
@@ -514,17 +514,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "In welchem Sci-Fi-Shooter steuert man den 'Master Chief' im Kampf gegen die Allianz?",
+    "question": "Was sammelt Sonic, um sich vor Treffern zu schützen?",
     "answers": [
-      "Mass Effect",
-      "Halo",
-      "Destiny",
-      "Gears of War"
+      "Münzen",
+      "Goldene Ringe",
+      "Sterne",
+      "Diamanten"
     ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Halo ist das Aushängeschild der Xbox-Konsolen."
+    "explanation": "Wird Sonic getroffen, verliert er seine Ringe. Hat er gerade keine, ist ein Leben weg."
   },
   {
     "id": "gam_mc_032",
@@ -548,17 +548,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die geheimnisvolle Organisation in der 'Resident Evil'-Reihe?",
+    "question": "Wie heißt Sonics Fuchs-Freund mit zwei Schwänzen?",
     "answers": [
-      "Abstergo",
-      "Umbrella Corporation",
-      "Aperture Science",
-      "Vault-Tec"
+      "Knuckles",
+      "Amy",
+      "Tails",
+      "Shadow"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Umbrella Corp ist für den T-Virus und den Zombie-Ausbruch verantwortlich."
+    "explanation": "Tails dreht seine zwei Schwänze wie einen Propeller und kann damit fliegen."
   },
   {
     "id": "gam_mc_034",
@@ -599,17 +599,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt die legendäre Stadt unter dem Meer im Spiel 'BioShock'?",
+    "question": "Was für ein Tier ist Crash Bandicoot?",
     "answers": [
-      "Columbia",
-      "Rapture",
-      "Atlantis",
-      "Midgar"
+      "Ein Fuchs",
+      "Ein Wombat",
+      "Ein Waschbär",
+      "Ein Bandikut (Nasenbeutler)"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Rapture wurde als utopische Unterwasserstadt von Andrew Ryan erbaut."
+    "explanation": "Bandikuts sind kleine Beuteltiere aus Australien. Crash greift an, indem er sich wie ein Kreisel dreht."
   },
   {
     "id": "gam_mc_037",
@@ -633,7 +633,7 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die Hauptfigur in 'Final Fantasy VII' mit dem Riesenschwert?",
+    "question": "Wie heißt die Hauptfigur in 'Final Fantasy VII' mit dem Riesenschwert?",
     "answers": [
       "Squall Leonhart",
       "Cloud Strife",
@@ -688,8 +688,8 @@
     "answers": [
       "Fall Guys",
       "Among Us",
-      "Phasmophobia",
-      "Dead by Daylight"
+      "Roblox",
+      "Pummel Party"
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -745,24 +745,24 @@
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Nintendo Wii feierte riesige Erfolge mit der bewegungsempfindlichen 'Wii-FB'."
+    "explanation": "Die Nintendo Wii feierte riesige Erfolge mit der bewegungsempfindlichen 'Wii-Fernbedienung'."
   },
   {
     "id": "gam_mc_045",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Game entwickelte Hideo Kojima, in dem man Pakete durch eine postapokalyptische Welt austrägt?",
+    "question": "Welche Farbe hat der kleine Drache Spyro?",
     "answers": [
-      "Metal Gear Solid",
-      "Death Stranding",
-      "Silent Hills",
-      "Zone of the Enders"
+      "Grün",
+      "Rot",
+      "Blau",
+      "Lila"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Death Stranding lässt Spieler die Rolle von Paketbote Sam Porter Bridges übernehmen."
+    "explanation": "Spyro erschien 1998 auf der ersten PlayStation und befreit seine versteinerten Drachen-Freunde."
   },
   {
     "id": "gam_mc_046",
@@ -786,68 +786,68 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welcher Spielereihe stammt die Fraktion der 'Bordbruderschaft' (Paladine in Powerrüstung)?",
+    "question": "In welchem Spiel kämpfen Mario, Pikachu, Link und Kirby gegeneinander?",
     "answers": [
-      "Starcraft",
-      "Fallout",
-      "Warhammer 40k",
-      "Cyberpunk"
+      "Mario Party",
+      "Super Smash Bros.",
+      "Mario Kart",
+      "Pokémon Stadium"
     ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die 'Brotherhood of Steel' sichert Vorkriegstechnologie in der Fallout-Welt."
+    "explanation": "Ziel ist es, die anderen aus der Arena zu schubsen – je höher ihr Prozentwert, desto weiter fliegen sie."
   },
   {
     "id": "gam_mc_048",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die Heimatstadt von Schatzsucher Nathan Drake in Uncharted?",
+    "question": "In welchem Spiel würfelt man auf einem Spielbrett und kämpft in Minispielen um Sterne?",
     "answers": [
-      "Keine feste Heimatstadt",
-      "Die Stadt New York",
-      "Die Stadt Boston",
-      "Die Stadt London"
+      "Mario Kart",
+      "Mario Party",
+      "Super Smash Bros.",
+      "Wii Sports"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Nathan Drake ist ständig unterwegs. Eine Heimatstadt wird in der Reihe nie genannt."
+    "explanation": "Wer am Ende die meisten Sterne hat, gewinnt. Glück ist dabei genauso wichtig wie Können."
   },
   {
     "id": "gam_mc_049",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welcher Bosskampf in 'Dark Souls' verlangt Spielern das gleichzeitige Bekämpfen von zwei Bossen ab?",
+    "question": "Welches Spiel lag der Nintendo Wii ab 2006 außerhalb Japans bei?",
     "answers": [
-      "Artorias & Sif",
-      "Ornstein & Smough",
-      "Gwyn & Seath",
-      "Gargoyles"
+      "Mario Kart Wii",
+      "Wii Sports",
+      "Wii Fit",
+      "Just Dance"
     ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Drachenöter Ornstein und Henker Smough gelten als eine der härtesten Hürden in Dark Souls."
+    "explanation": "Tennis, Bowling, Golf, Baseball und Boxen – Wii Sports gehört zu den meistverkauften Spielen aller Zeiten."
   },
   {
     "id": "gam_mc_050",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt der Protagonist aus 'GTA San Andreas'?",
+    "question": "Was lässt die Geister in 'Pac-Man' blau werden und vor Pac-Man fliehen?",
     "answers": [
-      "Tommy Vercetti",
-      "Carl 'CJ' Johnson",
-      "Niko Bellic",
-      "Franklin Clinton"
+      "Eine Kirsche",
+      "Ein Stern",
+      "Eine Kraftpille",
+      "Ein Pilz"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "CJ kehrt nach Los Santos zurück und baut die Grove Street Families wieder auf."
+    "explanation": "Nach einer Kraftpille kann Pac-Man die Geister für kurze Zeit selbst fressen."
   },
   {
     "id": "gam_mc_051",
@@ -856,10 +856,10 @@
     "subject": "wissen",
     "question": "In welchem Online-Spiel baut man mit Ressourcen Wände und Treppen im Kampf auf?",
     "answers": [
-      "PUBG",
-      "Apex Legends",
+      "Minecraft",
+      "Rocket League",
       "Fortnite",
-      "Call of Duty: Warzone"
+      "Fall Guys"
     ],
     "correct": 2,
     "difficulty": "leicht",
@@ -888,34 +888,34 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welchem Spiel stammt das geflügelte Wort 'Praise the Sun!'?",
+    "question": "Wie heißt der Affe, der 1981 in einem Spielhallen-Klassiker Fässer auf 'Jumpman' wirft?",
     "answers": [
-      "World of Warcraft",
-      "Dark Souls",
-      "Monster Hunter",
-      "Skyrim"
+      "Donkey Kong",
+      "King Kong",
+      "Diddy Kong",
+      "Bowser"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ritter Solaire von Astora aus Dark Souls ist berühmt für seine 'Lobet die Sonne!'-Geste."
+    "explanation": "Der Held Jumpman bekam später einen neuen Namen: Mario."
   },
   {
     "id": "gam_mc_054",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt das Kampfsport-Turnier im Prügelspiel 'Tekken'?",
+    "question": "Wie heißt der kleine Affe mit roter Kappe, der Donkey Kong begleitet?",
     "answers": [
-      "King of Iron Fist",
-      "Kumite Grand Prix",
-      "Mortal Kombat",
-      "World Warrior"
+      "Funky Kong",
+      "Cranky Kong",
+      "Diddy Kong",
+      "Dixie Kong"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das 'King of Iron Fist Tournament' wird von der Zaibatsu-Korporation veranstaltet."
+    "explanation": "Diddy Kong ist flink und klein. In 'Donkey Kong Country' (1994) kann man zwischen beiden wechseln."
   },
   {
     "id": "gam_mc_055",
@@ -956,7 +956,7 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die künstliche Intelligenz in Portal, die den Spieler testet und belügt?",
+    "question": "Wie heißt die künstliche Intelligenz in Portal, die den Spieler testet und belügt?",
     "answers": [
       "SHODAN",
       "GLaDOS",
@@ -973,24 +973,24 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Studio entwickelte das düstere Action-Rollenspiel 'Bloodborne'?",
+    "question": "In welchem Spiel ärgert man als freche Gans die Bewohner eines Dorfes?",
     "answers": [
-      "FromSoftware",
-      "Capcom",
-      "Square Enix",
-      "Kojima Productions"
+      "Goat Simulator",
+      "Animal Crossing",
+      "Stardew Valley",
+      "Untitled Goose Game"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "FromSoftware schuf Bloodborne exklusiv für die PlayStation 4 unter Leitung von Hidetaka Miyazaki."
+    "explanation": "Das Spiel (2019) besteht aus Streichen: Schlüssel klauen, den Gärtner erschrecken, Glocken läuten."
   },
   {
     "id": "gam_mc_059",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die treue Begleiter-Fee von Link in 'The Legend of Zelda: Ocarina of Time'?",
+    "question": "Wie heißt die treue Begleiter-Fee von Link in 'The Legend of Zelda: Ocarina of Time'?",
     "answers": [
       "Tatl",
       "Navi",
@@ -1007,34 +1007,34 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welche Waffe nutzt Gordon Freeman in 'Half-Life' als Markenzeichen?",
+    "question": "Wie heißt die Hündin, die in 'Animal Crossing' im Rathaus hilft?",
     "answers": [
-      "Das Brecheisen",
-      "Die Kettensäge",
-      "Die Machete",
-      "Die Feuerwehraxt"
+      "Melinda",
+      "Tom Nook",
+      "Mr. Resetti",
+      "K.K. Slider"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Das rote Brecheisen ist das Kult-Werkzeug des Physikers Gordon Freeman."
+    "explanation": "Melinda heißt im Englischen Isabelle und ist die freundliche Assistentin im Rathaus."
   },
   {
     "id": "gam_mc_061",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt der Planet, auf dem das Strategiespiel 'StarCraft' hauptsächlich im Erdenbereich beginnt?",
+    "question": "In welchem Spiel pflanzt man Sonnenblumen und Erbsenkanonen, um den Garten zu verteidigen?",
     "answers": [
-      "Mar Sara",
-      "Aiur",
-      "Chau Sara",
-      "Korhal"
+      "Minecraft",
+      "Pflanzen gegen Zombies",
+      "Stardew Valley",
+      "Farmville"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Die Terraner-Kampagne des ersten Starcraft beginnt auf der Randwelt Mar Sara."
+    "explanation": "Die Sonnenblumen liefern Sonne als Währung, die anderen Pflanzen halten die tapsigen Zombies auf (2009)."
   },
   {
     "id": "gam_mc_062",
@@ -1075,17 +1075,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt die weibliche Hauptfigur in 'The Last of Us'?",
+    "question": "In welchem VR-Spiel zerschneidet man im Takt der Musik Blöcke mit Leuchtschwertern?",
     "answers": [
-      "Tess",
-      "Ellie",
-      "Abby",
-      "Sarah"
+      "Just Dance",
+      "Guitar Hero",
+      "Beat Saber",
+      "Rock Band"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ellie reist mit Joel durch die von Pilz-Infizierten verwüsteten USA."
+    "explanation": "Die Blöcke fliegen im Rhythmus heran; die Pfeile zeigen, in welche Richtung man schneiden muss."
   },
   {
     "id": "gam_mc_065",
@@ -1126,17 +1126,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wer ist der Erfinder der MGS-Reihe (Metal Gear Solid)?",
+    "question": "Wie heißt die Konsole, die 2025 als Nachfolger der Nintendo Switch erschien?",
     "answers": [
-      "Shigeru Miyamoto",
-      "Hideo Kojima",
-      "Gabe Newell",
-      "Yuji Naka"
+      "Nintendo Switch 2",
+      "Nintendo Switch Pro",
+      "Nintendo Wii U",
+      "Nintendo Ultra"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Hideo Kojima gilt als Pionier des kinematografischen Geschichtenerzählens in Videospielen."
+    "explanation": "Die Switch 2 kam im Juni 2025 auf den Markt und hat Controller, die man wie eine Maus nutzen kann."
   },
   {
     "id": "gam_mc_068",
@@ -1177,102 +1177,102 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welche Waffe ist das Markenzeichen des Hitman-Auftragsmörders 'Agent 47'?",
+    "question": "Wie viele Spieler können bei 'Mario Kart 8 Deluxe' an einer Konsole mit geteiltem Bildschirm fahren?",
     "answers": [
-      "Silverballer (Pistolen)",
-      "Scharfschützengewehr",
-      "Klavierdraht (Garrotte)",
-      "Alle genannten"
+      "2",
+      "6",
+      "4",
+      "8"
     ],
-    "correct": 3,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Agent 47 nutzt sowohl seine typischen Silverballer-Pistolen als auch den lautlosen Klavierdraht."
+    "explanation": "Der Bildschirm wird geviertelt. Online fahren bis zu zwölf Spieler gleichzeitig."
   },
   {
     "id": "gam_mc_071",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst die Währung im Klassiker 'Fallout'?",
+    "question": "Womit fängt Luigi in 'Luigi's Mansion' die Geister ein?",
     "answers": [
-      "Kronkorken",
-      "Goldstücke",
-      "Credits",
-      "Dollar"
+      "Mit einem Staubsauger",
+      "Mit einem Netz",
+      "Mit einem Eimer",
+      "Mit einer Angel"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Im Ödland dienen alte Nuka-Cola-Kronkorken als Zahlungsmittel."
+    "explanation": "Sein Geistersauger heißt Schreckweg – zuerst blendet Luigi die Geister mit der Taschenlampe."
   },
   {
     "id": "gam_mc_072",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Aus welchem Spiel stammt die Map 'Dust II'?",
+    "question": "In welchem Puzzlespiel bekämpft man Viren mit bunten Pillen-Kapseln?",
     "answers": [
-      "Call of Duty",
-      "Counter-Strike",
-      "Rainbow Six Siege",
-      "Valorant"
+      "Dr. Mario",
+      "Tetris",
+      "Puyo Puyo",
+      "Columns"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Dust II ist die mit Abstand berüchtigtste Multiplayer-Karte der Shooter-Geschichte."
+    "explanation": "Bei Dr. Mario (1990) verschwinden Viren, wenn vier gleiche Farben in einer Reihe liegen."
   },
   {
     "id": "gam_mc_073",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welcher 'Dark Souls'-Nachfolger gewann 2022 den Preis 'Game of the Year'?",
+    "question": "Was ist ein 'Speedrun'?",
     "answers": [
-      "Sekiro",
-      "Elden Ring",
-      "Demon's Souls",
-      "Armored Core VI"
+      "Ein Rennspiel mit Autos",
+      "Ein Spiel so schnell wie möglich durchspielen",
+      "Ein Lauf-Minispiel",
+      "Eine besonders schnelle Konsole"
     ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Elden Ring eroberte Fans und Kritiker weltweit im Sturm."
+    "explanation": "Speedrunner nutzen Tricks und Abkürzungen. Die Weltrekorde werden auf Video festgehalten."
   },
   {
     "id": "gam_mc_074",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heißt das Geisterjagd-Spiel, in dem man mit Thermometern und EMF-Messern Geister identifiziert?",
+    "question": "Wofür steht die Abkürzung 'NPC' in Videospielen?",
     "answers": [
-      "Phasmophobia",
-      "Dead by Daylight",
-      "Demonologist",
-      "Pac-Man"
+      "Nicht-Spieler-Charakter",
+      "Neues Power-Kostüm",
+      "Nächstes Punkte-Ziel",
+      "Nintendo Player Club"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Phasmophobia ist ein extrem populäres Koop-Horrorspiel."
+    "explanation": "NPCs werden vom Computer gesteuert, etwa Händler, Dorfbewohner oder Quest-Geber."
   },
   {
     "id": "gam_mc_075",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Wie heisst das fliegende Rentier-Boot von Kratos in 'God of War Ragnarök'?",
+    "question": "Was bedeutet 'Koop' bei Videospielen?",
     "answers": [
-      "Skíðblaðnir",
-      "Naglfar",
-      "Leviathan",
-      "Jörmungandr"
+      "Ein besonders schweres Level",
+      "Gemeinsam statt gegeneinander spielen",
+      "Ein Spiel kaufen",
+      "Ein geheimes Level finden"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "schwer",
     "points": 15,
-    "explanation": "Skíðblaðnir ist das magische Schiff der Zwerge in der nordischen Mythologie."
+    "explanation": "Koop kommt von 'kooperativ': Alle Spieler arbeiten zusammen an einem Ziel."
   },
   {
     "id": "gam_ext_077",
@@ -1381,17 +1381,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "In welchem Spiel baut man mit Blöcken?",
+    "question": "Wie heißen die freundlichen Pilzwesen, die Mario im Pilzkönigreich helfen?",
     "answers": [
-      "Minecraft",
-      "Roblox",
-      "Fortnite",
-      "Terraria"
+      "Toads",
+      "Gumbas",
+      "Koopas",
+      "Buu Huus"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Welt besteht aus Würfeln und wird bei jedem Start neu berechnet. Es ist das meistverkaufte Videospiel überhaupt."
+    "explanation": "Gumbas sehen zwar auch wie Pilze aus, sind aber Marios Gegner."
   },
   {
     "id": "gam_ext_084",
@@ -1415,17 +1415,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Spiel hat Crewmates und Impostor?",
+    "question": "Wie heißt die Prinzessin, die in 'The Legend of Zelda' gerettet werden muss?",
     "answers": [
-      "Among Us",
-      "Fortnite",
-      "Minecraft",
-      "Roblox"
+      "Peach",
+      "Zelda",
+      "Daisy",
+      "Rosalina"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Erschien 2018, populär wurde es erst 2020. Die Crew muss herausfinden, wer an Bord der Betrüger ist."
+    "explanation": "Viele denken, der Held heiße Zelda – er heißt aber Link."
   },
   {
     "id": "gam_ext_086",
@@ -1466,17 +1466,17 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Spiel hat den Charakter Master Chief?",
+    "question": "In welchem Spiel kochen bis zu vier Spieler gemeinsam in chaotischen Küchen?",
     "answers": [
-      "Halo",
-      "Gears",
-      "Call of Duty",
-      "Doom"
+      "Cooking Mama",
+      "Diner Dash",
+      "Overcooked",
+      "Stardew Valley"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Master Chief nimmt seit 2001 in der Reihe nie den Helm ab. Halo machte die erste Xbox erfolgreich."
+    "explanation": "Bei Overcooked (2016) wackeln Küchen auf Schiffen oder Eisschollen – ohne Absprache brennt alles an."
   },
   {
     "id": "gam_ext_089",
@@ -1551,7 +1551,7 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Spiel hat crouch-walking Creeper?",
+    "question": "In welchem Spiel schleichen sich grüne Creeper an und explodieren?",
     "answers": [
       "Minecraft",
       "Terraria",
@@ -1602,68 +1602,68 @@
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "In welcher Spielereihe bewegt man sich frei durch erfundene US-Städte wie Liberty City?",
+    "question": "Welches Studio entwickelt die Hauptreihe der Pokémon-Spiele?",
     "answers": [
-      "Grand Theft Auto",
-      "Watch Dogs Legion",
-      "Saints Row",
-      "Mafia"
+      "Capcom",
+      "Game Freak",
+      "Sega",
+      "Konami"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Reihe gibt es seit 1997. GTA V gehört zu den meistverkauften Spielen aller Zeiten."
+    "explanation": "Game Freak entwickelt die Spiele, herausgebracht werden sie von Nintendo und The Pokémon Company."
   },
   {
     "id": "gam_ext_097",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Spiel hat den Charakter Lara Croft?",
+    "question": "In welchem Handyspiel schleudert man Vögel mit einer Steinschleuder auf grüne Schweine?",
     "answers": [
-      "Tomb Raider",
-      "Uncharted",
-      "Indiana",
-      "Prince of Persia"
+      "Flappy Bird",
+      "Angry Birds",
+      "Cut the Rope",
+      "Candy Crush"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Lara Croft trat 1996 zum ersten Mal auf und war eine der ersten weiblichen Hauptfiguren mit eigener Reihe."
+    "explanation": "Das Spiel aus Finnland erschien 2009 und wurde eines der erfolgreichsten Handyspiele überhaupt."
   },
   {
     "id": "gam_ext_098",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches Spiel hat den Charakter Kratos?",
+    "question": "Aus wie vielen Quadraten besteht jeder Stein bei 'Tetris'?",
     "answers": [
-      "God of War",
-      "Devil May Cry",
-      "Bayonetta",
-      "Ninja Gaiden"
+      "3",
+      "4",
+      "5",
+      "6"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Kratos kämpfte zunächst in der griechischen Sagenwelt, ab 2018 spielt die Reihe in der nordischen."
+    "explanation": "Die sieben Formen heißen Tetrominos – 'tetra' ist griechisch für vier."
   },
   {
     "id": "gam_ext_099",
     "category": "gaming_popkultur",
     "area": "gaming",
     "subject": "wissen",
-    "question": "Welches digitale Kartenspiel von Blizzard spielt in der Welt von Warcraft?",
+    "question": "Mit welchem Handyspiel gingen 2016 Millionen Menschen nach draußen, um Pokémon zu fangen?",
     "answers": [
-      "Hearthstone",
-      "Magic Arena",
-      "Yu-Gi-Oh",
-      "Legends of Runeterra"
+      "Pokémon Rot",
+      "Minecraft Earth",
+      "Angry Birds",
+      "Pokémon GO"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Erschien 2014. Zwei Spieler treten mit selbst zusammengestellten Kartendecks gegeneinander an."
+    "explanation": "Das Handy zeigt die Pokémon per Kamera mitten in der echten Umgebung an."
   },
   {
     "id": "gam_ext_101",

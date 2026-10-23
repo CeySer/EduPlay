@@ -1,6 +1,5 @@
-// Fun · spass_weltraum (50 Fragen)
+// Fun · spass_weltraum (57 Fragen)
 const SPASS_WELTRAUM_QUESTIONS = [
-  
   {
     "id": "wel_002",
     "category": "spass_weltraum",
@@ -74,9 +73,9 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "category": "spass_weltraum",
     "area": "spass",
     "subject": "weltraum",
-    "question": "Welcher Körper steuert Ebbe und Flut stark mit?",
+    "question": "Welcher Himmelskörper ist hauptsächlich für Ebbe und Flut verantwortlich?",
     "answers": [
-      "Sonne",
+      "Mars",
       "Mond",
       "Jupiter",
       "Venus"
@@ -86,7 +85,6 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "points": 10,
     "explanation": "Die Mondanziehung prägt die Gezeiten."
   },
-  
   {
     "id": "wel_008",
     "category": "spass_weltraum",
@@ -233,7 +231,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
       "Sauerstoff",
       "Wasserstoff",
       "Stickstoff",
-      "Helium nur"
+      "Helium"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -246,7 +244,12 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "area": "spass",
     "subject": "weltraum",
     "question": "Woraus besteht ein typischer Kometkern grob?",
-    "answers": ["Eis und Staub", "Ausschließlich Metall", "Nur gefrorenes Gas", "Massives Gestein"],
+    "answers": [
+      "Eis und Staub",
+      "Ausschließlich Metall",
+      "Nur gefrorenes Gas",
+      "Massives Gestein"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -338,22 +341,22 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "explanation": "Der Kuipergürtel liegt hinter Neptun."
   },
   {
-  "id": "wel_023",
-  "category": "spass_weltraum",
-  "area": "spass",
-  "subject": "weltraum",
-  "question": "Welches Land brachte 1969 Menschen auf den Mond?",
-  "answers": [
-    "Sowjetunion",
-    "die USA",
-    "China",
-    "Frankreich"
-  ],
-  "correct": 1,
-  "difficulty": "mittel",
-  "points": 10,
-  "explanation": "Apollo 11 landete am 20. Juli 1969. Neil Armstrong und Buzz Aldrin blieben rund 21 Stunden auf dem Mond."
-},
+    "id": "wel_023",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Welches Land brachte 1969 Menschen auf den Mond?",
+    "answers": [
+      "Sowjetunion",
+      "USA",
+      "China",
+      "Frankreich"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Apollo 11 landete am 20. Juli 1969. Neil Armstrong und Buzz Aldrin blieben rund 21 Stunden auf dem Mond."
+  },
   {
     "id": "wel_024",
     "category": "spass_weltraum",
@@ -361,10 +364,10 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "subject": "weltraum",
     "question": "Was ist ein Asteroid vor allem?",
     "answers": [
-      "Gasplanet",
+      "Kleiner Gasplanet",
       "Felsiger Kleinkörper",
-      "Eisriese",
-      "Staubnebel"
+      "Glühender Gasball",
+      "Leuchtender Nebel"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -414,7 +417,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "answers": [
       "Mars",
       "Venus",
-      "Merkur",
+      "Saturn",
       "Jupiter"
     ],
     "correct": 1,
@@ -461,17 +464,17 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "category": "spass_weltraum",
     "area": "spass",
     "subject": "weltraum",
-    "question": "Was sieht man als Sternschnuppe am Himmel?",
+    "question": "Was ist eine Sternschnuppe in Wirklichkeit?",
     "answers": [
-      "Einen Planeten",
-      "Eine Leuchtspur",
-      "Einen Sonnenfleck",
-      "Einen Mondkrater"
+      "Ein Stern, der vom Himmel fällt",
+      "Ein Planet, der kurz vorbeizieht",
+      "Ein verglühendes Staub- oder Gesteinsteilchen",
+      "Ein Blitz aus einem Weltraum-Gewitter"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Meteore leuchten in der Atmosphäre."
+    "explanation": "Die winzigen Teilchen verglühen in rund 100 Kilometern Höhe in der Lufthülle."
   },
   {
     "id": "wel_031",
@@ -522,7 +525,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Die Frühlings-Äquinoktium."
+    "explanation": "Das Frühlings-Äquinoktium: Tag und Nacht sind dann überall etwa gleich lang."
   },
   {
     "id": "wel_034",
@@ -633,9 +636,9 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "subject": "weltraum",
     "question": "Welches Teleskop ist stark im Infrarot?",
     "answers": [
-      "Galileo",
+      "Chandra",
       "James Webb",
-      "Kepler optisch",
+      "Kepler",
       "Hipparcos"
     ],
     "correct": 1,
@@ -649,7 +652,12 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "area": "spass",
     "subject": "weltraum",
     "question": "Welchen Typ hat die Milchstraße?",
-    "answers": ["Eine Spiralgalaxie", "Eine elliptische Galaxie", "Eine irreguläre Galaxie", "Eine kleine Zwerggalaxie"],
+    "answers": [
+      "Eine Spiralgalaxie",
+      "Eine elliptische Galaxie",
+      "Eine irreguläre Galaxie",
+      "Eine kleine Zwerggalaxie"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -660,7 +668,7 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "category": "spass_weltraum",
     "area": "spass",
     "subject": "weltraum",
-    "question": "Welcher Körper hat kaum eine dichte Atmosphäre?",
+    "question": "Welcher Himmelskörper hat fast keine Atmosphäre?",
     "answers": [
       "Venus",
       "Erdmond",
@@ -780,42 +788,187 @@ const SPASS_WELTRAUM_QUESTIONS = [
     "area": "spass",
     "subject": "weltraum",
     "question": "Was beschreibt die absolute Helligkeit?",
-    "answers": ["Die tatsächliche Leuchtkraft", "Die Entfernung zur Erde", "Die Größe der Oberfläche", "Das Alter eines Sterns"],
+    "answers": [
+      "Die tatsächliche Leuchtkraft",
+      "Die Entfernung zur Erde",
+      "Die Größe der Oberfläche",
+      "Das Alter eines Sterns"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Die absolute Helligkeit rechnet alle Sterne auf dieselbe Entfernung um – erst so lassen sie sich vergleichen."
   },
   {
-  "id": "wel_050",
-  "category": "spass_weltraum",
-  "area": "spass",
-  "subject": "weltraum",
-  "question": "Welches Land startete den Satelliten Sputnik 1?",
-  "answers": [
-    "die USA",
-    "Sowjetunion",
-    "China",
-    "Japan"
-  ],
-  "correct": 1,
-  "difficulty": "mittel",
-  "points": 10,
-  "explanation": "Sputnik 1 startete am 4. Oktober 1957 und war eine Metallkugel mit vier Antennen, die ein Piepsen funkte."
-},
-  
-  
-  {"id":"wel_053","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Was ist die Sonne?","answers":["Ein Planet","Ein Mond","Ein Komet","Ein Stern"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Die Sonne ist ein mittelgroßer Stern. In ihrem Inneren verschmilzt Wasserstoff zu Helium – daher die Energie."},
-  {"id":"wel_054","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Wie heißt der Erdmond offiziell meist?","answers":["Titan","Europa","Phobos","Mond"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Unser Trabant heißt einfach Mond."},
-  {"id":"wel_055","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Lichtjahr misst …","answers":["Zeit auf der Erde","Temperatur von Sternen","Gewicht von Planeten","eine Strecke im All"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Weg, den Licht in einem Jahr schafft."},
-  {"id":"wel_056","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Warum schwebt man auf der ISS?","answers":["Es gibt keine Masse","Die ISS ist aus Holz","Es ist immer Nacht","freier Fall um die Erde"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Dauerndes Fallen = Schwerelosigkeit."},
-  
-  {"id":"wel_058","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Ein Komet besteht oft aus …","answers":["Eis, Staub und Gestein", "Ausschließlich Eisen", "Gas ohne jedes Eis", "Stein ohne jedes Eis"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Wegen dieser Mischung nennt man Kometen oft schmutzige Schneebälle."},
-  {"id":"wel_059","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Der erste Mensch im All war …","answers":["Neil Armstrong","Buzz Aldrin","John Glenn","Juri Gagarin"],"correct":3,"difficulty":"mittel","points":10,"explanation":"1961, sowjetischer Kosmonaut."},
-  {"id":"wel_060","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Schwarze Löcher …","answers":["sind nur Löcher in der Erde","leuchten bunt wie Neon","sind kleine Monde","haben sehr starke Schwerkraft"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Selbst Licht kommt nicht heraus."},
-  {"id":"wel_061","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Mars erscheint oft …","answers":["blau","grün","gelb wie die Sonne","rötlich"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Der Boden enthält viel Eisenoxid, also Rost. Deshalb heißt der Mars auch der Rote Planet."},
-  {"id":"wel_062","category":"spass_weltraum","area":"spass","subject":"weltraum","question":"Eine Sonnenfinsternis entsteht, wenn …","answers":["Mars die Sonne deckt","die ISS die Sonne deckt","ein Komet die Sonne deckt","der Mond vor der Sonne steht"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Mondschatten auf der Erde."},
-
+    "id": "wel_050",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Welches Land startete den Satelliten Sputnik 1?",
+    "answers": [
+      "USA",
+      "Sowjetunion",
+      "China",
+      "Japan"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sputnik 1 startete am 4. Oktober 1957 und war eine Metallkugel mit vier Antennen, die ein Piepsen funkte."
+  },
+  {
+    "id": "wel_053",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Welcher Planet ist der heißeste im Sonnensystem?",
+    "answers": [
+      "Merkur",
+      "Venus",
+      "Mars",
+      "Jupiter"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Ihre dichte Wolkenhülle hält die Hitze fest – über 460 °C, heißer als auf dem sonnennäheren Merkur."
+  },
+  {
+    "id": "wel_054",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Wie viele Menschen liefen zwischen 1969 und 1972 auf dem Mond?",
+    "answers": [
+      "2",
+      "12",
+      "24",
+      "100"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Mit sechs Apollo-Landungen kamen je zwei Astronauten auf die Mondoberfläche."
+  },
+  {
+    "id": "wel_055",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Welche Raumsonde hat als erstes von Menschen gebautes Objekt unser Sonnensystem in Richtung Sternenraum verlassen?",
+    "answers": [
+      "Apollo 11",
+      "Sputnik 1",
+      "Hubble",
+      "Voyager 1"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Voyager 1 startete 1977 und funkt bis heute aus über 20 Milliarden Kilometern Entfernung."
+  },
+  {
+    "id": "wel_056",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Warum schwebt man auf der ISS?",
+    "answers": [
+      "Weil die Station ständig um die Erde herumfällt",
+      "Weil es im All keine Schwerkraft gibt",
+      "Weil die ISS aus Holz ist",
+      "Weil es dort immer Nacht ist"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Schwerkraft ist dort fast so stark wie auf der Erde – aber Station und Astronauten fallen gemeinsam um die Erde herum."
+  },
+  {
+    "id": "wel_058",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Wie heißt der größte Vulkan im Sonnensystem, der auf dem Mars steht?",
+    "answers": [
+      "Vesuv",
+      "Mauna Kea",
+      "Olympus Mons",
+      "Ätna"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Er ist über 20 Kilometer hoch – mehr als doppelt so hoch wie der Mount Everest."
+  },
+  {
+    "id": "wel_059",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Der erste Mensch im All war …",
+    "answers": [
+      "Neil Armstrong",
+      "Buzz Aldrin",
+      "John Glenn",
+      "Juri Gagarin"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "1961, sowjetischer Kosmonaut."
+  },
+  {
+    "id": "wel_060",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Schwarze Löcher …",
+    "answers": [
+      "sind nur Löcher in der Erde",
+      "leuchten bunt wie Neon",
+      "sind kleine Monde",
+      "haben sehr starke Schwerkraft"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Selbst Licht kommt nicht heraus."
+  },
+  {
+    "id": "wel_061",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Mars erscheint oft …",
+    "answers": [
+      "blau",
+      "grün",
+      "gelb wie die Sonne",
+      "rötlich"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Boden enthält viel Eisenoxid, also Rost. Deshalb heißt der Mars auch der Rote Planet."
+  },
+  {
+    "id": "wel_062",
+    "category": "spass_weltraum",
+    "area": "spass",
+    "subject": "weltraum",
+    "question": "Eine Sonnenfinsternis entsteht, wenn …",
+    "answers": [
+      "Mars die Sonne deckt",
+      "die ISS die Sonne deckt",
+      "ein Komet die Sonne deckt",
+      "der Mond vor der Sonne steht"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Mondschatten auf der Erde."
+  }
 ];
 
 if (typeof window !== "undefined") window.SPASS_WELTRAUM_QUESTIONS = SPASS_WELTRAUM_QUESTIONS;

@@ -242,7 +242,7 @@
     "category": "fussball_sport",
     "area": "american_football",
     "subject": "wissen",
-    "question": "Wie heisst das Endspiel der American-Football-Liga NFL?",
+    "question": "Wie heißt das Endspiel der American-Football-Liga NFL?",
     "answers": [
       "Super Bowl",
       "World Series",
@@ -718,7 +718,7 @@
     "category": "fussball_sport",
     "area": "eishockey",
     "subject": "wissen",
-    "question": "Wie heisst die Spielscheibe im Eishockey?",
+    "question": "Wie heißt die Spielscheibe im Eishockey?",
     "answers": [
       "Ball",
       "Puck",
@@ -752,7 +752,7 @@
     "category": "fussball_sport",
     "area": "formel1",
     "subject": "wissen",
-    "question": "Welches Team wird in der Formel 1 wegen der roten Fahrzeuglackierung 'Scuderia' genannt?",
+    "question": "Welches Formel-1-Team fährt traditionell in Rot und heißt 'Scuderia'?",
     "answers": [
       "Mercedes",
       "Ferrari",
@@ -786,7 +786,7 @@
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
-    "question": "Wie heißt der englische Begriff für einen Dreierpack eines Spielers in einer Halbzeit ohne Unterbrechung?",
+    "question": "Wie nennt man drei Tore eines Spielers in einer Halbzeit, ohne dass ein anderer Spieler dazwischen trifft?",
     "answers": [
       "Lupenreiner Hattrick",
       "Golden Goal Regel",
@@ -859,7 +859,7 @@
       "Italien",
       "Spanien",
       "Portugal",
-      "Argentina"
+      "Argentinien"
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -939,17 +939,17 @@
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
-    "question": "Welches Stadion wird wegen seiner Atmosphäre 'Anfield' genannt?",
+    "question": "Welcher Verein spielt im Stadion 'Anfield'?",
     "answers": [
-      "Stadion des FC Everton",
-      "Stadion des FC Liverpool",
-      "Stadion von Arsenal",
-      "Stadion von Chelsea"
+      "FC Everton",
+      "FC Arsenal",
+      "FC Liverpool",
+      "FC Chelsea"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Anfield ist die Heimstätte des Liverpool FC ('You'll Never Walk Alone')."
+    "explanation": "Vor jedem Heimspiel singen die Fans an der Anfield Road 'You'll Never Walk Alone'."
   },
   {
     "id": "spo_mc_057",
@@ -1058,7 +1058,7 @@
     "category": "fussball_sport",
     "area": "leichtathletik",
     "subject": "wissen",
-    "question": "Wie lang ist eine Marathonschleife auf der Straße exakt?",
+    "question": "Wie lang ist ein Marathonlauf genau?",
     "answers": [
       "40,000 km",
       "42,195 km",
@@ -1160,7 +1160,7 @@
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
-    "question": "Wie heisst der Spitzname der englischen Fußballnationalmannschaft?",
+    "question": "Wie heißt der Spitzname der englischen Fußballnationalmannschaft?",
     "answers": [
       "Three Lions",
       "The Reds",
@@ -1194,7 +1194,7 @@
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
-    "question": "Welcher Klub wird wegen seiner Trikotfarben als 'Die Werkself' bezeichnet?",
+    "question": "Welcher Bundesliga-Klub wird 'Die Werkself' genannt?",
     "answers": [
       "VfL Wolfsburg",
       "Bayer 04 Leverkusen",
@@ -1245,7 +1245,7 @@
     "category": "fussball_sport",
     "area": "fussball",
     "subject": "wissen",
-    "question": "Welches Stadion heisst 'La Bombonera' (Die Pralinenschachtel)?",
+    "question": "Welches Stadion heißt 'La Bombonera' (Die Pralinenschachtel)?",
     "answers": [
       "Stadion von River Plate",
       "Stadion von Boca Juniors",

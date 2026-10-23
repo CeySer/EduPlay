@@ -140,17 +140,17 @@
     "category": "musik_wer_singt",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wer singt 'Like a Virgin'?",
+    "question": "Wer singt 'Material Girl'?",
     "answers": [
-      "Madonna",
       "Cyndi Lauper",
+      "Madonna",
       "Whitney Houston",
       "Cher"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Von 1984. Ihr Auftritt damit bei den MTV Awards gilt als einer der berühmtesten der Sendung."
+    "explanation": "Von 1984. Madonna wurde später die 'Queen of Pop' genannt – das Video spielt auf Marilyn Monroe an."
   },
   {
     "id": "musik_sing_010",
@@ -507,7 +507,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Von 2019. Mit 19 Wochen auf Platz eins hält er den US-Rekord."
+    "explanation": "Von 2019. Mit 19 Wochen auf Platz eins der US-Charts stellte er damals einen neuen Rekord auf."
   },
   {
     "id": "musik_sing_032",
@@ -949,7 +949,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Von 1981. Bekannt wurde er neu durch das Ende der Serie Die Sopranos und durch Glee."
+    "explanation": "Von 1981. Der Song erlebte Jahrzehnte später ein Comeback, weil er in vielen Serien und Filmen vorkam."
   },
   {
     "id": "musik_sing_058",
@@ -1204,7 +1204,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Von 2003, bekannt aus dem Film Daredevil."
+    "explanation": "Von 2003. Mit dem Song wurde die US-Band um Sängerin Amy Lee weltbekannt."
   },
   {
     "id": "musik_sing_073",
@@ -1721,7 +1721,7 @@
     "category": "musik_wer_singt",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wer singt 'Highway to Hell'?",
+    "question": "Wer singt 'Thunderstruck'?",
     "answers": [
       "AC/DC",
       "Metallica",
@@ -1731,7 +1731,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Von 1979 – das letzte Album mit Sänger Bon Scott."
+    "explanation": "Der Song von 1990 beginnt mit einem der berühmtesten Gitarrenriffs der Rockgeschichte."
   },
   {
     "id": "musik_sing_104",

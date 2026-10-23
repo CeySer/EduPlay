@@ -1,1204 +1,1704 @@
 // Fun · kinder_maerchen.js
 const KINDER_MAERCHEN_QUESTIONS = [
   {
-        id: "k_dis_001",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was bringt Rotkäppchen der kranken Großmutter im Wald?",
-        answers: ["Obst und Milch", "Kekse und Saft", "Brot und Wasser", "Kuchen und Wein"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Rotkäppchen bringt Kuchen und Wein im Korb zur Großmutter."
-    },
-  {
-        id: "k_dis_002",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie viele Zwerge wohnen zusammen im Haus im Wald?",
-        answers: ["Fünf Zwerge", "Neun Zwerge", "Dreizehn Zwerge", "Sieben Zwerge"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Schneewittchen wohnt bei den sieben Zwergen hinter den sieben Bergen."
-    },
-  {
-        id: "k_dis_003",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt die Schwester von Eiskönigin Elsa im Film?",
-        answers: ["Cinderella", "Prinzessin Anna", "Prinzessin Merida", "Prinzessin Belle"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Anna ist die jüngere Schwester von Elsa im Königreich Arendelle."
-    },
-  {
-        id: "k_dis_004",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Erdmännchen ist der beste Freund von Pumbaa?",
-        answers: ["Nashornvogel Zazu", "Erdmännchen Timon", "Kater Simba", "Affe Rafiki"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Timon und Pumbaa bilden das fröhliche Duo im König der Löwen."
-    },
-  {
-        id: "k_dis_005",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was verliert Aschenputtel auf der Treppe des Schlosses?",
-        answers: ["Einen Schuh", "Einen Ring", "Ein Tuch", "Einen Handschuh"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Aschenputtel verliert um Mitternacht ihren feinen Schuh."
-    },
-  {
-        id: "k_dis_006",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches magische Wesen erfüllt Aladdin genau drei Wünsche?",
-        answers: ["Ein Drache", "Ein Geist", "Ein Zauberer", "Der Dschinn"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der Dschinn kommt aus der Wunderlampe und erfüllt Aladdin drei Wünsche."
-    },
-  {
-        id: "k_dis_007",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Fischart ist der kleine Fisch Nemo im Film?",
-        answers: ["Ein Kugelfisch", "Ein Clownfisch", "Ein Haifisch", "Ein Goldfisch"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Nemo ist ein orange-weiß gestreifter Clownfisch."
-    },
-  {
-        id: "k_dis_008",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was ist das besondere Merkmal von Prinzessin Rapunzel?",
-        answers: ["Ihre Zauberwand", "Ihre rote Nase", "Ihr rotes Kleid", "Ihr langes Haar"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Rapunzel hat wunderschönes, langes magisches Haar."
-    },
-  {
-        id: "k_dis_009",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt das berühmte rote Rennauto im Film Cars?",
-        answers: ["Lightning McQueen", "Jackson Storm", "Der Hudson Hornet", "Cruz Ramirez"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Lightning McQueen ist die rote Startnummer 95."
-    },
-  {
-        id: "k_dis_010",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wohin fliegt Peter Pan gemeinsam mit den Kindern?",
-        answers: ["Ins Nimmerland", "Ins Traumland", "Ins Zauberland", "Ins Wunderland"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Peter Pan bringt Wendy und ihre Brüder ins Nimmerland."
-    },
-  {
-        id: "k_dis_011",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche magische Blume steht im Schloss des Biests?",
-        answers: ["Eine Lilie", "Eine Rose", "Eine Nelke", "Eine Tulpe"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die verzauberte Rose verliert langsam ihre Blütenblätter."
-    },
-  {
-        id: "k_dis_012",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Woraus besteht das Häuschen der bösen Hexe im Wald?",
-        answers: ["Aus trockenem Stroh", "Aus trockenem Reisig", "Aus Knusper-Lebkuchen", "Aus grobem Feldgestein"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Hänsel und Gretel finden das Hexenhaus aus Knusper-Lebkuchen."
-    },
-  {
-        id: "k_dis_013",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier ist der gemütliche Balu im Dschungelbuch?",
-        answers: ["Ein Tiger", "Ein Bär", "Ein Wolf", "Ein Panther"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Balu der Bär singt das Lied von den 'Probier's mal mit Gemütlichkeit'."
-    },
-  {
-        id: "k_dis_014",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer ist die beste Freundin von Mickey Maus?",
-        answers: ["Minnie Maus", "Prinzessin Daisy", "Madam Mim", "Klara Kuh"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Minnie Maus trägt meist eine Schleife und gehört fest zu Mickey."
-    },
-  {
-        id: "k_dis_015",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der mutige Spielzeug-Cowboy aus Toy Story?",
-        answers: ["Rex", "Woody", "Buzz Lightyear", "Slinky Dog"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Sheriff Woody ist der Spielzeug-Cowboy von Andy."
-    },
-  {
-        id: "k_dis_016",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was passiert mit Pinocchios Nase, wenn er lügt?",
-        answers: ["Sie wird länger", "Sie wird kleiner", "Sie wird rot", "Sie wird dick"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Wenn die Holzpuppe Pinocchio lügt, wächst seine Nase."
-    },
-  {
-        id: "k_dis_017",
-        category: "kinder_maerchen_disney",
-        subject: "kinder",
-        question: "Welche Tiermaske trägt der Held Miraculous Cat Noir?",
-        answers: ["Eine Fledermausmaske", "Eine Bärenmaske", "Eine Hundemaske", "Eine Katzenmaske"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Cat Noir verwandelt sich mithilfe von Plagg in einen schwarzen Kater."
-    },
-  {
-        id: "k_dis_018",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier träumt im Film Ratatouille vom Kochen?",
-        answers: ["Eine Hamsterdame", "Ein Eichhörnchen", "Eine Hausratte", "Eine Rennmaus"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Ratte Remy kocht heimlich in einem Gourmet-Restaurant."
-    },
-  {
-        id: "k_dis_019",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was fällt der Königstochter im Märchen in den Brunnen?",
-        answers: ["Eine Goldkugel", "Ein Goldkrönchen", "Ein Silberring", "Eine Glasperle"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die goldene Kugel fällt der Prinzessin ins tiefe Brunnenwasser."
-    },
-  {
-        id: "k_dis_020",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier ist der bekannte Hirschjunge Bambi?",
-        answers: ["Ein Wildschwein", "Ein Rehkitz", "Ein Elch", "Ein Rentier"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Bambi wächst als junges Rehkitz im Wald auf."
-    },
-  {
-        id: "k_dis_021",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Womit lässt Opa Carl sein Haus im Film Oben fliegen?",
-        answers: ["Mit Luftballons", "Mit Hubschraubern", "Mit Raketen-Düsen", "Mit Drachenseilen"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Tausende bunte Luftballons heben das kleine Haus in den Himmel."
-    },
-  {
-        id: "k_dis_022",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Farbe hat das lange Haar der Meerjungfrau Arielle?",
-        answers: ["Blond", "Schwarz", "Feuerrot", "Dunkelbraun"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Arielle hat auffallendes leuchtend rotes Haar."
-    },
-  {
-        id: "k_dis_023",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier versucht die Häuser der drei Schweinchen umzupusten?",
-        answers: ["Der Bär", "Der Tiger", "Der Luchs", "Der Wolf"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der böse Wolf pustet an den Häusern aus Stroh und Holz."
-    },
-  {
-        id: "k_dis_024",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was isst der niedliche Bär Winnie Puuh am liebsten?",
-        answers: ["Himbeermarmelade", "Apfelmus", "Käsebrot", "Blütenhonig"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Winnie Puuh hat immer großen Appetit auf frischen Honig."
-    },
-  {
-        id: "k_dis_025",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der Schneemann, der den Sommer liebt?",
-        answers: ["Schneemann Olaf", "Schneemann Frost", "Schneemann Sven", "Schneemann Nils"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Olaf der Schneemann träumt von warmer Sonne und Sommer."
-    },
-  {
-        id: "k_dis_026",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Fabeltier ist Baymax aus dem Film Bajmax – Riesiges Robowabohu?",
-        answers: ["Ein Pflegeroboter", "Ein Kuschelbär", "Ein Zauberer", "Ein Wächterdrache"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Baymax ist ein aufblasbarer Gesundheitsroboter."
-    },
-  {
-        id: "k_dis_027",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer verliert ihren gläsernen Schuh auf dem Schlossball?",
-        answers: ["Dornröschen", "Rapunzel", "Schneewittchen", "Cinderella"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Cinderella (Aschenputtel) verliert den gläsernen Schuh."
-    },
-  {
-        id: "k_dis_028",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was verzaubert die böse Fee bei Dornröschen?",
-        answers: ["Ein Spiegel", "Eine Spindel", "Ein Apfel", "Ein Kamintop"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Dornröschen sticht sich an der Spindel eines Spinnrads."
-    },
-  {
-        id: "k_dis_029",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der schlaue Drache und Gefährte von Mulan?",
-        answers: ["Sisu", "Toothless", "Elliott", "Mushu"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der kleine rote Drache Mushu beschützt Mulan."
-    },
-  {
-        id: "k_dis_030",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Auf welchem Fluggerät reisen Aladdin und Jasmin durch die Nacht?",
-        answers: ["Auf einem Besen", "Auf einer Wolke", "Auf einem Teppich", "Auf einem Drachen"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Sie fliegen auf dem magischen fliegenden Teppich."
-    },
-  {
-        id: "k_dis_031",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißen die kleinen Wesen aus Ich – Einfach unverbesserlich?",
-        answers: ["Die Minions", "Die Ewoks", "Die Gremlins", "Die Schlümpfe"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die gelben Minions tragen Latzhosen und helfen Gru."
-    },
-  {
-        id: "k_dis_032",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer schläft im Märchen genau einhundert Jahre lang?",
-        answers: ["Rapunzel", "Aschenputtel", "Schneewittchen", "Dornröschen"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Dornröschen fällt zusammen mit dem ganzen Schloss in Tiefschlaf."
-    },
-  {
-        id: "k_dis_033",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier führt Alice im Wunderland in den Kaninchenbau?",
-        answers: ["Ein roter Fuchs", "Eine weiße Taube", "Ein weißes Kaninchen", "Ein brauner Feldhase"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Das weiße Kaninchen mit der Taschenuhr läuft voraus."
-    },
-  {
-        id: "k_dis_034",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt das freundliche Gespenst aus den bekannten Kinderfilmen?",
-        answers: ["Labrador", "Casper", "Slimer", "Hui Buh"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Casper ist als das kleine freundliche Gespenst bekannt."
-    },
-  {
-        id: "k_dis_035",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was trägt die Schildkröte Meister Oogway in Kung Fu Panda?",
-        answers: ["Eine Krone", "Einen Gehstock", "Einen Regenschirm", "Einen Helm"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Meister Oogway stützt sich auf seinen Holzgehstock."
-    },
-  {
-        id: "k_dis_036",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer legt im Märchen goldene Eier?",
-        answers: ["Die Taube", "Die Ente", "Die Wachtel", "Die Gans"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die goldene Gans ist ein bekanntes Märchenmotiv."
-    },
-  {
-        id: "k_dis_037",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Farbe hat das Fell des bekannten Bären Paddington?",
-        answers: ["Schwarzes Fell", "Graues Fell", "Weißes Fell", "Braunes Fell"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Paddington Bär hat braunes Fell und trägt einen blauen Dufflecoat."
-    },
-  {
-        id: "k_dis_038",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer wohnt in einer Ananas ganz tief unten im Meer?",
-        answers: ["Patrick Star", "SpongeBob Schwammkopf", "Thaddäus Tentakel", "Mr. Krabs"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "SpongeBob Schwammkopf wohnt in der gelben Ananas in Bikini Bottom."
-    },
-  {
-        id: "k_dis_039",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heilt Rapunzel Wunden im Film Verwickelt?",
-        answers: ["Mit Kräutertee", "Mit Zaubersalz", "Durch ihren Gesang", "Mit einem Zauberspruch"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Wenn Rapunzel singt, fängt ihr Haar an zu leuchten und heilt Wunden."
-    },
-  {
-        id: "k_dis_040",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Zauberwort öffnet im Märchen die Höhle der 40 Räuber?",
-        answers: ["Sesam öffne dich", "Hokuspokus Fidibus", "Abrakadabra", "Hokus Pokus"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Mit 'Sesam, öffne dich!' öffnet sich das Felsentor."
-    },
-  {
-        id: "k_dis_041",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt das Haustier-Chamäleon von Rapunzel im Film?",
-        answers: ["Pascal", "Maximus", "Flounder", "Sven"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Pascal das kleine grüne Chamäleon ist Rapunzels treuer Freund."
-    },
-  {
-        id: "k_dis_042",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Vogel liefert dem Löwenkönig Mufasa tägliche Berichte?",
-        answers: ["Nashornvogel Zazu", "Eule Bagheera", "Papagei Iago", "Storchenvogel Konrad"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Zazu der Rotschnabeltokko ist der Hausminister des Königs."
-    },
-  {
-        id: "k_dis_043",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Rentier gehört treu zum Bergmann Kristoff?",
-        answers: ["Sven", "Maximus", "Pumbaa", "Olaf"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Sven ist das treue Rentier an Kristoffs Seite."
-    },
-  {
-        id: "k_dis_044",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt die kleine Elfe und Begleiterin von Peter Pan?",
-        answers: ["Flora", "Sonnenschein", "Fauna", "Tinkerbell"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Tinkerbell hinterlässt feinen Fee-Feenstaub beim Fliegen."
-    },
-  {
-        id: "k_dis_045",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Fisch begleitet Arielle stets treu im Meer?",
-        answers: ["Sebastian", "Scuttle", "Nemo", "Fabius"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Fabius ist der gelb-blaue kleine Fischfreund von Arielle."
-    },
-  {
-        id: "k_dis_046",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer befreit den gestiefelten Kater aus misslichen Lagen?",
-        answers: ["Ein Zauberer", "Ein König", "Ein Müllerssohn", "Er sich selbst"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der gestiefelte Kater hilft mit Schlauheit dem armen Müllerssohn."
-    },
-  {
-        id: "k_dis_047",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was für ein Tier ist der rote Feuerkrebs Sebastian?",
-        answers: ["Ein Seeigel", "Ein Hummer", "Ein Krabbenkrebs", "Ein Taschenkrebs"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Sebastian ist ein Krabbenkrebs und Hofmusiker des Königs."
-    },
-  {
-        id: "k_dis_048",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer wacht im Märchen über den Brunnen mit den Broten und Äpfeln?",
-        answers: ["Schneewittchen", "Dornröschen", "Aschenputtel", "Frau Holle"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Frau Holle lässt es auf der Erde schneien, wenn sie ihre Betten schüttelt."
-    },
-  {
-        id: "k_dis_049",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der neugierige Roboter, der die Erde aufräumt?",
-        answers: ["R2-D2", "Baymax", "WALL-E", "EVE"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "WALL-E sammelt Müll und entdeckt eine kleine grüne Pflanze."
-    },
-  {
-        id: "k_dis_050",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Prinz weckt Schneewittchen aus dem Schlaf?",
-        answers: ["Prinz Hans", "Prinz Ferdinand", "Prinz Florian", "Prinz Philip"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Prinz Florian löst mit der Liebe den Zauberschlaf."
-    },
-  {
-        id: "k_dis_051",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer verwandelt sich im Märchen durch einen Kuss wieder zurück?",
-        answers: ["Ein brauner Bär", "Ein Kater", "Der Froschkönig", "Ein grauer Wolf"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der Frosch verwandelt sich durch das Versprechen der Königstochter in einen Prinzen."
-    },
-  {
-        id: "k_dis_052",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt das blaue Außerirdische-Wesen bei Lilo & Stitch?",
-        answers: ["Jumba", "Pleakley", "Gantu", "Stitch"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Experiment 626 nennt sich Stitch und wird Lilos bester Freund."
-    },
-  {
-        id: "k_dis_053",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Hexe verlangt Arielles Stimme im Tausch gegen Beine?",
-        answers: ["Die böse Königin", "Hexe Maleficent", "Hexe Gothel", "Meerhexe Ursula"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Ursula fordert Arielles schöne Stimme für den Zaubertrank."
-    },
-  {
-        id: "k_dis_054",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer verfütterte die Hand von Käpt'n Hook an das Krokodil?",
-        answers: ["Tinkerbell", "Wendy", "Smee", "Peter Pan"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Peter Pan schlug Hooks Hand ab, die das Krokodil verschlang."
-    },
-  {
-        id: "k_dis_055",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was sammelt die kleine Meerjungfrau Arielle in ihrer Höhle?",
-        answers: ["Lauter bunte Fische", "Echte Perlen", "Menschliche Sachen", "Glitzernde Muscheln"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Arielle sammelt voller Neugier Gegenstände aus der Menschenwelt."
-    },
-  {
-        id: "k_dis_056",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier zieht das Kutschen-Gespann von Aschenputtel?",
-        answers: ["Weiße Tauben", "Kleine Hunde", "Weiße Schimmel", "Kleine graue Mäuse"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die gute Fee verwandelt weiße Mäuse in edle Schimmel-Pferde."
-    },
-  {
-        id: "k_dis_057",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Insekt zeigt Pinocchio, was richtig und falsch ist?",
-        answers: ["Marienkäfer", "Biene Maja", "Grille Jiminy", "Schmetterling Felix"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Jiminy Grille dient Pinocchio als sein treues Gewissen."
-    },
-  {
-        id: "k_dis_058",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was gibt der Ozean der kleinen Vaiana?",
-        answers: ["Eine Zauberkette", "Das Herz von Te Fiti", "Ein magisches Segelboot", "Einen Kompass"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der Ozean wählt Vaiana aus und schenkt ihr das Herz von Te Fiti."
-    },
-  {
-        id: "k_dis_059",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Vogel warnt Mufasa im König der Löwen vor den Hyänen?",
-        answers: ["Papagei Iago", "Eule Archimedes", "Nashornvogel Zazu", "Kranich Konstantin"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Zazu behält das Königreich von oben immer im Blick."
-    },
-  {
-        id: "k_dis_060",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer wohnt zusammen mit den Bremer Stadtmusikanten im Haus?",
-        answers: ["Die Waldfeen", "Ein alter Bauer", "Keine Menschen", "Die Räuber"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die Vier Tiere vertreiben die Räuber aus dem Waldhaus."
-    },
-  {
-        id: "k_dis_061",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Farbe hat der Umhang des Schneewittchens im klassischen Disney-Film?",
-        answers: ["Lila und Rot", "Grün und Weiß", "Rot und Gelb", "Blau und Gelb"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Schneewittchen trägt ein Kleid mit gelbem Rock und rotem Umhang."
-    },
-  {
-        id: "k_dis_062",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Gegenstand verrät der bösen Königin, wer die Schönste ist?",
-        answers: ["Ein Zauberstab", "Der Zauberspiegel", "Ein Kristallglas", "Ein altes Zauberbuch"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der magische Wandspiegel antwortet der Königin stets wahrheitsgemäß."
-    },
-  {
-        id: "k_dis_063",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der große Schneeroboter, den Elsa zum Schutz baut?",
-        answers: ["Olaf", "Kristoff", "Marshmallow", "Schneeriese Bob"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Marshmallow beschützt den Eispalast von Elsa."
-    },
-  {
-        id: "k_dis_064",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer ist der treue Pferdefreund von Flynn Rider in Rapunzel?",
-        answers: ["Pferd Sven", "Pferd Samson", "Pferd Maximus", "Pferd Balthasar"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Palastpferd Maximus jagt zuerst Flynn und wird dann sein Freund."
-    },
-  {
-        id: "k_dis_065",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was muss Prinzessin Tiana im Film Küss den Frosch küssen?",
-        answers: ["Einen grünen Frosch", "Einen goldenen Fisch", "Einen Wassermann", "Einen Zauberfisch"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Tiana küsst Frosch Naveen und verwandelt sich selbst kurz in einen Frosch."
-    },
-  {
-        id: "k_dis_066",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißen die bekannten Zwillinge im Film Die Eiskönigin 2 nicht?",
-        answers: ["Mickey und Donald", "Anna und Elsa", "Sven und Olaf", "Kristoff und Hans"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Mickey und Donald gehören zur Micky-Maus-Welt."
-    },
-  {
-        id: "k_dis_067",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Aus welchem Holz wurde Pinocchio von seinem Vater geschnitzt?",
-        answers: ["Eichenholz", "Buchenholz", "Pinienholz", "Kiefernholz"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Holzschnitzer Gepetto fertigt die Puppe aus Pinienholz."
-    },
-  {
-        id: "k_dis_068",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Figur schläft in einer Walnussschale im gleichnamigen Märchen?",
-        answers: ["Rapunzel", "Aschenputtel", "Dornröschen", "Däumelinchen"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Däumelinchen ist so winzig klein wie ein Daumen."
-    },
-  {
-        id: "k_dis_069",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer baute das erste Haus im Märchen Die drei Schweinchen?",
-        answers: ["Das klügste Schwein", "Das zweite Schwein", "Das jüngste Schwein", "Das älteste Schwein"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Das erste faule Schweinchen baut sein Haus schnell aus Stroh."
-    },
-  {
-        id: "k_dis_070",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier ist der Bösewicht Shere Khan im Dschungelbuch?",
-        answers: ["Ein Panther", "Ein schwarzer Leopard", "Ein Königstiger", "Ein Schlange"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Shere Khan ist der gefürchtete Tiger im Dschungel."
-    },
-  {
-        id: "k_dis_071",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der neugierige kleine Drache im Film Elliott, das Schmunzelmonster?",
-        answers: ["Fuchur", "Mushu", "Drache Kolja", "Elliott"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Elliott ist der liebe grüne, unsichtbare Drache."
-    },
-  {
-        id: "k_dis_072",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Frucht bekommt Schneewittchen von der verkleideten Hexe?",
-        answers: ["Eine Birne", "Einen Apfel", "Eine Pflaume", "Eine Kirsche"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Schneewittchen beißt in die vergiftete rote Hälfte des Apfels."
-    },
-  {
-        id: "k_dis_073",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt die Hauptfigur im Film Merida – Legende der Highlands?",
-        answers: ["Prinzessin Moana", "Prinzessin Rapunzel", "Prinzessin Merida", "Prinzessin Belle"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Merida ist die geschickte Bogenschützin aus Schottland."
-    },
-  {
-        id: "k_dis_074",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was vergisst die vergessliche Fischdame Dorie dauernd?",
-        answers: ["Wie man schwimmt", "Ihren eigenen Namen", "Wo ihr Zuhause ist", "Alles nach kurzer Zeit"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Dorie leidet unter verlässlichem Kurzzeitgedächtnisschwund."
-    },
-  {
-        id: "k_dis_075",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der sprechende Halbgott im Disney-Film Vaiana?",
-        answers: ["Zeus", "Maui", "Tarzan", "Hercules"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Maui besitzt einen Zauberhaken und hilft Vaiana."
-    },
-  {
-        id: "k_dis_076",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Haustier besitzt der Bösewicht Jafar in Aladdin?",
-        answers: ["Einen Papageien", "Einen kleinen Affen", "Einen Kater", "Einen Hund"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Iago ist der gemeine rote Papagei von Jafar."
-    },
-  {
-        id: "k_dis_077",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Aus welchem Land stammt das Märchen von der Schneekönigin ursprünglich?",
-        answers: ["Frankreich", "Deutschland", "Dänemark", "Russland"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Hans Christian Andersen aus Dänemark verfasste das Original-Märchen."
-    },
-  {
-        id: "k_dis_078",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt das Schneemonster, das den Palast in Die Eiskönigin bewacht?",
-        answers: ["Eisiger Yeti", "Eisklotz", "Goliath", "Marshmallow"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Marshmallow verteidigt den Eispalast auf dem Nordberg."
-    },
-  {
-        id: "k_dis_079",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißen die Bremer Stadtmusikanten allesamt?",
-        answers: ["Esel, Hund, Katze, Hahn", "Kuh, Hund, Katze, Vogel", "Esel, Wolf, Kater, Hahn", "Pferd, Hund, Katze, Huhn"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die vier Tiere wandern gemeinsam nach Bremen."
-    },
-  {
-        id: "k_dis_080",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wen verflucht die Fee Maleficent im gleichnamigen Film?",
-        answers: ["Prinzessin Aurora", "Schneewittchen", "Prinzessin Arielle", "Cinderella"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Maleficent verflucht die kleine Aurora – und kümmert sich später heimlich um sie."
-    },
-  {
-        id: "k_dis_081",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Meereswesen leitet die Unterwasser-Musik in Arielle?",
-        answers: ["Krabbe Sebastian", "Fisch Fabius", "Wasserhexe Ursula", "König Triton"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Sebastian komponiert die Unterwasser-Symphonien."
-    },
-  {
-        id: "k_dis_082",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Gegenstand lässt der Teufel mit den drei goldenen Haaren suchen?",
-        answers: ["Die drei Haare", "Die Wünsche", "Das Zauberschwert", "Das Krönchen"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Der Glückskind-Junge muss dem Teufel drei goldene Haare stehlen."
-    },
-  {
-        id: "k_dis_083",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer liefert die Geschenke im Disney-Klassiker Night Before Christmas?",
-        answers: ["Jack Skellington", "Der Sandmann", "Der Osterhase", "Der Weihnachtsmann"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Jack Skellington übernimmt versehentlich das Weihnachtsfest."
-    },
-  {
-        id: "k_dis_084",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißen die zwei Mäusefreunde von Aschenputtel?",
-        answers: ["Bernard und Bianca", "Chip und Chap", "Jaq und Gus", "Mickey und Minnie"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Jaq und Gus nähen und helfen Aschenputtel fleißig."
-    },
-  {
-        id: "k_dis_085",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier ist der Panther Bagheera im Dschungelbuch?",
-        answers: ["Ein wilder Tiger", "Ein Wüstenluchs", "Ein schwarzer Panther", "Ein gepunkteter Leopard"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Bagheera beschützt Mogli von klein auf im Dschungel."
-    },
-  {
-        id: "k_dis_086",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt das kleine Meerschweinchen aus Die Sorgenfresser?",
-        answers: ["Flitzi", "Sorgenfresser", "Muffel", "Plüsch"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Flitzi hilft den Kindern durch den Schulalltag."
-    },
-  {
-        id: "k_dis_087",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Was verwandelt sich im Märchen vom Aschenputtel in eine Kutsche?",
-        answers: ["Ein großer Kohlkopf", "Ein gelber Kürbis", "Eine reife Melone", "Ein großer Stein"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die gute Fee verzaubert den Kürbis in eine prunkvolle Kutsche."
-    },
-  {
-        id: "k_dis_088",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Insekt sammelt fleißig Vorräte für den kalten Winter?",
-        answers: ["Der Grashüpfer", "Die Fleißige Ameise", "Die bunten Schmetterlinge", "Die Heuschrecke"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die Ameise arbeitet den Sommer durch, während der Grashüpfer musiziert."
-    },
-  {
-        id: "k_dis_089",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heit der kleine Holzwurm im Disney-Film Die Hexe und der Zauberer?",
-        answers: ["Kater Lucifer", "Eule Archimedes", "Wurm Archimedes", "Wurm Merlin"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Archimedes ist Merlins gelehrte und leicht grummelige Eule."
-    },
-  {
-        id: "k_dis_090",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißen die zwei Chipmunks Streifenhörnchen bei Disney?",
-        answers: ["Mickey und Donald", "Chip und Chap", "Timon und Pumbaa", "Bernard und Bianca"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Chip und Chap sind die beiden frechen Streifenhörnchen."
-    },
-  {
-        id: "k_dis_091",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Bärenjunge wächst bei den Wölfen im Dschungel auf?",
-        answers: ["Das Bambi das Kitz", "Das Menschenkind Mogli", "Das Balu der Bär", "Das Dschungelkind Tarzan"],
-        correct: 1,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Mogli wird von der Wölfin Raksha wie ihr eigenes Junges aufgezogen."
-    },
-  {
-        id: "k_dis_092",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der Drache von Hicks in 'Drachenzähmen leicht gemacht'?",
-        answers: ["Ohnezahn", "Sturmpfeil", "Hakenzahn", "Fleischklops"],
-        correct: 0,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Hicks' Drache ist der Nachtschatten Ohnezahn. Sturmpfeil gehört Astrid, Hakenzahn Rotzbakke und Fleischklops Fischbein."
-    },
-  {
-        id: "k_dis_093",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welcher Vogel führt die Enten im Film In einem Land vor unserer Zeit an?",
-        answers: ["Saurier Littlefoot", "Saurier Cera", "Flugsaurier Petrie", "Saurier Ducky"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Petrie ist der kleine ängstliche Flugsaurier."
-    },
-  {
-        id: "k_dis_094",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Aus welcher Stadt kommen die Helden von Baymax?",
-        answers: ["Tokio City", "New York", "San Francisco", "San Fransokyo"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Die Handlung spielt in der erfundenen Stadt San Fransokyo."
-    },
-  {
-        id: "k_dis_095",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer singt das berühmte Lied 'Unter dem Meer' in Arielle?",
-        answers: ["König Triton", "Fabius der Fisch", "Krabbe Sebastian", "Prinz Eric"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Sebastian versucht Arielle vom Leben im Ozean zu überzeugen."
-    },
-  {
-        id: "k_dis_096",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Tier rettet Tarzan als Baby im afrikanischen Dschungel?",
-        answers: ["Elefanten-Kuh Tantor", "Affen-Vater Kerchak", "Gorilla-Mutter Kala", "Leopard Sabor"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Kala nimmt das verwaiste Menschenbaby liebevoll bei sich auf."
-    },
-  {
-        id: "k_dis_097",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wer ist der schnellste Flieger unter den Fee-Feen im Tal der Feen?",
-        answers: ["Fee Tinkerbell", "Fee Rosetta", "Fee Klara", "Fee Vidia"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Vidia ist die schnelle Frühlingsfeen-Rivalin."
-    },
-  {
-        id: "k_dis_098",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Wie heißt der Panda-Bär im Animationsfilm Kung Fu Panda?",
-        answers: ["Meister Tai Lung", "Meister Shifu", "Panda Po", "Panda Mei"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Po verwandelt sich vom Nudelkoch zum Drachenkrieger."
-    },
-  {
-        id: "k_dis_099",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welche Blumenart pflückt das Rumpelstilzchen im Wald?",
-        answers: ["Waldbeeren", "Gänseblümchen", "Stroh zu Gold", "Grasfaser"],
-        correct: 2,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Rumpelstilzchen spinnt für die Müllerstochter Stroh zu reinem Gold."
-    },
-  {
-        id: "k_dis_100",
-        category: "kinder_maerchen_disney",
-        area: "spass",
-        subject: "kinder",
-        question: "Welches Zauberwort sagt die Feenmutter in Cinderella?",
-        answers: ["Simsalabim Hokus Pokus", "Sesam öffne dich", "Abrakadabra Hokuspokus", "Bibbidi Babbidi Boo"],
-        correct: 3,
-        difficulty: "leicht",
-        points: 10,
-        explanation: "Mit 'Bibbidi Babbidi Boo' verwandelt die Fee die Kleidung und den Kürbis."
-    }
+    "id": "k_dis_001",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was bringt Rotkäppchen der kranken Großmutter im Wald?",
+    "answers": [
+      "Obst und Milch",
+      "Kekse und Saft",
+      "Brot und Wasser",
+      "Kuchen und Wein"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Rotkäppchen bringt Kuchen und Wein im Korb zur Großmutter."
+  },
+  {
+    "id": "k_dis_002",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie viele Zwerge wohnen zusammen im Haus im Wald?",
+    "answers": [
+      "Fünf Zwerge",
+      "Neun Zwerge",
+      "Dreizehn Zwerge",
+      "Sieben Zwerge"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Schneewittchen wohnt bei den sieben Zwergen hinter den sieben Bergen."
+  },
+  {
+    "id": "k_dis_003",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt die Schwester von Eiskönigin Elsa im Film?",
+    "answers": [
+      "Cinderella",
+      "Prinzessin Anna",
+      "Prinzessin Merida",
+      "Prinzessin Belle"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Anna ist die jüngere Schwester von Elsa im Königreich Arendelle."
+  },
+  {
+    "id": "k_dis_004",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Erdmännchen ist der beste Freund von Pumbaa?",
+    "answers": [
+      "Nashornvogel Zazu",
+      "Erdmännchen Timon",
+      "Kater Simba",
+      "Affe Rafiki"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Timon und Pumbaa bilden das fröhliche Duo im König der Löwen."
+  },
+  {
+    "id": "k_dis_005",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was verliert Aschenputtel auf der Treppe des Schlosses?",
+    "answers": [
+      "Einen Schuh",
+      "Einen Ring",
+      "Ein Tuch",
+      "Einen Handschuh"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Aschenputtel verliert um Mitternacht ihren feinen Schuh."
+  },
+  {
+    "id": "k_dis_006",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches magische Wesen erfüllt Aladdin genau drei Wünsche?",
+    "answers": [
+      "Ein Drache",
+      "Eine Fee",
+      "Ein Zauberer",
+      "Der Dschinn"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Dschinn kommt aus der Wunderlampe und erfüllt Aladdin drei Wünsche."
+  },
+  {
+    "id": "k_dis_007",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Fischart ist der kleine Fisch Nemo im Film?",
+    "answers": [
+      "Ein Kugelfisch",
+      "Ein Clownfisch",
+      "Ein Haifisch",
+      "Ein Goldfisch"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Nemo ist ein orange-weiß gestreifter Clownfisch."
+  },
+  {
+    "id": "k_dis_008",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was ist das besondere Merkmal von Prinzessin Rapunzel?",
+    "answers": [
+      "Ihre Zauberwand",
+      "Ihre rote Nase",
+      "Ihr rotes Kleid",
+      "Ihr langes Haar"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Rapunzel hat wunderschönes, langes magisches Haar."
+  },
+  {
+    "id": "k_dis_009",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt das berühmte rote Rennauto im Film Cars?",
+    "answers": [
+      "Lightning McQueen",
+      "Jackson Storm",
+      "Der Hudson Hornet",
+      "Cruz Ramirez"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Lightning McQueen ist die rote Startnummer 95."
+  },
+  {
+    "id": "k_dis_010",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wohin fliegt Peter Pan gemeinsam mit den Kindern?",
+    "answers": [
+      "Ins Nimmerland",
+      "Ins Traumland",
+      "Ins Zauberland",
+      "Ins Wunderland"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Peter Pan bringt Wendy und ihre Brüder ins Nimmerland."
+  },
+  {
+    "id": "k_dis_011",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche magische Blume steht im Schloss des Biests?",
+    "answers": [
+      "Eine Lilie",
+      "Eine Rose",
+      "Eine Nelke",
+      "Eine Tulpe"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die verzauberte Rose verliert langsam ihre Blütenblätter."
+  },
+  {
+    "id": "k_dis_012",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Woraus besteht das Häuschen der bösen Hexe im Wald?",
+    "answers": [
+      "Aus trockenem Stroh",
+      "Aus trockenem Reisig",
+      "Aus Knusper-Lebkuchen",
+      "Aus grobem Feldgestein"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Hänsel und Gretel finden das Hexenhaus aus Knusper-Lebkuchen."
+  },
+  {
+    "id": "k_dis_013",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier ist der gemütliche Balu im Dschungelbuch?",
+    "answers": [
+      "Ein Tiger",
+      "Ein Bär",
+      "Ein Wolf",
+      "Ein Panther"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Balu der Bär singt das Lied von den 'Probier's mal mit Gemütlichkeit'."
+  },
+  {
+    "id": "k_dis_014",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer ist die beste Freundin von Mickey Maus?",
+    "answers": [
+      "Minnie Maus",
+      "Prinzessin Daisy",
+      "Madam Mim",
+      "Klara Kuh"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Minnie Maus trägt meist eine Schleife und gehört fest zu Mickey."
+  },
+  {
+    "id": "k_dis_015",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der mutige Spielzeug-Cowboy aus Toy Story?",
+    "answers": [
+      "Rex",
+      "Woody",
+      "Buzz Lightyear",
+      "Slinky Dog"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Sheriff Woody ist der Spielzeug-Cowboy von Andy."
+  },
+  {
+    "id": "k_dis_016",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was passiert mit Pinocchios Nase, wenn er lügt?",
+    "answers": [
+      "Sie wird länger",
+      "Sie wird kleiner",
+      "Sie wird rot",
+      "Sie wird dick"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Wenn die Holzpuppe Pinocchio lügt, wächst seine Nase."
+  },
+  {
+    "id": "k_dis_017",
+    "category": "kinder_maerchen_disney",
+    "subject": "kinder",
+    "question": "Welche Tiermaske trägt der Held Miraculous Cat Noir?",
+    "answers": [
+      "Eine Fledermausmaske",
+      "Eine Bärenmaske",
+      "Eine Hundemaske",
+      "Eine Katzenmaske"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Cat Noir verwandelt sich mithilfe von Plagg in einen schwarzen Kater."
+  },
+  {
+    "id": "k_dis_018",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier träumt im Film Ratatouille vom Kochen?",
+    "answers": [
+      "Eine Hamsterdame",
+      "Ein Eichhörnchen",
+      "Eine Hausratte",
+      "Eine Rennmaus"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Ratte Remy kocht heimlich in einem Gourmet-Restaurant."
+  },
+  {
+    "id": "k_dis_019",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was fällt der Königstochter im Märchen in den Brunnen?",
+    "answers": [
+      "Eine Goldkugel",
+      "Ein Goldkrönchen",
+      "Ein Silberring",
+      "Eine Glasperle"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die goldene Kugel fällt der Prinzessin ins tiefe Brunnenwasser."
+  },
+  {
+    "id": "k_dis_020",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier ist der bekannte Hirschjunge Bambi?",
+    "answers": [
+      "Ein Wildschwein",
+      "Ein Rehkitz",
+      "Ein Elch",
+      "Ein Rentier"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Bambi wächst als junges Rehkitz im Wald auf."
+  },
+  {
+    "id": "k_dis_021",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Womit lässt Opa Carl sein Haus im Film Oben fliegen?",
+    "answers": [
+      "Mit Luftballons",
+      "Mit Hubschraubern",
+      "Mit Raketen-Düsen",
+      "Mit Drachenseilen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Tausende bunte Luftballons heben das kleine Haus in den Himmel."
+  },
+  {
+    "id": "k_dis_022",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Farbe hat das lange Haar der Meerjungfrau Arielle?",
+    "answers": [
+      "Blond",
+      "Schwarz",
+      "Feuerrot",
+      "Dunkelbraun"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Arielle hat auffallendes leuchtend rotes Haar."
+  },
+  {
+    "id": "k_dis_023",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier versucht die Häuser der drei Schweinchen umzupusten?",
+    "answers": [
+      "Der Bär",
+      "Der Tiger",
+      "Der Luchs",
+      "Der Wolf"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der böse Wolf pustet an den Häusern aus Stroh und Holz."
+  },
+  {
+    "id": "k_dis_024",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was isst der niedliche Bär Winnie Puuh am liebsten?",
+    "answers": [
+      "Himbeermarmelade",
+      "Apfelmus",
+      "Käsebrot",
+      "Blütenhonig"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Winnie Puuh hat immer großen Appetit auf frischen Honig."
+  },
+  {
+    "id": "k_dis_025",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt das Mädchen, das im Haus der drei Bären Brei isst und in ihren Betten schläft?",
+    "answers": [
+      "Rotkäppchen",
+      "Goldlöckchen",
+      "Gretel",
+      "Schneeweißchen"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Ein Brei ist zu heiß, einer zu kalt – und einer genau richtig."
+  },
+  {
+    "id": "k_dis_026",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was ist Baymax aus dem Film 'Baymax – Riesiges Robowabohu'?",
+    "answers": [
+      "Ein Pflegeroboter",
+      "Ein Kuschelbär",
+      "Ein Zauberer",
+      "Ein Wächterdrache"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Baymax ist ein aufblasbarer Gesundheitsroboter."
+  },
+  {
+    "id": "k_dis_027",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was streut Hänsel beim zweiten Mal auf den Weg, damit sie zurückfinden?",
+    "answers": [
+      "Kieselsteine",
+      "Brotkrumen",
+      "Blumen",
+      "Erbsen"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Beim ersten Mal nahm er weiße Kieselsteine – die Brotkrumen fraßen leider die Vögel."
+  },
+  {
+    "id": "k_dis_028",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Woran sticht sich Dornröschen?",
+    "answers": [
+      "Ein Spiegel",
+      "Eine Spindel",
+      "Ein Apfel",
+      "Ein Kamintop"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Dornröschen sticht sich an der Spindel eines Spinnrads."
+  },
+  {
+    "id": "k_dis_029",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der schlaue Drache und Gefährte von Mulan?",
+    "answers": [
+      "Sisu",
+      "Toothless",
+      "Elliott",
+      "Mushu"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der kleine rote Drache Mushu beschützt Mulan."
+  },
+  {
+    "id": "k_dis_030",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Auf welchem Fluggerät reisen Aladdin und Jasmin durch die Nacht?",
+    "answers": [
+      "Auf einem Besen",
+      "Auf einer Wolke",
+      "Auf einem Teppich",
+      "Auf einem Drachen"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Sie fliegen auf dem magischen fliegenden Teppich."
+  },
+  {
+    "id": "k_dis_031",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißen die kleinen Wesen aus Ich – Einfach unverbesserlich?",
+    "answers": [
+      "Die Minions",
+      "Die Ewoks",
+      "Die Gremlins",
+      "Die Schlümpfe"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die gelben Minions tragen Latzhosen und helfen Gru."
+  },
+  {
+    "id": "k_dis_032",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer schläft im Märchen genau einhundert Jahre lang?",
+    "answers": [
+      "Rapunzel",
+      "Aschenputtel",
+      "Schneewittchen",
+      "Dornröschen"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Dornröschen fällt zusammen mit dem ganzen Schloss in Tiefschlaf."
+  },
+  {
+    "id": "k_dis_033",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier führt Alice im Wunderland in den Kaninchenbau?",
+    "answers": [
+      "Ein roter Fuchs",
+      "Eine weiße Taube",
+      "Ein weißes Kaninchen",
+      "Ein brauner Feldhase"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Das weiße Kaninchen mit der Taschenuhr läuft voraus."
+  },
+  {
+    "id": "k_dis_034",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt das freundliche Gespenst aus den bekannten Kinderfilmen?",
+    "answers": [
+      "Poltergeist Peeves",
+      "Casper",
+      "Slimer",
+      "Hui Buh"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Casper ist als das kleine freundliche Gespenst bekannt."
+  },
+  {
+    "id": "k_dis_035",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was trägt die Schildkröte Meister Oogway in Kung Fu Panda?",
+    "answers": [
+      "Eine Krone",
+      "Einen Gehstock",
+      "Einen Regenschirm",
+      "Einen Helm"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Meister Oogway stützt sich auf seinen Holzgehstock."
+  },
+  {
+    "id": "k_dis_036",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer legt im Märchen goldene Eier?",
+    "answers": [
+      "Die Taube",
+      "Die Ente",
+      "Die Wachtel",
+      "Die Gans"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die goldene Gans ist ein bekanntes Märchenmotiv."
+  },
+  {
+    "id": "k_dis_037",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Farbe hat das Fell des bekannten Bären Paddington?",
+    "answers": [
+      "Schwarzes Fell",
+      "Graues Fell",
+      "Weißes Fell",
+      "Braunes Fell"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Paddington Bär hat braunes Fell und trägt einen blauen Dufflecoat."
+  },
+  {
+    "id": "k_dis_038",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer wohnt in einer Ananas ganz tief unten im Meer?",
+    "answers": [
+      "Patrick Star",
+      "SpongeBob Schwammkopf",
+      "Thaddäus Tentakel",
+      "Mr. Krabs"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "SpongeBob Schwammkopf wohnt in der gelben Ananas in Bikini Bottom."
+  },
+  {
+    "id": "k_dis_039",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heilt Rapunzel Wunden im Film Verwickelt?",
+    "answers": [
+      "Mit Kräutertee",
+      "Mit Zaubersalz",
+      "Durch ihren Gesang",
+      "Mit einem Zauberspruch"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Wenn Rapunzel singt, fängt ihr Haar an zu leuchten und heilt Wunden."
+  },
+  {
+    "id": "k_dis_040",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Zauberwort öffnet im Märchen die Höhle der 40 Räuber?",
+    "answers": [
+      "Sesam öffne dich",
+      "Hokuspokus Fidibus",
+      "Abrakadabra",
+      "Hokus Pokus"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Mit 'Sesam, öffne dich!' öffnet sich das Felsentor."
+  },
+  {
+    "id": "k_dis_041",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt das Haustier-Chamäleon von Rapunzel im Film?",
+    "answers": [
+      "Pascal",
+      "Maximus",
+      "Flounder",
+      "Sven"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Pascal das kleine grüne Chamäleon ist Rapunzels treuer Freund."
+  },
+  {
+    "id": "k_dis_042",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welcher Vogel liefert dem Löwenkönig Mufasa tägliche Berichte?",
+    "answers": [
+      "Nashornvogel Zazu",
+      "Eule Bagheera",
+      "Papagei Iago",
+      "Storchenvogel Konrad"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Zazu der Rotschnabeltokko ist der Hausminister des Königs."
+  },
+  {
+    "id": "k_dis_043",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Rentier gehört treu zum Bergmann Kristoff?",
+    "answers": [
+      "Sven",
+      "Maximus",
+      "Pumbaa",
+      "Olaf"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Sven ist das treue Rentier an Kristoffs Seite."
+  },
+  {
+    "id": "k_dis_044",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt die kleine Elfe und Begleiterin von Peter Pan?",
+    "answers": [
+      "Flora",
+      "Sonnenschein",
+      "Fauna",
+      "Tinkerbell"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Tinkerbell hinterlässt feinen Feenstaub beim Fliegen."
+  },
+  {
+    "id": "k_dis_045",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welcher Fisch begleitet Arielle stets treu im Meer?",
+    "answers": [
+      "Sebastian",
+      "Scuttle",
+      "Nemo",
+      "Fabius"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Fabius ist der gelb-blaue kleine Fischfreund von Arielle."
+  },
+  {
+    "id": "k_dis_046",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißen die beiden Schwestern im Märchen 'Frau Holle'?",
+    "answers": [
+      "Goldmarie und Pechmarie",
+      "Schneeweißchen und Rosenrot",
+      "Hänsel und Gretel",
+      "Anna und Elsa"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die fleißige Schwester wird mit Gold belohnt, die faule mit Pech übergossen."
+  },
+  {
+    "id": "k_dis_047",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie viele Geißlein hat die Mutter Geiß im Märchen vom Wolf?",
+    "answers": [
+      "Drei",
+      "Fünf",
+      "Zwölf",
+      "Sieben"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Das jüngste Geißlein versteckt sich im Uhrkasten und wird nicht gefunden."
+  },
+  {
+    "id": "k_dis_048",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Bei wem landet die Goldmarie, nachdem sie in den Brunnen gefallen ist?",
+    "answers": [
+      "Schneewittchen",
+      "Dornröschen",
+      "Aschenputtel",
+      "Frau Holle"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Frau Holle lässt es auf der Erde schneien, wenn sie ihre Betten schüttelt."
+  },
+  {
+    "id": "k_dis_049",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der neugierige Roboter, der die Erde aufräumt?",
+    "answers": [
+      "R2-D2",
+      "Baymax",
+      "WALL-E",
+      "EVE"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "WALL-E sammelt Müll und entdeckt eine kleine grüne Pflanze."
+  },
+  {
+    "id": "k_dis_050",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welcher Prinz weckt Schneewittchen aus dem Schlaf?",
+    "answers": [
+      "Prinz Hans",
+      "Prinz Ferdinand",
+      "Prinz Florian",
+      "Prinz Philip"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Prinz Florian löst mit der Liebe den Zauberschlaf."
+  },
+  {
+    "id": "k_dis_051",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer verwandelt sich im Märchen durch einen Kuss wieder zurück?",
+    "answers": [
+      "Ein brauner Bär",
+      "Ein Kater",
+      "Der Froschkönig",
+      "Ein grauer Wolf"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Frosch verwandelt sich durch das Versprechen der Königstochter in einen Prinzen."
+  },
+  {
+    "id": "k_dis_052",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt das blaue Außerirdische-Wesen bei Lilo & Stitch?",
+    "answers": [
+      "Jumba",
+      "Pleakley",
+      "Gantu",
+      "Stitch"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Experiment 626 nennt sich Stitch und wird Lilos bester Freund."
+  },
+  {
+    "id": "k_dis_053",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Hexe verlangt Arielles Stimme im Tausch gegen Beine?",
+    "answers": [
+      "Die böse Königin",
+      "Hexe Maleficent",
+      "Hexe Gothel",
+      "Meerhexe Ursula"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Ursula fordert Arielles schöne Stimme für den Zaubertrank."
+  },
+  {
+    "id": "k_dis_054",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer hilft Aschenputtel im Disney-Film 'Cinderella', damit sie zum Ball gehen kann?",
+    "answers": [
+      "Die gute Fee",
+      "Tinkerbell",
+      "Flora",
+      "Malefiz"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Sie verwandelt einen Kürbis in eine Kutsche – aber nur bis Mitternacht."
+  },
+  {
+    "id": "k_dis_055",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was sammelt die kleine Meerjungfrau Arielle in ihrer Höhle?",
+    "answers": [
+      "Lauter bunte Fische",
+      "Echte Perlen",
+      "Menschliche Sachen",
+      "Glitzernde Muscheln"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Arielle sammelt voller Neugier Gegenstände aus der Menschenwelt."
+  },
+  {
+    "id": "k_dis_056",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier zieht das Kutschen-Gespann von Aschenputtel?",
+    "answers": [
+      "Weiße Tauben",
+      "Kleine Hunde",
+      "Weiße Schimmel",
+      "Kleine graue Mäuse"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die gute Fee verwandelt weiße Mäuse in edle Schimmel-Pferde."
+  },
+  {
+    "id": "k_dis_057",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Insekt zeigt Pinocchio, was richtig und falsch ist?",
+    "answers": [
+      "Marienkäfer",
+      "Biene Maja",
+      "Grille Jiminy",
+      "Schmetterling Felix"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Jiminy Grille dient Pinocchio als sein treues Gewissen."
+  },
+  {
+    "id": "k_dis_058",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was gibt der Ozean der kleinen Vaiana?",
+    "answers": [
+      "Eine Zauberkette",
+      "Das Herz von Te Fiti",
+      "Ein magisches Segelboot",
+      "Einen Kompass"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Ozean wählt Vaiana aus und schenkt ihr das Herz von Te Fiti."
+  },
+  {
+    "id": "k_dis_059",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt die Heldin in 'Die Schöne und das Biest'?",
+    "answers": [
+      "Aurora",
+      "Jasmin",
+      "Belle",
+      "Arielle"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Belle liest am liebsten Bücher – das Biest schenkt ihr deshalb eine riesige Bibliothek."
+  },
+  {
+    "id": "k_dis_060",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wen vertreiben die Bremer Stadtmusikanten aus dem Haus im Wald?",
+    "answers": [
+      "Die Waldfeen",
+      "Ein alter Bauer",
+      "Keine Menschen",
+      "Die Räuber"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die Vier Tiere vertreiben die Räuber aus dem Waldhaus."
+  },
+  {
+    "id": "k_dis_061",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Farbe hat der Rock von Schneewittchens Kleid im Disney-Film?",
+    "answers": [
+      "Rot",
+      "Grün",
+      "Gelb",
+      "Rosa"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Oben ist das Kleid blau mit roten Ärmelstreifen, der Rock leuchtend gelb."
+  },
+  {
+    "id": "k_dis_062",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welcher Gegenstand verrät der bösen Königin, wer die Schönste ist?",
+    "answers": [
+      "Ein Zauberstab",
+      "Der Zauberspiegel",
+      "Ein Kristallglas",
+      "Ein altes Zauberbuch"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der magische Wandspiegel antwortet der Königin stets wahrheitsgemäß."
+  },
+  {
+    "id": "k_dis_063",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Prinzessin lebt im Palast von Agrabah?",
+    "answers": [
+      "Belle",
+      "Jasmin",
+      "Mulan",
+      "Tiana"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Jasmin will selbst entscheiden, wen sie heiratet – und verliebt sich in Aladdin."
+  },
+  {
+    "id": "k_dis_064",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer ist der treue Pferdefreund von Flynn Rider in Rapunzel?",
+    "answers": [
+      "Pferd Sven",
+      "Pferd Samson",
+      "Pferd Maximus",
+      "Pferd Balthasar"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Palastpferd Maximus jagt zuerst Flynn und wird dann sein Freund."
+  },
+  {
+    "id": "k_dis_065",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was muss Prinzessin Tiana im Film Küss den Frosch küssen?",
+    "answers": [
+      "Einen grünen Frosch",
+      "Einen goldenen Fisch",
+      "Einen Wassermann",
+      "Einen Zauberfisch"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Tiana küsst Frosch Naveen und verwandelt sich selbst kurz in einen Frosch."
+  },
+  {
+    "id": "k_dis_066",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der kleine Affe von Aladdin?",
+    "answers": [
+      "Iago",
+      "Rafiki",
+      "Pumbaa",
+      "Abu"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Abu klaut gern und kann sich nicht beherrschen, wenn Edelsteine in der Nähe sind."
+  },
+  {
+    "id": "k_dis_067",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Aus welchem Holz wurde Pinocchio von seinem Vater geschnitzt?",
+    "answers": [
+      "Eichenholz",
+      "Buchenholz",
+      "Pinienholz",
+      "Ahornholz"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Holzschnitzer Gepetto fertigt die Puppe aus Pinienholz."
+  },
+  {
+    "id": "k_dis_068",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Figur schläft in einer Walnussschale im gleichnamigen Märchen?",
+    "answers": [
+      "Rapunzel",
+      "Aschenputtel",
+      "Dornröschen",
+      "Däumelinchen"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Däumelinchen ist so winzig klein wie ein Daumen."
+  },
+  {
+    "id": "k_dis_069",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Aus welchem Material baut das klügste der drei kleinen Schweinchen sein Haus?",
+    "answers": [
+      "Aus Stroh",
+      "Aus Holz",
+      "Aus Pappe",
+      "Aus Ziegelsteinen"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Das Steinhaus kann der Wolf nicht umpusten – die anderen beiden Schweinchen finden darin Schutz."
+  },
+  {
+    "id": "k_dis_070",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier ist der Bösewicht Shere Khan im Dschungelbuch?",
+    "answers": [
+      "Ein Panther",
+      "Ein schwarzer Leopard",
+      "Ein Königstiger",
+      "Ein Schlange"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Shere Khan ist der gefürchtete Tiger im Dschungel."
+  },
+  {
+    "id": "k_dis_071",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der unsichtbare grüne Drache, der mit dem Waisenjungen Pete befreundet ist?",
+    "answers": [
+      "Fuchur",
+      "Mushu",
+      "Ohnezahn",
+      "Elliott"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Elliott ist der liebe grüne, unsichtbare Drache."
+  },
+  {
+    "id": "k_dis_072",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Frucht bekommt Schneewittchen von der verkleideten Hexe?",
+    "answers": [
+      "Eine Birne",
+      "Einen Apfel",
+      "Eine Pflaume",
+      "Eine Kirsche"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Schneewittchen beißt in die vergiftete rote Hälfte des Apfels."
+  },
+  {
+    "id": "k_dis_073",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt die Hauptfigur im Film Merida – Legende der Highlands?",
+    "answers": [
+      "Prinzessin Moana",
+      "Prinzessin Rapunzel",
+      "Prinzessin Merida",
+      "Prinzessin Belle"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Merida ist die geschickte Bogenschützin aus Schottland."
+  },
+  {
+    "id": "k_dis_074",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was vergisst die vergessliche Fischdame Dorie dauernd?",
+    "answers": [
+      "Wie man schwimmt",
+      "Ihren eigenen Namen",
+      "Wo ihr Zuhause ist",
+      "Alles nach kurzer Zeit"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Dorie leidet unter verlässlichem Kurzzeitgedächtnisschwund."
+  },
+  {
+    "id": "k_dis_075",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der sprechende Halbgott im Disney-Film Vaiana?",
+    "answers": [
+      "Zeus",
+      "Maui",
+      "Tarzan",
+      "Hercules"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Maui besitzt einen Zauberhaken und hilft Vaiana."
+  },
+  {
+    "id": "k_dis_076",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Haustier besitzt der Bösewicht Jafar in Aladdin?",
+    "answers": [
+      "Einen Papageien",
+      "Einen kleinen Affen",
+      "Einen Kater",
+      "Einen Hund"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Iago ist der gemeine rote Papagei von Jafar."
+  },
+  {
+    "id": "k_dis_077",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Aus welchem Land stammt das Märchen von der Schneekönigin ursprünglich?",
+    "answers": [
+      "Frankreich",
+      "Deutschland",
+      "Dänemark",
+      "Russland"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Hans Christian Andersen aus Dänemark verfasste das Original-Märchen."
+  },
+  {
+    "id": "k_dis_078",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt das Schneemonster, das den Palast in Die Eiskönigin bewacht?",
+    "answers": [
+      "Eisiger Yeti",
+      "Eisklotz",
+      "Goliath",
+      "Marshmallow"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Marshmallow verteidigt den Eispalast auf dem Nordberg."
+  },
+  {
+    "id": "k_dis_079",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißen die Bremer Stadtmusikanten allesamt?",
+    "answers": [
+      "Esel, Hund, Katze, Hahn",
+      "Kuh, Hund, Katze, Vogel",
+      "Esel, Wolf, Kater, Hahn",
+      "Pferd, Hund, Katze, Huhn"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die vier Tiere wandern gemeinsam nach Bremen."
+  },
+  {
+    "id": "k_dis_080",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wen verflucht die Fee Maleficent im gleichnamigen Film?",
+    "answers": [
+      "Prinzessin Aurora",
+      "Schneewittchen",
+      "Prinzessin Arielle",
+      "Cinderella"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Maleficent verflucht die kleine Aurora – und kümmert sich später heimlich um sie."
+  },
+  {
+    "id": "k_dis_081",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was wünscht sich der Kater vom Müllerssohn im Märchen 'Der gestiefelte Kater'?",
+    "answers": [
+      "Einen Hut",
+      "Ein Paar Stiefel",
+      "Einen Fisch",
+      "Eine Krone"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Mit Stiefeln und einem Sack macht der schlaue Kater seinen Herrn schließlich zum reichen Grafen."
+  },
+  {
+    "id": "k_dis_082",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welche Farbe hat Elsas Kleid, wenn sie in 'Die Eiskönigin' ihr Eisschloss baut?",
+    "answers": [
+      "Rot",
+      "Grün",
+      "Lila",
+      "Hellblau"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Das glitzernde Eiskleid zaubert sich Elsa beim Lied 'Lass jetzt los' selbst."
+  },
+  {
+    "id": "k_dis_083",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer liefert die Geschenke im Disney-Klassiker Nightmare Before Christmas?",
+    "answers": [
+      "Jack Skellington",
+      "Der Sandmann",
+      "Der Osterhase",
+      "Der Weihnachtsmann"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Jack Skellington übernimmt versehentlich das Weihnachtsfest."
+  },
+  {
+    "id": "k_dis_084",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißen die zwei Mäusefreunde von Aschenputtel?",
+    "answers": [
+      "Bernard und Bianca",
+      "Chip und Chap",
+      "Jaq und Gus",
+      "Mickey und Minnie"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Jaq und Gus nähen und helfen Aschenputtel fleißig."
+  },
+  {
+    "id": "k_dis_085",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier ist der Panther Bagheera im Dschungelbuch?",
+    "answers": [
+      "Ein wilder Tiger",
+      "Ein Wüstenluchs",
+      "Ein schwarzer Panther",
+      "Ein gepunkteter Leopard"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Bagheera beschützt Mogli von klein auf im Dschungel."
+  },
+  {
+    "id": "k_dis_086",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer verwandelt sich am Ende von 'Die Schöne und das Biest' zurück in einen Prinzen?",
+    "answers": [
+      "Das Biest",
+      "Lumière",
+      "Gaston",
+      "Herr von Unruh"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Fluch bricht, weil Belle das Biest liebt, bevor das letzte Rosenblatt fällt."
+  },
+  {
+    "id": "k_dis_087",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was verwandelt sich im Märchen vom Aschenputtel in eine Kutsche?",
+    "answers": [
+      "Ein großer Kohlkopf",
+      "Ein gelber Kürbis",
+      "Eine reife Melone",
+      "Ein großer Stein"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die gute Fee verzaubert den Kürbis in eine prunkvolle Kutsche."
+  },
+  {
+    "id": "k_dis_088",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Insekt sammelt fleißig Vorräte für den kalten Winter?",
+    "answers": [
+      "Der Grashüpfer",
+      "Die Fleißige Ameise",
+      "Die bunten Schmetterlinge",
+      "Die Heuschrecke"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die Ameise arbeitet den Sommer durch, während der Grashüpfer musiziert."
+  },
+  {
+    "id": "k_dis_089",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt die sprechende Eule des Zauberers Merlin in 'Die Hexe und der Zauberer'?",
+    "answers": [
+      "Archimedes",
+      "Lucifer",
+      "Zazu",
+      "Hedwig"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Archimedes ist klug, aber auch ziemlich griesgrämig – er hilft dem jungen Artus beim Lernen."
+  },
+  {
+    "id": "k_dis_090",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißen die zwei Chipmunks Streifenhörnchen bei Disney?",
+    "answers": [
+      "Mickey und Donald",
+      "Chip und Chap",
+      "Timon und Pumbaa",
+      "Bernard und Bianca"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Chip und Chap sind die beiden frechen Streifenhörnchen."
+  },
+  {
+    "id": "k_dis_091",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Menschenkind wächst im 'Dschungelbuch' bei den Wölfen auf?",
+    "answers": [
+      "Mogli",
+      "Bambi",
+      "Tarzan",
+      "Pinocchio"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Panther Baghira findet Mogli als Baby und bringt ihn zu einer Wolfsfamilie."
+  },
+  {
+    "id": "k_dis_092",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der Drache von Hicks in 'Drachenzähmen leicht gemacht'?",
+    "answers": [
+      "Ohnezahn",
+      "Sturmpfeil",
+      "Hakenzahn",
+      "Fleischklops"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Hicks' Drache ist der Nachtschatten Ohnezahn. Sturmpfeil gehört Astrid, Hakenzahn Rotzbakke und Fleischklops Fischbein."
+  },
+  {
+    "id": "k_dis_093",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der kleine Flugsaurier in 'In einem Land vor unserer Zeit'?",
+    "answers": [
+      "Petrie",
+      "Littlefoot",
+      "Cera",
+      "Ducky"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Petrie ist zuerst ängstlich und traut sich kaum zu fliegen."
+  },
+  {
+    "id": "k_dis_094",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Aus welcher Stadt kommen die Helden von Baymax?",
+    "answers": [
+      "Tokio City",
+      "New York",
+      "San Francisco",
+      "San Fransokyo"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Die Handlung spielt in der erfundenen Stadt San Fransokyo."
+  },
+  {
+    "id": "k_dis_095",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer singt das berühmte Lied 'Unter dem Meer' in Arielle?",
+    "answers": [
+      "König Triton",
+      "Fabius der Fisch",
+      "Krabbe Sebastian",
+      "Prinz Eric"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Sebastian versucht Arielle vom Leben im Ozean zu überzeugen."
+  },
+  {
+    "id": "k_dis_096",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Tier rettet Tarzan als Baby im afrikanischen Dschungel?",
+    "answers": [
+      "Elefanten-Kuh Tantor",
+      "Affen-Vater Kerchak",
+      "Gorilla-Mutter Kala",
+      "Leopard Sabor"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Kala nimmt das verwaiste Menschenbaby liebevoll bei sich auf."
+  },
+  {
+    "id": "k_dis_097",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wer ist der schnellste Flieger unter den Feen im Tal der Feen?",
+    "answers": [
+      "Fee Tinkerbell",
+      "Fee Rosetta",
+      "Fee Klara",
+      "Fee Vidia"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Vidia ist die schnelle Frühlingsfeen-Rivalin."
+  },
+  {
+    "id": "k_dis_098",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Wie heißt der Panda-Bär im Animationsfilm Kung Fu Panda?",
+    "answers": [
+      "Meister Tai Lung",
+      "Meister Shifu",
+      "Panda Po",
+      "Panda Mei"
+    ],
+    "correct": 2,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Po verwandelt sich vom Nudelkoch zum Drachenkrieger."
+  },
+  {
+    "id": "k_dis_099",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Was spinnt Rumpelstilzchen für die Müllerstochter?",
+    "answers": [
+      "Stroh zu Gold",
+      "Wolle zu Seide",
+      "Gras zu Silber",
+      "Flachs zu Perlen"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Als Lohn will das Männchen ihr erstes Kind – außer sie errät seinen Namen."
+  },
+  {
+    "id": "k_dis_100",
+    "category": "kinder_maerchen_disney",
+    "area": "spass",
+    "subject": "kinder",
+    "question": "Welches Zauberwort sagt die Feenmutter in Cinderella?",
+    "answers": [
+      "Simsalabim Hokus Pokus",
+      "Sesam öffne dich",
+      "Abrakadabra Hokuspokus",
+      "Bibbidi Babbidi Boo"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Mit 'Bibbidi Babbidi Boo' verwandelt die Fee die Kleidung und den Kürbis."
+  }
 ];
 
 if (typeof window !== "undefined") window.KINDER_MAERCHEN_QUESTIONS = KINDER_MAERCHEN_QUESTIONS;

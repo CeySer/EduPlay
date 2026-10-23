@@ -1,4 +1,4 @@
-// Fun · spass_mythen (50 Fragen)
+// Fun · spass_mythen (60 Fragen)
 const SPASS_MYTHEN_QUESTIONS = [
   {
     "id": "myt_001",
@@ -141,7 +141,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Wer ist der römische Gegenpart zu Zeus?",
+    "question": "Wie heißt Zeus bei den Römern?",
     "answers": [
       "Mars",
       "Jupiter",
@@ -298,7 +298,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "answers": [
       "Bukephalos",
       "Pegasus",
-      "Sleipnir nur",
+      "Jolly Jumper",
       "Rosinante"
     ],
     "correct": 1,
@@ -532,9 +532,9 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Wer ist die ägyptische Göttin mit dem Kuhgehörn oft?",
+    "question": "Welche ägyptische Göttin wird oft mit Kuhhörnern dargestellt?",
     "answers": [
-      "Isis",
+      "Nut",
       "Hathor",
       "Bastet",
       "Maat"
@@ -583,7 +583,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Wer ist die Göttin der Fruchtbarkeit Demeters Tochter?",
+    "question": "Wie heißt die Tochter der Erntegöttin Demeter?",
     "answers": [
       "Athene",
       "Persephone",
@@ -600,7 +600,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Welches Ungeheuer hat Löwen-, Ziegen- und Schlangenteil?",
+    "question": "Welches Ungeheuer ist teils Löwe, teils Ziege und teils Schlange?",
     "answers": [
       "Hydra",
       "Chimäre",
@@ -634,7 +634,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Welcher Gott ist mit Wein und Rausch verbunden?",
+    "question": "Welcher griechische Gott ist mit Wein und Festen verbunden?",
     "answers": [
       "Ares",
       "Dionysos",
@@ -702,7 +702,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Wer verfluchte den, der alles zu Gold machte?",
+    "question": "Welcher Gott erfüllte König Midas den Wunsch, dass alles zu Gold wird, was er berührt?",
     "answers": [
       "Zeus",
       "Dionysos",
@@ -712,7 +712,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Dionysos gewährte Midas den Wunsch."
+    "explanation": "Weil Midas sogar sein Essen in Gold verwandelte, bat er Dionysos, den Wunsch zurückzunehmen."
   },
   {
     "id": "myt_043",
@@ -804,7 +804,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "category": "spass_mythen",
     "area": "spass",
     "subject": "mythen",
-    "question": "Welcher ägyptische Gott hat einen Schakalkopf oft?",
+    "question": "Welcher ägyptische Gott wird mit einem Schakalkopf dargestellt?",
     "answers": [
       "Ra",
       "Anubis",
@@ -824,7 +824,7 @@ const SPASS_MYTHEN_QUESTIONS = [
     "question": "Was bewachte der Drache Fafnir in nordischen Sagen?",
     "answers": [
       "Einen Hammer",
-      "Einen Hort",
+      "Einen Goldschatz",
       "Einen Baum",
       "Ein Schiff"
     ],
@@ -850,17 +850,176 @@ const SPASS_MYTHEN_QUESTIONS = [
     "points": 10,
     "explanation": "Ares steht für den Krieg."
   },
-  {"id":"myth_051","category":"spass_mythen","area":"spass","subject":"mythen","question":"Zeus ist in der griechischen Sage …","answers":["der Göttervater", "der Meeresgott", "der Kriegsgott", "der Totengott"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Zeus herrscht vom Olymp und wirft Blitze. Bei den Römern heißt er Jupiter."},
-  {"id":"myth_052","category":"spass_mythen","area":"spass","subject":"mythen","question":"Thor gehört zur Sage der …","answers":["Nordischen Sagen", "Griechischen Sagen", "Ägyptischen Sagen", "Römischen Sagen"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Thor ist der Donnergott der Wikinger. Sein Hammer Mjölnir kehrt nach dem Wurf von selbst zurück."},
-  {"id":"myth_053","category":"spass_mythen","area":"spass","subject":"mythen","question":"Anubis in Ägypten hat oft den Kopf eines …","answers":["Falken","Katze","Krokodils","Schakals"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Anubis führt die Toten und wiegt ihr Herz gegen eine Feder auf. Der Schakal war das Tier der Friedhöfe."},
-  {"id":"myth_054","category":"spass_mythen","area":"spass","subject":"mythen","question":"Herkules / Herakles ist bekannt für …","answers":["seine zwölf Aufgaben", "seine Kochkunst", "seine Gesangsstimme", "seine Erfindungen"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Zwölf Aufgaben musste er erledigen, darunter den Nemeischen Löwen töten und den Stall des Augias ausmisten."},
-  {"id":"myth_055","category":"spass_mythen","area":"spass","subject":"mythen","question":"Odysseus braucht lange, um …","answers":["einen Berg zu malen","Schuhe zu kaufen","einen Brief zu schreiben","nach Hause nach Ithaka zu kommen"],"correct":3,"difficulty":"mittel","points":10,"explanation":"Nach dem Trojanischen Krieg braucht er zehn Jahre für den Heimweg. Homer erzählt das in der Odyssee."},
-  {"id":"myth_056","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Einhorn hat typischerweise …","answers":["zwei Hörner","Flügel Pflicht","Kiemen","ein Horn auf der Stirn"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Das Einhorn kommt in keiner alten Sage als echtes Tier vor – es entstand aus Reiseberichten über Nashörner und Narwalzähne."},
-  {"id":"myth_057","category":"spass_mythen","area":"spass","subject":"mythen","question":"Pegasus ist …","answers":["ein Drache ohne Flügel","ein Fisch","ein Riese","ein geflügeltes Pferd"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Pegasus entsprang dem Blut der Medusa. Der Held Bellerophon zähmte ihn mit einem goldenen Zaum."},
-  {"id":"myth_058","category":"spass_mythen","area":"spass","subject":"mythen","question":"Athena steht oft für …","answers":["Weisheit und Strategie", "Ernte und Fruchtbarkeit", "Feuer und Schmiedekunst", "Meer und Stürme"],"correct":0,"difficulty":"mittel","points":10,"explanation":"Athena wurde dem Kopf des Zeus entsprungen geboren. Die Stadt Athen ist nach ihr benannt."},
-  {"id":"myth_059","category":"spass_mythen","area":"spass","subject":"mythen","question":"Ein Phönix …","answers":["steigt aus der Asche neu auf", "lebt tief unten im Meer", "versteinert im Sonnenlicht", "schläft hundert Jahre lang"],"correct":0,"difficulty":"leicht","points":10,"explanation":"Der Phönix verbrennt am Ende seines Lebens und schlüpft aus der Asche neu – ein Bild für Neuanfang."},
-  {"id":"myth_060","category":"spass_mythen","area":"spass","subject":"mythen","question":"Poseidon herrscht über …","answers":["den Himmel","die Unterwelt nur","die Wälder","das Meer"],"correct":3,"difficulty":"leicht","points":10,"explanation":"Mit seinem Dreizack löst Poseidon Stürme und Erdbeben aus. Bei den Römern heißt er Neptun."},
-
+  {
+    "id": "myth_051",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Welcher ägyptische Sonnengott fährt mit einem Boot über den Himmel?",
+    "answers": [
+      "Ra",
+      "Anubis",
+      "Seth",
+      "Thot"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Tagsüber fährt Ra mit seiner Sonnenbarke über den Himmel, nachts durch die Unterwelt."
+  },
+  {
+    "id": "myth_052",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Wie heißt der listige Gestaltwandler unter den nordischen Göttern?",
+    "answers": [
+      "Baldr",
+      "Tyr",
+      "Heimdall",
+      "Loki"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Loki verwandelte sich mal in einen Lachs, mal in eine Fliege – und stiftete ständig Unruhe."
+  },
+  {
+    "id": "myth_053",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Welches Tier wurde im alten Ägypten als Göttin Bastet verehrt?",
+    "answers": [
+      "Der Hund",
+      "Das Pferd",
+      "Das Schaf",
+      "Die Katze"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Katzen schützten die Kornspeicher vor Mäusen und galten als heilig."
+  },
+  {
+    "id": "myth_054",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Welches Ungeheuer verwandelte jeden, der es ansah, in Stein?",
+    "answers": [
+      "Medusa",
+      "Hydra",
+      "Sphinx",
+      "Chimäre"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Medusa hatte Schlangen statt Haaren – nur mit einem Spiegelschild konnte Perseus sie besiegen."
+  },
+  {
+    "id": "myth_055",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Odysseus braucht lange, um …",
+    "answers": [
+      "einen Berg zu malen",
+      "Schuhe zu kaufen",
+      "einen Brief zu schreiben",
+      "nach Hause nach Ithaka zu kommen"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Nach dem Trojanischen Krieg braucht er zehn Jahre für den Heimweg. Homer erzählt das in der Odyssee."
+  },
+  {
+    "id": "myth_056",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Ein Einhorn hat typischerweise …",
+    "answers": [
+      "zwei gebogene Hörner",
+      "Flügel am Rücken",
+      "einen Löwenkopf",
+      "ein Horn auf der Stirn"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Schon antike Gelehrte hielten das Einhorn für ein echtes Tier – vermutlich wegen Berichten über Nashörner und Narwalzähne."
+  },
+  {
+    "id": "myth_057",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Welcher griechische Gott ist für Musik und Licht zuständig?",
+    "answers": [
+      "Ares",
+      "Apollon",
+      "Hades",
+      "Poseidon"
+    ],
+    "correct": 1,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Apollon spielt die Leier und ist der Zwillingsbruder der Jagdgöttin Artemis."
+  },
+  {
+    "id": "myth_058",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Was musste der Titan Atlas zur Strafe auf seinen Schultern tragen?",
+    "answers": [
+      "Den Himmel",
+      "Einen Berg",
+      "Das Meer",
+      "Den Olymp"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Nach ihm ist der Atlas benannt – ein Buch voller Landkarten."
+  },
+  {
+    "id": "myth_059",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Ein Phönix …",
+    "answers": [
+      "steigt aus der Asche neu auf",
+      "lebt tief unten im Meer",
+      "versteinert im Sonnenlicht",
+      "schläft hundert Jahre lang"
+    ],
+    "correct": 0,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Der Phönix verbrennt am Ende seines Lebens und schlüpft aus der Asche neu – ein Bild für Neuanfang."
+  },
+  {
+    "id": "myth_060",
+    "category": "spass_mythen",
+    "area": "spass",
+    "subject": "mythen",
+    "question": "Welcher Held badete im Blut eines Drachen und wurde dadurch fast unverwundbar?",
+    "answers": [
+      "Achill",
+      "Beowulf",
+      "Parzival",
+      "Siegfried"
+    ],
+    "correct": 3,
+    "difficulty": "leicht",
+    "points": 10,
+    "explanation": "Nur eine Stelle zwischen den Schultern blieb verwundbar – dort klebte ein Lindenblatt."
+  }
 ];
 
 if (typeof window !== "undefined") window.SPASS_MYTHEN_QUESTIONS = SPASS_MYTHEN_QUESTIONS;

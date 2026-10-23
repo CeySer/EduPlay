@@ -140,7 +140,7 @@
     "category": "technik_gadgets",
     "area": "gaming_hardware",
     "subject": "wissen",
-    "question": "Welcher Grafikprozessor-Hersteller ist weltweit führend bei Grafikkarten der 'GeForce'-Reihe?",
+    "question": "Welcher Hersteller baut die Grafikkarten der 'GeForce'-Reihe?",
     "answers": [
       "AMD",
       "Intel",
@@ -174,7 +174,7 @@
     "category": "technik_gadgets",
     "area": "software",
     "subject": "wissen",
-    "question": "Wie heisst das freie, quelloffene Betriebssystem, das von Linus Torvalds 1991 entwickelt wurde?",
+    "question": "Wie heißt das freie, quelloffene Betriebssystem, das von Linus Torvalds 1991 entwickelt wurde?",
     "answers": [
       "Windows",
       "macOS",

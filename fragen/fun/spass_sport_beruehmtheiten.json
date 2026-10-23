@@ -4,7 +4,7 @@
     "category": "beruehmtheiten",
     "area": "musik",
     "subject": "wissen",
-    "question": "Welcher Popstar wird weltweilt als 'King of Pop' bezeichnet?",
+    "question": "Welcher Popstar wird weltweit als 'King of Pop' bezeichnet?",
     "answers": [
       "Elvis Presley",
       "Michael Jackson",
@@ -140,17 +140,17 @@
     "category": "beruehmtheiten",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Schauspieler verkörperte den 'Terminator' im gleichnamigen Kultfilm?",
+    "question": "Welcher Schauspieler spricht im englischen Original den Esel in 'Shrek'?",
     "answers": [
-      "Sylvester Stallone",
-      "Arnold Schwarzenegger",
-      "Bruce Willis",
-      "Jean-Claude Van Damme"
+      "Eddie Murphy",
+      "Will Smith",
+      "Jim Carrey",
+      "Robin Williams"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Arnold Schwarzenegger wurde mit dem Spruch 'I'll be back' weltberühmt."
+    "explanation": "Eddie Murphy improvisierte viele Sprüche des Esels selbst – die Figur wurde dadurch zum Publikumsliebling."
   },
   {
     "id": "ber_mc_011",
@@ -276,24 +276,24 @@
     "category": "beruehmtheiten",
     "area": "kunst",
     "subject": "wissen",
-    "question": "Welcher niederländische Maler schnitt sich nach einem Streit ein Stück seines Ohrs ab?",
+    "question": "Welcher niederländische Maler malte die 'Sternennacht' und die 'Sonnenblumen'?",
     "answers": [
       "Rembrandt",
-      "Vincent van Gogh",
       "Hieronymus Bosch",
-      "Piet Mondrian"
+      "Piet Mondrian",
+      "Vincent van Gogh"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Van Gogh litt unter schweren psychischen Krisen und verarbeitete dies in seiner Kunst."
+    "explanation": "Van Gogh malte in nur zehn Jahren rund 900 Bilder – zu Lebzeiten verkaufte er kaum eines."
   },
   {
     "id": "ber_mc_020",
     "category": "beruehmtheiten",
     "area": "geschichte",
     "subject": "wissen",
-    "question": "Welche Friedensnobelpreisträgerin verbrachte 27 Jahre im Gefängnis und wurde später Präsident Südafrikas?",
+    "question": "Welcher Friedensnobelpreisträger verbrachte 27 Jahre im Gefängnis und wurde später Präsident Südafrikas?",
     "answers": [
       "Kofi Annan",
       "Nelson Mandela",
@@ -480,17 +480,17 @@
     "category": "beruehmtheiten",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Schauspieler wurde durch Filme wie 'Matrix' (Neo) und 'John Wick' gefeiert?",
+    "question": "Welcher Schauspieler spielt seit 2016 Spider-Man im Marvel-Kinouniversum?",
     "answers": [
-      "Keanu Reeves",
-      "Nicolas Cage",
-      "Tom Cruise",
-      "Will Smith"
+      "Andrew Garfield",
+      "Tobey Maguire",
+      "Timothée Chalamet",
+      "Tom Holland"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Keanu Reeves gilt in Hollywood auch persönlich als extrem bescheidener und beliebter Star."
+    "explanation": "Tom Holland trat 2016 in 'The First Avenger: Civil War' zum ersten Mal als Spider-Man auf."
   },
   {
     "id": "ber_mc_032",
@@ -701,17 +701,17 @@
     "category": "beruehmtheiten",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Regisseur drehte düstere Meisterwerke wie 'Pulp Fiction' und 'Kill Bill'?",
+    "question": "Welcher Regisseur drehte 'E.T.', 'Jurassic Park' und 'Der weiße Hai'?",
     "answers": [
-      "Quentin Tarantino",
-      "Martin Scorsese",
+      "George Lucas",
+      "James Cameron",
       "Steven Spielberg",
-      "David Fincher"
+      "Tim Burton"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Quentin Tarantino ist bekannt für seine Dialoge und unlinear erzählten Plots."
+    "explanation": "Steven Spielberg ist einer der erfolgreichsten Regisseure der Filmgeschichte und gewann drei Oscars."
   },
   {
     "id": "ber_mc_047",
@@ -820,17 +820,17 @@
     "category": "beruehmtheiten",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Schauspieler spielte den Joker im Film 'The Dark Knight' (2008) und gewann posthum einen Oscar?",
+    "question": "Welcher Schauspieler spielt den jungen Willy Wonka im Film 'Wonka' (2023)?",
     "answers": [
-      "Joaquin Phoenix",
-      "Heath Ledger",
-      "Jack Nicholson",
-      "Jared Leto"
+      "Johnny Depp",
+      "Tom Holland",
+      "Timothée Chalamet",
+      "Gene Wilder"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Heath Ledgers Darstellung des Jokers gilt als eine der besten der Filmgeschichte."
+    "explanation": "Vor ihm spielten Gene Wilder (1971) und Johnny Depp (2005) den Schokoladenfabrikanten."
   },
   {
     "id": "ber_mc_055",
@@ -854,7 +854,7 @@
     "category": "beruehmtheiten",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche deutsche Schauspielerin feierte Erfolge in Hollywood (z. B. 'Inglourious Basterds')?",
+    "question": "Welche deutsche Schauspielerin spielte 2004 in 'Troja' die schöne Helena?",
     "answers": [
       "Diane Kruger",
       "Karoline Herfurth",
@@ -864,7 +864,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Diane Kruger spielte u. a. die Rolle der Bridget von Hammersmark bei Quentin Tarantino."
+    "explanation": "Diane Kruger stammt aus Algermissen bei Hildesheim und drehte 'Troja' an der Seite von Brad Pitt."
   },
   {
     "id": "ber_mc_057",
@@ -905,7 +905,7 @@
     "category": "beruehmtheiten",
     "area": "musik",
     "subject": "wissen",
-    "question": "Wie heisst der weltbekannte südkoreanische Rapper des Hits 'Gangnam Style'?",
+    "question": "Wie heißt der weltbekannte südkoreanische Rapper des Hits 'Gangnam Style'?",
     "answers": [
       "PSY",
       "BTS",
@@ -956,17 +956,17 @@
     "category": "beruehmtheiten",
     "area": "literatur",
     "subject": "wissen",
-    "question": "Welcher Schriftsteller schrieb die Fantasy-Saga 'Das Lied von Eis und Feuer' (Game of Thrones)?",
+    "question": "Welche Autorin schrieb die Bücher über 'Die Tribute von Panem'?",
     "answers": [
-      "George R.R. Martin",
-      "Brandon Sanderson",
-      "Patrick Rothfuss",
-      "Robert Jordan"
+      "Suzanne Collins",
+      "Veronica Roth",
+      "Stephenie Meyer",
+      "J.K. Rowling"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "George R.R. Martin verfasste die Vorlage für den HBO-Serienhit."
+    "explanation": "Der erste Band erschien 2008. Die Heldin Katniss Everdeen stammt aus Distrikt 12."
   },
   {
     "id": "ber_mc_063",
@@ -1153,7 +1153,7 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "James Cameron zeichnet für die zwei erfolgreichsten Kinofilme aller Zeiten verantwortlich."
+    "explanation": "Cameron drehte mit 'Avatar' den erfolgreichsten Kinofilm aller Zeiten – auch 'Titanic' spielte über zwei Milliarden Dollar ein."
   },
   {
     "id": "ber_mc_075",

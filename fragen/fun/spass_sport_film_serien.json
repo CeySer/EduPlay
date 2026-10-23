@@ -4,34 +4,34 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Filmklassiker stammt das berühmte Zitat: 'Ich mache ihm ein Angebot, das er nicht ablehnen kann'?",
+    "question": "Aus welchem Film stammt der Satz: 'Ich bin Groot'?",
     "answers": [
-      "GoodFellas",
-      "Der Pate",
-      "Scarface",
-      "Pulp Fiction"
+      "Avengers: Endgame",
+      "Thor",
+      "Guardians of the Galaxy",
+      "Ant-Man"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Marlon Brando prägte diesen Satz als Don Vito Corleone im Meisterwerk 'Der Pate' (1972)."
+    "explanation": "Das Baumwesen Groot sagt nur diese drei Worte – je nach Betonung meint es damit etwas ganz anderes."
   },
   {
     "id": "mix_mc_002",
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Welcher Action-Held ruft im Kultfilm 'Stirb Langsam' den Spruch 'Yippie-ya-yay, Schweinebacke!'?",
+    "question": "Welche Fischdame ruft in 'Findet Nemo' immer wieder 'Einfach schwimmen, einfach schwimmen!'?",
     "answers": [
-      "Rambo (Sylvester Stallone)",
-      "John McClane (Bruce Willis)",
-      "The Terminator (Arnold Schwarzenegger)",
-      "Ethan Hunt (Tom Cruise)"
+      "Marlin",
+      "Dorie",
+      "Bruce",
+      "Gill"
     ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Bruce Willis als Cop John McClane macht diesen Spruch zu seinem Markenzeichen."
+    "explanation": "Die vergessliche Doktorfisch-Dame Dorie muntert Marlin damit auf. 2016 bekam sie mit 'Findet Dorie' ihren eigenen Film."
   },
   {
     "id": "mix_mc_003",
@@ -72,17 +72,17 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welcher Serie stammt das Zitat: 'Winter is coming' (Der Winter naht)?",
+    "question": "Aus welchem Film stammt der Satz: 'Ohana heißt Familie'?",
     "answers": [
-      "Vikings",
-      "The Witcher",
-      "Game of Thrones",
-      "Der Herr der Ringe"
+      "Lilo & Stitch",
+      "Vaiana",
+      "Bärenbrüder",
+      "Encanto"
     ],
-    "correct": 2,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Es ist das Hausmotto der Familie Stark aus Winterfell in 'Game of Thrones'."
+    "explanation": "Ohana ist das hawaiianische Wort für Familie – Lilo erklärt es dem kleinen Außerirdischen Stitch."
   },
   {
     "id": "mix_mc_006",
@@ -140,17 +140,17 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Wer spricht in der Serie 'Breaking Bad' den bedrohlichen Satz: 'I am the one who knocks!'?",
+    "question": "Welcher Zauberer ruft in 'Der Herr der Ringe' dem Feuerdämon Balrog entgegen: 'Du kannst nicht vorbei!'?",
     "answers": [
-      "Walter White",
-      "Jesse Pinkman",
-      "Hank Schrader",
-      "Gustavo Fring"
+      "Saruman",
+      "Gandalf",
+      "Radagast",
+      "Elrond"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Walter White betont damit gegenüber seiner Frau Skyler seine neue Machtrolle im Drogenbusiness."
+    "explanation": "Gandalf stellt sich auf der Brücke von Khazad-dûm dem Balrog, damit die Gefährten fliehen können."
   },
   {
     "id": "mix_mc_0010",
@@ -167,7 +167,7 @@
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tom Hanks als Astronaut Jim Lovell funkelt diesen Satz im Drama 'Apollo 13'."
+    "explanation": "Tom Hanks als Astronaut Jim Lovell funkt diesen Satz im Drama 'Apollo 13'."
   },
   {
     "id": "mix_mc_041",
@@ -191,17 +191,17 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Kultfilm stammt der Satz: 'Hasta la vista, baby'?",
+    "question": "Welche Figur sagt in 'Toy Story' über ihren Zugschnur-Lautsprecher: 'Da ist eine Schlange in meinem Stiefel!'?",
     "answers": [
-      "Terminator 2",
-      "Total Recall",
-      "True Lies",
-      "Predator"
+      "Buzz Lightyear",
+      "Jessie",
+      "Woody",
+      "Rex"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Arnold Schwarzenegger nutzt diesen Spruch kurz bevor er den T-1000 einfriert und zerschießt."
+    "explanation": "Der Satz gehört zu den Sprüchen, die der Cowboy Woody aufsagt, wenn man an seiner Schnur zieht."
   },
   {
     "id": "mix_mc_043",
@@ -247,7 +247,7 @@
       "E.T. – Der Außerirdische",
       "Unheimliche Begegnung der dritten Art",
       "Men in Black",
-      "Alien"
+      "Lilo & Stitch"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -259,17 +259,17 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "In welchem Kultfilm sagt Al Pacino als Tony Montana: 'Sagt Hallo zu meiner kleinen Freundin!'?",
+    "question": "In welchem Film sagt Dorothy: 'Nirgends ist es so schön wie daheim'?",
     "answers": [
-      "Der Pate 2",
-      "Scarface",
-      "Carlito's Way",
-      "Heat"
+      "Alice im Wunderland",
+      "Der Zauberer von Oz",
+      "Peter Pan",
+      "Die unendliche Geschichte"
     ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tony Montana feuert dabei mit einem Granatwerfer auf die Angreifer in seiner Villa."
+    "explanation": "Dorothy schlägt dreimal die Hacken ihrer roten Schuhe zusammen und sagt den Satz, um nach Kansas zurückzukehren (1939)."
   },
   {
     "id": "mix_mc_047",
@@ -344,17 +344,17 @@
     "category": "film_serien",
     "area": "zitate",
     "subject": "wissen",
-    "question": "Aus welchem Mafia-Meisterwerk stammt die Regel: 'Erste Regel des [...]: Ihr verliert kein Wort über den [...]'?",
+    "question": "In welchem Film übt Hermine mit Ron den Zauberspruch 'Wingardium Leviosa'?",
     "answers": [
-      "Fight Club",
-      "Snatch",
-      "The Irishman",
-      "Pulp Fiction"
+      "Harry Potter und der Stein der Weisen",
+      "Die Chroniken von Narnia",
+      "Der Hobbit",
+      "Die unendliche Geschichte"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Brad Pitt verkündet als Tyler Durden die eisernen Regeln des geheimen Fight Clubs."
+    "explanation": "Hermine verbessert Ron: Es heißt 'Levi-o-sa', nicht 'Levio-saa' – und lässt ihre Feder schweben."
   },
   {
     "id": "film_ext_023",
@@ -365,7 +365,7 @@
     "answers": [
       "E.T.",
       "Close Encounters",
-      "Alien",
+      "Lilo & Stitch",
       "Star Wars"
     ],
     "correct": 0,
@@ -378,17 +378,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film sagt Forrest Gump: 'Das Leben ist wie eine Schachtel Pralinen'?",
+    "question": "In welchem Film wächst der Junge Mogli bei den Wölfen im Dschungel auf?",
     "answers": [
-      "Forrest Gump",
-      "Green Mile",
-      "Cast Away",
-      "Big"
+      "Tarzan",
+      "Das Dschungelbuch",
+      "Der König der Löwen",
+      "Madagascar"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tom Hanks in Forrest Gump."
+    "explanation": "Bär Balu und Panther Baghira beschützen Mogli vor dem Tiger Shir Khan."
   },
   {
     "id": "film_ext_025",
@@ -429,17 +429,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welcher Serie geht es um einen Chemielehrer, der Drogen herstellt?",
+    "question": "Worum geht es in der Kinderserie 'Die Pfefferkörner'?",
     "answers": [
-      "Breaking Bad",
-      "Narcos",
-      "Ozark",
-      "The Wire"
+      "Eine Kochschule in Berlin",
+      "Ein Fußballinternat in München",
+      "Kinder lösen Kriminalfälle in Hamburg",
+      "Eine Tierarztpraxis auf dem Land"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Walter White in Breaking Bad."
+    "explanation": "Seit 1999 ermitteln wechselnde Kinder-Teams rund um den Hamburger Hafen – eine der langlebigsten deutschen Kinderserien."
   },
   {
     "id": "film_ext_028",
@@ -480,17 +480,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film trainiert Rocky für einen Boxkampf?",
+    "question": "In welchem Pixar-Film verwandelt sich Mei in einen großen roten Panda, wenn sie aufgeregt ist?",
     "answers": [
-      "Rocky",
-      "Creed",
-      "Raging Bull",
-      "Million Dollar Baby"
+      "Encanto",
+      "Rot",
+      "Luca",
+      "Soul"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rocky (1976) mit Sylvester Stallone."
+    "explanation": "Der Film spielt in Toronto und kam 2022 heraus."
   },
   {
     "id": "film_ext_033",
@@ -582,68 +582,68 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie dreht sich um die Winchesters und Monster?",
+    "question": "Welches Mädchen lebt beim Großvater, dem Alm-Öhi, in den Schweizer Alpen?",
     "answers": [
-      "Supernatural",
-      "Buffy",
-      "Grimm",
-      "The X-Files"
+      "Pippi",
+      "Heidi",
+      "Clara",
+      "Ronja"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Brüder Sam und Dean Winchester jagen ab 2005 in 15 Staffeln Dämonen quer durch die USA."
+    "explanation": "Nach dem Roman von Johanna Spyri. Die Zeichentrickserie lief ab 1977 im ZDF."
   },
   {
     "id": "film_ext_040",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film hat die Hauptfigur Neo in einer simulierten Welt?",
+    "question": "In welchem Film baut Hiro den weichen Pflegeroboter Baymax zum Superhelden um?",
     "answers": [
-      "Matrix",
-      "Inception",
-      "Tron",
-      "Ready Player One"
+      "WALL-E",
+      "Der Gigant aus dem All",
+      "Baymax – Riesiges Robowabohu",
+      "Robots"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Von 1999. Neo erfährt, dass die Welt um ihn herum eine Computersimulation ist."
+    "explanation": "Baymax sollte eigentlich nur Kranke pflegen – Hiro rüstet ihn mit Panzer und Raketenfaust aus (Disney, 2014)."
   },
   {
     "id": "film_ext_042",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie spielt in Hawkins, Indiana, mit übernatürlichen Ereignissen?",
+    "question": "Welche Zeichentrickserie handelt von einer neugierigen Biene und ihrem Freund Willi?",
     "answers": [
-      "Stranger Things",
-      "Chilling Adventures",
-      "The OA",
-      "Dark"
+      "Heidi",
+      "Wickie und die starken Männer",
+      "Pinocchio",
+      "Die Biene Maja"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2016 auf Netflix. Die Serie spielt in den 1980ern und zitiert bewusst Filme jener Zeit."
+    "explanation": "Nach dem Buch von Waldemar Bonsels; die Zeichentrickserie lief ab 1976 im ZDF. Willi ist Majas gemütlicher Freund."
   },
   {
     "id": "film_ext_043",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film handelt von einem Clownfisch-Vater?",
+    "question": "In welchem Film reisen ein Mammut, ein Faultier und ein Säbelzahntiger zusammen?",
     "answers": [
-      "Findet Nemo",
-      "Shark Tale",
-      "Happy Feet",
-      "Ice Age"
+      "Madagascar",
+      "Zoomania",
+      "Ice Age",
+      "Kung Fu Panda"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Marlin ist der ängstliche Clownfisch-Vater. Auf der Suche hilft ihm die vergessliche Dory."
+    "explanation": "Manny, Sid und Diego bringen ein Menschenbaby zurück zu seiner Familie (2002)."
   },
   {
     "id": "film_ext_044",
@@ -667,17 +667,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film tanzt John Travolta in einem weißen Anzug?",
+    "question": "In welchem Film gelangen Kinder durch einen Kleiderschrank in ein Zauberland?",
     "answers": [
-      "Saturday Night Fever",
-      "Grease – Schmiere",
-      "Pulp Fiction",
-      "Face/Off"
+      "Die unendliche Geschichte",
+      "Peter Pan",
+      "Die Chroniken von Narnia",
+      "Alice im Wunderland"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Saturday Night Fever – berühmt auch die Pulp-Fiction-Szene, Klassiker ist SNF."
+    "explanation": "Lucy entdeckt Narnia als Erste. Dort herrscht durch die Weiße Hexe ewiger Winter – nach den Büchern von C. S. Lewis."
   },
   {
     "id": "film_ext_046",
@@ -706,7 +706,7 @@
       "Die Eiskönigin",
       "Shrek",
       "Die Schlümpfe",
-      "Frozen 2 nur"
+      "Ice Age"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -721,7 +721,7 @@
     "question": "In welchem Film spielt Leonardo DiCaprio einen Betrüger?",
     "answers": [
       "Catch Me If You Can",
-      "The Wolf of Wall Street",
+      "Titanic",
       "Inception",
       "The Revenant"
     ],
@@ -837,17 +837,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie dreht sich um einen Zombie-Apokalypse-Überlebenskampf?",
+    "question": "In welchem Film freundet sich der Wikingerjunge Hicks mit dem Drachen Ohnezahn an?",
     "answers": [
-      "The Walking Dead",
-      "Black Summer",
-      "Z Nation",
-      "iZombie"
+      "Shrek",
+      "Drachenzähmen leicht gemacht",
+      "Elliot, das Schmunzelmonster",
+      "Die Schöne und das Biest"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2010, nach einer Comicreihe. Die Serie brachte mehrere Ableger hervor."
+    "explanation": "Statt Drachen zu bekämpfen wie alle anderen auf Berk, zähmt Hicks den seltenen Nachtschatten (DreamWorks, 2010)."
   },
   {
     "id": "film_ext_056",
@@ -871,17 +871,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie handelt von einem Chemielabor und Albuquerque?",
+    "question": "In welcher Sendung erklären Lach- und Sachgeschichten, wie Dinge funktionieren?",
     "answers": [
-      "Breaking Bad",
-      "Better Call Saul",
-      "Narcos",
-      "El Camino"
+      "Löwenzahn",
+      "Die Sendung mit der Maus",
+      "Sesamstraße",
+      "Pippi Langstrumpf"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2008. Ein Chemielehrer in Albuquerque wird nach einer Diagnose zum Drogenhersteller."
+    "explanation": "Die orange Maus und der kleine blaue Elefant sind seit 1971 im Fernsehen dabei."
   },
   {
     "id": "film_ext_059",
@@ -922,17 +922,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie hat die Figuren Jon Snow und Daenerys?",
+    "question": "In welcher Sendung wohnte Peter Lustig in einem blauen Bauwagen?",
     "answers": [
-      "Game of Thrones",
-      "The Witcher",
-      "Vikings",
-      "Shadow and Bone"
+      "Löwenzahn",
+      "Die Sendung mit der Maus",
+      "Sesamstraße",
+      "Wissen macht Ah!"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Acht Staffeln ab 2011, nach den Romanen von George R. R. Martin."
+    "explanation": "Von 1981 bis 2005 erklärte Peter Lustig in 'Löwenzahn' Natur und Technik, seit 2006 macht das Fritz Fuchs."
   },
   {
     "id": "film_ext_062",
@@ -973,17 +973,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie folgt Eleven und Mike in den 80ern?",
+    "question": "Welcher Film handelt von zwei Zwillingsschwestern, die sich im Ferienlager kennenlernen und heimlich die Rollen tauschen?",
     "answers": [
-      "Stranger Things",
-      "Es – Kapitel 1",
-      "Wednesday",
-      "Dark"
+      "Emil und die Detektive",
+      "Pünktchen und Anton",
+      "Das fliegende Klassenzimmer",
+      "Das doppelte Lottchen"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Eleven hat übernatürliche Kräfte und stammt aus einem geheimen Labor in Hawkins."
+    "explanation": "Nach dem Roman von Erich Kästner (1949): Luise und Lotte wollen ihre getrennten Eltern wieder zusammenbringen."
   },
   {
     "id": "film_ext_065",
@@ -1007,34 +1007,34 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film ist der Joker Batmans Gegenspieler?",
+    "question": "Welcher Superheld lebt in der Stadt Metropolis?",
     "answers": [
-      "The Dark Knight",
-      "Joker (2019) auch",
-      "Suicide Squad",
-      "alle drei"
+      "Batman",
+      "Spider-Man",
+      "Flash",
+      "Superman"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Unter anderem The Dark Knight."
+    "explanation": "Superman alias Clark Kent arbeitet in Metropolis als Reporter bei der Zeitung 'Daily Planet'."
   },
   {
     "id": "film_ext_067",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie spielt auf einer Insel nach einem Flugzeugabsturz?",
+    "question": "Welches Mädchen kann ein Pferd hochheben und wohnt in der Villa Kunterbunt?",
     "answers": [
-      "Lost",
-      "Survivor",
-      "The Wilds",
-      "Yellowjackets"
+      "Ronja Räubertochter",
+      "Madita",
+      "Lotta",
+      "Pippi Langstrumpf"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2004. Die Überlebenden von Oceanic-Flug 815 stranden auf einer Insel mit eigenen Regeln."
+    "explanation": "Pippi lebt mit dem Pferd 'Kleiner Onkel' und dem Affen Herr Nilsson – erfunden von Astrid Lindgren."
   },
   {
     "id": "film_ext_069",
@@ -1058,17 +1058,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie handelt von einem Anwalt Saul Goodman?",
+    "question": "Welcher Bär isst am liebsten Orangenmarmelade?",
     "answers": [
-      "Better Call Saul",
-      "Suits",
-      "Boston Legal",
-      "The Practice"
+      "Balu",
+      "Paddington",
+      "Winnie Puuh",
+      "Kenai"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2015 – die Vorgeschichte zu Breaking Bad, sechs Jahre vor Walter Whites erstem Auftritt."
+    "explanation": "Paddington kommt aus dem 'dunkelsten Peru' nach London und hat immer ein Marmeladenbrot unter seinem Hut."
   },
   {
     "id": "film_ext_071",
@@ -1109,17 +1109,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie folgt den Abenteuern von Rick und Morty?",
+    "question": "Welcher Film spielt im Kopf eines Mädchens namens Riley?",
     "answers": [
-      "Rick and Morty",
-      "Futurama",
-      "Solar Opposites",
-      "Final Space"
+      "Alles steht Kopf",
+      "Coco",
+      "Soul",
+      "Elemental"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2013. Ein trinkender Wissenschaftler nimmt seinen Enkel mit auf Reisen durch Paralleluniversen."
+    "explanation": "In Rileys Kopf steuern Freude, Kummer, Wut, Angst und Ekel ihr Verhalten (Pixar, 2015)."
   },
   {
     "id": "film_ext_074",
@@ -1262,17 +1262,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie handelt von einem Drogenkartell und Pablo Escobar?",
+    "question": "Welcher Disney-Film handelt von einer Familie mit Zauberkräften in Kolumbien?",
     "answers": [
-      "Narcos",
-      "El Chapo",
-      "Queen of the South",
-      "Traffic"
+      "Coco",
+      "Vaiana",
+      "Encanto",
+      "Rapunzel – Neu verföhnt"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2015 auf Netflix, über den Aufstieg des kolumbianischen Drogenhändlers."
+    "explanation": "Nur Mirabel hat in der Familie Madrigal keine Zauberkraft. Das Lied 'Wir sprechen nicht über Bruno' wurde ein Welthit (2021)."
   },
   {
     "id": "film_ext_084",
@@ -1296,24 +1296,24 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie folgt einem blinden Anwalt namens Matt Murdock?",
+    "question": "Welcher Film handelt vom Monster Sulley und seinem Freund Mike Glotzkowski?",
     "answers": [
-      "Daredevil",
-      "Punisher",
-      "Jessica Jones",
-      "Luke Cage"
+      "Die Monster AG",
+      "Shrek",
+      "Ice Age",
+      "Madagascar"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Matt Murdock ist als Anwalt blind, hört und riecht dafür aber übermenschlich gut."
+    "explanation": "In Monstropolis wird Strom aus Kinderschreien gewonnen – bis das kleine Mädchen Buh auftaucht (Pixar, 2001)."
   },
   {
     "id": "film_ext_086",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film zeigt einen Killer-Hai vor Amity Island?",
+    "question": "Welcher Film zeigt einen riesigen weißen Hai vor Amity Island?",
     "answers": [
       "Der weiße Hai",
       "Deep Blue Sea",
@@ -1415,17 +1415,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie handelt von Vampiren in Mystic Falls?",
+    "question": "Wie heißt der gelb-blaue Fisch, der Arielle die Meerjungfrau begleitet?",
     "answers": [
-      "The Vampire Diaries",
-      "True Blood",
-      "Buffy",
-      "Twilight Saga series"
+      "Sebastian",
+      "Fridolin",
+      "Nemo",
+      "Fabius"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2009, nach einer Romanreihe. Die Serie brachte zwei Ableger hervor."
+    "explanation": "Fabius ist Arielles bester Freund. Die Krabbe Sebastian ist der Hofkomponist von König Triton."
   },
   {
     "id": "film_ext_095",
@@ -1437,7 +1437,7 @@
       "Der Marsianer",
       "Gravity",
       "Interstellar",
-      "The Martian"
+      "Apollo 13"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -1466,17 +1466,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie folgt den Kardashians?",
+    "question": "Wie heißt der Polizeihund bei der 'Paw Patrol'?",
     "answers": [
-      "Keeping Up with the Kardashians",
-      "The Real Housewives of Beverly Hills",
-      "Jersey Shore",
-      "Love Island"
+      "Marshall",
+      "Chase",
+      "Rubble",
+      "Rocky"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Keeping Up with the Kardashians."
+    "explanation": "Chase ist Polizei- und Spürhund, Marshall gehört zur Feuerwehr und Rubble ist der Bauhund."
   },
   {
     "id": "film_ext_098",
@@ -1572,7 +1572,7 @@
     "answers": [
       "Christopher Nolan",
       "Steven Spielberg",
-      "Quentin Tarantino",
+      "Peter Jackson",
       "James Cameron"
     ],
     "correct": 0,
@@ -1585,34 +1585,34 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welchem Film spielt Keanu Reeves einen Hacker namens Neo?",
+    "question": "Wer spricht im englischen Original den Cowboy Woody in 'Toy Story'?",
     "answers": [
-      "Matrix",
-      "John Wick",
-      "Speed",
-      "Constantine"
+      "Tim Allen",
+      "Bruce Willis",
+      "Tom Hanks",
+      "Will Smith"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Keanu Reeves trainierte monatelang Kampfszenen, bevor der Film 1999 in die Kinos kam."
+    "explanation": "Tom Hanks spricht Woody, Tim Allen den Space-Ranger Buzz Lightyear."
   },
   {
     "id": "film_ext_106",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie folgt den Abenteuern von Geralt von Riva?",
+    "question": "Welche kleine Fee streut in 'Peter Pan' Feenstaub, damit die Kinder fliegen können?",
     "answers": [
-      "The Witcher",
-      "Game of Thrones",
-      "Shadow and Bone",
-      "His Dark Materials"
+      "Wendy",
+      "Tiger Lily",
+      "Arielle",
+      "Tinkerbell"
     ],
-    "correct": 0,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ab 2019 auf Netflix, nach den Romanen des polnischen Autors Andrzej Sapkowski."
+    "explanation": "Tinkerbell (deutsch auch 'Glöckchen') ist eifersüchtig auf Wendy, rettet Peter aber am Ende das Leben."
   },
   {
     "id": "film_ext_107",
@@ -1653,17 +1653,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film beginnt mit dem Mord an den Eltern von Bruce Wayne?",
+    "question": "Wie heißt der Butler von Bruce Wayne alias Batman?",
     "answers": [
-      "Batman Begins",
-      "The Dark Knight",
-      "Joker",
-      "Batman 1989"
+      "James",
+      "Alfred",
+      "Robin",
+      "Lucius"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Oft in Batman Begins gezeigt."
+    "explanation": "Alfred Pennyworth kümmert sich seit Bruces Kindheit um ihn und kennt als einer der Wenigen sein Geheimnis."
   },
   {
     "id": "film_ext_111",
@@ -1687,17 +1687,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welche Serie beginnt mit dem Haftantritt von Piper Chapman in einem Frauengefängnis?",
+    "question": "Welcher Film handelt vom Rennauto Lightning McQueen?",
     "answers": [
-      "Orange Is the New Black",
-      "Prison Break – Ausbruch",
-      "Das Gefängnis Oz",
-      "Wentworth"
+      "Planes",
+      "Cars",
+      "Turbo",
+      "Speed Racer"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Sieben Staffeln ab 2013 – eine der ersten großen Eigenproduktionen von Netflix."
+    "explanation": "Der eingebildete Rennwagen landet in der Kleinstadt Radiator Springs und lernt dort echte Freundschaft (Pixar, 2006)."
   },
   {
     "id": "film_ext_113",
@@ -1755,17 +1755,17 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film zeigt einen Clown in den Kanälen von Derry?",
+    "question": "Wie heißt der Junge, der in 'Die unendliche Geschichte' vom Reich Phantásien liest?",
     "answers": [
-      "ES (It)",
-      "Clown",
-      "Pennywise",
-      "Horror Story"
+      "Atréju",
+      "Fuchur",
+      "Bastian",
+      "Jim Knopf"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Nach dem Roman von Stephen King. Der Clown Pennywise taucht alle 27 Jahre in Derry auf."
+    "explanation": "Bastian liest vom Helden Atréju und dem Glücksdrachen Fuchur – bis er selbst Teil der Geschichte wird (Michael Ende)."
   },
   {
     "id": "film_ext_117",
@@ -1789,34 +1789,34 @@
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "Welcher Film zeigt einen Haiangriff an einem Strand?",
+    "question": "In welchem Pixar-Film werden zwei kleine Seeungeheuer zu Menschen, sobald sie trocken sind?",
     "answers": [
-      "Der weiße Hai",
-      "Open Water",
-      "The Shallows",
-      "47 Meters"
+      "Luca",
+      "Rot",
+      "Vaiana",
+      "Arielle, die Meerjungfrau"
     ],
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Strand von Amity Island ist erfunden, gedreht wurde auf der Insel Martha's Vineyard."
+    "explanation": "Luca und Alberto erleben einen Sommer an der italienischen Riviera (2021)."
   },
   {
     "id": "film_ext_120",
     "category": "film_serien",
     "area": "film",
     "subject": "wissen",
-    "question": "In welcher Serie ist Tyrion Lennister eine der Hauptfiguren?",
+    "question": "Wie heißt der Lokomotivführer, der mit Jim Knopf und der Lok Emma von Lummerland losfährt?",
     "answers": [
-      "Game of Thrones",
-      "Time Bandits",
-      "Der Hobbit",
-      "Willow"
+      "Herr Ärmel",
+      "Tur Tur",
+      "Lukas",
+      "Alfons"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Tyrion ist der jüngste Sohn der Lennisters und verteidigt sich vor allem mit seinem Verstand."
+    "explanation": "In Michael Endes Buch 'Jim Knopf und Lukas der Lokomotivführer' ist Lummerland so klein, dass nicht genug Platz für alle bleibt."
   },
   {
     "id": "film_ext_121",
@@ -1827,7 +1827,7 @@
     "answers": [
       "Wednesday",
       "The Addams Family",
-      "Chilling Adventures",
+      "Hotel Transsilvanien",
       "Sabrina"
     ],
     "correct": 0,
@@ -1942,17 +1942,17 @@
     "category": "werbung_marken",
     "area": "slogans",
     "subject": "wissen",
-    "question": "Zu welcher Marke gehört der Slogan 'Red Bull verleiht [...]'?",
+    "question": "Welche Schokoladenmarke wirbt seit Jahrzehnten mit einer lila Kuh?",
     "answers": [
-      "Power",
-      "Flügel",
-      "Energie",
-      "Speed"
+      "Ritter Sport",
+      "Lindt",
+      "Milka",
+      "Kinder"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Österreicher Energy-Drink-Hersteller wirbt seit Jahrzehnten mit 'Red Bull verleiht Flügel'."
+    "explanation": "Die lila Kuh steht für Alpenmilch – Milka ist ein Kunstwort aus MILch und KAkao."
   },
   {
     "id": "mix_mc_016",
@@ -2112,12 +2112,12 @@
     "category": "musik_hits",
     "area": "songtexte",
     "subject": "wissen",
-    "question": "Welche schwedische Band sang 'Mama Mia', 'Dancing Queen' und 'Waterloo'?",
+    "question": "Welche schwedische Band sang 'Mamma Mia', 'Dancing Queen' und 'Waterloo'?",
     "answers": [
       "Roxette",
       "ABBA",
       "Ace of Base",
-      "A-Ha"
+      "Boney M."
     ],
     "correct": 1,
     "difficulty": "leicht",
@@ -2146,17 +2146,17 @@
     "category": "musik_hits",
     "area": "songtexte",
     "subject": "wissen",
-    "question": "Aus welchem Hit der Band AC/DC stammt die Gitarren-Melodie 'Highway to [...]'?",
+    "question": "Welche Band sang 'Yellow Submarine' über ein gelbes U-Boot?",
     "answers": [
-      "Heaven",
-      "Hell",
-      "Paradise",
-      "Texas"
+      "The Rolling Stones",
+      "The Beach Boys",
+      "The Beatles",
+      "Queen"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "'Highway to Hell' aus dem Jahr 1979 gehört zu den zeitlosen Klassikern der Hard-Rock-Geschichte."
+    "explanation": "Das Lied von 1966 bekam sogar einen eigenen Zeichentrickfilm."
   },
   {
     "id": "mix_mc_028",
@@ -2180,34 +2180,34 @@
     "category": "musik_hits",
     "area": "songtexte",
     "subject": "wissen",
-    "question": "Welcher Rap-Künstler verfasste den Song 'Lose Yourself' aus dem Film '8 Mile'?",
+    "question": "Welche spanische Gruppe hatte mit der 'Macarena' einen weltweiten Tanzhit?",
     "answers": [
-      "Tupac Shakur",
-      "Eminem",
-      "50 Cent",
-      "Snoop Dogg"
+      "Los del Río",
+      "Gipsy Kings",
+      "Las Ketchup",
+      "Los Lobos"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Eminem gewann für 'Lose Yourself' als erster Rapper überhaupt einen Oscar für den Besten Song."
+    "explanation": "Zum Lied gibt es einen eigenen Tanz, der 1996 auf Partys rund um die Welt getanzt wurde."
   },
   {
     "id": "mix_mc_030",
     "category": "musik_hits",
     "area": "songtexte",
     "subject": "wissen",
-    "question": "Wie heisst der Welthit von Metallicas schwarzem Album aus dem Jahr 1991?",
+    "question": "Welche Band aus Norwegen hatte 1985 mit 'Take On Me' einen Welthit?",
     "answers": [
-      "Enter Sandman",
-      "Nothing Else Matters",
-      "Master of Puppets",
-      "One"
+      "Roxette",
+      "Europe",
+      "a-ha",
+      "Ace of Base"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "'Nothing Else Matters' ist die berühmteste Rockballade der US-Band Metallica."
+    "explanation": "Das Musikvideo mit gezeichneten Comic-Szenen gehört zu den berühmtesten aller Zeiten."
   },
   {
     "id": "mix_mc_031",
@@ -2224,7 +2224,7 @@
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Au leitet sich vom lateinischen Wort 'Aurum' (Morgenrot / leuchtendes Gold) ab."
+    "explanation": "Au kommt vom lateinischen Wort 'aurum' für Gold."
   },
   {
     "id": "mix_mc_032",
@@ -2361,5 +2361,345 @@
     "difficulty": "leicht",
     "points": 5,
     "explanation": "Jupiter ist ein Gasriese und besitzt mehr als die doppelte Masse aller anderen Planeten zusammen."
+  },
+  {
+    "id": "nw_neu_001",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welche Farbe bekommt Kupfer, wenn es lange an der Luft war – zum Beispiel auf alten Kirchendächern?",
+    "answers": [
+      "Blau",
+      "Schwarz",
+      "Grün",
+      "Gelb"
+    ],
+    "correct": 2,
+    "explanation": "Die grüne Schicht heißt Patina und schützt das Metall darunter."
+  },
+  {
+    "id": "nw_neu_002",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches dieser Tiere ist kein Säugetier?",
+    "answers": [
+      "Der Wal",
+      "Die Fledermaus",
+      "Der Pinguin",
+      "Der Delfin"
+    ],
+    "correct": 2,
+    "explanation": "Pinguine sind Vögel – sie können nur nicht fliegen, dafür umso besser schwimmen."
+  },
+  {
+    "id": "nw_neu_003",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Bei wie viel Grad Celsius gefriert Wasser?",
+    "answers": [
+      "0 °C",
+      "-10 °C",
+      "4 °C",
+      "10 °C"
+    ],
+    "correct": 0,
+    "explanation": "Salzwasser gefriert erst bei tieferen Temperaturen – deshalb streut man im Winter Salz."
+  },
+  {
+    "id": "nw_neu_004",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Wie heißt die Kraft, die alles zur Erde fallen lässt?",
+    "answers": [
+      "Schwerkraft",
+      "Magnetkraft",
+      "Fliehkraft",
+      "Reibung"
+    ],
+    "correct": 0,
+    "explanation": "Auf dem Mond ist die Schwerkraft nur ein Sechstel so stark – dort springt man viel höher."
+  },
+  {
+    "id": "nw_neu_005",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches Metall ist bei Zimmertemperatur flüssig?",
+    "answers": [
+      "Eisen",
+      "Aluminium",
+      "Quecksilber",
+      "Zinn"
+    ],
+    "correct": 2,
+    "explanation": "Früher steckte Quecksilber in Fieberthermometern – heute nicht mehr, weil es giftig ist."
+  },
+  {
+    "id": "nw_neu_006",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Woraus besteht Wasser chemisch?",
+    "answers": [
+      "Aus Kohlenstoff und Sauerstoff",
+      "Aus Stickstoff und Wasserstoff",
+      "Aus Sauerstoff und Helium",
+      "Aus Wasserstoff und Sauerstoff"
+    ],
+    "correct": 3,
+    "explanation": "Die Formel H₂O bedeutet: zwei Wasserstoffatome und ein Sauerstoffatom."
+  },
+  {
+    "id": "nw_neu_007",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Was misst ein Thermometer?",
+    "answers": [
+      "Den Luftdruck",
+      "Die Temperatur",
+      "Die Windstärke",
+      "Die Luftfeuchtigkeit"
+    ],
+    "correct": 1,
+    "explanation": "Den Luftdruck misst dagegen ein Barometer."
+  },
+  {
+    "id": "nw_neu_008",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches Säugetier legt Eier?",
+    "answers": [
+      "Das Känguru",
+      "Der Koala",
+      "Das Schnabeltier",
+      "Der Igel"
+    ],
+    "correct": 2,
+    "explanation": "Das Schnabeltier aus Australien hat außerdem einen Entenschnabel und Giftsporne an den Hinterbeinen."
+  },
+  {
+    "id": "nw_neu_009",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Wie viele Knochen hat ein erwachsener Mensch ungefähr?",
+    "answers": [
+      "206",
+      "106",
+      "306",
+      "506"
+    ],
+    "correct": 0,
+    "explanation": "Babys haben sogar rund 300 Knochen – viele davon wachsen später zusammen."
+  },
+  {
+    "id": "nw_neu_010",
+    "category": "natur_wissenschaft",
+    "area": "chemie",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Was zieht ein Magnet an?",
+    "answers": [
+      "Holz",
+      "Glas",
+      "Eisen",
+      "Kunststoff"
+    ],
+    "correct": 2,
+    "explanation": "Auch Nickel und Kobalt sind magnetisch – Aluminium und Kupfer dagegen nicht."
+  },
+  {
+    "id": "mh_neu_001",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welcher Song aus dem Disney-Film 'Encanto' wurde 2022 ein Welthit?",
+    "answers": [
+      "Lass jetzt los",
+      "Ich bin Vaiana",
+      "Unter dem Meer",
+      "Wir sprechen nicht über Bruno"
+    ],
+    "correct": 3,
+    "explanation": "Das Lied stürmte sogar die amerikanischen Charts – vor allen anderen Disney-Songs der letzten Jahrzehnte."
+  },
+  {
+    "id": "mh_neu_002",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches Lied singt man, wenn jemand Geburtstag hat?",
+    "answers": [
+      "Alle meine Entchen",
+      "Zum Geburtstag viel Glück",
+      "Kuckuck, Kuckuck",
+      "Hänschen klein"
+    ],
+    "correct": 1,
+    "explanation": "Die Melodie stammt aus den USA ('Happy Birthday') und wird auf der ganzen Welt gesungen."
+  },
+  {
+    "id": "mh_neu_003",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welche Band der Zwillinge Bill und Tom Kaulitz landete 2005 mit 'Durch den Monsun' einen Hit?",
+    "answers": [
+      "Silbermond",
+      "Revolverheld",
+      "Juli",
+      "Tokio Hotel"
+    ],
+    "correct": 3,
+    "explanation": "Die Band aus Magdeburg wurde danach auch in Frankreich und den USA berühmt."
+  },
+  {
+    "id": "mh_neu_004",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welche Sängerin gewann 2010 mit 'Satellite' den Eurovision Song Contest für Deutschland?",
+    "answers": [
+      "Nena",
+      "Helene Fischer",
+      "Sarah Connor",
+      "Lena"
+    ],
+    "correct": 3,
+    "explanation": "Es war der zweite deutsche ESC-Sieg nach Nicole 1982."
+  },
+  {
+    "id": "mh_neu_005",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches Lied singt der Halbgott Maui im Disney-Film 'Vaiana'?",
+    "answers": [
+      "Ich bin Vaiana",
+      "Unter dem Meer",
+      "Gern geschehn",
+      "Hakuna Matata"
+    ],
+    "correct": 2,
+    "explanation": "Maui prahlt darin mit all den Taten, die er für die Menschen vollbracht hat."
+  },
+  {
+    "id": "mh_neu_006",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welcher deutsche Sänger hatte Hits mit 'Chöre' und '194 Länder'?",
+    "answers": [
+      "Max Giesinger",
+      "Tim Bendzko",
+      "Wincent Weiss",
+      "Mark Forster"
+    ],
+    "correct": 3,
+    "explanation": "Mark Forster war auch jahrelang Coach bei 'The Voice Kids'."
+  },
+  {
+    "id": "mh_neu_007",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welcher Song von Lou Bega zählt jede Menge Frauennamen auf?",
+    "answers": [
+      "Macarena",
+      "La Bamba",
+      "Despacito",
+      "Mambo No. 5"
+    ],
+    "correct": 3,
+    "explanation": "Von Angela bis Tina – der Hit von 1999 war in vielen Ländern auf Platz 1."
+  },
+  {
+    "id": "mh_neu_008",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches Kinderlied wurde 2020 zum meistgesehenen YouTube-Video aller Zeiten?",
+    "answers": [
+      "Alle meine Entchen",
+      "Baby Shark",
+      "Old MacDonald",
+      "Wheels on the Bus"
+    ],
+    "correct": 1,
+    "explanation": "Das Lied der Haifamilie aus Südkorea wurde inzwischen viele Milliarden Mal angeschaut."
+  },
+  {
+    "id": "mh_neu_009",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Wie heißt der berühmte Tanzschritt von Michael Jackson, bei dem er rückwärts zu gleiten scheint?",
+    "answers": [
+      "Moonwalk",
+      "Robot",
+      "Twist",
+      "Running Man"
+    ],
+    "correct": 0,
+    "explanation": "Er zeigte den Moonwalk 1983 zum ersten Mal im Fernsehen bei 'Billie Jean'."
+  },
+  {
+    "id": "mh_neu_010",
+    "category": "musik_hits",
+    "area": "songtexte",
+    "subject": "wissen",
+    "difficulty": "mittel",
+    "points": 5,
+    "question": "Welches Instrument klemmt man sich unters Kinn und spielt es mit einem Bogen?",
+    "answers": [
+      "Geige",
+      "Gitarre",
+      "Trompete",
+      "Harfe"
+    ],
+    "correct": 0,
+    "explanation": "Die größeren Verwandten der Geige sind Bratsche, Cello und Kontrabass."
   }
 ]

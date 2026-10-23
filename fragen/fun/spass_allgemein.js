@@ -1,1804 +1,3162 @@
-// Fun · spass_allgemein (197 Fragen)
+// Fun · spass_allgemein (234 Fragen)
 const SPASS_ALLGEMEIN_QUESTIONS = [
   {
-        id: "allg_001",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Tage hat ein gewöhnliches Schaltjahr?",
-        answers: ["366 Tage", "365 Tage", "364 Tage", "367 Tage"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Ein Schaltjahr besitzt 366 Tage durch den Zusatztag im Februar."
-    },
-  {
-        id: "allg_002",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Mischfarbe entsteht aus den Grundfarben Blau und Gelb?",
-        answers: ["Braun", "Orange", "Grün", "Lila"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Kombination der Grundfarben Blau und Gelb ergibt Grün."
-    },
-  {
-        id: "allg_003",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Säugetier gilt auf Kurzstrecken als das schnellste Landtier?",
-        answers: ["Das Pferd", "Die Gazelle", "Der Gepard", "Der Löwe"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Gepard erreicht Geschwindigkeiten von über 100 km/h."
-    },
-  {
-        id: "allg_004",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Laufbeine besitzen Spinnentiere im Unterschied zu Insekten?",
-        answers: ["8 Beine", "12 Beine", "10 Beine", "6 Beine"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Spinnentiere besitzen acht Beine, während Insekten sechs haben."
-    },
-  {
-        id: "allg_005",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem europäischen Land befindet sich der berühmte Eiffelturm?",
-        answers: ["Italien", "Spanien", "Deutschland", "Frankreich"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Eiffelturm steht in der französischen Hauptstadt Paris."
-    },
-  {
-        id: "allg_006",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches ist das größte und schwerste lebende Tier der Erde?",
-        answers: ["Der mächtige Blauwal", "Das Breitmaulnashorn", "Die große Netzgiraffe", "Afrikanischer Elefant"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Blauwal kann eine Länge von bis zu 30 Metern erreichen."
-    },
-  {
-        id: "allg_007",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Hauptfarben werden dem klassischen Regenbogen zugeschrieben?",
-        answers: ["5 Farben", "9 Farben", "7 Farben", "11 Farben"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Klassisch werden Rot, Orange, Gelb, Grün, Blau, Indigo und Violett gezählt."
-    },
-  {
-        id: "allg_008",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele verschlungene Ringe bildet das offizielle olympische Symbol?",
-        answers: ["Sieben Ringe", "Fünf Ringe", "Vier Ringe", "Sechs Ringe"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die fünf Ringe repräsentieren die fünf bewohnten Kontinente."
-    },
-  {
-        id: "allg_009",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt die offizielle Hauptstadt der Republik Südkorea?",
-        answers: ["Incheon", "Seoul", "Busan", "Daegu"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Seoul ist das politische und wirtschaftliche Zentrum Südkoreas."
-    },
-  {
-        id: "allg_010",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Feldspieler stehen beim Fußball pro Team auf dem Platz?",
-        answers: ["12 Spieler", "10 Spieler", "9 Spieler", "11 Spieler"],
-        correct: 3,
-        difficulty: "mittel", points: 10,
-        explanation: "Eine Mannschaft besteht aus 10 Feldspielern und einem Torwart."
-    },
-  {
-        id: "allg_011",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Saiten besitzt eine gewöhnliche Konzertgitarre?",
-        answers: ["Zwölf Saiten", "Zehn Saiten", "Sechs Saiten", "Vier Saiten"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Eine Standard-Gitarre ist mit sechs Saiten bespannt."
-    },
-  {
-        id: "allg_012",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land besitzt die flächenmäßig größte Staatsfläche der Erde?",
-        answers: ["Kanada", "Brasilien", "Russland", "China"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Russland erstreckt sich über eine Fläche von rund 17 Millionen km²."
-    },
-  {
-        id: "allg_013",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus wie vielen Bundesländern besteht die Republik Österreich?",
-        answers: ["7 Länder", "12 Länder", "9 Länder", "16 Länder"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Österreich ist ein Bundesstaat aus insgesamt neun Bundesländern."
-    },
-  {
-        id: "allg_014",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches chemische Element ist bei Raumtemperatur flüssig?",
-        answers: ["Reinkupfer", "Flüssigeisen", "Weichblei", "Quecksilber"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Quecksilber ist das einzige Metall, das bei Raumtemperatur flüssig ist."
-    },
-  {
-        id: "allg_015",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Spieler stehen pro Volleyball-Team in der Halle auf dem Feld?",
-        answers: ["Sieben Spieler", "Acht Spieler", "Sechs Spieler", "Fünf Spieler"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Beim Hallenvolleyball besteht eine Mannschaft aus sechs Spielern."
-    },
-  
-  {
-        id: "allg_017",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt der höchste Berg der Erde über dem Meeresspiegel?",
-        answers: ["Der Mont Blanc", "Der K2 (Godwin)", "Mount Everest", "Kilimandscharo"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Mount Everest im Himalaya ist 8.848 Meter hoch."
-    },
-  {
-        id: "allg_018",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches chemische Element kommt im Universum am häufigsten vor?",
-        answers: ["Reinhelium", "Wasserstoff", "Sauerstoff", "Kohlenstoff"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Wasserstoff macht etwa 75 % der gesamten sichtbaren Materie aus."
-    },
-  {
-        id: "allg_019",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem historischen Jahr fiel die Berliner Mauer?",
-        answers: ["Jahr 1987", "Jahr 1991", "Jahr 1989", "Jahr 1993"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Berliner Mauer fiel am 9. November 1989."
-    },
-  {
-        id: "allg_020",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Zähne besitzt das Gebiss eines erwachsenen Menschen üblicherweise?",
-        answers: ["36 Zähne", "40 Zähne", "28 Zähne", "32 Zähne"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das vollständige bleibende Gebiss hat 32 Zähne inklusive Weisheitszähne."
-    },
-  
-  {
-        id: "allg_022",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Was stellt flächenmäßig das größte Organ des menschlichen Körpers dar?",
-        answers: ["Die Lunge", "Die Haut", "Die Leber", "Der Darm"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Haut ist mit rund 1,8 bis 2 Quadratmetern das größte Organ."
-    },
-  {
-        id: "allg_023",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Auf welchen beiden Ländern erstreckt sich die Wüste Gobi?",
-        answers: ["Chile und Peru", "Ägypten und Sudan", "China und Mongolei", "Indien und Pakistan"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Wüste Gobi liegt im Grenzgebiet von China und der Mongolei."
-    },
-  {
-        id: "allg_024",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Planet unseres Sonnensystems steht der Sonne am nächsten?",
-        answers: ["Der Jupiter", "Die Venus", "Der Mars", "Der Merkur"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Merkur ist mit einer Entfernung von rund 58 Mio. km der innerste Planet."
-    },
-  {
-        id: "allg_025",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Einzelknochen besitzt der Körper eines Babys bei der Geburt?",
-        answers: ["Etwa 420", "Etwa 300", "Etwa 150", "Etwa 206"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Säuglinge haben ca. 300 Knochen, von denen viele später zusammenwachsen."
-    },
-  {
-        id: "allg_026",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Zahl entspricht die mathematische Definition einer Primzahl?",
-        answers: ["Zahl 21", "Zahl 27", "Zahl 25", "Zahl 23"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "23 lässt sich nur durch 1 und sich selbst teilen."
-    },
-  {
-        id: "allg_027",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Ozean bedeckt die größte Gesamtfläche auf unserer Erde?",
-        answers: ["Der Indik", "Der Pazifik", "Der Arktik", "Der Atlantik"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Pazifische Ozean ist der größte Ozean der Erde."
-    },
-  {
-        id: "allg_028",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt der höchste und bekannteste aktive Vulkan Europas?",
-        answers: ["Stromboli", "Der Vesuv", "Der Ätna", "Teide-Berg"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Ätna liegt auf Sizilien und ragt rund 3.300 Meter hoch."
-    },
-  {
-        id: "allg_029",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus wie vielen Bundesländern besteht die Bundesrepublik Deutschland?",
-        answers: ["15 Länder", "17 Länder", "14 Länder", "16 Länder"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Deutschland besteht aus 16 Bundesländern inklusive der Stadtstaaten."
-    },
-  
-  {
-        id: "allg_031",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher große mitteleuropäische Fluss durchfließt die Stadt Wien?",
-        answers: ["Die Elbe", "Der Main", "Die Donau", "Der Rhein"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Donau fließt durch Wien sowie weitere europäische Hauptstädte."
-    },
-  {
-        id: "allg_032",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Organ im Körper treibt den Blutkreislauf ununterbrochen an?",
-        answers: ["Die Leber", "Die Niere", "Die Lunge", "Das Herz"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Herz pumpt kontinuierlich Blut durch das Gefäßsystem."
-    },
-  {
-        id: "allg_033",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt die schwedische Hauptstadt, die auf 14 Inseln liegt?",
-        answers: ["Uppsala", "Kopenhagen", "Göteborg", "Stockholm"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Stockholm liegt an der Mündung des Mälaren in die Ostsee."
-    },
-  {
-        id: "allg_034",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche offizielle Währung gilt in der Schweizerischen Eidgenossenschaft?",
-        answers: ["Die Krone", "Der Euro", "Der Franken", "Der Schilling"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "In der Schweiz zahlt man offiziell mit Schweizer Franken."
-    },
-  {
-        id: "allg_035",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Nachbarplanet der Erde wird wegen Eisenoxid als 'Roter Planet' bezeichnet?",
-        answers: ["Die Venus", "Der Jupiter", "Der Saturn", "Der Mars"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Eisenoxidstaub verleiht der Marsoberfläche ihre rote Farbe."
-    },
-  {
-        id: "allg_036",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Was bezeichnet man in der Physik als die Maßeinheit der elektrischen Spannung?",
-        answers: ["Volt", "Ampere", "Ohm", "Watt"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Elektrische Spannung wird in Volt (V) gemessen."
-    },
-  {
-        id: "allg_037",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Edelmetall besitzt die chemische Bezeichnung Au im Periodensystem?",
-        answers: ["Silber", "Gold", "Platin", "Kupfer"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Au leitet sich vom lateinischen Wort Aurum für Gold ab."
-    },
-  {
-        id: "allg_038",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt die arktische Tierart, deren Haut unter dem Fell schwarz gefärbt ist?",
-        answers: ["Eisbär", "Schneeleopard", "Polarfuchs", "Walross"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die schwarze Haut des Eisbären absorbiert Sonnenwärme optimal."
-    },
-  {
-        id: "allg_039",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welcher deutschen Stadt befindet sich das berühmte Brandenburger Tor?",
-        answers: ["München", "Berlin", "Hamburg", "Köln"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Brandenburger Tor ist ein bekanntes Wahrzeichen von Berlin."
-    },
-  {
-        id: "allg_040",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Gaskomponente macht den größten Teil der Erdatmosphäre aus?",
-        answers: ["Stickstoff", "Sauerstoff", "Kohlendioxid", "Argon"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Stickstoff macht etwa 78 % der Erdatmosphäre aus."
-    },
-  {
-        id: "allg_041",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Maßeinheit gibt die Frequenz von Schall- und Lichtwellen an?",
-        answers: ["Hertz", "Joule", "Pascal", "Newton"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Frequenz wird in Hertz (Hz) gemessen."
-    },
-  {
-        id: "allg_042",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Meer grenzt im Nordwesten direkt an Deutschland?",
-        answers: ["Die Nordsee", "Die Ostsee", "Das Schwarze Meer", "Das Kaspische Meer"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Deutschland grenzt im Nordwesten an die Nordsee."
-    },
-  {
-        id: "allg_043",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Wissenschaftler begründete die Relativitätstheorie?",
-        answers: ["Niels Bohr", "Wilhelm Röntgen", "Max Planck", "Albert Einstein"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Albert Einstein veröffentlichte die Relativitätstheorie im 20. Jahrhundert."
-    },
-  {
-        id: "allg_044",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem europäischen Land liegt das Gebirgsmassiv der Pyrenäen teilweise?",
-        answers: ["Italien", "Griechenland", "Frankreich", "Österreich"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Pyrenäen bilden die natürliche Grenze zwischen Frankreich und Spanien."
-    },
-  {
-        id: "allg_045",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus wie vielen Herzkammern setzt sich das Herz von Menschen zusammen?",
-        answers: ["Vier Kammern", "Fünf Kammern", "Zwei Kammern", "Drei Kammern"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das menschliche Herz unterteilt sich in zwei Vorhöfe und zwei Hauptkammern."
-    },
-  {
-        id: "allg_046",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet die chemische Summenformel für reines Wasser?",
-        answers: ["CO₂", "NaCl", "O₂", "H₂O"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Wasser besteht aus zwei Wasserstoffatomen und einem Sauerstoffatom."
-    },
-  {
-        id: "allg_047",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt der flächenmäßig zweitgrößte Kontinent unserer Erde?",
-        answers: ["Nordamerika", "Europa", "Asien", "Afrika"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Afrika ist nach Asien der zweitgrößte Kontinent der Erde."
-    },
-  {
-        id: "allg_048",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Planeten gehören offiziell zu unserem Sonnensystem?",
-        answers: ["8 Planeten", "7 Planeten", "10 Planeten", "9 Planeten"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Seit 2006 gilt Pluto als Zwergplanet, somit verbleiben 8 Planeten."
-    },
-  
-  {
-        id: "allg_050",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt die Maßeinheit zur Bestimmung der Lautstärke von Schall?",
-        answers: ["Dezibel", "Lumen", "Candela", "Kelvin"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Schalldruckpegel beziehungsweise die Lautstärke wird in Dezibel (dB) angegeben."
-    },
-  {
-        id: "allg_051",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Ozean befindet sich die tiefste Stelle der Erde, der Marianengraben?",
-        answers: ["Atlantischer Ozean", "Indischer Ozean", "Arktischer Ozean", "Pazifischer Ozean"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Challengertief im Marianengraben liegt im westlichen Pazifischen Ozean."
-    },
-  {
-        id: "allg_052",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land war der Gastgeber der Olympischen Sommerspiele im Jahr 2016?",
-        answers: ["Großbritannien", "Japan", "China", "Brasilien"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Spiele 2016 fanden in Rio de Janeiro in Brasilien statt."
-    },
-  {
-        id: "allg_053",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie nennt man die Lehre von der Entstehung und Entwicklung der Lebewesen?",
-        answers: ["Verhaltensbiologie", "Physiologie", "Evolutionstheorie", "Paläontologie"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Evolutionstheorie beschreibt die genetische Veränderung über Generationen."
-    },
-  {
-        id: "allg_054",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus welchem Material besteht die Hülle eines Vogeleies zum Großteil?",
-        answers: ["Magnesiumsulfat", "Siliziumdioxid", "Eisenverbindungen", "Kalziumkarbonat"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Vogeleierschalen bestehen zu rund 95 Prozent aus Kalziumkarbonat."
-    },
-  {
-        id: "allg_055",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Stadt ist der Sitz der Europäischen Kommission?",
-        answers: ["Strassburg", "Luxemburg", "Brüssel", "Frankfurt"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Hauptsitz der Europäischen Kommission befindet sich in Brüssel."
-    },
-  {
-        id: "allg_056",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Kontinente gibt es nach dem vereinfachten 7-Kontinente-Modell?",
-        answers: ["Sieben Kontinente", "Fünfzehn Kontinente", "Acht Kontinente", "Fünf Kontinente"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Gezählt werden Asien, Afrika, Nordamerika, Südamerika, Antarktika, Europa, Australien."
-    },
-  {
-        id: "allg_057",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer entwickelte den ersten modernen Buchdruck mit beweglichen Metalllettern?",
-        answers: ["Martin Luther", "Christoph Kolumbus", "Leonardo da Vinci", "Johannes Gutenberg"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Gutenberg erfand den Buchdruck um 1450 in Mainz."
-    },
-  {
-        id: "allg_058",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Farbe nimmt ein Säure-Indikator wie Lackmus in sauren Lösungen an?",
-        answers: ["Rot", "Blau", "Grün", "Gelb"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Lackmus verfärbt sich in Gegenwart von Säuren intensiv rot."
-    },
-  {
-        id: "allg_059",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Fluss ist von der Länge her der längste Strom der Erde?",
-        answers: ["Der Jangtsekiang", "Der Nil", "Der Mississippi", "Der Amazonas"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Nil gilt mit etwa 6.650 km meist als der längste Fluss der Welt."
-    },
-  {
-        id: "allg_060",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet die Einheit zur Bemessung der elektrischen Stromstärke?",
-        answers: ["Watt", "Volt", "Ampere", "Coulomb"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Stromstärke wird international in Ampere (A) gemessen."
-    },
-  {
-        id: "allg_061",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus welcher Pflanzenart gewinnen Imker echten Honig?",
-        answers: ["Aus Baumrinden", "Aus Graswurzeln", "Aus Blütennektar", "Aus Pflanzenblättern"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Bienen sammeln Nektar sowie Honigtau und verarbeiten diesen zu Honig."
-    },
-  {
-        id: "allg_062",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Gebirge bildet die natürliche Grenze zwischen Europa und Asien?",
-        answers: ["Die Kaukasus-Kette", "Das Himalaya-Massiv", "Das Ural-Gebirge", "Die Alpengipfel"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Ural wird traditionell als östliche Grenze Europas definiert."
-    },
-  {
-        id: "allg_063",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer malte das weltberühmte Gemälde der Mona Lisa?",
-        answers: ["Michelangelo", "Rembrandt van Rijn", "Vincent van Gogh", "Leonardo da Vinci"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Leonardo da Vinci erschuf das Ölgemälde im frühen 16. Jahrhundert."
-    },
-  {
-        id: "allg_064",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Sprache weist weltweit die meisten Muttersprachler auf?",
-        answers: ["Spanisch", "Hochchinesisch", "Niederländisch", "Englisch"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Mandarin (Hochchinesisch) hat über 900 Millionen Muttersprachler."
-    },
-  {
-        id: "allg_065",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Edelgas wird wegen seiner geringen Dichte für Luftballons verwendet?",
-        answers: ["Argon", "Neon", "Helium", "Krypton"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Helium ist leichter als Luft und bringt Ballons zum Steigen."
-    },
-  {
-        id: "allg_066",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Planet besitzt die auffälligsten und bekanntesten Ringe?",
-        answers: ["Saturn", "Jupiter", "Uranus", "Neptun"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Saturn ist berühmt für sein ausgeprägtes Ringsystem aus Eis und Gestein."
-    },
-  {
-        id: "allg_067",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Vogel gilt als größter flugunfähiger Vogel der Welt?",
-        answers: ["Emu", "Kaiserpinguin", "Strauß", "Kasuar"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Strauß ist der größte lebende Vogel der Erde."
-    },
-  {
-        id: "allg_068",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt der flächenmäßig größte See der Erde, der von Land umschlossen ist?",
-        answers: ["Der Baikal See", "Der Große Sklavensee", "Der Oberer See", "Das Kaspische Meer"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Kaspische Meer ist der flächengrößte See der Erde."
-    },
-  {
-        id: "allg_069",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Organ des menschlichen Körpers wird die Galle gebildet?",
-        answers: ["In der Leber", "In der Bauchspeicheldrüse", "Im Magen", "In der Gallenblase"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Galle wird in der Leber produziert und in der Gallenblase gespeichert."
-    },
-  {
-        id: "allg_070",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land schenkte den USA die berühmte Freiheitsstatue?",
-        answers: ["Spanien", "Frankreich", "Niederlande", "Großbritannien"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Frankreich schenkte die Statue den USA zur Unabhängigkeitserklärung."
-    },
-  {
-        id: "allg_071",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Planeten in unserem Sonnensystem besitzen feste Oberflächen?",
-        answers: ["Fünf Planeten", "Zwei Planeten", "Vier Planeten", "Drei Planeten"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die vier inneren Planeten (Merkur, Venus, Erde, Mars) sind Gesteinsplaneten."
-    },
-  {
-        id: "allg_072",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches ist das härteste natürliche Mineral auf der Erde?",
-        answers: ["Der Diamant", "Der Saphir-Korund", "Das Topas", "Das Korund"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Diamant besitzt auf der Mohs-Skala den Höchstwert 10."
-    },
-  {
-        id: "allg_073",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Kontinent liegt die berühmte Wüste Sahara?",
-        answers: ["Südamerika", "Afrika", "Asien", "Australien"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Sahara erstreckt sich über das gesamte nördliche Afrika."
-    },
-  {
-        id: "allg_074",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Tier nutzt Echo-Ortung zur Orientierung in der Dunkelheit?",
-        answers: ["Die Fledermaus", "Der Klippschliefer", "Die Waldmaus", "Der Waldkauz"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Fledermäuse senden Ultraschallwellen aus, um Hindernisse zu orten."
-    },
-  {
-        id: "allg_075",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer entdeckte im Jahr 1928 das erste wirksame Antibiotikum Penicillin?",
-        answers: ["Robert Koch", "Paul Ehrlich-Institut", "Alexander Fleming", "Louis Pasteur"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Fleming entdeckte die bakterientötende Wirkung des Schimmelpilzes."
-    },
-  {
-        id: "allg_076",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Farbe hat der Farbstoff Chlorophyll in den Zellen von Pflanzen?",
-        answers: ["Rot", "Grün", "Gelb", "Blau"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Chlorophyll sorgt für die grüne Ausfärbung von Pflanzenblättern."
-    },
-  {
-        id: "allg_077",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Ozean trennt die Kontinente Europa und Nordamerika voneinander?",
-        answers: ["Der Indik", "Der Nordpazifik", "Der Atlantik", "Der Arktik"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Atlantische Ozean erstreckt sich zwischen Amerika, Europa und Afrika."
-    },
-  {
-        id: "allg_078",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt das größte Binnengewässer im Inneren des Kontinents Nordamerika?",
-        answers: ["Der Oberer See", "Der Michigansee", "Der Eriesee", "Der Huronsee"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Obere See ist flächenmäßig der größte Süßwassersee der Erde."
-    },
-  {
-        id: "allg_079",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land hat die größte Bevölkerungszahl weltweit aufzuweisen?",
-        answers: ["Indien", "Indonesien", "USA", "China"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Indien hat China als bevölkerungsreichstes Land abgelöst."
-    },
-  {
-        id: "allg_080",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus wie vielen einzelnen Spielern besteht ein normales Eishockey-Team auf dem Eis?",
-        answers: ["6 Spieler", "7 Spieler", "5 Spieler", "8 Spieler"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Ein Team besteht aus 5 Feldspielern und einem Torwart."
-    },
-  {
-        id: "allg_081",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Sekunden enthält eine Zeitspanne von genau einer Stunde?",
-        answers: ["1.800 Sekunden", "3.600 Sekunden", "4.200 Sekunden", "7.200 Sekunden"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "60 Minuten mal 60 Sekunden ergeben exakt 3.600 Sekunden."
-    },
-  {
-        id: "allg_082",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer verfasste das berühmte Drama 'Romeo und Julia'?",
-        answers: ["William Shakespeare", "Friedrich Schiller", "Molière", "Johann Goethe"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Shakespeare schrieb die Tragödie Ende des 16. Jahrhunderts."
-    },
-  
-  {
-        id: "allg_084",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet die wissenschaftliche Bezeichnung für den Verdunstungsprozess der Pflanzen?",
-        answers: ["Verdunstungsdruck", "Transpiration", "Fotosynthese", "Fermentation"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Als Transpiration wird die Verdunstung von Wasser über Blätter bezeichnet."
-    },
-  {
-        id: "allg_085",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Zähne hat das Milchgebiss eines Kindes im Vollzustand?",
-        answers: ["28 Zähne", "16 Zähne", "20 Zähne", "24 Zähne"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das vollständige Milchgebiss umfasst genau 20 Zähne."
-    },
-  {
-        id: "allg_086",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Organ steuert das Gleichgewichtsgefühl im menschlichen Körper?",
-        answers: ["Das Innenohr", "Die Augen", "Das Kleinhirn", "Das Rückenmark"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Vestibularorgan im Innenohr ist für den Gleichgewichtssinn zuständig."
-    },
-  {
-        id: "allg_087",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Element ist der Hauptbestandteil von Diamanten und Graphit?",
-        answers: ["Kohlenstoff", "Stickstoff", "Sauerstoffgas", "Silizium"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Sowohl Diamant als auch Graphit bestehen aus reiner Kohle."
-    },
-  {
-        id: "allg_088",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Staat der USA liegt der berühmte Yellowstone-Nationalpark?",
-        answers: ["Wyoming", "Texas", "Alaska", "Kalifornien"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Großteil des Yellowstone-Nationalparks liegt im US-Bundesstaat Wyoming."
-    },
-  {
-        id: "allg_089",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Gasverbindung verursacht den natürlichen Treibhauseffekt vorrangig?",
-        answers: ["Kohlendioxid", "Methangas", "Ozon", "Wasserdampf"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Wasserdampf leistet den größten Beitrag zum natürlichen Treibhauseffekt."
-    },
-  {
-        id: "allg_090",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie nennt man ein Dreieck, bei dem zwei Seiten genau gleich lang sind?",
-        answers: ["Ungleiches Dreieck", "Rechtwinklig", "Gleichseitig", "Gleichschenklig"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Bei einem gleichschenkligen Dreieck sind zwei Seiten (Schenkel) gleich lang."
-    },
-  {
-        id: "allg_091",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Jahr landete die erste bemannte Mondmission Apollo 11?",
-        answers: ["Jahr 1969", "Jahr 1965", "Jahr 1975", "Jahr 1972"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Neil Armstrong betrat am 21. Juli 1969 als erster Mensch den Mond."
-    },
-  {
-        id: "allg_092",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet die Hauptstadt der Bundesrepublik Deutschland?",
-        answers: ["Frankfurt", "München", "Berlin", "Hamburg"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Berlin ist seit der Wiedervereinigung 1990 die deutsche Bundeshauptstadt."
-    },
-  {
-        id: "allg_093",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Säugetier bringt als einziges echte Eier zur Welt?",
-        answers: ["Der Ameisenigel", "Schnabeltier", "Känguru", "Wombat"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Schnabeltier gehört zu den eierlegenden Ursäugern (Kloakentiere)."
-    },
-  {
-        id: "allg_094",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Fluss durchfließt die ägyptische Hauptstadt Kairo?",
-        answers: ["Der Kongo", "Der Nil", "Der Sambesi", "Der Niger"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Nil durchfließt Ägypten und prägt die Hauptstadt Kairo."
-    },
-  {
-        id: "allg_095",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt das hellste Objekt an unserem nächtlichen Himmel?",
-        answers: ["Der Erdmond", "Der Venus-Stern", "Der Sirius-Stern", "Der Polarstern"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Mond reflektiert das Sonnenlicht und ist das hellste Objekt bei Nacht."
-    },
-  {
-        id: "allg_096",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Erdteil besitzt die geringste Landfläche aller Kontinente?",
-        answers: ["Australien", "Antarktika", "Europa", "Südamerika"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Australien ist der flächenmäßig kleinste Kontinent."
-    },
-  {
-        id: "allg_097",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher griechische Philosoph war der Lehrer von Alexander dem Großen?",
-        answers: ["Anaximander", "Sokrates", "Platon", "Aristoteles"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Aristoteles unterrichtete den jungen Alexander ab 343 v. Chr."
-    },
-  {
-        id: "allg_098",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Maßeinheit gibt die Leistung von Verbrennungsmotoren offiziell im SI-System an?",
-        answers: ["Kilojoule", "Newton", "PS-Zahl", "Kilowatt"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die offizielle internationale Maßeinheit für Leistung ist Watt bzw. Kilowatt."
-    },
-  {
-        id: "allg_099",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Spieler bilden ein Basketball-Team auf dem Spielfeld?",
-        answers: ["6 Spieler", "5 Spieler", "7 Spieler", "4 Spieler"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Ein Basketballteam hat immer 5 aktive Spieler auf dem Platz."
-    },
-  {
-        id: "allg_100",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Gebirge trennt Italien vom übrigen europäischen Festland im Norden ab?",
-        answers: ["Die Alpen", "Die Pyrenäen", "Die Karpaten", "Der Apennin"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Alpen bilden den nördlichen Grenzwall Italiens zu seinen Nachbarstaaten."
-    },
-  {
-        id: "allg_101",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche geometrische Form besitzt die Grundfläche einer ägyptischen Pyramide üblicherweise?",
-        answers: ["Ein Quadrat", "Ein Kreis", "Ein Sechseck", "Ein Dreieck"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die klassischen Pyramiden in Ägypten haben eine quadratische Grundfläche."
-    },
-  {
-        id: "allg_102",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus wie vielen Spielkarten besteht ein klassisches Skat-Blatt?",
-        answers: ["52 Karten", "36 Karten", "24 Karten", "32 Karten"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Ein Skatspiel wird mit genau 32 Karten gespielt."
-    },
-  {
-        id: "allg_103",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer entdeckte auf seiner Seereise im Jahr 1492 Amerika für Europa?",
-        answers: ["Ferdinand Magellan", "Vasco da Gama", "Amerigo Vespucci", "Christoph Kolumbus"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Kolumbus erreichte 1492 die karibischen Inseln."
-    },
-  {
-        id: "allg_104",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welcher Stadt steht die berühmte Ruine des Kolosseums?",
-        answers: ["Neapel", "Athen", "Mailand", "Rom"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Kolosseum ist das größte antike Amphitheater in Rom."
-    },
-  {
-        id: "allg_105",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet der Name der flächenmäßig größten Insel der Erde?",
-        answers: ["Borneo", "Neuguinea", "Madagaskar", "Grönland"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Grönland ist mit über 2,1 Mio. km² die größte Insel der Erde."
-    },
-  {
-        id: "allg_106",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Organ filtrert Abfallstoffe aus dem menschlichen Blutkreislauf?",
-        answers: ["Der Magen", "Die Milz", "Die Niere", "Die Leber"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Nieren filtern Abfallstoffe und regulieren den Wasserhaushalt."
-    },
-  {
-        id: "allg_107",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Metall besitzt von allen Metallen die höchste elektrische Leitfähigkeit?",
-        answers: ["Silber", "Gold", "Kupfer", "Aluminium"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Silber leitet elektrischen Strom noch besser als Kupfer."
-    },
-  {
-        id: "allg_108",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie nennt man ein Wort, das vorwärts und rückwärts gelesen denselben Sinn ergibt?",
-        answers: ["Neologismus", "Palindrom", "Antonym", "Anagramm"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Beispiele für Palindrome sind 'Anna' oder 'Otto'."
-    },
-  {
-        id: "allg_109",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Meeresgetier besitzt drei Herzen und blaues Blut?",
-        answers: ["Der Seestern", "Der Nordsee-Hummer", "Der Hammerhai", "Der Kraken-Oktopus"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Oktopusse besitzen drei Herzen und ein kupferbasiertes blaues Blut."
-    },
-  {
-        id: "allg_110",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Jahr begann der Erste Weltkrieg in Europa?",
-        answers: ["Jahr 1914", "Jahr 1912", "Jahr 1939", "Jahr 1918"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Erste Weltkrieg dauerte von 1914 bis 1918."
-    },
-  {
-        id: "allg_111",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet das chemische Symbol für den Grundstoff Eisen?",
-        answers: ["Fe", "Ir", "Ei", "Fm"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das Symbol Fe leitet sich vom lateinischen Begriff Ferrum ab."
-    },
-  {
-        id: "allg_112",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Vogel ist für seine Fähigkeit bekannt, fremde Geräusche nachzuahmen?",
-        answers: ["Der Zaunkönig", "Der Wanderfalke", "Der Beo-Vogel", "Der Kolibri"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Beo gehört zu den Staren und kann Stimmen perfekt imitieren."
-    },
-  {
-        id: "allg_113",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Land liegen die Ruinen des antiken Inka-Ortes Machu Picchu?",
-        answers: ["Chile", "Peru", "Kolumbien", "Bolivien"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Machu Picchu liegt in den Anden in Peru."
-    },
-  {
-        id: "allg_114",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie nennt man die Phasenumwandlung von fest direkt zu gasförmig?",
-        answers: ["Kondensation", "Erstarren", "Verdampfung", "Sublimation"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Sublimation bezeichnet den direkten Übergang von fest zu gasförmig."
-    },
-  {
-        id: "allg_115",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Organ im Körper produziert das Hormon Insulin?",
-        answers: ["Die Prostatadrüse", "Die Hirnanhangsdrüse im Kopf", "Die Speicheldrüse", "Die Bauchspeicheldrüse"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Insulin wird in den Langerhans-Inseln der Bauchspeicheldrüse gebildet."
-    },
-  {
-        id: "allg_116",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt der tiefste Süßwassersee der Erde mit rund 1.642 Metern Tiefe?",
-        answers: ["Der Kaspische See", "Der Viktoriasee", "Der Baikal See", "Der Tanganjikasee"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Baikalsee in Sibirien ist der tiefste und älteste Süßwassersee."
-    },
-  {
-        id: "allg_117",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Planeten im Sonnensystem besitzen ein Ringsystem?",
-        answers: ["Zwei Planeten", "Vier Planeten", "Ein Planet", "Drei Planeten"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Alle vier Gasriesen (Jupiter, Saturn, Uranus, Neptun) besitzen Ringe."
-    },
-  {
-        id: "allg_118",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land hat die meisten natürlichen Nachbarländer auf dem Festland?",
-        answers: ["China", "Deutschland", "Russland", "Brasilien"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "China und Russland haben jeweils 14 Nachbarländer auf dem Festland."
-    },
-  {
-        id: "allg_119",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus welchem Land stammt die Tanzsportart Tango ursprünglich?",
-        answers: ["Puerto Rico", "Paraguay", "Spanien", "Argentinien"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Tango entstand Ende des 19. Jahrhunderts in Argentinien und Uruguay."
-    },
-  {
-        id: "allg_120",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Maßeinheit gibt den Widerstand in einem elektrischen Stromkreis an?",
-        answers: ["Watt", "Ampere", "Volt", "Ohm"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der elektrische Widerstand wird in Ohm (Ω) gemessen."
-    },
-  {
-        id: "allg_121",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Zeitalter lebten die berühmten Riesenechsen wie der Tyrannosaurus Rex?",
-        answers: ["Im Mesozoikum", "Im Präkambrium", "Im Paläozoikum", "Im Känozoikum"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Dinosaurier lebten im Mesozoikum (Erdmittelalter)."
-    },
-  {
-        id: "allg_122",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer gilt als Erfinder des ersten funktionsfähigen Autos im Jahr 1886?",
-        answers: ["Carl Benz", "Rudolf Diesel", "Gottlieb Daimler", "Henry Ford"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Carl Benz meldete 1886 seinen Motorwagen zum Patent an."
-    },
-  {
-        id: "allg_123",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches chemische Element hat die Ordnungszahl 1 im Periodensystem?",
-        answers: ["Helium", "Kohlenstoff", "Wasserstoff", "Lithium"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Wasserstoff ist das einfachste und leichteste Element."
-    },
-  {
-        id: "allg_124",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land hat die längste Meeresküste weltweit?",
-        answers: ["Russland", "Indonesien", "Kanada", "Australien"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Kanada besitzt mit über 202.000 km die längste Küstenlinie."
-    },
-  {
-        id: "allg_125",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Spieler gehören beim Handball zu einer Mannschaft auf dem Feld?",
-        answers: ["6 Spieler", "7 Spieler", "8 Spieler", "9 Spieler"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Beim Hallenhandball spielen 6 Feldspieler und ein Torwart."
-    },
-  {
-        id: "allg_126",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Aus welcher Sprache stammt der Begriff 'Demokratie' ursprünglich?",
-        answers: ["Aus dem Altgriechischen", "Aus dem Altlateinischen", "Aus dem Hebräischen", "Aus dem Arabischen"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Demokratie leitet sich von 'demos' (Volk) und 'kratein' (herrschen) ab."
-    },
-  {
-        id: "allg_127",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Blutgruppen-System ist weltweit am weitesten verbreitet?",
-        answers: ["Das Kell-System", "Das AB0-System", "Das Rhesus-System", "Das MNS-System"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das AB0-System ist das wichtigste Blutgruppensystem beim Menschen."
-    },
-  {
-        id: "allg_128",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt das größte zusammenhängende Waldgebiet der Erde?",
-        answers: ["Die sibirische Taiga", "Der Kongo-Regenwaldgürtel", "Schwarzwald-Massiv", "Amazonas-Regenwald"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die boreale Taiga in Sibirien ist der größte zusammenhängende Wald."
-    },
-  {
-        id: "allg_129",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Planet benötigt für eine Umrundung der Sonne am längsten?",
-        answers: ["Jupiter", "Neptun", "Uranus", "Saturn"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Neptun ist der äußerste Planet und braucht ca. 165 Erdenjahre."
-    },
-  {
-        id: "allg_130",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Vogel gilt als das Symbol der Weisheit in der antiken Mythologie?",
-        answers: ["Der Adler", "Die Eule", "Der Rabe", "Der Schwan"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Steinkauzeule war das Begleittier der Göttin Athene."
-    },
-  {
-        id: "allg_131",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Bundesländer grenzen direkt an die Bundesrepublik Deutschland?",
-        answers: ["9 Nachbarländer", "7 Nachbarländer", "10 Nachbarländer", "12 Nachbarländer"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Deutschland hat genau 9 direkte Nachbarstaaten."
-    },
-  {
-        id: "allg_132",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer formulierte das physikalische Gesetz des Auftriebs in Flüssigkeiten?",
-        answers: ["Pythagoras", "Euklid", "Archimedes", "Sokrates"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Das archimedische Prinzip beschreibt den statischen Auftrieb."
-    },
-  {
-        id: "allg_133",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Teil des Auges befinden sich die Zapfen und Stäbchen zum Sehen?",
-        answers: ["In der Iris", "In der Hornhaut", "In der Linse", "In der Netzhaut"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Zapfen und Stäbchen sind die Lichtrezeptoren der Netzhaut."
-    },
-  {
-        id: "allg_134",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Edelmetall leuchtet rötlich und besitzt eine sehr hohe Wärmeleitfähigkeit?",
-        answers: ["Messing", "Zinn", "Bronze", "Kupfer"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Kupfer leitet Wärme und Strom hervorragend."
-    },
-  {
-        id: "allg_135",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie lautet die chemische Bezeichnung für Kochsalz?",
-        answers: ["Kaliumchlorid", "Kalziumkarbonat", "Natriumchlorid", "Magnesiumsulfat"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Kochsalz besteht chemisch aus Natrium und Chlor (NaCl)."
-    },
-  {
-        id: "allg_136",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Meer grenzt östlich direkt an die Halbinsel Italien?",
-        answers: ["Das Tyrrhenische Meer", "Das Ligurische Meer", "Die Adriatische See", "Das Ionische Meer"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Adria liegt zwischen Italien und der Balkanhalbinsel."
-    },
-  {
-        id: "allg_137",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer gilt als Erfinder des dynamischen Schießpulvers Nitroglycerin (Dynamit)?",
-        answers: ["Thomas Edison", "Nikola Tesla", "Alexander Bell", "Alfred Nobel"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Alfred Nobel erfand das Dynamit und stiftete den Nobelpreis."
-    },
-  {
-        id: "allg_138",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Zeitzonen umspannen die Erde von West nach Ost offiziell?",
-        answers: ["12 Zeitzonen", "36 Zeitzonen", "48 Zeitzonen", "24 Zeitzonen"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Erde ist in 24 Standard-Zeitzonen zu je 15 Längengraden unterteilt."
-    },
-  {
-        id: "allg_139",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Gasverbindung benötigen Pflanzen zwingend für die Fotosynthese?",
-        answers: ["Stickstoff", "Schwefeldioxid", "Wasserstoff", "Kohlendioxid"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Pflanzen wandeln Kohlendioxid und Wasser mithilfe von Licht in Traubenzucker um."
-    },
-  {
-        id: "allg_140",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wer schrieb die weltberühmte Komödie 'Der zerbrochne Krug'?",
-        answers: ["Friedrich Schiller", "Heinrich von Kleist", "Johann W. von Goethe", "Gotthold E. Lessing"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Heinrich von Kleist verfasste das Drama im Jahr 1806."
-    },
-  {
-        id: "allg_141",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "In welchem Ozean liegen die bekannten Inseln von Hawaii?",
-        answers: ["Arktischer Ozean", "Pazifischer Ozean", "Indischer Ozean", "Atlantischer Ozean"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Hawaii ist eine Inselkette im Pazifischen Ozean."
-    },
-  {
-        id: "allg_142",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt das kleinste Säugetier der Welt nach Körpergewicht?",
-        answers: ["Amerikanische Zwergmaus", "Kitti-Schweinsnase", "Feldspitzmaus", "Gartenspitzmaus"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Kitti-Schweinsnasenfledermaus wiegt nur etwa 2 Gramm."
-    },
-  {
-        id: "allg_143",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welche Stadt ist der Sitz des Internationalen Gerichtshofs?",
-        answers: ["Straßburg", "Den Haag", "Genf", "Wien"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Der Internationale Gerichtshof hat seinen Sitz im Friedenspalast in Den Haag."
-    },
-  {
-        id: "allg_144",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie nennt man die Wissenschaft von den Fossilien und versteinerten Lebewesen?",
-        answers: ["Paläontologie", "Geologie", "Archäologie", "Anthropologie"],
-        correct: 0,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Paläontologie erforscht fossile Organismen aus vergangenen Erdzeitaltern."
-    },
-  {
-        id: "allg_145",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Fluss durchfließt die französische Hauptstadt Paris?",
-        answers: ["Die Loire", "Die Rhone", "Die Seine", "Die Garonne"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Seine durchfließt das Stadtgebiet von Paris."
-    },
-  {
-        id: "allg_146",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Organ im Körper dient primär der Speicherung von Glukose als Glykogen?",
-        answers: ["Die Niere", "Der Magen", "Die Milz", "Die Leber"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Leber speichert Kohlenhydrate in Form von Glykogen."
-    },
-  {
-        id: "allg_147",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie viele Spieler bilden ein offizielles Rugby-Union-Team auf dem Platz?",
-        answers: ["12 Spieler", "11 Spieler", "13 Spieler", "15 Spieler"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Ein Rugby-Union-Team besteht auf dem Feld aus 15 Spielern."
-    },
-  {
-        id: "allg_148",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welches Land hat als einziges eine nicht-rechteckige Nationalflagge?",
-        answers: ["Bhutan", "Sri Lanka", "Nepal", "Laos"],
-        correct: 2,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Flagge von Nepal besteht aus zwei übereinandergelegten Dreiecken."
-    },
-  {
-        id: "allg_149",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Wie heißt das Enzym im Speichel, das Stärke in Zucker spaltet?",
-        answers: ["Lipase", "Amylase", "Pepsin", "Trypsin"],
-        correct: 1,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Die Speichel-Amylase (Ptialin) beginnt bereits im Mund mit dem Stärkeabbau."
-    },
-  {
-        id: "allg_150",
-        category: "spass_allgemein",
-        area: "spass",
-        subject: "allgemein",
-        question: "Welcher Stern ist unserer Erde nach der Sonne am nächsten gelegen?",
-        answers: ["Sirius", "Alpha Centauri A", "Betelgeuse", "Proxima Centauri"],
-        correct: 3,
-        difficulty: "mittel",
-        points: 10,
-        explanation: "Proxima Centauri ist mit etwa 4,24 Lichtjahren der sonnennächste Stern."
-    },
-  { id: "q0576", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Tage hat ein Schaltjahr?", answers: ["367", "366", "365", "364"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein Schaltjahr hat den 29. Februar zusätzlich." },
-  
-  { id: "q0578", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Tier gilt als schnellstes Landtier?", answers: ["Gepard", "Antilope", "Löwe", "Pferd"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Gepard erreicht kurzzeitig über 100 km/h." },
-  { id: "q0579", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Beine hat eine Spinne?", answers: ["8", "10", "6", "12"], correct: 0, difficulty: "mittel", points: 10, explanation: "Spinnen haben acht Beine, Insekten sechs." },
-  
-  { id: "q0581", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches ist das größte Tier der Welt?", answers: ["Blauwal", "Nashorn", "Elefant", "Giraffe"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Blauwal wird bis zu 30 Meter lang." },
-  { id: "q0582", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Farben hat ein klassischer Regenbogen?", answers: ["7", "5", "9", "11"], correct: 0, difficulty: "mittel", points: 10, explanation: "Rot, Orange, Gelb, Grün, Blau, Indigo, Violett." },
-  { id: "q0583", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Ringe hat das olympische Symbol?", answers: ["6", "7", "4", "5"], correct: 3, difficulty: "mittel", points: 10, explanation: "Die fünf Ringe stehen für die bewohnten Kontinente." },
-  
-  { id: "q0585", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Spieler stehen beim Fußball pro Mannschaft auf dem Feld?", answers: ["11", "10", "9", "12"], correct: 0, difficulty: "mittel", points: 10, explanation: "Elf Spieler inklusive Torwart." },
-  { id: "q0586", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Saiten hat eine klassische Gitarre?", answers: ["6", "4", "10", "8"], correct: 0, difficulty: "mittel", points: 10, explanation: "Eine klassische Gitarre hat sechs Saiten." },
-  
-  { id: "q1276", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Bundesländer hat Österreich?", answers: ["9", "7", "18", "16"], correct: 0, difficulty: "mittel", points: 10, explanation: "Österreich besteht aus neun Bundesländern, Deutschland aus 16." },
-  { id: "q1277", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Metall ist bei Zimmertemperatur flüssig?", answers: ["Quecksilber", "Nickel", "Titanlegierung", "Eisen"], correct: 0, difficulty: "mittel", points: 10, explanation: "Quecksilber schmilzt bereits bei etwa -39 °C." },
-  { id: "q1278", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Spieler stehen bei einer Volleyball-Mannschaft auf dem Feld?", answers: ["7", "5", "8", "6"], correct: 3, difficulty: "mittel", points: 10, explanation: "Beim Hallenvolleyball spielen sechs pro Team, beim Beachvolleyball zwei." },
-  { id: "q1279", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welche Sprache wird in Brasilien gesprochen?", answers: ["Portugiesisch", "Spanisch", "Brasilianisch", "Italienisch"], correct: 0, difficulty: "mittel", points: 10, explanation: "Brasilien war portugiesische Kolonie – als einziges Land Südamerikas." },
-  { id: "q1280", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt der höchste Berg der Welt?", answers: ["Mount Everest", "K2", "Mont Blanc", "Kilimandscharo"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Mount Everest ist rund 8.849 Meter hoch." },
-  { id: "q1281", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Kontinente hat die Erde im klassischen Modell (ohne Antarktis)?", answers: ["8", "7", "5", "6"], correct: 2, difficulty: "mittel", points: 10, explanation: "Im klassischen Modell gibt es 5 bewohnte Kontinente – Antarktis wird oft als eigener gezählt, dann wären es 6." },
-  { id: "q1282", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Element ist das häufigste im Universum?", answers: ["Wasserstoff", "Sauerstoff", "Helium", "Kohlenstoff"], correct: 0, difficulty: "mittel", points: 10, explanation: "Wasserstoff macht etwa 75 % der gesamten Masse des Universums aus." },
-  
-  { id: "q1284", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Zähne hat ein erwachsener Mensch normalerweise?", answers: ["36", "32", "28", "40"], correct: 1, difficulty: "mittel", points: 10, explanation: "Ein erwachsener Mensch hat 32 Zähne, darunter die vier Weisheitszähne." },
-  { id: "q1285", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Tier ist das schnellste Landtier der Welt?", answers: ["Gepard", "Löwe", "Strauß", "Antilope"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Gepard erreicht Spitzen von über 100 km/h – aber nur für kurze Strecken." },
-  { id: "q1286", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie lautet die Hauptstadt von Australien?", answers: ["Perth", "Sydney", "Melbourne", "Canberra"], correct: 3, difficulty: "mittel", points: 10, explanation: "Canberra ist die Hauptstadt, nicht Sydney oder Melbourne – ein häufiger Irrtum." },
-  { id: "q1287", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Saiten hat eine Konzertharfe ungefähr?", answers: ["Etwa 47", "Etwa 24", "Etwa 12", "Etwa 88"], correct: 0, difficulty: "mittel", points: 10, explanation: "Eine Konzertharfe hat rund 47 Saiten. (Ein Klavier hat sogar etwa 230 – aber keine zum Zupfen.)" },
-  { id: "q1288", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Was ist das größte Organ des Menschen?", answers: ["Leber", "Haut", "Herz", "Lunge"], correct: 1, difficulty: "mittel", points: 10, explanation: "Die Haut ist mit etwa 2 m² das größte Organ des menschlichen Körpers." },
-  { id: "q1289", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "In welchem Land liegt die Wüste Gobi?", answers: ["Indien und Nepal", "Iran und Irak", "Ägypten und Libyen", "China und Mongolei"], correct: 3, difficulty: "mittel", points: 10, explanation: "Die Gobi erstreckt sich über Teile der Mongolei und Chinas." },
-  { id: "q1290", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welcher Planet ist am nächsten zur Sonne?", answers: ["Erde", "Venus-Bahn", "Merkur", "Mars"], correct: 2, difficulty: "mittel", points: 10, explanation: "Merkur ist der sonnennächste Planet mit nur 58 Millionen km Abstand." },
-  { id: "q1291", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Knochen hat ein Baby bei der Geburt?", answers: ["ca. 300", "ca. 450", "ca. 150", "ca. 206"], correct: 0, difficulty: "mittel", points: 10, explanation: "Babys kommen mit etwa 300 Knochen zur Welt – viele verwachsen später zu 206." },
-  { id: "q1292", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Was ist das meistgesprochene Wort der Welt?", answers: ["Mama", "Danke", "Hallo", "OK"], correct: 3, difficulty: "mittel", points: 10, explanation: "'OK' wird in fast allen Sprachen verstanden und ist das am weitesten verbreitete Wort." },
-  { id: "q1293", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welche Farbe hat das Blut der meisten Insekten?", answers: ["Rot", "Gelb", "Grün", "Blau"], correct: 0, difficulty: "mittel", points: 10, explanation: "Insektenblut (Hämolymphe) ist meist gelb, grün oder blau – rot ist ein Irrglaube." },
-  { id: "q1294", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt das längste Gebäude der Welt?", answers: ["Shanghai Tower", "The Great Wall", "Burj Khalifa", "Airbus-Werk Toulouse"], correct: 1, difficulty: "mittel", points: 10, explanation: "Die Chinesische Mauer ist mit über 21.000 km das längste Bauwerk – kein einzelnes Gebäude." },
-  { id: "q1295", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welche Zahl ist eine Primzahl?", answers: ["21", "25", "27", "23"], correct: 3, difficulty: "mittel", points: 10, explanation: "23 ist eine Primzahl – 21 und 25 sind durch 3 bzw. 5 teilbar." },
-  { id: "q1296", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Getränk besteht aus fermentierten Trauben?", answers: ["Wein", "Cidre", "Bier", "Sekt"], correct: 0, difficulty: "mittel", points: 10, explanation: "Wein wird aus vergorenen Trauben hergestellt, Bier aus Getreide." },
-  { id: "q1297", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie viele Stunden hat ein Jahr (ungefähr)?", answers: ["8.000", "8.760", "10.000", "10.76"], correct: 1, difficulty: "mittel", points: 10, explanation: "365 Tage × 24 Stunden = 8.760 Stunden pro Jahr." },
-  { id: "q1298", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Was ist das am häufigsten verwendete Material im Bauwesen?", answers: ["Holz", "Beton", "Ziegel", "Stahl"], correct: 1, difficulty: "mittel", points: 10, explanation: "Beton ist weltweit das meistgenutzte Baumaterial – nach Wasser der meistverbrauchte Stoff." },
-  { id: "q1299", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welcher Ozean bedeckt die größte Fläche der Erde?", answers: ["Pazifik", "Atlantik", "Arktischer Ozean", "Indischer Ozean"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Pazifik ist mit etwa 165 Millionen km² der größte Ozean." },
-  { id: "q1300", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Was ist die längste Zeitspanne, die ein Mensch im Weltraum verbracht hat?", answers: ["ca. 2 Jahre", "ca. 10 Jahre", "ca. 5 Jahre", "ca. 1 Jahr"], correct: 3, difficulty: "mittel", points: 10, explanation: "Einige Kosmonauten verbrachten über ein Jahr am Stück im All – z. B. Waleri Poljakow (437 Tage)." },
-  { id: "q1301", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt der höchste aktive Vulkan Europas?", answers: ["Ätna", "Vesuv", "Teide", "Stromboli"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Ätna auf Sizilien ist mit 3.323 m der höchste aktive Vulkan Europas." },
-  { id: "q1072", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Aus wie vielen Bundesländern besteht Deutschland?", answers: ["14", "16", "15", "17"], correct: 1, difficulty: "mittel", points: 10, explanation: "Deutschland hat 16 Bundesländer, darunter drei Stadtstaaten." },
-  { id: "q1073", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches ist das kleinste Bundesland Deutschlands?", answers: ["Bremen", "Hamburger", "Berlin", "Saarland"], correct: 3, difficulty: "mittel", points: 10, explanation: "Das Saarland ist mit rund 2.570 km² das flächenkleinste Flächenland." },
-  { id: "q1074", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welcher Fluss fließt durch die Stadt Wien?", answers: ["Elbe", "Rhein", "Donau", "Oder"], correct: 2, difficulty: "mittel", points: 10, explanation: "Die Donau durchfließt Wien und viele andere europäische Hauptstädte." },
-  { id: "q1075", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt der bekannteste Vulkanausbruch, der Pompeji verschüttete?", answers: ["Vesuv", "Ätna", "Stromboli", "Vulkan"], correct: 0, difficulty: "mittel", points: 10, explanation: "Der Ausbruch des Vesuvs im Jahr 79 n. Chr. begrub die Stadt Pompeji." },
-  
-  { id: "q1077", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welches Organ pumpt Blut durch den Körper?", answers: ["Magen", "Herz", "Lunge", "Leber"], correct: 1, difficulty: "mittel", points: 10, explanation: "Das Herz ist die zentrale Pumpe für den Blutkreislauf." },
-  { id: "q1078", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Wie heißt die Hauptstadt von Schweden?", answers: ["Kopenhagen", "Oslo", "Stockholm", "Helsinki"], correct: 2, difficulty: "mittel", points: 10, explanation: "Stockholm ist die Hauptstadt Schwedens und liegt auf 14 Inseln." },
-  { id: "q1079", category: "spass_allgemein", area: "spass", subject: "allgemein", question: "Welche Währung gibt es in der Schweiz?", answers: ["Schilling", "Pfund", "Euro", "Franken"], correct: 3, difficulty: "mittel", points: 10, explanation: "Die Schweiz verwendet den Schweizer Franken, nicht den Euro." },
-  
-
+    "id": "allg_001",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Tage hat ein gewöhnliches Schaltjahr?",
+    "answers": [
+      "366 Tage",
+      "365 Tage",
+      "364 Tage",
+      "367 Tage"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Schaltjahr besitzt 366 Tage durch den Zusatztag im Februar."
+  },
+  {
+    "id": "allg_002",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Mischfarbe entsteht aus den Grundfarben Blau und Gelb?",
+    "answers": [
+      "Braun",
+      "Orange",
+      "Grün",
+      "Lila"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Kombination der Grundfarben Blau und Gelb ergibt Grün."
+  },
+  {
+    "id": "allg_003",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Säugetier gilt auf Kurzstrecken als das schnellste Landtier?",
+    "answers": [
+      "Das Pferd",
+      "Die Gazelle",
+      "Der Gepard",
+      "Der Löwe"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Gepard erreicht Geschwindigkeiten von über 100 km/h."
+  },
+  {
+    "id": "allg_004",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Laufbeine besitzen Spinnentiere im Unterschied zu Insekten?",
+    "answers": [
+      "8 Beine",
+      "12 Beine",
+      "10 Beine",
+      "6 Beine"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Spinnentiere besitzen acht Beine, während Insekten sechs haben."
+  },
+  {
+    "id": "allg_005",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem europäischen Land befindet sich der berühmte Eiffelturm?",
+    "answers": [
+      "Italien",
+      "Spanien",
+      "Deutschland",
+      "Frankreich"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Eiffelturm steht in der französischen Hauptstadt Paris."
+  },
+  {
+    "id": "allg_006",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches ist das größte und schwerste lebende Tier der Erde?",
+    "answers": [
+      "Der mächtige Blauwal",
+      "Das Breitmaulnashorn",
+      "Die große Netzgiraffe",
+      "Afrikanischer Elefant"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Blauwal kann eine Länge von bis zu 30 Metern erreichen."
+  },
+  {
+    "id": "allg_007",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Hauptfarben werden dem klassischen Regenbogen zugeschrieben?",
+    "answers": [
+      "5 Farben",
+      "9 Farben",
+      "7 Farben",
+      "11 Farben"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Klassisch werden Rot, Orange, Gelb, Grün, Blau, Indigo und Violett gezählt."
+  },
+  {
+    "id": "allg_008",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele verschlungene Ringe bildet das offizielle olympische Symbol?",
+    "answers": [
+      "Sieben Ringe",
+      "Fünf Ringe",
+      "Vier Ringe",
+      "Sechs Ringe"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die fünf Ringe repräsentieren die fünf bewohnten Kontinente."
+  },
+  {
+    "id": "allg_009",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt die offizielle Hauptstadt der Republik Südkorea?",
+    "answers": [
+      "Incheon",
+      "Seoul",
+      "Busan",
+      "Daegu"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Seoul ist das politische und wirtschaftliche Zentrum Südkoreas."
+  },
+  {
+    "id": "allg_010",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Spieler stehen beim Fußball pro Team auf dem Platz?",
+    "answers": [
+      "12 Spieler",
+      "10 Spieler",
+      "9 Spieler",
+      "11 Spieler"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Eine Mannschaft besteht aus 10 Feldspielern und einem Torwart."
+  },
+  {
+    "id": "allg_011",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Saiten besitzt eine gewöhnliche Konzertgitarre?",
+    "answers": [
+      "Zwölf Saiten",
+      "Zehn Saiten",
+      "Sechs Saiten",
+      "Vier Saiten"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Eine Standard-Gitarre ist mit sechs Saiten bespannt."
+  },
+  {
+    "id": "allg_012",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land besitzt die flächenmäßig größte Staatsfläche der Erde?",
+    "answers": [
+      "Kanada",
+      "Brasilien",
+      "Russland",
+      "China"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Russland erstreckt sich über eine Fläche von rund 17 Millionen km²."
+  },
+  {
+    "id": "allg_013",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus wie vielen Bundesländern besteht die Republik Österreich?",
+    "answers": [
+      "7 Länder",
+      "12 Länder",
+      "9 Länder",
+      "16 Länder"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Österreich ist ein Bundesstaat aus insgesamt neun Bundesländern."
+  },
+  {
+    "id": "allg_014",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches chemische Element ist bei Raumtemperatur flüssig?",
+    "answers": [
+      "Reinkupfer",
+      "Flüssigeisen",
+      "Weichblei",
+      "Quecksilber"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Quecksilber ist das einzige Metall, das bei Raumtemperatur flüssig ist."
+  },
+  {
+    "id": "allg_015",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Spieler stehen pro Volleyball-Team in der Halle auf dem Feld?",
+    "answers": [
+      "Sieben Spieler",
+      "Acht Spieler",
+      "Sechs Spieler",
+      "Fünf Spieler"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Beim Hallenvolleyball besteht eine Mannschaft aus sechs Spielern."
+  },
+  {
+    "id": "allg_017",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der höchste Berg der Erde über dem Meeresspiegel?",
+    "answers": [
+      "Der Mont Blanc",
+      "Der K2 (Godwin)",
+      "Mount Everest",
+      "Kilimandscharo"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Mount Everest im Himalaya ist 8.849 Meter hoch."
+  },
+  {
+    "id": "allg_018",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches chemische Element kommt im Universum am häufigsten vor?",
+    "answers": [
+      "Reinhelium",
+      "Wasserstoff",
+      "Sauerstoff",
+      "Kohlenstoff"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Wasserstoff macht etwa 75 % der gesamten sichtbaren Materie aus."
+  },
+  {
+    "id": "allg_019",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem historischen Jahr fiel die Berliner Mauer?",
+    "answers": [
+      "Jahr 1987",
+      "Jahr 1991",
+      "Jahr 1989",
+      "Jahr 1993"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Berliner Mauer fiel am 9. November 1989."
+  },
+  {
+    "id": "allg_020",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Zähne besitzt das Gebiss eines erwachsenen Menschen üblicherweise?",
+    "answers": [
+      "36 Zähne",
+      "40 Zähne",
+      "28 Zähne",
+      "32 Zähne"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das vollständige bleibende Gebiss hat 32 Zähne inklusive Weisheitszähne."
+  },
+  {
+    "id": "allg_022",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Was stellt flächenmäßig das größte Organ des menschlichen Körpers dar?",
+    "answers": [
+      "Die Lunge",
+      "Die Haut",
+      "Die Leber",
+      "Der Darm"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Haut ist mit rund 1,8 bis 2 Quadratmetern das größte Organ."
+  },
+  {
+    "id": "allg_023",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Auf welchen beiden Ländern erstreckt sich die Wüste Gobi?",
+    "answers": [
+      "Chile und Peru",
+      "Ägypten und Sudan",
+      "China und Mongolei",
+      "Indien und Pakistan"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Wüste Gobi liegt im Grenzgebiet von China und der Mongolei."
+  },
+  {
+    "id": "allg_024",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Planet unseres Sonnensystems steht der Sonne am nächsten?",
+    "answers": [
+      "Der Jupiter",
+      "Die Venus",
+      "Der Mars",
+      "Der Merkur"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Merkur ist mit einer Entfernung von rund 58 Mio. km der innerste Planet."
+  },
+  {
+    "id": "allg_025",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Einzelknochen besitzt der Körper eines Babys bei der Geburt?",
+    "answers": [
+      "Etwa 420",
+      "Etwa 300",
+      "Etwa 150",
+      "Etwa 206"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Säuglinge haben ca. 300 Knochen, von denen viele später zusammenwachsen."
+  },
+  {
+    "id": "allg_026",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche dieser Zahlen ist eine Primzahl?",
+    "answers": [
+      "Zahl 21",
+      "Zahl 27",
+      "Zahl 25",
+      "Zahl 23"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "23 lässt sich nur durch 1 und sich selbst teilen."
+  },
+  {
+    "id": "allg_027",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Ozean bedeckt die größte Gesamtfläche auf unserer Erde?",
+    "answers": [
+      "Der Indik",
+      "Der Pazifik",
+      "Der Arktik",
+      "Der Atlantik"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Pazifische Ozean ist der größte Ozean der Erde."
+  },
+  {
+    "id": "allg_028",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der höchste und bekannteste aktive Vulkan Europas?",
+    "answers": [
+      "Stromboli",
+      "Der Vesuv",
+      "Der Ätna",
+      "Teide-Berg"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Ätna liegt auf Sizilien und ragt rund 3.300 Meter hoch."
+  },
+  {
+    "id": "allg_029",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus wie vielen Bundesländern besteht die Bundesrepublik Deutschland?",
+    "answers": [
+      "15 Länder",
+      "17 Länder",
+      "14 Länder",
+      "16 Länder"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Deutschland besteht aus 16 Bundesländern inklusive der Stadtstaaten."
+  },
+  {
+    "id": "allg_031",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher große mitteleuropäische Fluss durchfließt die Stadt Wien?",
+    "answers": [
+      "Die Elbe",
+      "Der Main",
+      "Die Donau",
+      "Der Rhein"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Donau fließt durch Wien sowie weitere europäische Hauptstädte."
+  },
+  {
+    "id": "allg_032",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Organ im Körper treibt den Blutkreislauf ununterbrochen an?",
+    "answers": [
+      "Die Leber",
+      "Die Niere",
+      "Die Lunge",
+      "Das Herz"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Herz pumpt kontinuierlich Blut durch das Gefäßsystem."
+  },
+  {
+    "id": "allg_033",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt die schwedische Hauptstadt, die auf 14 Inseln liegt?",
+    "answers": [
+      "Uppsala",
+      "Kopenhagen",
+      "Göteborg",
+      "Stockholm"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Stockholm liegt an der Mündung des Mälaren in die Ostsee."
+  },
+  {
+    "id": "allg_034",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche offizielle Währung gilt in der Schweizerischen Eidgenossenschaft?",
+    "answers": [
+      "Die Krone",
+      "Der Euro",
+      "Der Franken",
+      "Der Schilling"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "In der Schweiz zahlt man offiziell mit Schweizer Franken."
+  },
+  {
+    "id": "allg_035",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Nachbarplanet der Erde wird wegen Eisenoxid als 'Roter Planet' bezeichnet?",
+    "answers": [
+      "Die Venus",
+      "Der Jupiter",
+      "Der Saturn",
+      "Der Mars"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Eisenoxidstaub verleiht der Marsoberfläche ihre rote Farbe."
+  },
+  {
+    "id": "allg_036",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Was bezeichnet man in der Physik als die Maßeinheit der elektrischen Spannung?",
+    "answers": [
+      "Volt",
+      "Ampere",
+      "Ohm",
+      "Watt"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Elektrische Spannung wird in Volt (V) gemessen."
+  },
+  {
+    "id": "allg_037",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Edelmetall besitzt die chemische Bezeichnung Au im Periodensystem?",
+    "answers": [
+      "Silber",
+      "Gold",
+      "Platin",
+      "Kupfer"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Au leitet sich vom lateinischen Wort Aurum für Gold ab."
+  },
+  {
+    "id": "allg_038",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt die arktische Tierart, deren Haut unter dem Fell schwarz gefärbt ist?",
+    "answers": [
+      "Eisbär",
+      "Schneeleopard",
+      "Polarfuchs",
+      "Walross"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die schwarze Haut des Eisbären absorbiert Sonnenwärme optimal."
+  },
+  {
+    "id": "allg_039",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welcher deutschen Stadt befindet sich das berühmte Brandenburger Tor?",
+    "answers": [
+      "München",
+      "Berlin",
+      "Hamburg",
+      "Köln"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Brandenburger Tor ist ein bekanntes Wahrzeichen von Berlin."
+  },
+  {
+    "id": "allg_040",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Gaskomponente macht den größten Teil der Erdatmosphäre aus?",
+    "answers": [
+      "Stickstoff",
+      "Sauerstoff",
+      "Kohlendioxid",
+      "Argon"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Stickstoff macht etwa 78 % der Erdatmosphäre aus."
+  },
+  {
+    "id": "allg_041",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Maßeinheit gibt die Frequenz von Schall- und Lichtwellen an?",
+    "answers": [
+      "Hertz",
+      "Joule",
+      "Pascal",
+      "Newton"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Frequenz wird in Hertz (Hz) gemessen."
+  },
+  {
+    "id": "allg_042",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Meer grenzt im Nordwesten direkt an Deutschland?",
+    "answers": [
+      "Die Nordsee",
+      "Die Ostsee",
+      "Das Schwarze Meer",
+      "Das Kaspische Meer"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Deutschland grenzt im Nordwesten an die Nordsee."
+  },
+  {
+    "id": "allg_043",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Wissenschaftler begründete die Relativitätstheorie?",
+    "answers": [
+      "Niels Bohr",
+      "Wilhelm Röntgen",
+      "Max Planck",
+      "Albert Einstein"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Albert Einstein veröffentlichte die Relativitätstheorie im 20. Jahrhundert."
+  },
+  {
+    "id": "allg_044",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem europäischen Land liegt das Gebirgsmassiv der Pyrenäen teilweise?",
+    "answers": [
+      "Italien",
+      "Griechenland",
+      "Frankreich",
+      "Österreich"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Pyrenäen bilden die natürliche Grenze zwischen Frankreich und Spanien."
+  },
+  {
+    "id": "allg_045",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus wie vielen Herzkammern setzt sich das Herz von Menschen zusammen?",
+    "answers": [
+      "Vier Kammern",
+      "Fünf Kammern",
+      "Zwei Kammern",
+      "Drei Kammern"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das menschliche Herz unterteilt sich in zwei Vorhöfe und zwei Hauptkammern."
+  },
+  {
+    "id": "allg_046",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet die chemische Summenformel für reines Wasser?",
+    "answers": [
+      "CO₂",
+      "NaCl",
+      "O₂",
+      "H₂O"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Wasser besteht aus zwei Wasserstoffatomen und einem Sauerstoffatom."
+  },
+  {
+    "id": "allg_047",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der flächenmäßig zweitgrößte Kontinent unserer Erde?",
+    "answers": [
+      "Nordamerika",
+      "Europa",
+      "Asien",
+      "Afrika"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Afrika ist nach Asien der zweitgrößte Kontinent der Erde."
+  },
+  {
+    "id": "allg_048",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Planeten gehören offiziell zu unserem Sonnensystem?",
+    "answers": [
+      "8 Planeten",
+      "7 Planeten",
+      "10 Planeten",
+      "9 Planeten"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Seit 2006 gilt Pluto als Zwergplanet, somit verbleiben 8 Planeten."
+  },
+  {
+    "id": "allg_050",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt die Maßeinheit zur Bestimmung der Lautstärke von Schall?",
+    "answers": [
+      "Dezibel",
+      "Lumen",
+      "Candela",
+      "Kelvin"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Schalldruckpegel beziehungsweise die Lautstärke wird in Dezibel (dB) angegeben."
+  },
+  {
+    "id": "allg_051",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Ozean befindet sich die tiefste Stelle der Erde, der Marianengraben?",
+    "answers": [
+      "Atlantischer Ozean",
+      "Indischer Ozean",
+      "Arktischer Ozean",
+      "Pazifischer Ozean"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Challengertief im Marianengraben liegt im westlichen Pazifischen Ozean."
+  },
+  {
+    "id": "allg_052",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land war der Gastgeber der Olympischen Sommerspiele im Jahr 2016?",
+    "answers": [
+      "Großbritannien",
+      "Japan",
+      "China",
+      "Brasilien"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Spiele 2016 fanden in Rio de Janeiro in Brasilien statt."
+  },
+  {
+    "id": "allg_053",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie nennt man die Lehre von der Entstehung und Entwicklung der Lebewesen?",
+    "answers": [
+      "Verhaltensbiologie",
+      "Physiologie",
+      "Evolutionstheorie",
+      "Paläontologie"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Evolutionstheorie beschreibt die genetische Veränderung über Generationen."
+  },
+  {
+    "id": "allg_054",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus welchem Material besteht die Hülle eines Vogeleies zum Großteil?",
+    "answers": [
+      "Magnesiumsulfat",
+      "Siliziumdioxid",
+      "Eisenverbindungen",
+      "Kalziumkarbonat"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Vogeleierschalen bestehen zu rund 95 Prozent aus Kalziumkarbonat."
+  },
+  {
+    "id": "allg_055",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Stadt ist der Sitz der Europäischen Kommission?",
+    "answers": [
+      "Strassburg",
+      "Luxemburg",
+      "Brüssel",
+      "Frankfurt"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Hauptsitz der Europäischen Kommission befindet sich in Brüssel."
+  },
+  {
+    "id": "allg_056",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Kontinente gibt es nach dem vereinfachten 7-Kontinente-Modell?",
+    "answers": [
+      "Sieben Kontinente",
+      "Fünfzehn Kontinente",
+      "Acht Kontinente",
+      "Fünf Kontinente"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Gezählt werden Asien, Afrika, Nordamerika, Südamerika, Antarktika, Europa, Australien."
+  },
+  {
+    "id": "allg_057",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer entwickelte den ersten modernen Buchdruck mit beweglichen Metalllettern?",
+    "answers": [
+      "Martin Luther",
+      "Christoph Kolumbus",
+      "Leonardo da Vinci",
+      "Johannes Gutenberg"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Gutenberg erfand den Buchdruck um 1450 in Mainz."
+  },
+  {
+    "id": "allg_058",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Farbe nimmt ein Säure-Indikator wie Lackmus in sauren Lösungen an?",
+    "answers": [
+      "Rot",
+      "Blau",
+      "Grün",
+      "Gelb"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Lackmus verfärbt sich in Gegenwart von Säuren intensiv rot."
+  },
+  {
+    "id": "allg_059",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Fluss ist von der Länge her der längste Strom der Erde?",
+    "answers": [
+      "Der Jangtsekiang",
+      "Der Nil",
+      "Der Mississippi",
+      "Der Amazonas"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Nil gilt mit etwa 6.650 km meist als der längste Fluss der Welt."
+  },
+  {
+    "id": "allg_060",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet die Einheit zur Bemessung der elektrischen Stromstärke?",
+    "answers": [
+      "Watt",
+      "Volt",
+      "Ampere",
+      "Coulomb"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Stromstärke wird international in Ampere (A) gemessen."
+  },
+  {
+    "id": "allg_061",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus welcher Pflanzenart gewinnen Imker echten Honig?",
+    "answers": [
+      "Aus Baumrinden",
+      "Aus Graswurzeln",
+      "Aus Blütennektar",
+      "Aus Pflanzenblättern"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Bienen sammeln Nektar sowie Honigtau und verarbeiten diesen zu Honig."
+  },
+  {
+    "id": "allg_062",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Gebirge bildet die natürliche Grenze zwischen Europa und Asien?",
+    "answers": [
+      "Die Kaukasus-Kette",
+      "Das Himalaya-Massiv",
+      "Das Ural-Gebirge",
+      "Die Alpengipfel"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Ural wird traditionell als östliche Grenze Europas definiert."
+  },
+  {
+    "id": "allg_063",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer malte das weltberühmte Gemälde der Mona Lisa?",
+    "answers": [
+      "Michelangelo",
+      "Rembrandt van Rijn",
+      "Vincent van Gogh",
+      "Leonardo da Vinci"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Leonardo da Vinci erschuf das Ölgemälde im frühen 16. Jahrhundert."
+  },
+  {
+    "id": "allg_064",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Sprache weist weltweit die meisten Muttersprachler auf?",
+    "answers": [
+      "Spanisch",
+      "Hochchinesisch",
+      "Niederländisch",
+      "Englisch"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Mandarin (Hochchinesisch) hat über 900 Millionen Muttersprachler."
+  },
+  {
+    "id": "allg_065",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Edelgas wird wegen seiner geringen Dichte für Luftballons verwendet?",
+    "answers": [
+      "Argon",
+      "Neon",
+      "Helium",
+      "Krypton"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Helium ist leichter als Luft und bringt Ballons zum Steigen."
+  },
+  {
+    "id": "allg_066",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Planet besitzt die auffälligsten und bekanntesten Ringe?",
+    "answers": [
+      "Saturn",
+      "Jupiter",
+      "Uranus",
+      "Neptun"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Saturn ist berühmt für sein ausgeprägtes Ringsystem aus Eis und Gestein."
+  },
+  {
+    "id": "allg_067",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Vogel gilt als größter flugunfähiger Vogel der Welt?",
+    "answers": [
+      "Emu",
+      "Kaiserpinguin",
+      "Strauß",
+      "Kasuar"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Strauß ist der größte lebende Vogel der Erde."
+  },
+  {
+    "id": "allg_068",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der flächenmäßig größte See der Erde, der von Land umschlossen ist?",
+    "answers": [
+      "Der Baikal See",
+      "Der Große Sklavensee",
+      "Der Obere See",
+      "Das Kaspische Meer"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Kaspische Meer ist der flächengrößte See der Erde."
+  },
+  {
+    "id": "allg_069",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Organ des menschlichen Körpers wird die Galle gebildet?",
+    "answers": [
+      "In der Leber",
+      "In der Bauchspeicheldrüse",
+      "Im Magen",
+      "In der Gallenblase"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Galle wird in der Leber produziert und in der Gallenblase gespeichert."
+  },
+  {
+    "id": "allg_070",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land schenkte den USA die berühmte Freiheitsstatue?",
+    "answers": [
+      "Spanien",
+      "Frankreich",
+      "Niederlande",
+      "Großbritannien"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Frankreich schenkte die Statue den USA zum 100. Jahrestag der Unabhängigkeitserklärung."
+  },
+  {
+    "id": "allg_071",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Planeten in unserem Sonnensystem besitzen feste Oberflächen?",
+    "answers": [
+      "Fünf Planeten",
+      "Zwei Planeten",
+      "Vier Planeten",
+      "Drei Planeten"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die vier inneren Planeten (Merkur, Venus, Erde, Mars) sind Gesteinsplaneten."
+  },
+  {
+    "id": "allg_072",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches ist das härteste natürliche Mineral auf der Erde?",
+    "answers": [
+      "Der Diamant",
+      "Der Saphir-Korund",
+      "Das Topas",
+      "Das Korund"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Diamant besitzt auf der Mohs-Skala den Höchstwert 10."
+  },
+  {
+    "id": "allg_073",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Kontinent liegt die berühmte Wüste Sahara?",
+    "answers": [
+      "Südamerika",
+      "Afrika",
+      "Asien",
+      "Australien"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Sahara erstreckt sich über das gesamte nördliche Afrika."
+  },
+  {
+    "id": "allg_074",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Tier nutzt Echo-Ortung zur Orientierung in der Dunkelheit?",
+    "answers": [
+      "Die Fledermaus",
+      "Der Klippschliefer",
+      "Die Waldmaus",
+      "Der Waldkauz"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Fledermäuse senden Ultraschallwellen aus, um Hindernisse zu orten."
+  },
+  {
+    "id": "allg_075",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer entdeckte im Jahr 1928 das erste wirksame Antibiotikum Penicillin?",
+    "answers": [
+      "Robert Koch",
+      "Paul Ehrlich",
+      "Alexander Fleming",
+      "Louis Pasteur"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Fleming entdeckte die bakterientötende Wirkung des Schimmelpilzes."
+  },
+  {
+    "id": "allg_076",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Farbe hat der Farbstoff Chlorophyll in den Zellen von Pflanzen?",
+    "answers": [
+      "Rot",
+      "Grün",
+      "Gelb",
+      "Blau"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Chlorophyll sorgt für die grüne Ausfärbung von Pflanzenblättern."
+  },
+  {
+    "id": "allg_077",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Ozean trennt die Kontinente Europa und Nordamerika voneinander?",
+    "answers": [
+      "Der Indik",
+      "Der Nordpazifik",
+      "Der Atlantik",
+      "Der Arktik"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Atlantische Ozean erstreckt sich zwischen Amerika, Europa und Afrika."
+  },
+  {
+    "id": "allg_078",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt das größte Binnengewässer im Inneren des Kontinents Nordamerika?",
+    "answers": [
+      "Der Obere See",
+      "Der Michigansee",
+      "Der Eriesee",
+      "Der Huronsee"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Obere See ist flächenmäßig der größte Süßwassersee der Erde."
+  },
+  {
+    "id": "allg_079",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land hat die größte Bevölkerungszahl weltweit aufzuweisen?",
+    "answers": [
+      "Indien",
+      "Indonesien",
+      "USA",
+      "China"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Indien hat China als bevölkerungsreichstes Land abgelöst."
+  },
+  {
+    "id": "allg_080",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus wie vielen einzelnen Spielern besteht ein normales Eishockey-Team auf dem Eis?",
+    "answers": [
+      "6 Spieler",
+      "7 Spieler",
+      "5 Spieler",
+      "8 Spieler"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Team besteht aus 5 Feldspielern und einem Torwart."
+  },
+  {
+    "id": "allg_081",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Sekunden enthält eine Zeitspanne von genau einer Stunde?",
+    "answers": [
+      "1.800 Sekunden",
+      "3.600 Sekunden",
+      "4.200 Sekunden",
+      "7.200 Sekunden"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "60 Minuten mal 60 Sekunden ergeben exakt 3.600 Sekunden."
+  },
+  {
+    "id": "allg_082",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer verfasste das berühmte Drama 'Romeo und Julia'?",
+    "answers": [
+      "William Shakespeare",
+      "Friedrich Schiller",
+      "Molière",
+      "Johann Goethe"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Shakespeare schrieb die Tragödie Ende des 16. Jahrhunderts."
+  },
+  {
+    "id": "allg_084",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet die wissenschaftliche Bezeichnung für den Verdunstungsprozess der Pflanzen?",
+    "answers": [
+      "Verdunstungsdruck",
+      "Transpiration",
+      "Fotosynthese",
+      "Fermentation"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Als Transpiration wird die Verdunstung von Wasser über Blätter bezeichnet."
+  },
+  {
+    "id": "allg_085",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Zähne hat das Milchgebiss eines Kindes im Vollzustand?",
+    "answers": [
+      "28 Zähne",
+      "16 Zähne",
+      "20 Zähne",
+      "24 Zähne"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das vollständige Milchgebiss umfasst genau 20 Zähne."
+  },
+  {
+    "id": "allg_086",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Organ steuert das Gleichgewichtsgefühl im menschlichen Körper?",
+    "answers": [
+      "Das Innenohr",
+      "Die Augen",
+      "Das Kleinhirn",
+      "Das Rückenmark"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Vestibularorgan im Innenohr ist für den Gleichgewichtssinn zuständig."
+  },
+  {
+    "id": "allg_087",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Element ist der Hauptbestandteil von Diamanten und Graphit?",
+    "answers": [
+      "Kohlenstoff",
+      "Stickstoff",
+      "Sauerstoffgas",
+      "Silizium"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sowohl Diamant als auch Graphit bestehen aus reinem Kohlenstoff."
+  },
+  {
+    "id": "allg_088",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Staat der USA liegt der berühmte Yellowstone-Nationalpark?",
+    "answers": [
+      "Wyoming",
+      "Texas",
+      "Alaska",
+      "Kalifornien"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Großteil des Yellowstone-Nationalparks liegt im US-Bundesstaat Wyoming."
+  },
+  {
+    "id": "allg_089",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Gasverbindung verursacht den natürlichen Treibhauseffekt vorrangig?",
+    "answers": [
+      "Kohlendioxid",
+      "Methangas",
+      "Ozon",
+      "Wasserdampf"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Wasserdampf leistet den größten Beitrag zum natürlichen Treibhauseffekt."
+  },
+  {
+    "id": "allg_090",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie nennt man ein Dreieck, bei dem zwei Seiten genau gleich lang sind?",
+    "answers": [
+      "Ungleiches Dreieck",
+      "Rechtwinklig",
+      "Gleichseitig",
+      "Gleichschenklig"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Bei einem gleichschenkligen Dreieck sind zwei Seiten (Schenkel) gleich lang."
+  },
+  {
+    "id": "allg_091",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Jahr landete die erste bemannte Mondmission Apollo 11?",
+    "answers": [
+      "Jahr 1969",
+      "Jahr 1965",
+      "Jahr 1975",
+      "Jahr 1972"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Neil Armstrong betrat am 21. Juli 1969 als erster Mensch den Mond."
+  },
+  {
+    "id": "allg_092",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet die Hauptstadt der Bundesrepublik Deutschland?",
+    "answers": [
+      "Frankfurt",
+      "München",
+      "Berlin",
+      "Hamburg"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Berlin ist seit der Wiedervereinigung 1990 die deutsche Bundeshauptstadt."
+  },
+  {
+    "id": "allg_093",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches dieser Säugetiere legt Eier?",
+    "answers": [
+      "Der Koala",
+      "Schnabeltier",
+      "Känguru",
+      "Wombat"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Schnabeltier gehört zu den eierlegenden Ursäugern (Kloakentiere)."
+  },
+  {
+    "id": "allg_094",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Fluss durchfließt die ägyptische Hauptstadt Kairo?",
+    "answers": [
+      "Der Kongo",
+      "Der Nil",
+      "Der Sambesi",
+      "Der Niger"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Nil durchfließt Ägypten und prägt die Hauptstadt Kairo."
+  },
+  {
+    "id": "allg_095",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt das hellste Objekt an unserem nächtlichen Himmel?",
+    "answers": [
+      "Der Erdmond",
+      "Der Venus-Stern",
+      "Der Sirius-Stern",
+      "Der Polarstern"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Mond reflektiert das Sonnenlicht und ist das hellste Objekt bei Nacht."
+  },
+  {
+    "id": "allg_096",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Erdteil besitzt die geringste Landfläche aller Kontinente?",
+    "answers": [
+      "Australien",
+      "Antarktika",
+      "Europa",
+      "Südamerika"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Australien ist der flächenmäßig kleinste Kontinent."
+  },
+  {
+    "id": "allg_097",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher griechische Philosoph war der Lehrer von Alexander dem Großen?",
+    "answers": [
+      "Anaximander",
+      "Sokrates",
+      "Platon",
+      "Aristoteles"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Aristoteles unterrichtete den jungen Alexander ab 343 v. Chr."
+  },
+  {
+    "id": "allg_098",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Maßeinheit gibt die Leistung von Verbrennungsmotoren offiziell im SI-System an?",
+    "answers": [
+      "Kilojoule",
+      "Newton",
+      "PS-Zahl",
+      "Kilowatt"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die offizielle internationale Maßeinheit für Leistung ist Watt bzw. Kilowatt."
+  },
+  {
+    "id": "allg_099",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Spieler bilden ein Basketball-Team auf dem Spielfeld?",
+    "answers": [
+      "6 Spieler",
+      "5 Spieler",
+      "7 Spieler",
+      "4 Spieler"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Basketballteam hat immer 5 aktive Spieler auf dem Platz."
+  },
+  {
+    "id": "allg_100",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Gebirge trennt Italien vom übrigen europäischen Festland im Norden ab?",
+    "answers": [
+      "Die Alpen",
+      "Die Pyrenäen",
+      "Die Karpaten",
+      "Der Apennin"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Alpen bilden den nördlichen Grenzwall Italiens zu seinen Nachbarstaaten."
+  },
+  {
+    "id": "allg_101",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche geometrische Form besitzt die Grundfläche einer ägyptischen Pyramide üblicherweise?",
+    "answers": [
+      "Ein Quadrat",
+      "Ein Kreis",
+      "Ein Sechseck",
+      "Ein Dreieck"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die klassischen Pyramiden in Ägypten haben eine quadratische Grundfläche."
+  },
+  {
+    "id": "allg_102",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus wie vielen Spielkarten besteht ein klassisches Skat-Blatt?",
+    "answers": [
+      "52 Karten",
+      "36 Karten",
+      "24 Karten",
+      "32 Karten"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Skatspiel wird mit genau 32 Karten gespielt."
+  },
+  {
+    "id": "allg_103",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer entdeckte auf seiner Seereise im Jahr 1492 Amerika für Europa?",
+    "answers": [
+      "Ferdinand Magellan",
+      "Vasco da Gama",
+      "Amerigo Vespucci",
+      "Christoph Kolumbus"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Kolumbus erreichte 1492 die karibischen Inseln."
+  },
+  {
+    "id": "allg_104",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welcher Stadt steht die berühmte Ruine des Kolosseums?",
+    "answers": [
+      "Neapel",
+      "Athen",
+      "Mailand",
+      "Rom"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Kolosseum ist das größte antike Amphitheater in Rom."
+  },
+  {
+    "id": "allg_105",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet der Name der flächenmäßig größten Insel der Erde?",
+    "answers": [
+      "Borneo",
+      "Neuguinea",
+      "Madagaskar",
+      "Grönland"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Grönland ist mit über 2,1 Mio. km² die größte Insel der Erde."
+  },
+  {
+    "id": "allg_106",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Organ filtert Abfallstoffe aus dem menschlichen Blutkreislauf?",
+    "answers": [
+      "Der Magen",
+      "Die Milz",
+      "Die Niere",
+      "Die Leber"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Nieren filtern Abfallstoffe und regulieren den Wasserhaushalt."
+  },
+  {
+    "id": "allg_107",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Metall besitzt von allen Metallen die höchste elektrische Leitfähigkeit?",
+    "answers": [
+      "Silber",
+      "Gold",
+      "Kupfer",
+      "Aluminium"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Silber leitet elektrischen Strom noch besser als Kupfer."
+  },
+  {
+    "id": "allg_108",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie nennt man ein Wort, das vorwärts und rückwärts gelesen denselben Sinn ergibt?",
+    "answers": [
+      "Neologismus",
+      "Palindrom",
+      "Antonym",
+      "Anagramm"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Beispiele für Palindrome sind 'Anna' oder 'Otto'."
+  },
+  {
+    "id": "allg_109",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Meeresgetier besitzt drei Herzen und blaues Blut?",
+    "answers": [
+      "Der Seestern",
+      "Der Nordsee-Hummer",
+      "Der Hammerhai",
+      "Der Kraken-Oktopus"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Oktopusse besitzen drei Herzen und ein kupferbasiertes blaues Blut."
+  },
+  {
+    "id": "allg_110",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Jahr begann der Erste Weltkrieg in Europa?",
+    "answers": [
+      "Jahr 1914",
+      "Jahr 1912",
+      "Jahr 1939",
+      "Jahr 1918"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Erste Weltkrieg dauerte von 1914 bis 1918."
+  },
+  {
+    "id": "allg_111",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet das chemische Symbol für den Grundstoff Eisen?",
+    "answers": [
+      "Fe",
+      "Ir",
+      "Ei",
+      "Fm"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Symbol Fe leitet sich vom lateinischen Begriff Ferrum ab."
+  },
+  {
+    "id": "allg_112",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Vogel ist für seine Fähigkeit bekannt, fremde Geräusche nachzuahmen?",
+    "answers": [
+      "Der Zaunkönig",
+      "Der Wanderfalke",
+      "Der Beo-Vogel",
+      "Der Kolibri"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Beo gehört zu den Staren und kann Stimmen perfekt imitieren."
+  },
+  {
+    "id": "allg_113",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Land liegen die Ruinen des antiken Inka-Ortes Machu Picchu?",
+    "answers": [
+      "Chile",
+      "Peru",
+      "Kolumbien",
+      "Bolivien"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Machu Picchu liegt in den Anden in Peru."
+  },
+  {
+    "id": "allg_114",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie nennt man die Phasenumwandlung von fest direkt zu gasförmig?",
+    "answers": [
+      "Kondensation",
+      "Erstarren",
+      "Verdampfung",
+      "Sublimation"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Sublimation bezeichnet den direkten Übergang von fest zu gasförmig."
+  },
+  {
+    "id": "allg_115",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Organ im Körper produziert das Hormon Insulin?",
+    "answers": [
+      "Die Prostatadrüse",
+      "Die Hirnanhangsdrüse im Kopf",
+      "Die Speicheldrüse",
+      "Die Bauchspeicheldrüse"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Insulin wird in den Langerhans-Inseln der Bauchspeicheldrüse gebildet."
+  },
+  {
+    "id": "allg_116",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der tiefste Süßwassersee der Erde mit rund 1.642 Metern Tiefe?",
+    "answers": [
+      "Der Kaspische See",
+      "Der Viktoriasee",
+      "Der Baikal See",
+      "Der Tanganjikasee"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Baikalsee in Sibirien ist der tiefste und älteste Süßwassersee."
+  },
+  {
+    "id": "allg_117",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Planeten im Sonnensystem besitzen ein Ringsystem?",
+    "answers": [
+      "Zwei Planeten",
+      "Vier Planeten",
+      "Ein Planet",
+      "Drei Planeten"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Alle vier Gasriesen (Jupiter, Saturn, Uranus, Neptun) besitzen Ringe."
+  },
+  {
+    "id": "allg_118",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land hat die meisten natürlichen Nachbarländer auf dem Festland?",
+    "answers": [
+      "China",
+      "Deutschland",
+      "Indien",
+      "Brasilien"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "China und Russland haben jeweils 14 Nachbarländer auf dem Festland."
+  },
+  {
+    "id": "allg_119",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus welchem Land stammt die Tanzsportart Tango ursprünglich?",
+    "answers": [
+      "Puerto Rico",
+      "Paraguay",
+      "Spanien",
+      "Argentinien"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Tango entstand Ende des 19. Jahrhunderts in Argentinien und Uruguay."
+  },
+  {
+    "id": "allg_120",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Maßeinheit gibt den Widerstand in einem elektrischen Stromkreis an?",
+    "answers": [
+      "Watt",
+      "Ampere",
+      "Volt",
+      "Ohm"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der elektrische Widerstand wird in Ohm (Ω) gemessen."
+  },
+  {
+    "id": "allg_121",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Zeitalter lebten die berühmten Riesenechsen wie der Tyrannosaurus Rex?",
+    "answers": [
+      "Im Mesozoikum",
+      "Im Präkambrium",
+      "Im Paläozoikum",
+      "Im Känozoikum"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Dinosaurier lebten im Mesozoikum (Erdmittelalter)."
+  },
+  {
+    "id": "allg_122",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer gilt als Erfinder des ersten funktionsfähigen Autos im Jahr 1886?",
+    "answers": [
+      "Carl Benz",
+      "Rudolf Diesel",
+      "Gottlieb Daimler",
+      "Henry Ford"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Carl Benz meldete 1886 seinen Motorwagen zum Patent an."
+  },
+  {
+    "id": "allg_123",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches chemische Element hat die Ordnungszahl 1 im Periodensystem?",
+    "answers": [
+      "Helium",
+      "Kohlenstoff",
+      "Wasserstoff",
+      "Lithium"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Wasserstoff ist das einfachste und leichteste Element."
+  },
+  {
+    "id": "allg_124",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land hat die längste Meeresküste weltweit?",
+    "answers": [
+      "Russland",
+      "Indonesien",
+      "Kanada",
+      "Australien"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Kanada besitzt mit über 202.000 km die längste Küstenlinie."
+  },
+  {
+    "id": "allg_125",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Spieler gehören beim Handball zu einer Mannschaft auf dem Feld?",
+    "answers": [
+      "6 Spieler",
+      "7 Spieler",
+      "8 Spieler",
+      "9 Spieler"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Beim Hallenhandball spielen 6 Feldspieler und ein Torwart."
+  },
+  {
+    "id": "allg_126",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus welcher Sprache stammt der Begriff 'Demokratie' ursprünglich?",
+    "answers": [
+      "Aus dem Altgriechischen",
+      "Aus dem Altlateinischen",
+      "Aus dem Hebräischen",
+      "Aus dem Arabischen"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Demokratie leitet sich von 'demos' (Volk) und 'kratein' (herrschen) ab."
+  },
+  {
+    "id": "allg_127",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Blutgruppen-System ist weltweit am weitesten verbreitet?",
+    "answers": [
+      "Das Kell-System",
+      "Das AB0-System",
+      "Das Rhesus-System",
+      "Das MNS-System"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das AB0-System ist das wichtigste Blutgruppensystem beim Menschen."
+  },
+  {
+    "id": "allg_128",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt das größte zusammenhängende Waldgebiet der Erde?",
+    "answers": [
+      "Die sibirische Taiga",
+      "Der Kongo-Regenwaldgürtel",
+      "Schwarzwald-Massiv",
+      "Amazonas-Regenwald"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die boreale Taiga in Sibirien ist der größte zusammenhängende Wald."
+  },
+  {
+    "id": "allg_129",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Planet benötigt für eine Umrundung der Sonne am längsten?",
+    "answers": [
+      "Jupiter",
+      "Neptun",
+      "Uranus",
+      "Saturn"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Neptun ist der äußerste Planet und braucht ca. 165 Erdenjahre."
+  },
+  {
+    "id": "allg_130",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Vogel gilt als das Symbol der Weisheit in der antiken Mythologie?",
+    "answers": [
+      "Der Adler",
+      "Die Eule",
+      "Der Rabe",
+      "Der Schwan"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Steinkauz war das Begleittier der Göttin Athene."
+  },
+  {
+    "id": "allg_131",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Nachbarstaaten hat Deutschland?",
+    "answers": [
+      "9 Nachbarländer",
+      "7 Nachbarländer",
+      "10 Nachbarländer",
+      "12 Nachbarländer"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Deutschland hat genau 9 direkte Nachbarstaaten."
+  },
+  {
+    "id": "allg_132",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer formulierte das physikalische Gesetz des Auftriebs in Flüssigkeiten?",
+    "answers": [
+      "Pythagoras",
+      "Euklid",
+      "Archimedes",
+      "Sokrates"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das archimedische Prinzip beschreibt den statischen Auftrieb."
+  },
+  {
+    "id": "allg_133",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Teil des Auges befinden sich die Zapfen und Stäbchen zum Sehen?",
+    "answers": [
+      "In der Iris",
+      "In der Hornhaut",
+      "In der Linse",
+      "In der Netzhaut"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Zapfen und Stäbchen sind die Lichtrezeptoren der Netzhaut."
+  },
+  {
+    "id": "allg_134",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches rötliche Metall leitet Wärme und Strom besonders gut?",
+    "answers": [
+      "Messing",
+      "Zinn",
+      "Bronze",
+      "Kupfer"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Kupfer leitet Wärme und Strom hervorragend."
+  },
+  {
+    "id": "allg_135",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet die chemische Bezeichnung für Kochsalz?",
+    "answers": [
+      "Kaliumchlorid",
+      "Kalziumkarbonat",
+      "Natriumchlorid",
+      "Magnesiumsulfat"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Kochsalz besteht chemisch aus Natrium und Chlor (NaCl)."
+  },
+  {
+    "id": "allg_136",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Meer grenzt östlich direkt an die Halbinsel Italien?",
+    "answers": [
+      "Das Tyrrhenische Meer",
+      "Das Ligurische Meer",
+      "Die Adriatische See",
+      "Das Ionische Meer"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Adria liegt zwischen Italien und der Balkanhalbinsel."
+  },
+  {
+    "id": "allg_137",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer erfand das Dynamit?",
+    "answers": [
+      "Thomas Edison",
+      "Nikola Tesla",
+      "Alexander Bell",
+      "Alfred Nobel"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Alfred Nobel erfand das Dynamit und stiftete den Nobelpreis."
+  },
+  {
+    "id": "allg_138",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Zeitzonen umspannen die Erde von West nach Ost offiziell?",
+    "answers": [
+      "12 Zeitzonen",
+      "36 Zeitzonen",
+      "48 Zeitzonen",
+      "24 Zeitzonen"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Erde ist in 24 Standard-Zeitzonen zu je 15 Längengraden unterteilt."
+  },
+  {
+    "id": "allg_139",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Gasverbindung benötigen Pflanzen zwingend für die Fotosynthese?",
+    "answers": [
+      "Stickstoff",
+      "Schwefeldioxid",
+      "Wasserstoff",
+      "Kohlendioxid"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Pflanzen wandeln Kohlendioxid und Wasser mithilfe von Licht in Traubenzucker um."
+  },
+  {
+    "id": "allg_140",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wer schrieb die weltberühmte Komödie 'Der zerbrochne Krug'?",
+    "answers": [
+      "Friedrich Schiller",
+      "Heinrich von Kleist",
+      "Johann W. von Goethe",
+      "Gotthold E. Lessing"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Heinrich von Kleist verfasste das Drama im Jahr 1806."
+  },
+  {
+    "id": "allg_141",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Ozean liegen die bekannten Inseln von Hawaii?",
+    "answers": [
+      "Arktischer Ozean",
+      "Pazifischer Ozean",
+      "Indischer Ozean",
+      "Atlantischer Ozean"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Hawaii ist eine Inselkette im Pazifischen Ozean."
+  },
+  {
+    "id": "allg_142",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt das kleinste Säugetier der Welt nach Körpergewicht?",
+    "answers": [
+      "Amerikanische Zwergmaus",
+      "Kitti-Schweinsnase",
+      "Feldspitzmaus",
+      "Gartenspitzmaus"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Kitti-Schweinsnasenfledermaus wiegt nur etwa 2 Gramm."
+  },
+  {
+    "id": "allg_143",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Stadt ist der Sitz des Internationalen Gerichtshofs?",
+    "answers": [
+      "Straßburg",
+      "Den Haag",
+      "Genf",
+      "Wien"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Internationale Gerichtshof hat seinen Sitz im Friedenspalast in Den Haag."
+  },
+  {
+    "id": "allg_144",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie nennt man die Wissenschaft von den Fossilien und versteinerten Lebewesen?",
+    "answers": [
+      "Paläontologie",
+      "Geologie",
+      "Archäologie",
+      "Anthropologie"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Paläontologie erforscht fossile Organismen aus vergangenen Erdzeitaltern."
+  },
+  {
+    "id": "allg_145",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Fluss durchfließt die französische Hauptstadt Paris?",
+    "answers": [
+      "Die Loire",
+      "Die Rhone",
+      "Die Seine",
+      "Die Garonne"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Seine durchfließt das Stadtgebiet von Paris."
+  },
+  {
+    "id": "allg_146",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Organ im Körper dient primär der Speicherung von Glukose als Glykogen?",
+    "answers": [
+      "Die Niere",
+      "Der Magen",
+      "Die Milz",
+      "Die Leber"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Leber speichert Kohlenhydrate in Form von Glykogen."
+  },
+  {
+    "id": "allg_147",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Spieler bilden ein offizielles Rugby-Union-Team auf dem Platz?",
+    "answers": [
+      "12 Spieler",
+      "11 Spieler",
+      "13 Spieler",
+      "15 Spieler"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Rugby-Union-Team besteht auf dem Feld aus 15 Spielern."
+  },
+  {
+    "id": "allg_148",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land hat als einziges eine nicht-rechteckige Nationalflagge?",
+    "answers": [
+      "Bhutan",
+      "Sri Lanka",
+      "Nepal",
+      "Laos"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Flagge von Nepal besteht aus zwei übereinandergelegten Dreiecken."
+  },
+  {
+    "id": "allg_149",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt das Enzym im Speichel, das Stärke in Zucker spaltet?",
+    "answers": [
+      "Lipase",
+      "Amylase",
+      "Pepsin",
+      "Trypsin"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Speichel-Amylase (Ptialin) beginnt bereits im Mund mit dem Stärkeabbau."
+  },
+  {
+    "id": "allg_150",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Stern ist unserer Erde nach der Sonne am nächsten gelegen?",
+    "answers": [
+      "Sirius",
+      "Alpha Centauri A",
+      "Betelgeuse",
+      "Proxima Centauri"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Proxima Centauri ist mit etwa 4,24 Lichtjahren der sonnennächste Stern."
+  },
+  {
+    "id": "q0576",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Minuten hat ein Tag?",
+    "answers": [
+      "1.440",
+      "1.200",
+      "2.400",
+      "960"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "24 Stunden mal 60 Minuten ergeben 1.440 Minuten."
+  },
+  {
+    "id": "q0578",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt die Hauptstadt von Spanien?",
+    "answers": [
+      "Barcelona",
+      "Sevilla",
+      "Madrid",
+      "Valencia"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Madrid liegt fast genau in der Mitte des Landes auf einer Hochebene."
+  },
+  {
+    "id": "q0579",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Land hat auf der Landkarte die Form eines Stiefels?",
+    "answers": [
+      "Italien",
+      "Griechenland",
+      "Portugal",
+      "Kroatien"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Insel Sizilien sieht aus, als würde der Stiefel gegen einen Ball treten."
+  },
+  {
+    "id": "q0581",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Seiten hat ein Sechseck?",
+    "answers": [
+      "5",
+      "7",
+      "8",
+      "6"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Bienenwaben bestehen aus lauter Sechsecken – so passen sie lückenlos aneinander."
+  },
+  {
+    "id": "q0582",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt die Hauptstadt von Japan?",
+    "answers": [
+      "Kyoto",
+      "Tokio",
+      "Osaka",
+      "Seoul"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Im Großraum Tokio leben fast 40 Millionen Menschen – mehr als in jeder anderen Stadtregion der Welt."
+  },
+  {
+    "id": "q0583",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Monate im Jahr haben 31 Tage?",
+    "answers": [
+      "6",
+      "5",
+      "8",
+      "7"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Januar, März, Mai, Juli, August, Oktober und Dezember."
+  },
+  {
+    "id": "q0585",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welchem Monat ist bei uns der kürzeste Tag des Jahres?",
+    "answers": [
+      "Januar",
+      "November",
+      "Februar",
+      "Dezember"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Wintersonnenwende ist am 21. oder 22. Dezember – danach werden die Tage wieder länger."
+  },
+  {
+    "id": "q0586",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Ecken hat ein Würfel?",
+    "answers": [
+      "8",
+      "6",
+      "12",
+      "4"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Würfel hat 8 Ecken, 12 Kanten und 6 Flächen."
+  },
+  {
+    "id": "q1276",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Was misst ein Thermometer?",
+    "answers": [
+      "Die Temperatur",
+      "Den Luftdruck",
+      "Die Windstärke",
+      "Die Luftfeuchtigkeit"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Den Luftdruck misst man mit einem Barometer."
+  },
+  {
+    "id": "q1277",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Tier ist auf dem Wappen Deutschlands abgebildet?",
+    "answers": [
+      "Ein Adler",
+      "Ein Löwe",
+      "Ein Bär",
+      "Ein Hirsch"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Bundesadler ist schwarz, mit roten Krallen, Schnabel und Zunge, auf goldenem Grund."
+  },
+  {
+    "id": "q1278",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Farben hat die deutsche Flagge von oben nach unten?",
+    "answers": [
+      "Schwarz, Gold, Rot",
+      "Rot, Schwarz, Gold",
+      "Schwarz, Rot, Gold",
+      "Gold, Rot, Schwarz"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Farben gehen auf die Freiheitsbewegung im 19. Jahrhundert zurück."
+  },
+  {
+    "id": "q1279",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Sprache wird in Brasilien gesprochen?",
+    "answers": [
+      "Portugiesisch",
+      "Spanisch",
+      "Brasilianisch",
+      "Italienisch"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Brasilien war portugiesische Kolonie – als einziges Land Südamerikas."
+  },
+  {
+    "id": "q1280",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welcher Fluss ist auf deutschem Gebiet der längste?",
+    "answers": [
+      "Elbe",
+      "Donau",
+      "Main",
+      "Rhein"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Rhein fließt rund 865 km durch Deutschland. Die Donau ist insgesamt länger, liegt aber größtenteils in anderen Ländern."
+  },
+  {
+    "id": "q1281",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Kontinente hat die Erde im klassischen Modell (ohne Antarktis)?",
+    "answers": [
+      "8",
+      "7",
+      "5",
+      "6"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Im klassischen Modell gibt es 5 bewohnte Kontinente – Antarktis wird oft als eigener gezählt, dann wären es 6."
+  },
+  {
+    "id": "q1282",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der höchste Berg Deutschlands?",
+    "answers": [
+      "Zugspitze",
+      "Watzmann",
+      "Feldberg",
+      "Brocken"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die Zugspitze ist 2.962 Meter hoch und liegt an der Grenze zu Österreich."
+  },
+  {
+    "id": "q1284",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Insel ist die größte Deutschlands?",
+    "answers": [
+      "Rügen",
+      "Sylt",
+      "Usedom",
+      "Fehmarn"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Rügen liegt in der Ostsee und ist berühmt für seine Kreidefelsen."
+  },
+  {
+    "id": "q1285",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Menschen leben ungefähr in Deutschland?",
+    "answers": [
+      "Rund 60 Millionen",
+      "Rund 100 Millionen",
+      "Rund 83 Millionen",
+      "Rund 45 Millionen"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Damit ist Deutschland das Land mit den meisten Einwohnern in der Europäischen Union."
+  },
+  {
+    "id": "q1286",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lautet die Hauptstadt von Australien?",
+    "answers": [
+      "Perth",
+      "Sydney",
+      "Melbourne",
+      "Canberra"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Canberra ist die Hauptstadt, nicht Sydney oder Melbourne – ein häufiger Irrtum."
+  },
+  {
+    "id": "q1287",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Saiten hat eine Konzertharfe ungefähr?",
+    "answers": [
+      "Etwa 47",
+      "Etwa 24",
+      "Etwa 12",
+      "Etwa 88"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Eine Konzertharfe hat rund 47 Saiten. (Ein Klavier hat sogar etwa 230 – aber keine zum Zupfen.)"
+  },
+  {
+    "id": "q1288",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Stadt hat die meisten Einwohner in Deutschland?",
+    "answers": [
+      "Hamburg",
+      "Berlin",
+      "München",
+      "Köln"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "In Berlin leben rund 3,7 Millionen Menschen, in Hamburg als Nummer zwei knapp 2 Millionen."
+  },
+  {
+    "id": "q1289",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Was misst man in Kilogramm?",
+    "answers": [
+      "Die Masse",
+      "Die Länge",
+      "Die Zeit",
+      "Die Temperatur"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Im Alltag sagt man meist 'Gewicht' – ein Liter Wasser wiegt etwa ein Kilogramm."
+  },
+  {
+    "id": "q1290",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Zentimeter hat ein Meter?",
+    "answers": [
+      "10",
+      "1.000",
+      "50",
+      "100"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Ein Zentimeter hat wiederum 10 Millimeter."
+  },
+  {
+    "id": "q1291",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Wochen hat ein Jahr ungefähr?",
+    "answers": [
+      "48",
+      "56",
+      "50",
+      "52"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "52 Wochen sind 364 Tage – es bleiben also ein oder zwei Tage übrig."
+  },
+  {
+    "id": "q1292",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Aus welchen Formen ist ein klassischer schwarz-weißer Fußball zusammengenäht?",
+    "answers": [
+      "Nur Quadrate",
+      "Dreiecke und Kreise",
+      "Nur Achtecke",
+      "Fünf- und Sechsecke"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "12 schwarze Fünfecke und 20 weiße Sechsecke ergeben zusammen fast eine Kugel."
+  },
+  {
+    "id": "q1293",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Farbe hat das Blut der meisten Insekten?",
+    "answers": [
+      "Rot",
+      "Blau",
+      "Gelblich oder grünlich",
+      "Schwarz"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Insektenblut heißt Hämolymphe. Es transportiert keinen Sauerstoff und braucht deshalb kein rotes Hämoglobin."
+  },
+  {
+    "id": "q1294",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Auf wie vielen Feldern laufen die Figuren bei 'Mensch ärgere Dich nicht' außen herum?",
+    "answers": [
+      "32",
+      "40",
+      "48",
+      "64"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Dazu kommen für jede Farbe vier Start- und vier Zielfelder."
+  },
+  {
+    "id": "q1295",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Jahreszeit beginnt um den 20. März?",
+    "answers": [
+      "Sommer",
+      "Herbst",
+      "Frühling",
+      "Winter"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Zum Frühlingsanfang sind Tag und Nacht ungefähr gleich lang."
+  },
+  {
+    "id": "q1296",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Augen hat ein normaler Spielwürfel insgesamt?",
+    "answers": [
+      "21",
+      "18",
+      "24",
+      "36"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Gegenüberliegende Seiten ergeben immer 7: 1 und 6, 2 und 5, 3 und 4."
+  },
+  {
+    "id": "q1297",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie viele Stunden hat ein Jahr (ungefähr)?",
+    "answers": [
+      "8.000",
+      "8.760",
+      "10.000",
+      "9.500"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "365 Tage × 24 Stunden = 8.760 Stunden pro Jahr."
+  },
+  {
+    "id": "q1298",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Was ist das am häufigsten verwendete Material im Bauwesen?",
+    "answers": [
+      "Holz",
+      "Beton",
+      "Ziegel",
+      "Stahl"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Beton ist weltweit das meistgenutzte Baumaterial – nach Wasser der meistverbrauchte Stoff."
+  },
+  {
+    "id": "q1299",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie nennt man ein Bild, das ein Künstler von sich selbst malt?",
+    "answers": [
+      "Landschaft",
+      "Selbstporträt",
+      "Stillleben",
+      "Karikatur"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Vincent van Gogh malte über 30 Selbstporträts."
+  },
+  {
+    "id": "q1300",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lange dauerte der längste ununterbrochene Aufenthalt eines Menschen im Weltraum ungefähr?",
+    "answers": [
+      "Etwa zwei Jahre",
+      "Etwa zehn Jahre",
+      "Etwas über ein Jahr",
+      "Etwa fünf Jahre"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Kosmonaut Waleri Poljakow blieb 1994/95 437 Tage am Stück auf der Raumstation Mir."
+  },
+  {
+    "id": "q1301",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches Verkehrszeichen hat die Form eines Achtecks?",
+    "answers": [
+      "Vorfahrt achten",
+      "Einbahnstraße",
+      "Parkverbot",
+      "Das Stoppschild"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Durch die besondere Form erkennt man es sogar von hinten oder wenn es zugeschneit ist."
+  },
+  {
+    "id": "q1072",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welche Farbe leuchtet bei einer Verkehrsampel ganz oben?",
+    "answers": [
+      "Grün",
+      "Gelb",
+      "Rot",
+      "Blau"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "So können auch Menschen mit Rot-Grün-Schwäche an der Position erkennen, was die Ampel anzeigt."
+  },
+  {
+    "id": "q1073",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Welches ist das kleinste Flächenland Deutschlands (ohne Stadtstaaten)?",
+    "answers": [
+      "Schleswig-Holstein",
+      "Thüringen",
+      "Rheinland-Pfalz",
+      "Saarland"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Das Saarland ist mit rund 2.570 km² das flächenkleinste Flächenland."
+  },
+  {
+    "id": "q1074",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Mit welchem Gerät beobachtet man Sterne und Planeten vergrößert?",
+    "answers": [
+      "Mikroskop",
+      "Periskop",
+      "Stethoskop",
+      "Teleskop"
+    ],
+    "correct": 3,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Galileo Galilei entdeckte mit einem selbstgebauten Teleskop 1610 die vier großen Jupitermonde."
+  },
+  {
+    "id": "q1075",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie heißt der bekannteste Vulkanausbruch, der Pompeji verschüttete?",
+    "answers": [
+      "Vesuv",
+      "Ätna",
+      "Stromboli",
+      "Teide"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Der Ausbruch des Vesuvs im Jahr 79 n. Chr. begrub die Stadt Pompeji."
+  },
+  {
+    "id": "q1077",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Womit betrachtet man winzige Dinge wie Zellen?",
+    "answers": [
+      "Teleskop",
+      "Fernglas",
+      "Mikroskop",
+      "Kompass"
+    ],
+    "correct": 2,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Gute Lichtmikroskope vergrößern etwa tausendfach."
+  },
+  {
+    "id": "q1078",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "In welche Himmelsrichtung zeigt die Nadel eines Kompasses?",
+    "answers": [
+      "Nach Süden",
+      "Nach Norden",
+      "Nach Osten",
+      "Nach Westen"
+    ],
+    "correct": 1,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Die magnetische Nadel richtet sich nach dem Magnetfeld der Erde aus."
+  },
+  {
+    "id": "q1079",
+    "category": "spass_allgemein",
+    "area": "spass",
+    "subject": "allgemein",
+    "question": "Wie lange dauert es ungefähr, bis sich die Erde einmal um sich selbst gedreht hat?",
+    "answers": [
+      "24 Stunden",
+      "12 Stunden",
+      "48 Stunden",
+      "Eine Woche"
+    ],
+    "correct": 0,
+    "difficulty": "mittel",
+    "points": 10,
+    "explanation": "Durch diese Drehung entstehen Tag und Nacht."
+  },
   {
     "id": "mc_all_001",
     "category": "spass_allgemein",
     "area": "allgemein",
     "subject": "wissen",
     "question": "Warum strecken Katzen sich morgens ausgiebig?",
-    "answers": ["Um lästige Flöhe und Parasiten abzuschütteln", "Um Muskeln zu aktivieren und Blutdruck zu steigern", "Um ihr eigenes Revier deutlich zu markieren und zu duften", "Aus reiner Langeweile und überschüssiger Energie"],
+    "answers": [
+      "Um lästige Flöhe und Parasiten abzuschütteln",
+      "Um Muskeln zu aktivieren und Blutdruck zu steigern",
+      "Um ihr eigenes Revier deutlich zu markieren und zu duften",
+      "Aus reiner Langeweile und überschüssiger Energie"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -1810,7 +3168,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Welches Tier besitzt den stärksten Sehsinn im Tierreich?",
-    "answers": ["Greifvögel", "Eulen in dunkler Nacht", "Hauskatzen im Dunkeln", "Wölfe im nächtlichen Wald"],
+    "answers": [
+      "Greifvögel",
+      "Eulen in dunkler Nacht",
+      "Hauskatzen im Dunkeln",
+      "Wölfe im nächtlichen Wald"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -1822,7 +3185,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Aus welchem Hauptgrund leuchten Glühwürmchen im Dunkeln?",
-    "answers": ["Um Fressfeinde abzuschrecken", "Um ahnungslose Beute gezielt anzulocken", "Um Artgenossen und Partner anzulocken", "Um sich in kalten Nächten aufzuwärmen"],
+    "answers": [
+      "Um Fressfeinde abzuschrecken",
+      "Um ahnungslose Beute gezielt anzulocken",
+      "Um Artgenossen und Partner anzulocken",
+      "Um sich in kalten Nächten aufzuwärmen"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -1834,7 +3202,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Welches ist das einzige Säugetier, das wirklich aktiv fliegen kann?",
-    "answers": ["Flughörnchen", "Fledermaus", "Flugdrache", "Gleithörnchen"],
+    "answers": [
+      "Flughörnchen",
+      "Fledermaus",
+      "Flugdrache",
+      "Gleithörnchen"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -1846,7 +3219,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "natur",
     "subject": "wissen",
     "question": "Warum verfärben sich die Blätter der Bäume im Herbst bunt?",
-    "answers": ["Weil sie im Herbst einfach vertrocknen", "Der Baum baut Chlorophyll ab und schützt Nährstoffe", "Weil es im Herbst deutlich zu viel und häufig regnet", "Durch die spürbar viel kältere Herbstsonne"],
+    "answers": [
+      "Weil sie im Herbst einfach vertrocknen",
+      "Der Baum baut Chlorophyll ab und schützt Nährstoffe",
+      "Weil es im Herbst deutlich zu viel und häufig regnet",
+      "Durch die spürbar viel kältere Herbstsonne"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1858,7 +3236,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "physik",
     "subject": "wissen",
     "question": "Was ist die Hauptursache für Ebbe und Flut in unseren Meeren?",
-    "answers": ["Die Erddrehung alleine", "Der starke globale Wind über Ozeanen", "Die Anziehungskraft des Mondes", "Aktive Unterwasservulkane im Meer"],
+    "answers": [
+      "Die Erddrehung alleine",
+      "Der starke globale Wind über Ozeanen",
+      "Die Anziehungskraft des Mondes",
+      "Aktive Unterwasservulkane im Meer"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -1870,7 +3253,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "physik",
     "subject": "wissen",
     "question": "Was passiert physikalisch, wenn flüssiges Wasser zu Eis gefriert?",
-    "answers": ["Es zieht sich beim Gefrieren stark zusammen", "Es dehnt sich aus und wird leichter als Wasser", "Das Volumen bleibt dabei fast komplett unverändert", "Es verliert dabei nur ein wenig Gas"],
+    "answers": [
+      "Es zieht sich beim Gefrieren stark zusammen",
+      "Es dehnt sich aus und wird leichter als Wasser",
+      "Das Volumen bleibt dabei fast komplett unverändert",
+      "Es verliert dabei nur ein wenig Gas"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -1881,12 +3269,17 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "category": "spass_allgemein",
     "area": "chemie",
     "subject": "wissen",
-    "question": "Welches Gas macht den größten Teil unserer Atemluft aus?",
-    "answers": ["Sauerstoff", "Stickstoff", "Kohlendioxid", "Wasserstoff"],
-    "correct": 1,
+    "question": "Wie lange braucht die Erde für eine Runde um die Sonne?",
+    "answers": [
+      "Einen Monat",
+      "Einen Tag",
+      "Ein Jahr",
+      "Zehn Jahre"
+    ],
+    "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Unsere Luft besteht zu etwa 78 % aus Stickstoff und nur zu rund 21 % aus Sauerstoff."
+    "explanation": "Genau sind es etwa 365 Tage und 6 Stunden – deshalb gibt es alle vier Jahre ein Schaltjahr."
   },
   {
     "id": "mc_all_009",
@@ -1894,36 +3287,50 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Wie transportieren Pflanzen Wasser von den Wurzeln bis in die Blätter?",
-    "answers": ["Durch aktives Herzpumpen im Stamm der Pflanze", "Durch Kapillarkraft und Transpirationssog", "Durch reinen mechanischen Winddruck von außen", "Gar nicht, Wasser kommt nur von oben"],
+    "answers": [
+      "Durch aktives Herzpumpen im Stamm der Pflanze",
+      "Durch Kapillarkraft und Transpirationssog",
+      "Durch reinen mechanischen Winddruck von außen",
+      "Gar nicht, Wasser kommt nur von oben"
+    ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
     "explanation": "Verdunstung an den Blättern erzeugt einen Unterdruck, der Wasser nach oben zieht."
   },
-  
   {
     "id": "mc_all_011",
     "category": "spass_allgemein",
     "area": "biologie",
     "subject": "wissen",
-    "question": "Wie viele Herzen besitzt ein Oktopus?",
-    "answers": ["1 Herz", "2 Herzen", "3 Herzen", "4 Herzen"],
-    "correct": 2,
+    "question": "Was ist der Mond?",
+    "answers": [
+      "Ein Himmelskörper, der die Erde umkreist",
+      "Ein Stern, der nachts leuchtet",
+      "Ein Planet, der um die Sonne kreist",
+      "Ein Komet mit langem Schweif"
+    ],
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Ein Hauptherz versorgt den Körper, zwei Kiemenherzen pumpen Blut durch die Kiemen."
+    "explanation": "Der Mond leuchtet nicht selbst, sondern wird von der Sonne angestrahlt."
   },
   {
     "id": "mc_all_012",
     "category": "spass_allgemein",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welcher ist der längste Fluss der Erde?",
-    "answers": ["Amazonas", "Nil", "Yangtse", "Mississippi"],
+    "question": "Welcher Planet ist der größte in unserem Sonnensystem?",
+    "answers": [
+      "Saturn",
+      "Jupiter",
+      "Neptun",
+      "Erde"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Der Nil gilt mit ca. 6.650 km traditionell als der längste Fluss der Erde."
+    "explanation": "In den Jupiter würde die Erde über 1.300-mal hineinpassen."
   },
   {
     "id": "mc_all_013",
@@ -1931,7 +3338,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "geografie",
     "subject": "wissen",
     "question": "In welchem Land befindet sich das Taj Mahal?",
-    "answers": ["Pakistan", "Indien", "Nepal", "Indonesien"],
+    "answers": [
+      "Pakistan",
+      "Indien",
+      "Nepal",
+      "Indonesien"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -1943,7 +3355,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "mensch",
     "subject": "wissen",
     "question": "Welches organische Gewebe ist das härteste im menschlichen Körper?",
-    "answers": ["Oberschenkelknochen", "Zahnschmelz", "Schädeldecke", "Fingernagel"],
+    "answers": [
+      "Oberschenkelknochen",
+      "Zahnschmelz",
+      "Schädeldecke",
+      "Fingernagel"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -1955,7 +3372,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Was machen Bären während des Winterschlafs hauptsächlich?",
-    "answers": ["Sie trinken während dieser Zeit sehr viel Wasser", "Sie senken Körpertemperatur und Herzfrequenz", "Sie fressen weiter Vorräte in ihrer Höhle", "Sie wandern in dieser Zeit nach Süden"],
+    "answers": [
+      "Sie trinken während dieser Zeit sehr viel Wasser",
+      "Sie senken Körpertemperatur und Herzfrequenz",
+      "Sie fressen weiter Vorräte in ihrer Höhle",
+      "Sie wandern in dieser Zeit nach Süden"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -1967,7 +3389,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "physik",
     "subject": "wissen",
     "question": "Aus welchem Grund erscheint uns der Himmel tagsüber blau?",
-    "answers": ["Weil der Ozean das Sonnenlicht reflektiert", "Streuung des Sonnenlichts an Luftmolekülen", "Weil der Sauerstoff in der Luft blau brennt", "Wegen der Eisschicht in der Stratosphäre"],
+    "answers": [
+      "Weil der Ozean das Sonnenlicht reflektiert",
+      "Streuung des Sonnenlichts an Luftmolekülen",
+      "Weil der Sauerstoff in der Luft blau brennt",
+      "Wegen der Eisschicht in der Stratosphäre"
+    ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
@@ -1978,36 +3405,51 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "category": "spass_allgemein",
     "area": "chemie",
     "subject": "wissen",
-    "question": "Welches Element hat das chemische Symbol 'Fe'?",
-    "answers": ["Fluor", "Eisen", "Fermium", "Franzium"],
-    "correct": 1,
+    "question": "Welche Sprache spricht man in Österreich hauptsächlich?",
+    "answers": [
+      "Deutsch",
+      "Österreichisch",
+      "Ungarisch",
+      "Italienisch"
+    ],
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "'Fe' leitet sich vom lateinischen Wort 'Ferrum' für Eisen ab."
+    "explanation": "Es gibt aber eigene Wörter: In Österreich sagt man zum Beispiel 'Paradeiser' zur Tomate."
   },
   {
     "id": "mc_all_018",
     "category": "spass_allgemein",
     "area": "biologie",
     "subject": "wissen",
-    "question": "Wie orientieren sich Fledermäuse nachts in der Dunkelheit?",
-    "answers": ["Mit Infrarotaugen", "Über Ultraschall-Echolot", "Durch feinen Geruchssinn", "Mithilfe des Erdmagnetfelds"],
-    "correct": 1,
+    "question": "In welchem Land steht der Schiefe Turm von Pisa?",
+    "answers": [
+      "Spanien",
+      "Frankreich",
+      "Italien",
+      "Griechenland"
+    ],
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Fledermäuse stoßen hochfrequente Töne aus und hören das Echo ab, um Hindernisse zu orten."
+    "explanation": "Der Turm begann schon während des Baus im 12. Jahrhundert, sich zu neigen, weil der Boden zu weich ist."
   },
   {
     "id": "mc_all_019",
     "category": "spass_allgemein",
     "area": "geschichte",
     "subject": "wissen",
-    "question": "In welchem Jahr landete die erste bemannte Apollo-Mission auf dem Mond?",
-    "answers": ["1965", "1969", "1972", "1975"],
-    "correct": 1,
+    "question": "In welcher Stadt steht der Uhrturm mit der Glocke 'Big Ben'?",
+    "answers": [
+      "Paris",
+      "Dublin",
+      "Edinburgh",
+      "London"
+    ],
+    "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Apollo 11 landete im Juli 1969 auf dem Mond (Neil Armstrong)."
+    "explanation": "'Big Ben' ist eigentlich nur der Name der großen Glocke im Turm."
   },
   {
     "id": "mc_all_020",
@@ -2015,7 +3457,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "geografie",
     "subject": "wissen",
     "question": "Welches ist das flächenmäßig kleinste Land der Welt?",
-    "answers": ["Monaco", "Malediven", "Vatikanstadt", "Liechtenstein"],
+    "answers": [
+      "Monaco",
+      "Malediven",
+      "Vatikanstadt",
+      "Liechtenstein"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -2027,7 +3474,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "mensch",
     "subject": "wissen",
     "question": "Welche Blutgruppe gilt als universeller Spender für rote Blutkörperchen?",
-    "answers": ["A positiv", "B negativ", "AB positiv", "0 negativ"],
+    "answers": [
+      "A positiv",
+      "B negativ",
+      "AB positiv",
+      "0 negativ"
+    ],
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
@@ -2039,7 +3491,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Wie atmen Fische unter Wasser?",
-    "answers": ["Über Lungen", "Durch die Haut", "Über Kiemen", "Sie halten den Atem an"],
+    "answers": [
+      "Über Lungen",
+      "Durch die Haut",
+      "Über Kiemen",
+      "Sie halten den Atem an"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -2051,7 +3508,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "astronomie",
     "subject": "wissen",
     "question": "Aus was bestehen die Ringe des Saturns hauptsächlich?",
-    "answers": ["Aus festem Mondgestein", "Eisbrocken und Staub", "Brennendem Gas", "Flüssigem Wasser"],
+    "answers": [
+      "Aus festem Mondgestein",
+      "Eisbrocken und Staub",
+      "Brennendem Gas",
+      "Flüssigem Wasser"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2063,7 +3525,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "mensch",
     "subject": "wissen",
     "question": "Welcher Muskel im menschlichen Körper ist bezogen auf seine Größe der stärkste?",
-    "answers": ["Oberschenkelmuskel", "Kaumuskel", "Bizeps", "Herzmuskel"],
+    "answers": [
+      "Oberschenkelmuskel",
+      "Kaumuskel",
+      "Bizeps",
+      "Herzmuskel"
+    ],
     "correct": 1,
     "difficulty": "schwer",
     "points": 15,
@@ -2075,7 +3542,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "natur",
     "subject": "wissen",
     "question": "Welches Organismus-Ensemble produziert den meisten Sauerstoff der Erde?",
-    "answers": ["Der Regenwald im Amazonas", "Nadelwälder in Sibirien", "Phytoplankton im Ozean", "Grassteppen"],
+    "answers": [
+      "Der Regenwald im Amazonas",
+      "Nadelwälder in Sibirien",
+      "Phytoplankton im Ozean",
+      "Grassteppen"
+    ],
     "correct": 2,
     "difficulty": "schwer",
     "points": 15,
@@ -2087,7 +3559,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "geografie",
     "subject": "wissen",
     "question": "In welchem Kontinent liegt die Atacama-Wüste?",
-    "answers": ["Afrika", "Australien", "Südamerika", "Asien"],
+    "answers": [
+      "Afrika",
+      "Australien",
+      "Südamerika",
+      "Asien"
+    ],
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
@@ -2099,7 +3576,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "physik",
     "subject": "wissen",
     "question": "Wie schnell breitet sich Licht im Vakuum ungefähr aus?",
-    "answers": ["300.000 km/s", "150.000 km/s", "1.000.000 km/s", "340 m/s"],
+    "answers": [
+      "300.000 km/s",
+      "150.000 km/s",
+      "1.000.000 km/s",
+      "340 m/s"
+    ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
@@ -2111,7 +3593,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Welche Vogelart ist die einzige, die rückwärts fliegen kann?",
-    "answers": ["Eisvogel", "Kolibri", "Schwalbe", "Specht"],
+    "answers": [
+      "Eisvogel",
+      "Kolibri",
+      "Schwalbe",
+      "Specht"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2122,12 +3609,17 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "category": "spass_allgemein",
     "area": "chemie",
     "subject": "wissen",
-    "question": "Aus welchen Elementen setzt sich Wasser (H₂O) zusammen?",
-    "answers": ["Helium und Sauerstoff", "Wasserstoff und Sauerstoff", "Wasserstoff und Ozon", "Kohlenstoff und Sauerstoff"],
-    "correct": 1,
+    "question": "Welche berühmte Statue in New York hält eine Fackel in die Höhe?",
+    "answers": [
+      "Die Christusstatue",
+      "Das Atomium",
+      "Die Freiheitsstatue",
+      "Die Bavaria"
+    ],
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Zwei Wasserstoffatome (H) verbinden sich mit einem Sauerstoffatom (O)."
+    "explanation": "Sie ist innen hohl – Besucher können bis in die Krone hinaufsteigen."
   },
   {
     "id": "mc_all_030",
@@ -2135,7 +3627,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "geschichte",
     "subject": "wissen",
     "question": "Welches antik-römische Bauwerk diente als riesige Arena für Gladiatorenkämpfe?",
-    "answers": ["Parthenon", "Akropolis", "Kolosseum", "Pantheon"],
+    "answers": [
+      "Parthenon",
+      "Akropolis",
+      "Kolosseum",
+      "Pantheon"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -2147,7 +3644,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Wie schützen sich Chamäleons vor Feinden oder kommunizieren mit Artgenossen?",
-    "answers": ["Durch besonders lautes Zischen", "Durch Farbwechsel ihrer Haut", "Durch Aufblasen des Körpers", "Durch reglos wirkendes Totstellen"],
+    "answers": [
+      "Durch besonders lautes Zischen",
+      "Durch Farbwechsel ihrer Haut",
+      "Durch Aufblasen des Körpers",
+      "Durch reglos wirkendes Totstellen"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2158,36 +3660,51 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "category": "spass_allgemein",
     "area": "mensch",
     "subject": "wissen",
-    "question": "Wie viele Zähne hat ein ausgewachsener Mensch mit vollständigem Gebiss?",
-    "answers": ["28 Zähne", "30 Zähne", "32 Zähne", "36 Zähne"],
-    "correct": 2,
+    "question": "Auf welchem Kontinent liegt Ägypten?",
+    "answers": [
+      "Asien",
+      "Europa",
+      "Australien",
+      "Afrika"
+    ],
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Ein vollständiges Gebiss inklusive der vier Weisheitszähne besteht aus 32 Zähnen."
+    "explanation": "Nur die Halbinsel Sinai im Osten zählt schon zu Asien."
   },
   {
     "id": "mc_all_033",
     "category": "spass_allgemein",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welcher Ozean ist der flächenmäßig größte auf der Erde?",
-    "answers": ["Atlantischer Ozean", "Indischer Ozean", "Pazifischer Ozean", "Arktischer Ozean"],
+    "question": "Wie heißt die Zahl mit sechs Nullen?",
+    "answers": [
+      "Eine Milliarde",
+      "Hunderttausend",
+      "Eine Million",
+      "Eine Billion"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der Pazifik bedeckt mehr als ein Drittel der gesamten Erdoberfläche."
+    "explanation": "Eine Milliarde hat neun Nullen, eine Billion sogar zwölf."
   },
   {
     "id": "mc_all_034",
     "category": "spass_allgemein",
     "area": "astronomie",
     "subject": "wissen",
-    "question": "Welcher Planet wird oft als der 'Rote Planet' bezeichnet?",
-    "answers": ["Venus", "Jupiter", "Mars", "Saturn"],
-    "correct": 2,
+    "question": "Wie viel ist ein Dutzend?",
+    "answers": [
+      "10",
+      "12",
+      "20",
+      "6"
+    ],
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Eisenoxid (Rost) auf der Oberfläche verleiht dem Mars seine rötliche Farbe."
+    "explanation": "Eier werden oft im Dutzend oder halben Dutzend verkauft."
   },
   {
     "id": "mc_all_035",
@@ -2195,7 +3712,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Wie nennt man die Verwandlung einer Raupe in einen Schmetterling?",
-    "answers": ["Symbiose", "Metamorphose", "Photosynthese", "Evolution"],
+    "answers": [
+      "Symbiose",
+      "Metamorphose",
+      "Photosynthese",
+      "Evolution"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2207,7 +3729,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "mensch",
     "subject": "wissen",
     "question": "Welcher Sinn ist beim Menschen direkt mit dem Gedächtniszentrum verknüpft?",
-    "answers": ["Farbensehen", "Hörsinn", "Geruchssinn", "Tastsinn"],
+    "answers": [
+      "Farbensehen",
+      "Hörsinn",
+      "Geruchssinn",
+      "Tastsinn"
+    ],
     "correct": 2,
     "difficulty": "schwer",
     "points": 15,
@@ -2219,7 +3746,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "physik",
     "subject": "wissen",
     "question": "Wer formulierte das allgemeine Gravitationsgesetz nach der Anekdote mit dem Apfel?",
-    "answers": ["Albert Einstein", "Isaac Newton", "Galileo Galilei", "Nikola Tesla"],
+    "answers": [
+      "Albert Einstein",
+      "Isaac Newton",
+      "Galileo Galilei",
+      "Nikola Tesla"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2231,7 +3763,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "natur",
     "subject": "wissen",
     "question": "Aus welchem Material bestehen Fingernägel und Haare zum Großteil?",
-    "answers": ["Kollagen", "Keratin", "Chitin", "Kalk"],
+    "answers": [
+      "Kollagen",
+      "Keratin",
+      "Chitin",
+      "Kalk"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2242,8 +3779,13 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "category": "spass_allgemein",
     "area": "geografie",
     "subject": "wissen",
-    "question": "Welche Wüste ist die größte Trockenwüste der Welt?",
-    "answers": ["Gobi", "Sahara", "Kalahari", "Arabische Wüste"],
+    "question": "Welche ist die größte heiße Wüste der Welt?",
+    "answers": [
+      "Gobi",
+      "Sahara",
+      "Kalahari",
+      "Arabische Wüste"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2255,7 +3797,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Was besitzen Kängurus, um ihre Jungen großzuziehen?",
-    "answers": ["Eierhöhlen", "Einen Beutel", "Unterirdische Bauten", "Nester aus Gras"],
+    "answers": [
+      "Eierhöhlen",
+      "Einen Beutel",
+      "Unterirdische Bauten",
+      "Nester aus Gras"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2267,7 +3814,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "chemie",
     "subject": "wissen",
     "question": "Welcher Stoff ist für die grüne Farbe in Pflanzenblättern verantwortlich?",
-    "answers": ["Karotin-Farbstoff", "Chlorophyll", "Melanin", "Glukose"],
+    "answers": [
+      "Karotin-Farbstoff",
+      "Chlorophyll",
+      "Melanin",
+      "Glukose"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2279,7 +3831,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "astronomie",
     "subject": "wissen",
     "question": "Wie lange braucht das Licht der Sonne ungefähr bis zur Erde?",
-    "answers": ["8 Sekunden", "8 Minuten", "8 Stunden", "8 Tage"],
+    "answers": [
+      "8 Sekunden",
+      "8 Minuten",
+      "8 Stunden",
+      "8 Tage"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2290,12 +3847,17 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "category": "spass_allgemein",
     "area": "mensch",
     "subject": "wissen",
-    "question": "Welches Organ filtert Abbauprodukte aus dem Blut und bildet Urin?",
-    "answers": ["Leber", "Magen", "Niere", "Pankreas"],
-    "correct": 2,
+    "question": "Was ist das Gegenteil von 'waagerecht'?",
+    "answers": [
+      "Diagonal",
+      "Senkrecht",
+      "Parallel",
+      "Horizontal"
+    ],
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Die Nieren sind die zentralen Klär- und Ausscheidungsorgane des Körpers."
+    "explanation": "Waagerecht heißt auch horizontal, senkrecht nennt man auch vertikal."
   },
   {
     "id": "mc_all_044",
@@ -2303,7 +3865,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Welche Insekten sind bekannt für ihre staatenbildende Lebensweise mit einer Königin?",
-    "answers": ["Fliegen", "Ameisen", "Marienkäfer", "Heuschrecken"],
+    "answers": [
+      "Fliegen",
+      "Ameisen",
+      "Marienkäfer",
+      "Heuschrecken"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2315,7 +3882,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "geografie",
     "subject": "wissen",
     "question": "Welches Bergmassiv beherbergt den Mount Everest?",
-    "answers": ["Anden", "Alpen", "Himalaya", "Rocky Mountains"],
+    "answers": [
+      "Anden",
+      "Alpen",
+      "Himalaya",
+      "Rocky Mountains"
+    ],
     "correct": 2,
     "difficulty": "leicht",
     "points": 5,
@@ -2327,7 +3899,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "physik",
     "subject": "wissen",
     "question": "Was misst man mit der Einheit 'Pascal' (Pa)?",
-    "answers": ["Elektrischen Strom", "Druck", "Temperatur", "Masse"],
+    "answers": [
+      "Elektrischen Strom",
+      "Druck",
+      "Temperatur",
+      "Masse"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2339,7 +3916,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "biologie",
     "subject": "wissen",
     "question": "Welcher Fisch ist der größte bekannte Fisch der Welt?",
-    "answers": ["Weißer Hai", "Walhai", "Manta-Rochen", "Riesen-Hecht"],
+    "answers": [
+      "Weißer Hai",
+      "Walhai",
+      "Manta-Rochen",
+      "Riesen-Hecht"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2351,7 +3933,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "geschichte",
     "subject": "wissen",
     "question": "Wo wurden die ersten Olympischen Spiele der Antike ausgetragen?",
-    "answers": ["Rom im römischen Reich", "Olympia", "Athen im antiken Reich", "Sparta in der Antike"],
+    "answers": [
+      "Rom im römischen Reich",
+      "Olympia",
+      "Athen im antiken Reich",
+      "Sparta in der Antike"
+    ],
     "correct": 1,
     "difficulty": "leicht",
     "points": 5,
@@ -2363,7 +3950,12 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "mensch",
     "subject": "wissen",
     "question": "Welche Funktion haben die roten Blutkörperchen (Erythrozyten)?",
-    "answers": ["Wundheilungsprozess", "Sauerstofftransport", "Krankheitsabwehr", "Fettverdauung"],
+    "answers": [
+      "Wundheilungsprozess",
+      "Sauerstofftransport",
+      "Krankheitsabwehr",
+      "Fettverdauung"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
@@ -2375,13 +3967,17 @@ const SPASS_ALLGEMEIN_QUESTIONS = [
     "area": "natur",
     "subject": "wissen",
     "question": "Wie verständigen sich Bienen im Stock über den Fundort von Blumen?",
-    "answers": ["Durch Ultraschall", "Durch einen Schwänzeltanz", "Durch Klopfsignale", "Über Duftdüsen am Ausgang"],
+    "answers": [
+      "Durch Ultraschall",
+      "Durch einen Schwänzeltanz",
+      "Durch Klopfsignale",
+      "Über Duftdüsen am Ausgang"
+    ],
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Der Schwänzeltanz verrät Artgenossen Richtung und Entfernung der Nahrungsquelle."
-  },
-
+  }
 ];
 
 if (typeof window !== "undefined") window.SPASS_ALLGEMEIN_QUESTIONS = SPASS_ALLGEMEIN_QUESTIONS;

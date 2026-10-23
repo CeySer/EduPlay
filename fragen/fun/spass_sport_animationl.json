@@ -38,17 +38,17 @@
     "category": "kinder_anime_cartoons",
     "area": "disney",
     "subject": "wissen",
-    "question": "Wie heisst der treue Schneemann im Disney-Erfolg 'Die Eiskönigin' (Frozen)?",
+    "question": "Wie heißen die drei Neffen von Donald Duck?",
     "answers": [
-      "Sven",
-      "Olaf",
-      "Kristoff",
-      "Hans"
+      "Ricky, Dicky und Dacky",
+      "Fips, Taps und Tops",
+      "Tick, Trick und Track",
+      "Hans, Franz und Fritz"
     ],
-    "correct": 1,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Olaf ist der von Elsa erschaffene Schneemann, der den Sommer liebt."
+    "explanation": "Die drei sind Mitglieder bei den Fähnlein Fieselschweif und haben ein schlaues Handbuch."
   },
   {
     "id": "anim_merged_005",
@@ -106,7 +106,7 @@
     "category": "kinder_anime_cartoons",
     "area": "disney",
     "subject": "wissen",
-    "question": "Wie heisst der Flaschengeist im Disney-Film 'Aladdin'?",
+    "question": "Wie heißt der Flaschengeist im Disney-Film 'Aladdin'?",
     "answers": [
       "Dschinni",
       "Jafar",
@@ -174,17 +174,17 @@
     "category": "kinder_anime_cartoons",
     "area": "anime",
     "subject": "wissen",
-    "question": "Welches Taschenmonster begleitet Ash Ketchum von Anfang an auf seinen Reisen?",
+    "question": "Welcher Kater jagt in Zeichentrickfilmen ständig den Kanarienvogel Tweety?",
     "answers": [
-      "Glurak",
-      "Pikachu",
-      "Schiggy",
-      "Bisasam"
+      "Tom",
+      "Garfield",
+      "Felix",
+      "Sylvester"
     ],
-    "correct": 1,
+    "correct": 3,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Das Elektro-Pokémon Pikachu ist das weltweite Maskottchen der Pokémon-Reihe."
+    "explanation": "Sylvester lispelt und schafft es nie, Tweety zu fangen – meist kommt ihm die Oma dazwischen."
   },
   {
     "id": "anim_merged_013",
@@ -208,12 +208,12 @@
     "category": "kinder_anime_cartoons",
     "area": "zeichentrick_serien",
     "subject": "wissen",
-    "question": "Wie heisst der grüne Oger, der zusammen mit einem sprechenden Esel sein Sumpfreich verteidigt?",
+    "question": "Wie heißt der grüne Oger, der zusammen mit einem sprechenden Esel sein Sumpfreich verteidigt?",
     "answers": [
       "Shrek",
       "Fiona",
       "Farquaad",
-      "Gronkh"
+      "Der Gestiefelte Kater"
     ],
     "correct": 0,
     "difficulty": "leicht",
@@ -225,7 +225,7 @@
     "category": "kinder_anime_cartoons",
     "area": "pixar",
     "subject": "wissen",
-    "question": "Wie heißt der kleine Müllaufräum-Roter im gleichnamigen Pixar-Film auf der verlassenen Erde?",
+    "question": "Wie heißt der kleine Müllaufräum-Roboter im gleichnamigen Pixar-Film auf der verlassenen Erde?",
     "answers": [
       "EVE",
       "WALL-E",
@@ -276,17 +276,17 @@
     "category": "kinder_anime_cartoons",
     "area": "anime",
     "subject": "wissen",
-    "question": "Wie heisst die berühmte Verwandlungs-Form von Son-Goku in 'Dragon Ball Z' mit goldenen Haaren?",
+    "question": "Wie heißt der große, tollpatschige Hund, der mit Micky Maus befreundet ist?",
     "answers": [
-      "Ultra Instinkt",
-      "Super-Saiyajin",
-      "Kaioken",
-      "Ozaroo"
+      "Goofy",
+      "Pluto",
+      "Kater Karlo",
+      "Rudi Ross"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Son-Goku verwandelt sich im Kampf gegen Freezer erstmals auf Namek in den Super-Saiyajin."
+    "explanation": "Goofy läuft auf zwei Beinen und spricht – anders als Mickys Haustier Pluto."
   },
   {
     "id": "anim_merged_020",
@@ -378,17 +378,17 @@
     "category": "kinder_anime_cartoons",
     "area": "zeichentrick_serien",
     "subject": "wissen",
-    "question": "Wer ist der beste Freund von Spongebob Schwammkopf?",
+    "question": "Wie heißen die beiden Brüder, die mit dem Streifenhörnchen Alvin singen?",
     "answers": [
-      "Thaddäus Tentakel",
-      "Patrick Star (Seestern)",
-      "Mister Krabs",
-      "Plankton"
+      "Simon und Theodore",
+      "Chip und Chap",
+      "Tick und Trick",
+      "Max und Moritz"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Der rosa Seestern Patrick wohnt unter einem Stein direkt neben SpongeBob."
+    "explanation": "Alvin und die Chipmunks singen mit ihren hohen Stimmen schon seit 1958."
   },
   {
     "id": "anim_merged_026",
@@ -429,7 +429,7 @@
     "category": "kinder_anime_cartoons",
     "area": "pixar",
     "subject": "wissen",
-    "question": "Welcher Vorname gehört der Familie 'Unglaublich' im Film 'Die Unglaublichen'?",
+    "question": "Wie lautet der Nachname der Familie aus dem Film 'Die Unglaublichen'?",
     "answers": [
       "Smith",
       "Parr",
@@ -446,7 +446,7 @@
     "category": "kinder_anime_cartoons",
     "area": "zeichentrick_serien",
     "subject": "wissen",
-    "question": "Welche Zeichentrickfigur liebt Karotten und stellt die Frage: 'Mein Name ist Hase, ich weiß von nichts' / 'Eh, doc, was geht ab?'?",
+    "question": "Welche Zeichentrickfigur knabbert an Karotten und fragt: 'Was gibt's Neues, Doc?'",
     "answers": [
       "Daffy Duck",
       "Bugs Bunny",
@@ -480,24 +480,24 @@
     "category": "kinder_anime_cartoons",
     "area": "zeichentrick_serien",
     "subject": "wissen",
-    "question": "Wie heisst die Heimatstadt der Familie Griffin in 'Family Guy'?",
+    "question": "Welcher Bär trägt ein rotes T-Shirt und liebt Honig über alles?",
     "answers": [
-      "Springfield",
-      "Quahog",
-      "South Park",
-      "Langley Falls"
+      "Winnie Puuh",
+      "Paddington",
+      "Balu",
+      "Brummbär"
     ],
-    "correct": 1,
+    "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Family Guy spielt im fiktiven Quahog im US-Bundesstaat Rhode Island."
+    "explanation": "Winnie Puuh wohnt im Hundertmorgenwald – erfunden hat ihn der Engländer A. A. Milne."
   },
   {
     "id": "anim_merged_032",
     "category": "kinder_anime_cartoons",
     "area": "disney",
     "subject": "wissen",
-    "question": "Wie heisst die chinesische Kriegerin, die sich als Mann verkleidet, um anstelle ihres Vaters in den Krieg zu ziehen?",
+    "question": "Wie heißt die chinesische Kriegerin, die sich als Mann verkleidet, um anstelle ihres Vaters in den Krieg zu ziehen?",
     "answers": [
       "Mulan",
       "Pocahontas",
@@ -516,7 +516,7 @@
     "subject": "wissen",
     "question": "Wie heißt der blaue vergessliche Fisch, der Marlin bei der Suche nach Nemo hilft?",
     "answers": [
-      "Dory",
+      "Dorie",
       "Bella",
       "Nia",
       "Lilo"
@@ -524,31 +524,31 @@
     "correct": 0,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Dory leidet unter Verlust des Kurzzeitgedächtnisses und erhielt später ihren eigenen Film 'Findet Dory'."
+    "explanation": "Dorie leidet unter Verlust des Kurzzeitgedächtnisses und erhielt später ihren eigenen Film 'Findet Dorie'."
   },
   {
     "id": "anim_merged_034",
     "category": "kinder_anime_cartoons",
     "area": "zeichentrick_serien",
     "subject": "wissen",
-    "question": "Wie heißen die vier Grundschüler aus der US-Kultserie 'South Park'?",
+    "question": "Wie heißt das kleine rosa Schweinchen, das mit Winnie Puuh befreundet ist?",
     "answers": [
-      "Stan, Kyle, Eric (Cartman) und Kenny",
-      "Bart, Milhouse, Nelson und Martin",
-      "Fred, Barney, Wilma und Betty",
-      "Tom, Dick, Harry und Bob"
+      "I-Aah",
+      "Ferkel",
+      "Rabbit",
+      "Ruh"
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Bekannt wurde die Serie u. a. durch den Dauerbrenner-Satz: 'Oh mein Gott, sie haben Kenny getötet!'."
+    "explanation": "Ferkel ist ziemlich ängstlich, aber ein treuer Freund."
   },
   {
     "id": "anim_merged_035",
     "category": "kinder_anime_cartoons",
     "area": "disney",
     "subject": "wissen",
-    "question": "Wie heisst der böse Löwe mit der Narbe im Gesicht in 'Der König der Löwen'?",
+    "question": "Wie heißt der böse Löwe mit der Narbe im Gesicht in 'Der König der Löwen'?",
     "answers": [
       "Mufasa",
       "Scar",
@@ -565,24 +565,24 @@
     "category": "kinder_anime_cartoons",
     "area": "anime",
     "subject": "wissen",
-    "question": "Wie heisst das Ninja-Dorf, aus dem der blonde Held 'Naruto Uzumaki' stammt?",
+    "question": "Wie heißt die Ente, in die Donald Duck verliebt ist?",
     "answers": [
-      "Konohagakure (Dorf hinter den Blättern)",
-      "Sunagakure",
-      "Kirigakure",
-      "Kumogakure"
+      "Daisy Duck",
+      "Minnie Duck",
+      "Gundel Gaukeley",
+      "Oma Duck"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Naruto träumt davon, der oberste Anführer (Hokage) von Konoha zu werden."
+    "explanation": "Daisy trägt eine Schleife und ist oft genervt von Donalds Wutanfällen."
   },
   {
     "id": "anim_merged_037",
     "category": "kinder_anime_cartoons",
     "area": "disney",
     "subject": "wissen",
-    "question": "Welcher Gegenstand erweckt die Schlafende Schönheit (Dornröschen) aus ihrem Zauberschlaf?",
+    "question": "Was weckt Dornröschen aus ihrem Zauberschlaf?",
     "answers": [
       "Ein Zaubertrank",
       "Der Kuss der wahren Liebe",
@@ -599,24 +599,24 @@
     "category": "kinder_anime_cartoons",
     "area": "zeichentrick_serien",
     "subject": "wissen",
-    "question": "Wie heißt der chaotische Wissenschaftler-Opa in der Sci-Fi-Animationsserie 'Rick and Morty'?",
+    "question": "Welche Farbe hat Thomas, die kleine Lokomotive?",
     "answers": [
-      "Rick Sanchez",
-      "Morty Smith",
-      "Jerry Smith",
-      "Birdperson"
+      "Rot",
+      "Grün",
+      "Blau",
+      "Gelb"
     ],
-    "correct": 0,
+    "correct": 2,
     "difficulty": "leicht",
     "points": 5,
-    "explanation": "Rick reist mit seinem Enkel Morty durch verschiedene Dimensionen und Universen."
+    "explanation": "Thomas trägt die Nummer 1 und fährt auf der Insel Sodor."
   },
   {
     "id": "anim_merged_039",
     "category": "kinder_anime_cartoons",
     "area": "disney",
     "subject": "wissen",
-    "question": "Welches Experiment mit der Nummer 626 landet als blaues Ausserirdisches 'Lilo & Stitch' auf Hawaii?",
+    "question": "Welches Experiment mit der Nummer 626 landet als blaues außerirdisches 'Lilo & Stitch' auf Hawaii?",
     "answers": [
       "Stitch",
       "Jumba",

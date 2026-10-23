@@ -48,10 +48,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Fill in the correct tense: 'While I ... a book, the telephone suddenly rang.'",
     "answers": [
-      "had already read the book",
-      "would have read a book",
-      "have read the whole book",
-      "was reading a long book"
+      "had already read",
+      "would have read",
+      "have read",
+      "was reading"
     ],
     "correct": 3,
     "difficulty": "mittel",
@@ -120,10 +120,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which verb form correctly completes Conditional Sentence Type 1: 'If it rains, we ... at home.'?",
     "answers": [
-      "would stay at home",
-      "had stayed at home",
-      "stayed at home today",
-      "will stay at home"
+      "would stay",
+      "had stayed",
+      "stayed",
+      "will stay"
     ],
     "correct": 3,
     "difficulty": "mittel",
@@ -138,10 +138,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which verb form correctly completes Conditional Sentence Type 2: 'If I had money, I ... a car.'?",
     "answers": [
-      "had already bought a car",
-      "will probably buy a car",
-      "would buy a new car",
-      "should buy a used car"
+      "had already bought",
+      "will probably buy",
+      "would buy",
+      "should buy"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -336,10 +336,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which sentence uses an Adverb of Manner correctly?",
     "answers": [
-      "She sang extremely beautifully.",
+      "She sang extremely beautiful.",
       "She sings very beautifully.",
-      "She sings quite beautifully now.",
-      "She sings really wonderfully."
+      "She sings quite beautiful now.",
+      "She sings really wonderful."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -390,12 +390,12 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which sentence contains a correct contact clause (omitted relative pronoun)?",
     "answers": [
-      "All options are correct.",
+      "The boy won the race is my friend.",
       "The girl I saw was happy.",
-      "The book I read was great.",
-      "The house I built is big."
+      "The car is red belongs to me.",
+      "The man lives next door is nice."
     ],
-    "correct": 0,
+    "correct": 1,
     "difficulty": "mittel",
     "points": 10,
     "explanation": "Ist das Relativpronomen das Objekt im Relativsatz, kann es komplett weggelassen werden (Contact Clause)."
@@ -444,7 +444,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which sentence correctly uses 'for' instead of 'since'?",
     "answers": [
-      "He has studied for Monday.",
+      "He has studied for 2015.",
       "He has studied for 9 o'clock.",
       "He has studied for yesterday.",
       "He has studied for two hours."
@@ -516,7 +516,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "englisch",
-    "question": "What is a 'False Friend' when translating German 'bekommen' into English?",
+    "question": "What is the correct English translation of German 'bekommen' (watch out: false friend)?",
     "answers": [
       "To become something",
       "To behave properly",
@@ -534,7 +534,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "englisch",
-    "question": "What is the correct English translation of the German word 'Gift' (Poison)?",
+    "question": "What is the correct English translation of the German word 'Gift' (giftiger Stoff)?",
     "answers": [
       "Translation: poison",
       "Translation: potion",
@@ -588,12 +588,12 @@ const K7_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "englisch",
-    "question": "Which phrasal verb means 'to give up' or 'stop doing something'?",
+    "question": "Which phrasal verb means 'to stop doing something'?",
     "answers": [
       "Verb: carry on doing",
       "Verb: look forward to",
       "Verb: take care of",
-      "Verb: quit / give up"
+      "Verb: give up"
     ],
     "correct": 3,
     "difficulty": "mittel",
@@ -717,7 +717,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "question": "What does the idiom 'piece of cake' mean?",
     "answers": [
       "Something very easy",
-      "A expensive purchase",
+      "An expensive purchase",
       "A sweet dessert slice",
       "A difficult challenge"
     ],
@@ -860,10 +860,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "How do you make a polite suggestion to a group of friends?",
     "answers": [
-      "Shall we go to the cinema now?",
+      "Go to the cinema with me now!",
       "Why don't we go to the cinema?",
-      "How about going to the cinema?",
-      "Maybe we could go to the cinema?"
+      "You must go to the cinema.",
+      "We go to the cinema, end of story."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -878,10 +878,10 @@ const K7_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is the polite phrase to order food in a restaurant?",
     "answers": [
-      "Could I please order...",
+      "Give me...",
       "I would like to have...",
-      "May I have a look at...",
-      "I'd like to order some..."
+      "Bring me now...",
+      "I want..."
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -1151,7 +1151,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "question": "What is the famous prehistoric stone monument in Wiltshire, England called?",
     "answers": [
       "Monument: Big Ben",
-      "Monument: Hadrian Wall",
+      "Monument: Hadrian's Wall",
       "Monument: Stonehenge",
       "Monument: London Eye"
     ],
@@ -1225,7 +1225,7 @@ const K7_ENGLISCH_QUESTIONS = [
       "Loch Ness Lake",
       "Snowdonia Park",
       "Giant's Causeway",
-      "White Cliffs Dover"
+      "White Cliffs of Dover"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -1238,9 +1238,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "englisch",
-    "question": "What is the famous traditional savory Scottish dish made from sheep's offal?",
+    "question": "What is the famous traditional savoury Scottish dish made from sheep's offal?",
     "answers": [
-      "The dish: Shepherd pie",
+      "The dish: Shepherd's pie",
       "The dish: Fish and chips",
       "The dish: Haggis",
       "The dish: Roast beef"
@@ -1256,7 +1256,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 7,
     "subject": "englisch",
-    "question": "What is the classic British fast food meal consisting of battered fish and potato wedges?",
+    "question": "What is the classic British fast food meal consisting of battered fish and fried potatoes?",
     "answers": [
       "Full English breakfast",
       "Sunday roast dinner",
@@ -1585,9 +1585,9 @@ const K7_ENGLISCH_QUESTIONS = [
     "question": "Which pair of homophones has identical pronunciation but different spelling u. meaning?",
     "answers": [
       "Pair: there / their",
-      "Pair: hear / here",
-      "Pair: write / right",
-      "Pair: flour / flower"
+      "Pair: hear / hair",
+      "Pair: write / white",
+      "Pair: flower / floor"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -1646,7 +1646,7 @@ const K7_ENGLISCH_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Das Gegenteil von 'ancient' (uralt/antisch) ist 'modern' (neuzeitlich)."
+    "explanation": "Das Gegenteil von 'ancient' (uralt/antik) ist 'modern' (neuzeitlich)."
   },
   {
     "id": "k7_en_092",
@@ -1804,7 +1804,22 @@ const K7_ENGLISCH_QUESTIONS = [
     "difficulty": "mittel",
     "points": 10,
     "explanation": "In informellen Briefen oder E-Mails an Freunde schreibt man 'Best wishes', 'Warm regards' oder 'Love'."
-  }
+  },
+  {"id": "luecke_en_k3_006", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "I have ___ been to London.", "answers": ["never", "ever", "yet", "yesterday"], "correct": 0, "difficulty": "leicht", "points": 10, "explanation": "Present Perfect (have/has + 3. Form) für Erfahrungen bis jetzt. „never“ = noch nie, steht zwischen have und der 3. Form."},
+  {"id": "luecke_en_k3_011", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "___ you finished?", "answers": ["Have", "Has", "Did", "Is"], "correct": 0, "difficulty": "leicht", "points": 10, "explanation": "Frage im Present Perfect: Have/Has + Subjekt + 3. Form. Bei „you“ → Have you finished?"},
+  {"id": "luecke_en_k4_001", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "If it rains, we ___ stay at home.", "answers": ["will", "would", "are", "do"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "If-Satz Typ 1: If + Simple Present, Hauptsatz mit will + Grundform."},
+  {"id": "luecke_en_k4_002", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "She has ___ finished her work.", "answers": ["already", "yet", "still", "never"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Present Perfect: „already“ (= schon) steht zwischen has/have und der 3. Form."},
+  {"id": "luecke_en_k4_003", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "I have lived here ___ five years.", "answers": ["for", "since", "from", "during"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Present Perfect mit Zeitangabe: for + Zeitdauer (five years), since + Zeitpunkt (since 2020)."},
+  {"id": "luecke_en_k4_006", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "The letter was ___ by my friend.", "answers": ["written", "wrote", "write", "writing"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Passiv im Simple Past: was/were + 3. Form (write – wrote – written)."},
+  {"id": "luecke_en_k4_013", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "She used to ___ the piano.", "answers": ["play", "playing", "played", "plays"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "used to + Grundform = früher (regelmäßig) etwas getan haben, heute nicht mehr."},
+  {"id": "luecke_en_k4_018", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "___ of the students passed.", "answers": ["Most", "Much", "Many of", "Every"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "most of + the + Nomen = die meisten der … . „Many of“ geht nicht, weil „of“ schon im Satz steht; „much“ steht nur bei Unzählbarem."},
+  {"id": "luecke_en_k5_009", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "topic": "lueckentext", "question": "It depends ___ the weather.", "answers": ["on", "of", "at", "from"], "correct": 0, "difficulty": "mittel", "points": 10, "explanation": "Feste Verbindung: depend on = abhängen von."},
+  {"id": "k6en104", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "question": "Passive present: English ___ here.", "answers": ["speak", "is spoken", "spoke", "speaking"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Passiv im Simple Present: am/is/are + 3. Form → English is spoken here.", "topic": "erweiterung"},
+  {"id": "k6en120", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "question": "Question: How long ___ you studied?", "answers": ["do", "have", "has", "are"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "How long + Present Perfect fragt nach der Dauer bis jetzt: How long have you studied?", "topic": "erweiterung"},
+  {"id": "k6en125", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "question": "Countable: „advice“ is …", "answers": ["countable", "uncountable", "verb", "plural only"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "advice (= Rat) ist im Englischen unzählbar: kein „an advice“, kein Plural. Richtig: some advice / a piece of advice.", "topic": "erweiterung"},
+  {"id": "k6en126", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "question": "„On the other hand“ signals …", "answers": ["addition", "contrast", "time", "place"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "„On the other hand“ (= andererseits) leitet einen Gegensatz ein.", "topic": "erweiterung"},
+  {"id": "k6en127", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "question": "Make/do: ___ a decision", "answers": ["do", "make", "does", "have"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Feste Verbindung: make a decision = eine Entscheidung treffen (nicht „do“).", "topic": "erweiterung"},
+  {"id": "k6en129", "category": "k7_englisch", "area": "schule", "grade": 7, "subject": "englisch", "question": "Infinitive of purpose: I study ___ learn.", "answers": ["for", "to", "so", "at"], "correct": 1, "difficulty": "mittel", "points": 10, "explanation": "Zweck ausdrücken (um … zu): to + Grundform → I study to learn.", "topic": "erweiterung"}
 ];
 
 // Einbindung für Browser

@@ -390,7 +390,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "englisch",
-    "question": "Welcher verneinte Satz ist grammikalisch korrekt?",
+    "question": "Welcher verneinte Satz ist grammatikalisch korrekt?",
     "answers": [
       "He not went",
       "He didn't went",
@@ -557,7 +557,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "question": "Wann verwendet man das 'going-to future'?",
     "answers": [
       "Feste Zukunftspläne",
-      "Gewohnheiten oft",
+      "Gewohnheiten",
       "Vergangene Taten",
       "Regelmäßige Dinge"
     ],
@@ -1375,7 +1375,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "question": "Wann nutzt man 'many'?",
     "answers": [
       "Bei Verben im Präsens",
-      "Bei Eigennamen Orten",
+      "Bei Ortsnamen",
       "Bei zählbaren Nomen",
       "Bei unzählbaren Nomen"
     ],
@@ -1394,7 +1394,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "answers": [
       "Bei Verben im Präsens",
       "Bei zählbaren Nomen",
-      "Bei Eigennamen Orten",
+      "Bei Ortsnamen",
       "Bei unzählbaren Nomen"
     ],
     "correct": 3,
@@ -1466,7 +1466,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Was bedeutet die Wegbeschreibung 'turn left'?",
     "answers": [
-      "umkehren sofort",
+      "sofort umkehren",
       "rechts abbiegen",
       "geradeaus gehen",
       "links abbiegen"
@@ -1503,8 +1503,8 @@ const K6_ENGLISCH_QUESTIONS = [
     "question": "Was bedeutet die Präposition 'opposite'?",
     "answers": [
       "hinter dem Haus",
-      "zwischen drin",
-      "nebenan bei",
+      "zwischen",
+      "neben",
       "gegenüber von"
     ],
     "correct": 3,
@@ -1592,7 +1592,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Was ist eine 'sightseeing tour'?",
     "answers": [
-      "Schiffsreise Meer",
+      "Schiffsreise",
       "Sportwettkampf",
       "Einkaufsbummel",
       "Stadtbesichtigung"
@@ -2132,7 +2132,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "correct": 2,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Spelled 'read', but pronounced like the color 'red'."
+    "explanation": "Spelled 'read', but pronounced like the colour 'red'."
   },
   {
     "id": "k6_en2_018",
@@ -2368,7 +2368,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "correct": 1,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "Long adjectives (3+ syllables) use 'more' in the comparative."
+    "explanation": "Long adjectives (most with two or more syllables) use 'more' in the comparative."
   },
   {
     "id": "k6_en2_031",
@@ -2828,7 +2828,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "englisch",
-    "question": "What does 'do sports' mean in German?",
+    "question": "What does 'do sport' mean in German?",
     "answers": [
       "Turnier gewinnen",
       "Spiele kaufen",
@@ -2838,7 +2838,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "correct": 3,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "We say 'do sports' or 'play football/tennis'."
+    "explanation": "We say 'do sport' or 'play football/tennis'."
   },
   {
     "id": "k6_en2_057",
@@ -2869,7 +2869,7 @@ const K6_ENGLISCH_QUESTIONS = [
       "sich kämmen",
       "sich waschen",
       "sich anziehen",
-      "aufstehen früh"
+      "früh aufstehen"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2902,10 +2902,10 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What does 'go to bed' mean in German?",
     "answers": [
-      "aufstehen morgen",
-      "schlafen träumen",
+      "aufstehen",
+      "träumen",
       "ins Bett gehen",
-      "müde werden nun"
+      "müde werden"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -2925,7 +2925,7 @@ const K6_ENGLISCH_QUESTIONS = [
       "The London Eye",
       "Tower Bridge",
       "St Paul's Dome",
-      "Big Ben Tower"
+      "Big Ben"
     ],
     "correct": 3,
     "difficulty": "mittel",
@@ -2995,9 +2995,9 @@ const K6_ENGLISCH_QUESTIONS = [
     "question": "What is the famous historic fortress near the Thames in London?",
     "answers": [
       "The Tower of London",
-      "Dover Castle Site",
+      "Dover Castle",
       "Edinburgh Castle",
-      "Leeds Castle Site"
+      "Leeds Castle"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3028,12 +3028,12 @@ const K6_ENGLISCH_QUESTIONS = [
     "area": "schule",
     "grade": 6,
     "subject": "englisch",
-    "question": "What color are traditional double-decker buses in London?",
+    "question": "What colour are traditional double-decker buses in London?",
     "answers": [
-      "Color: Green",
-      "Color: Blue",
-      "Color: Red",
-      "Color: Yellow"
+      "Colour: Green",
+      "Colour: Blue",
+      "Colour: Red",
+      "Colour: Yellow"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3084,7 +3084,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is the name of the huge famous park in central London?",
     "answers": [
-      "Name: Regent Park",
+      "Name: Phoenix Park",
       "Name: Hyde Park",
       "Name: Victoria Park",
       "Name: Central Park"
@@ -3120,10 +3120,10 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What does the activity 'sightseeing' mean in German?",
     "answers": [
-      "Sehenswürdigkeiten",
+      "Sehenswürdigkeiten besichtigen",
       "Einkaufen gehen",
       "Wandern im Wald",
-      "Spazieren im Park"
+      "Im Park spazieren"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3138,15 +3138,15 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is 'the Underground' in London?",
     "answers": [
-      "Die U-Bahn Stadt",
+      "Die U-Bahn",
       "Der Kellerbereich",
       "Die Tropfsteinhöhle",
-      "Der Elbtunnel Ort"
+      "Der Elbtunnel"
     ],
     "correct": 0,
     "difficulty": "mittel",
     "points": 10,
-    "explanation": "The public subway network of London."
+    "explanation": "The public underground railway network of London."
   },
   {
     "id": "k6_en2_074",
@@ -3157,7 +3157,7 @@ const K6_ENGLISCH_QUESTIONS = [
     "question": "What is Covent Garden famous for in London?",
     "answers": [
       "Street performers",
-      "Royal palaces site",
+      "Royal palaces",
       "High skyscrapers",
       "Football stadium"
     ],
@@ -3174,8 +3174,8 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "Which guards wear big black bearskin hats at Buckingham Palace?",
     "answers": [
-      "Tour guides town",
-      "Bus drivers site",
+      "Tour guides",
+      "Bus drivers",
       "The King's Guard",
       "Police officers"
     ],
@@ -3192,10 +3192,10 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What is the cathedral with the huge dome in central London called?",
     "answers": [
-      "York Minster site",
+      "York Minster",
       "St Paul's Cathedral",
       "Westminster Abbey",
-      "Canterbury Church"
+      "Canterbury Cathedral"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -3229,9 +3229,9 @@ const K6_ENGLISCH_QUESTIONS = [
     "question": "Which famous detective lived at 221B Baker Street in stories?",
     "answers": [
       "Sherlock Holmes",
-      "James Bond agent",
-      "Robin Hood hero",
-      "Harry Potter boy"
+      "James Bond",
+      "Robin Hood",
+      "Harry Potter"
     ],
     "correct": 0,
     "difficulty": "mittel",
@@ -3423,10 +3423,10 @@ const K6_ENGLISCH_QUESTIONS = [
     "subject": "englisch",
     "question": "What does the prepositional phrase 'opposite the bank' mean?",
     "answers": [
-      "Neben der Bankhaus",
+      "Neben der Bank",
       "Gegenüber der Bank",
-      "Hinter der Bankhaus",
-      "Vor der Bankhaus"
+      "Hinter der Bank",
+      "Vor der Bank"
     ],
     "correct": 1,
     "difficulty": "mittel",
@@ -3552,7 +3552,7 @@ const K6_ENGLISCH_QUESTIONS = [
       "Auf der Kreuzung",
       "Am Ende des Weges",
       "An der Straßenecke",
-      "In der Mitte Platz"
+      "In der Mitte des Platzes"
     ],
     "correct": 2,
     "difficulty": "mittel",
@@ -3631,36 +3631,13 @@ const K6_ENGLISCH_QUESTIONS = [
     "points": 10,
     "explanation": "Standard polite greeting response in English conversation."
   },
-  {"id":"k6en101","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Past perfect: I ___ eaten.","answers":["have","had","has","was"],"correct":1,"difficulty":"mittel","points":10,"explanation":"had eaten.","topic":"erweiterung"},
-  {"id":"k6en102","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Although“ / „despite“: despite + …","answers":["clause with verb always","noun/-ing","only adjective","past only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"despite the rain.","topic":"erweiterung"},
-  {"id":"k6en103","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Conditionals type 2: If I ___ rich …","answers":["am","was/were","will be","been"],"correct":1,"difficulty":"mittel","points":10,"explanation":"were.","topic":"erweiterung"},
-  {"id":"k6en104","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Passive present: English ___ here.","answers":["speak","is spoken","spoke","speaking"],"correct":1,"difficulty":"mittel","points":10,"explanation":"is spoken.","topic":"erweiterung"},
-  {"id":"k6en105","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Sustainable“ means …","answers":["kurzleb","nachhaltig","laut","teuer"],"correct":1,"difficulty":"mittel","points":10,"explanation":"nachhaltig.","topic":"erweiterung"},
-  {"id":"k6en106","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Reported: She said she ___ tired.","answers":["is","was","be","were"],"correct":1,"difficulty":"mittel","points":10,"explanation":"was.","topic":"erweiterung"},
-  {"id":"k6en107","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Gerund after „mind“: Do you mind ___?","answers":["to open","opening","opened","open"],"correct":1,"difficulty":"mittel","points":10,"explanation":"opening.","topic":"erweiterung"},
-  {"id":"k6en108","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"False friend „become“ = …","answers":["bekommen","werden","willkommen","bekommen falsch"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden.","topic":"erweiterung"},
-  {"id":"k6en109","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Climate change“ = …","answers":["Wetter", "Klimawandel", "Kleidung", "Klasse"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Klimawandel.","topic":"erweiterung"},
-  {"id":"k6en110","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Relative: the book ___ I read","answers":["who","which/that","where","whose only person"],"correct":1,"difficulty":"mittel","points":10,"explanation":"which/that.","topic":"erweiterung"},
-  {"id":"k6en111","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Modal deduction: He ___ be home; lights on.","answers":["can’t","must","mustn’t as must","shouldn’t"],"correct":1,"difficulty":"mittel","points":10,"explanation":"must.","topic":"erweiterung"},
+  {"id":"k6en108","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"False friend „become“ = …","answers":["bekommen","werden","willkommen","bequem"],"correct":1,"difficulty":"mittel","points":10,"explanation":"werden.","topic":"erweiterung"},
   {"id":"k6en112","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Adjective → adverb: careful →","answers":["carefuly","carefully","carefull","care"],"correct":1,"difficulty":"mittel","points":10,"explanation":"carefully.","topic":"erweiterung"},
-  {"id":"k6en113","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Economy“ vs „economics“: economics is …","answers":["Wirtschaftssystem","Wirtschaftswissenschaft","Sparsamkeit","Geschäft"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Fach.","topic":"erweiterung"},
-  {"id":"k6en114","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Phrasal: look up a word = …","answers":["nachschlagen","hochschauen nur","suchen Person","löschen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"nachschlagen.","topic":"erweiterung"},
-  {"id":"k6en115","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Future continuous: this time tomorrow we ___","answers":["fly","will be flying","flew","flying"],"correct":1,"difficulty":"mittel","points":10,"explanation":"will be flying.","topic":"erweiterung"},
-  {"id":"k6en116","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Equality“ means …","answers":["Ungleichheit","Gleichheit","Qualität","Menge"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gleichheit.","topic":"erweiterung"},
-  {"id":"k6en117","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Article: ___ university (you-sound)","answers":["an","a","the only","some"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a university.","topic":"erweiterung"},
-  {"id":"k6en118","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Comparison: as … as","answers":["more","adj","er form","most"],"correct":1,"difficulty":"mittel","points":10,"explanation":"as big as.","topic":"erweiterung"},
-  {"id":"k6en119","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Invent“ vs „discover“: invent = …","answers":["finden was da war","erfinden","verlieren","messen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erfinden.","topic":"erweiterung"},
-  {"id":"k6en120","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Question: How long ___ you studied?","answers":["do","have","has","are"],"correct":1,"difficulty":"mittel","points":10,"explanation":"have you studied.","topic":"erweiterung"},
-  {"id":"k6en121","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Responsible for“ + …","answers":["to-infinitive always","noun/-ing","past only","adjective only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"for the project.","topic":"erweiterung"},
-  {"id":"k6en122","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Synonym „help“?","answers":["assist","hinder","stop","break"],"correct":0,"difficulty":"mittel","points":10,"explanation":"assist.","topic":"erweiterung"},
-  {"id":"k6en123","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Democracy“ = …","answers":["Diktatur","Demokratie","Demo nur","Büro"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Demokratie.","topic":"erweiterung"},
-  {"id":"k6en124","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Past simple irregular: teach →","answers":["teached","taught","thought","teecht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"taught.","topic":"erweiterung"},
-  {"id":"k6en125","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Countable: „advice“ is …","answers":["countable","uncountable","verb","plural only"],"correct":1,"difficulty":"mittel","points":10,"explanation":"uncountable.","topic":"erweiterung"},
-  {"id":"k6en126","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„On the other hand“ signals …","answers":["addition","contrast","time","place"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Gegensatz.","topic":"erweiterung"},
-  {"id":"k6en127","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Make/do: ___ a decision","answers":["do","make","does","making as main"],"correct":1,"difficulty":"mittel","points":10,"explanation":"make a decision.","topic":"erweiterung"},
-  {"id":"k6en128","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Global warming“ = …","answers":["Eiszeit","globale Erwärmung","Regen","Wind"],"correct":1,"difficulty":"mittel","points":10,"explanation":"Erwärmung.","topic":"erweiterung"},
-  {"id":"k6en129","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Infinitive of purpose: I study ___ learn.","answers":["for","to","so","at"],"correct":1,"difficulty":"mittel","points":10,"explanation":"to learn.","topic":"erweiterung"},
-  {"id":"k6en130","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Who“ vs „which“: people →","answers":["which","who","where","when"],"correct":1,"difficulty":"mittel","points":10,"explanation":"who.","topic":"erweiterung"}
+  {"id":"k6en114","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Phrasal: look up a word = …","answers":["nachschlagen","hochschauen","aufräumen","löschen"],"correct":0,"difficulty":"mittel","points":10,"explanation":"nachschlagen.","topic":"erweiterung"},
+  {"id":"k6en117","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Indefinite article: ___ university (you-sound)","answers":["an","a","the","some"],"correct":1,"difficulty":"mittel","points":10,"explanation":"a university.","topic":"erweiterung"},
+  {"id":"k6en118","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Comparison: Tom is as ___ as Sam. (big)","answers":["bigger","big","biggest","more big"],"correct":1,"difficulty":"mittel","points":10,"explanation":"as big as.","topic":"erweiterung"},
+  {"id":"k6en119","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"„Invent“ vs „discover“: invent = …","answers":["entdecken","erfinden","verlieren","messen"],"correct":1,"difficulty":"mittel","points":10,"explanation":"erfinden.","topic":"erweiterung"},
+  {"id":"k6en124","category":"k6_englisch","area":"schule","grade":6,"subject":"englisch","question":"Past simple irregular: teach →","answers":["teached","taught","thought","teecht"],"correct":1,"difficulty":"mittel","points":10,"explanation":"taught.","topic":"erweiterung"}
 ];
 // Einbindung für Browser
 if (typeof window !== 'undefined') {

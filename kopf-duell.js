@@ -147,7 +147,7 @@
         const players = snap.data().players || {};
         Object.keys(players).forEach(function (k) {
             const p = players[k];
-            p.score = 0; p.kRichtig = 0; p.kFalsch = 0; p.kFertig = false; p.kSpaet = null;
+            p.score = 0; p.kRichtig = 0; p.kFalsch = 0; p.kFertig = false; p.kSpaet = null; p.kAufgabe = "";
             p.pending = false; p.hasAnswered = false; p.coinsClaimed = false; p.lastRoundPoints = 0;
         });
         const kdUpd = (typeof sicherPlayersUpdate === "function") ? function (u) { return sicherPlayersUpdate(ref, u); } : function (u) { return ref.update(u); };
@@ -216,8 +216,11 @@
             ${padHtml()}
         </div>`;
     }
+    const tvVorher = {};
+    let tvNachzeichnen = null;
     function boardHtml(data, gross) {
         const pl = data.players || {};
+
         const keys = Object.keys(pl).filter(function (k) { return !pl[k].pending; })
             .sort(function (a, b) { return (pl[b].score || 0) - (pl[a].score || 0); });
         const max = Math.max(1, ...keys.map(function (k) { return pl[k].score || 0; }));
@@ -227,9 +230,22 @@
             const w = Math.round(((p.score || 0) / max) * 100);
             const rang = keys.filter(function (x) { return (pl[x].score || 0) > (p.score || 0); }).length;
             const fs = gross ? "clamp(16px,2.6vw,30px)" : "13px";
-            return `<div style="display:flex;align-items:center;gap:${gross ? 14 : 8}px;font-size:${fs};font-weight:800">
+            let blitz = "", aufgabeHtml = "";
+            if (gross) {
+                const id = data.sprintId + ":" + k;
+                const v = tvVorher[id] || { r: p.kRichtig || 0, f: p.kFalsch || 0 };
+                let bis = v.bis || 0, farbe = v.farbe || "";
+                if ((p.kRichtig || 0) > v.r) { farbe = "rgba(16,185,129,.4)"; bis = Date.now() + 900; }
+                else if ((p.kFalsch || 0) > v.f) { farbe = "rgba(239,68,68,.4)"; bis = Date.now() + 900; }
+                tvVorher[id] = { r: p.kRichtig || 0, f: p.kFalsch || 0, bis: bis, farbe: farbe };
+                if (Date.now() < bis) blitz = "background:" + farbe + ";";
+                const t = (!p.kFertig && data.status === "playing" && p.kAufgabe) ? e(String(p.kAufgabe)).replace(/-/g, "−") + " = ?" : (p.kFertig ? "fertig ✓" : "");
+                aufgabeHtml = `<span style="flex:0 0 22%;text-align:center;font-size:.72em;font-weight:800;color:#c7d2fe;background:rgba(255,255,255,.06);border-radius:10px;padding:.25em .4em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t || "&nbsp;"}</span>`;
+            }
+            return `<div style="${blitz}transition:background .35s;display:flex;align-items:center;gap:${gross ? 14 : 8}px;font-size:${fs};font-weight:800;border-radius:12px;${gross ? "padding:.15em .3em" : ""}">
                 <span style="width:${gross ? 2.2 : 1.6}em;text-align:center">${(p.score || 0) > 0 && rang < 3 ? medals[rang] : (rang + 1) + "."}</span>
                 <span style="flex:0 0 ${gross ? "28%" : "34%"};overflow:hidden;text-overflow:ellipsis;white-space:nowrap;${ich ? "color:#fcd34d" : ""}">${e(p.name)}${gross ? `<span style="display:block;font-size:.55em;opacity:.65;font-weight:700">${e(kurz(p.kopfStufe))}</span>` : ""}</span>
+                ${aufgabeHtml}
                 <span style="flex:1;height:${gross ? 26 : 10}px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden"><span style="display:block;height:100%;width:${w}%;background:linear-gradient(90deg,#10b981,#f59e0b);transition:width .4s"></span></span>
                 <span style="min-width:2.2em;text-align:right;color:#6ee7b7">${p.score || 0}${p.kFertig ? " ✓" : ""}</span>
             </div>`;
@@ -249,6 +265,7 @@
         upd["players." + k + ".score"] = sp.richtig;
         upd["players." + k + ".kRichtig"] = sp.richtig;
         upd["players." + k + ".kFalsch"] = sp.falsch;
+        upd["players." + k + ".kAufgabe"] = (!final && sp.aufgabe) ? String(sp.aufgabe.t) : "";
         if (final) upd["players." + k + ".kFertig"] = true;
         sp.letztesSenden = Date.now();
         sp.ref.update(upd).catch(function () { });
@@ -278,6 +295,7 @@
         const km = el("kd-key-minus"), kk = el("kd-key-komma");
         if (km) km.style.visibility = minus ? "visible" : "hidden";
         if (kk) kk.style.visibility = komma ? "visible" : "hidden";
+        zwischenstand();
     }
     function wert(s) { if (!s || s === "-" || s === ",") return NaN; return Number(s.replace(",", ".")); }
     function zeigeEingabe() { const i = el("kd-input"); if (i) i.innerText = sp.eingabe ? sp.eingabe.replace("-", "−") : " "; }
@@ -439,6 +457,12 @@
         }
         const rows = document.getElementById("kd-tv-rows");
         if (rows) rows.innerHTML = boardHtml(data, true);
+        // Aufblitzen nach knapp 1 s wieder ausblenden, auch wenn gerade kein Update kommt
+        if (tvNachzeichnen) clearTimeout(tvNachzeichnen);
+        tvNachzeichnen = setTimeout(function () {
+            const r2 = document.getElementById("kd-tv-rows");
+            if (r2) r2.innerHTML = boardHtml(data, true);
+        }, 950);
         hostPruefen(data, ref);
     }
 

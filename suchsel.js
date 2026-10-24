@@ -121,6 +121,7 @@
                 }
                 candidates = pool
                     .filter(w => w.length >= 3 && w.length <= conf.size)
+                    .filter(w => typeof wrIstAnstoessig !== "function" || !wrIstAnstoessig(w, mode))
                     .map(w => ({ word: w, clue: null }));
             }
 

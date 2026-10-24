@@ -42,6 +42,29 @@ const WR_DUEL_HARD = new Set([
     "BIER", "KNEIPE", "WAFFE", "BULLE", "GEWEHR", "PISTOLE", "BOMBE", "KRIEG", "MORTEL",
     "SCHNAPS", "WEIN", "VODKA", "WHISKY"
 ]);
+// Anstößige Wörter – grob: in beiden Modi gesperrt, mild: nur im Kinder-Modus.
+// Gilt für Wortlisten UND für eigene Eingaben im Wort-Duell (Rechtschreibprüfung kennt sie sonst).
+const WR_BAD_GROB = new Set([
+    "ARSCH", "ARSCHLOCH", "BORDELL", "BUSEN", "BUSENFREUND", "DROGE", "DROGEN", "ERMORDEN", "FOTZE",
+    "HURE", "HUREN", "INTIM", "INTIME", "JOINT", "KIFFEN", "KOKAIN", "HEROIN", "KOKS", "NACKT",
+    "NUTTE", "PENIS", "PIMMEL", "PORNO", "SCHLAMPE", "SEX", "SEXY", "TITTE", "TITTEN",
+    "VAGINA", "SCHWANZLUTSCHER", "WICHSER", "SPERMA", "ORGASMUS", "HACKFRESSE", "MISTSTÜCK",
+    "SCHWUCHTEL", "SPAST", "MONGO", "NEGER", "ZIGEUNER", "KANAKE", "NAZI", "NAZIS", "HITLER"
+]);
+const WR_BAD_TEILE = ["FICK", "SCHEISS", "SCHEIß", "WICHS", "NUTTE", "PORNO", "HITLER", "VERGEWALT", "BORDELL", "TITTEN"];
+const WR_BAD_MILD = new Set([
+    "GEIL", "GEILE", "GEILER", "BLÖD", "BLOED", "BLÖDE", "DOOF", "DOOFE", "DEPP", "IDIOT", "IDIOTEN", "TROTTEL",
+    "KACKE", "KACK", "KACKA", "PISSE", "PISSEN", "SAUFEN", "BESOFFEN", "SÄUFER", "KOTZEN", "LEICHE",
+    "MORD", "MÖRDER", "TÖTEN", "STERBEN", "KADAVER", "BLUTSTURZ", "LUDER", "DEPPERT"
+]);
+function wrIstAnstoessig(word, wordmode) {
+    const u = String(word || "").toUpperCase().normalize("NFC");
+    if (!u) return false;
+    if (WR_BAD_GROB.has(u) || WR_DUEL_HARD.has(u)) return true;
+    if (WR_BAD_TEILE.some(t => u.includes(t))) return true;
+    if (wordmode !== "adult" && WR_BAD_MILD.has(u)) return true;
+    return false;
+}
 
 function wrWordPool(wordmode, difficulty, theme) {
     const kids = typeof GERMAN_WORDS_KIDS !== "undefined" ? GERMAN_WORDS_KIDS : [];
@@ -57,7 +80,8 @@ function wrWordPool(wordmode, difficulty, theme) {
             if (longEnough.length < 15) src = src.concat(kids);
         }
     } else if (difficulty === "experte") {
-        src = kids.concat(adult);
+        // Kinder-Modus bleibt bei Kinder-Wörtern – lange Wörter kommen aus den Themenlisten dazu
+        src = kids.concat(...Object.values(themes).filter(Array.isArray));
     } else {
         src = kids;
     }
@@ -66,6 +90,7 @@ function wrWordPool(wordmode, difficulty, theme) {
         if (u.includes("ß") || u.includes("ẞ")) return false;
         if (wordmode !== "adult" && (WR_KIDS_BLOCK.has(u) || WR_DUEL_HARD.has(u))) return false;
         if (wordmode === "adult" && WR_DUEL_HARD.has(u)) return false;
+        if (wrIstAnstoessig(u, wordmode)) return false;
         return true;
     });
 }

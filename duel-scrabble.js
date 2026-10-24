@@ -330,6 +330,7 @@
                 ? WR_DUEL_HARD : new Set(["BIER", "KNEIPE", "WAFFE"]);
             if (hard.has(upper)) return { status: "invalid" };
             if (mode !== "adult" && scrabbleKidsBlock().has(upper)) return { status: "invalid" };
+            if (typeof wrIstAnstoessig === "function" && wrIstAnstoessig(upper, mode)) return { status: "invalid" };
             const set = buildScrabbleWordSet(mode);
             if (set.has(upper)) return { status: "valid" };
             return await checkWithLanguageTool(word);
@@ -352,6 +353,7 @@
             }
             const pool = wordSource
                 .map(w => String(w).toUpperCase().normalize("NFC"))
+                .filter(w => typeof wrIstAnstoessig !== "function" || !wrIstAnstoessig(w, wordMode === "adult" ? "adult" : "kids"))
                 .filter(w => w.length >= cfg.targetMin && w.length <= cfg.targetMax && w.length <= cfg.letters);
 
             let letters;

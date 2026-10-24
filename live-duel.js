@@ -8,6 +8,9 @@
         let liveDuelResolving = false;
         let liveDuelTimerInterval = null;
         let liveDuelAutoAdvanceTimer = null;
+        let liveDuelRevealKey = "";
+        let liveDuelRevealDeadline = 0;
+        let liveDuelRevealAdvancedKey = "";
         let liveDuelRenderKey = "";
         let liveDuelInputLockUntil = 0;
         let liveDuelUsedWords = new Set();
@@ -202,14 +205,48 @@
         // Dann sofort ein Lebenszeichen senden statt bis zum nächsten
         // Intervall zu warten – so ist man in unter einer Sekunde wieder
         // als anwesend markiert.
+        // Android/Chrome: Nach längerer Zeit im Hintergrund (App-Wechsel über die
+        // Übersicht) hängt die Firestore-Verbindung oft, Listener liefern nichts
+        // mehr – Lobby-Liste und Spiel kamen erst nach Neuladen. Darum bei
+        // Rückkehr Verbindung neu aufbauen und Listener frisch anmelden.
+        let liveDuelHiddenSeit = 0;
+        let liveDuelWiederkehrLaeuft = false;
+        async function liveDuelBeiRueckkehr(erzwingen) {
+            if (liveDuelWiederkehrLaeuft) return;
+            liveDuelWiederkehrLaeuft = true;
+            try {
+                const weg = liveDuelHiddenSeit ? Date.now() - liveDuelHiddenSeit : 0;
+                liveDuelHiddenSeit = 0;
+                if ((erzwingen || weg > 15000) && typeof db !== "undefined" && db && db.disableNetwork) {
+                    try { await db.disableNetwork(); await db.enableNetwork(); } catch (e) { }
+                }
+                if (liveDuelRef && activePlayerKey) {
+                    const update = {};
+                    update["players." + activePlayerKey + ".lastSeen"] = Date.now();
+                    if (isLiveDuelCreator) update.hostLastSeen = Date.now();
+                    liveDuelRef.update(update).catch(() => { });
+                    if (erzwingen || weg > 15000) subscribeLiveDuel();
+                    return;
+                }
+                const menu = document.getElementById("view-menu");
+                if (menu && !menu.classList.contains("hidden") && currentParentUser) {
+                    watchForOpenDuel();
+                    watchForOpenTVLobby();
+                    if (weg > 15000 || erzwingen) biteWiedereinstiegAn();
+                }
+            } finally {
+                liveDuelWiederkehrLaeuft = false;
+            }
+        }
         document.addEventListener("visibilitychange", function () {
-            if (document.visibilityState !== "visible") return;
-            if (!liveDuelRef || !activePlayerKey) return;
-            const update = {};
-            update["players." + activePlayerKey + ".lastSeen"] = Date.now();
-            if (isLiveDuelCreator) update.hostLastSeen = Date.now();
-            liveDuelRef.update(update).catch(() => { });
+            if (document.visibilityState !== "visible") {
+                liveDuelHiddenSeit = Date.now();
+                return;
+            }
+            liveDuelBeiRueckkehr(false);
         });
+        window.addEventListener("online", function () { liveDuelBeiRueckkehr(true); });
+        window.addEventListener("pageshow", function (e) { if (e.persisted) liveDuelBeiRueckkehr(true); });
 
         function clearLiveDuelTimers() {
             if (liveDuelTimerInterval) {
@@ -623,6 +660,9 @@
                 return;
             }
 
+            // Auflösungs-Frist gilt nur für die aktuelle Auflösung – außerhalb davon vergessen
+            if (data.status !== "reveal") { liveDuelRevealKey = ""; liveDuelRevealAdvancedKey = ""; }
+
             if (data.status === "playing" && data.type === "kopf" && window.KopfDuell) {
                 KopfDuell.liveRender(data, liveDuelRef, isLiveDuelCreator);
                 switchView('live-duel-play');
@@ -758,20 +798,39 @@
                 if (!isLastStep) {
                     const erkl = isQuiz && data.questions[data.currentIndex] ?
                         (data.questions[data.currentIndex].explanation || "") : "";
-                    let left = isQuiz
+                    const dauer = isQuiz
                         ? Math.round(Math.min(10, Math.max(5, 3 + erkl.length / 15)))
                         : 14;
+                    // Frist nur einmal pro Runde festlegen. Vorher startete jeder
+                    // Snapshot (Lebenszeichen alle 12 s, Rückkehr aus dem Hintergrund)
+                    // den Countdown neu – beim Wort-Duell (14 s) lief er nie ab.
+                    const rk = (liveDuelRef ? liveDuelRef.id : "") + ":" + data.type + ":" + (isQuiz ? data.currentIndex : data.currentRound);
+                    if (rk !== liveDuelRevealKey) {
+                        liveDuelRevealKey = rk;
+                        liveDuelRevealDeadline = Date.now() + dauer * 1000;
+                    }
                     const cdEl = () => document.getElementById("live-duel-auto-countdown");
+                    let zuletzt = Date.now();
                     const tick = () => {
+                        const jetzt = Date.now();
+                        // Pausiert: Frist mitschieben, damit nach dem Fortsetzen nicht sofort weitergeht
+                        if (!liveDuelAutoAdvanceOn) liveDuelRevealDeadline += jetzt - zuletzt;
+                        zuletzt = jetzt;
+                        const left = Math.max(0, Math.ceil((liveDuelRevealDeadline - jetzt) / 1000));
                         const el = cdEl();
                         if (el) el.innerText = liveDuelAutoAdvanceOn ? (left + "s") : "pausiert";
                         if (!liveDuelAutoAdvanceOn) return;
                         if (left <= 0) {
                             clearLiveDuelTimers();
-                            if (isLiveDuelCreator) advanceLiveDuel();
+                            // nur einmal pro Runde auslösen (sonst Doppelsprung bei schnellen Snapshots);
+                            // klappt es nicht, darf der nächste Snapshot es nach 8 s erneut versuchen
+                            if (isLiveDuelCreator && liveDuelRevealAdvancedKey !== rk) {
+                                liveDuelRevealAdvancedKey = rk;
+                                setTimeout(() => { if (liveDuelRevealAdvancedKey === rk) liveDuelRevealAdvancedKey = ""; }, 8000);
+                                advanceLiveDuel();
+                            }
                             return;
                         }
-                        left--;
                     };
                     tick();
                     liveDuelAutoAdvanceTimer = setInterval(tick, 1000);

@@ -44,8 +44,29 @@
             const m = localStorage.getItem("eduplayKopfDuellStufe:" + (ichKey() || ""));
             if (m && stufe(m)) return m;
         } catch (x) { }
-        const g = Number(typeof currentPlayer !== "undefined" && currentPlayer && currentPlayer.grade) || 0;
-        return ({ 1: "k1_20", 2: "k2_1x1", 3: "k3_mix", 4: "k4_gross", 5: "k5_quadrat", 6: "k6_dezimal" })[g] || "duell_mix";
+        const g = klasseVon(typeof currentPlayer !== "undefined" ? currentPlayer : null);
+        // Bewusst eine Stufe unter dem Klassenziel – im Sprint zählt Tempo.
+        if (!g) return "k1_20";
+        return ({ 1: "k1_10", 2: "k1_20", 3: "k2_1x1", 4: "k3_mix", 5: "k4_zehner", 6: "k5_quadrat" })[g] || "duell_mix";
+    }
+    // Klasse wie im Rest der App; ohne Klasse grob aus dem Alter (7 Jahre ≈ Kl. 1).
+    function klasseVon(p) {
+        if (!p) return 0;
+        if (p.profileRole === "eltern") return 13;
+        let g = (typeof playerGrade === "function") ? (playerGrade(p) || 0) : (parseInt(p.grade, 10) || 0);
+        if (g) return g;
+        let alter = 0;
+        if (p.birthday && typeof ageFromBirthday === "function") alter = ageFromBirthday(p.birthday) || 0;
+        if (!alter && p.ageType !== "klasse") alter = parseInt(p.age, 10) || 0;
+        if (alter) return Math.max(1, Math.min(13, alter - 6));
+        return 0;
+    }
+    // Eine Stufe leichter (für den Vorschlag nach einem schweren Sprint)
+    function leichter(id) {
+        if (id === "duell_mix") return "k6_dezimal";
+        const l = window.KOPF_STUFEN || [];
+        const i = l.findIndex(function (s) { return s.id === id; });
+        return i > 0 ? l[i - 1].id : null;
     }
     function merkeStufe(id) {
         try { localStorage.setItem("eduplayKopfDuellStufe:" + (ichKey() || ""), id); } catch (x) { }
@@ -79,8 +100,14 @@
             const p = data.players[k];
             return `<div class="flex justify-between gap-2 text-xs"><span class="font-bold text-white truncate">${e(p.name)}</span><span class="text-gray-300 text-right">${e(kurz(p.kopfStufe))}</span></div>`;
         }).join("");
-        return `<div class="text-xs font-bold text-amber-300">🧮 Deine Stufe – jeder rechnet auf seinem Niveau</div>
-            <select id="${idSel}" class="input-modern font-bold text-sm" onchange="KopfDuell.stufeWaehlen(this.value)">${optionen(me.kopfStufe || standardStufe())}</select>
+        const aktuell = me.kopfStufe || standardStufe();
+        const st = stufe(aktuell);
+        return `<div style="border:2px solid rgba(245,158,11,.45);background:rgba(245,158,11,.08);border-radius:16px;padding:12px" class="space-y-2">
+              <div class="text-xs font-bold text-amber-300">🧮 Deine Stufe – jeder rechnet auf seinem Niveau</div>
+              <div style="font-size:20px;font-weight:900;color:#fff">${e(kurz(aktuell))}${st && st.kl <= 7 ? `<span style="font-size:12px;color:#fcd34d;font-weight:800"> · Kl. ${st.kl}</span>` : ""}</div>
+              <select id="${idSel}" class="input-modern font-bold text-sm" onchange="KopfDuell.stufeWaehlen(this.value)">${optionen(aktuell)}</select>
+              <div class="text-[11px] text-gray-300">Zu schwer oder zu leicht? Hier vor dem Start ändern.</div>
+            </div>
             <div class="space-y-1 pt-1">${andere}</div>
             <p class="text-[11px] text-gray-400">60 Sekunden – wer die meisten Aufgaben richtig hat, gewinnt.</p>`;
     }
@@ -391,7 +418,10 @@
             setHtml(`<div style="min-height:100vh;padding:3vh 4vw;color:#fff;display:flex;flex-direction:column;gap:2.5vh">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
                   <div style="font-size:clamp(22px,3.6vw,46px);font-weight:900">🧮 Kopfrechen-Duell</div>
-                  <div id="kd-tv-zeit" style="font-size:clamp(34px,6vw,80px);font-weight:900;color:#fcd34d"></div>
+                  <div style="display:flex;align-items:center;gap:16px">
+                    <div id="kd-tv-zeit" style="font-size:clamp(34px,6vw,80px);font-weight:900;color:#fcd34d"></div>
+                    <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit" title="Spiel beenden">✕</button>
+                  </div>
                 </div>
                 <div style="font-size:clamp(13px,1.7vw,20px);color:#a5b4fc;font-weight:700">Jeder rechnet auf seinem Handy – in seiner eigenen Stufe. Wer schafft die meisten?</div>
                 <div id="kd-tv-rows" style="display:flex;flex-direction:column;gap:2vh"></div>
@@ -442,12 +472,50 @@
                 if (typeof addXP === "function") addXP(myData.score || 0);
                 ref.update({ ["players." + ichKey() + ".coinsClaimed"]: true }).catch(function () { });
             }
+            nachSprint(data, ref);
             const key = "f:" + data.sprintId + ":" + (myData.score || 0);
             if (tvWarteKey === key) return;
             tvWarteKey = key;
             setHtml(`<div class="glass-card-glow p-8 text-center mt-8 space-y-3"><div class="text-6xl">🏆</div><h2 class="text-2xl font-black text-yellow-400">Sprint beendet!</h2><p class="text-lg font-bold">${myData.kRichtig || 0} richtig · ${myData.kFalsch || 0} falsch</p><p class="text-xl text-white font-bold bg-white/5 p-3 rounded-xl inline-block">+ ${myData.score || 0} XP</p><p class="text-xs text-gray-400">Schau auf den Fernseher! Eine neue Runde startet hier automatisch.</p><button onclick="leaveTVGame()" class="btn-secondary w-full text-center text-sm">Zurück ins Menü</button></div>`);
         }
     }
+
+    // ---------------- Nach dem Sprint: leichtere Stufe vorschlagen ----------------
+    const vorgeschlagen = {};
+    function nachSprint(data, ref) {
+        try {
+            const me = (data.players || {})[ichKey()];
+            if (!me || !ref || !data.sprintId || vorgeschlagen[data.sprintId]) return;
+            vorgeschlagen[data.sprintId] = 1;
+            const r = me.kRichtig || 0, f = me.kFalsch || 0;
+            const schwer = r <= 3 || (f >= 3 && f > r);
+            const neu = leichter(me.kopfStufe || standardStufe());
+            if (!schwer || !neu) return;
+            setTimeout(async function () {
+                const text = `Das war knifflig (${r} richtig, ${f} falsch). Nächste Runde mit „${kurz(neu)}“ rechnen?`;
+                const ok = (typeof appConfirm === "function")
+                    ? await appConfirm(text, { titel: "Etwas leichter?", icon: "🧮", okText: "Ja, leichter", abbrechenText: "Nein, so lassen" })
+                    : confirm(text);
+                if (!ok) return;
+                merkeStufe(neu);
+                ref.update({ ["players." + ichKey() + ".kopfStufe"]: neu }).catch(function () { });
+                if (typeof showToast === "function") showToast("Nächste Runde: " + kurz(neu), "success");
+            }, 1800);
+        } catch (x) { }
+    }
+    // Live-Duell: Ergebnis-Anzeige kommt aus live-duel.js – dort einhängen.
+    function ergebnisWickeln() {
+        const r0 = window.renderLiveDuelFinalResult;
+        if (typeof r0 !== "function" || r0._kd) return;
+        const neu = function (data) {
+            const r = r0.apply(this, arguments);
+            if (data && data.type === "kopf" && typeof liveDuelRef !== "undefined" && liveDuelRef) nachSprint(data, liveDuelRef);
+            return r;
+        };
+        neu._kd = true;
+        window.renderLiveDuelFinalResult = neu;
+    }
+    ergebnisWickeln();
 
     // ---------------- Einbau in die Oberfläche ----------------
     function einbauen() {
@@ -620,6 +688,6 @@
     window.KopfDuell = {
         stufeWaehlen: stufeWaehlen, taste: taste, lobby: lobby, starten: starten, stopp: stopp,
         liveRender: liveRender, tvHost: tvHost, tvSpieler: tvSpieler, kurz: kurz,
-        _gen: gen, _stufen: alleStufen, _standard: standardStufe
+        _gen: gen, _stufen: alleStufen, _standard: standardStufe, _klasse: klasseVon, _leichter: leichter
     };
 })();

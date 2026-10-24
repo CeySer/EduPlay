@@ -731,10 +731,11 @@
                 if (da) online++;
                 return `<div class="tv-lobby-player ${da ? "is-on" : "is-off"}">
                     <span class="tv-lobby-player-dot"></span>
-                    <span class="tv-lobby-player-name">${esc(p.name)}${p.kopfStufe && window.KopfDuell ? " · " + esc(KopfDuell.kurz(p.kopfStufe)) : ""}${da ? "" : " · kurz weg"}</span>
+                    <span class="tv-lobby-player-name">${esc(p.name)}${da ? "" : " · kurz weg"}${p.kopfStufe && window.KopfDuell ? `<span style="display:block;font-size:.8em;color:#fcd34d;font-weight:800">${esc(KopfDuell.kurz(p.kopfStufe))}</span>` : ""}</span>
                 </div>`;
             }).join("");
-            const bar = `<div class="tv-lobby-status">${online}/${keys.length} online</div>`;
+            const kopf = keys.some(function (k) { return cleaned[k] && cleaned[k].kopfStufe; });
+            const bar = `<div class="tv-lobby-status">${online}/${keys.length} online${kopf ? " · 🧮 Stufe kann jeder am eigenen Handy ändern" : ""}</div>`;
             list.innerHTML = bar + cards;
         }
 
@@ -2593,7 +2594,9 @@
                             const labels = (typeof TV_SHOW_LABELS !== "undefined")
                                 ? TV_SHOW_LABELS
                                 : ["A", "B", "C", "D"];
-                            let btnHtml = `<div class="grid grid-cols-2 gap-4 h-[75vh]">`;
+                            const bild = (q && (q.image || q.imageLocal) && typeof frageBildHTML === "function")
+                                ? `<div class="mb-3">${frageBildHTML(q, 110)}</div>` : "";
+                            let btnHtml = bild + (bild ? `<div class="grid grid-cols-2 gap-4" style="height:58vh">` : `<div class="grid grid-cols-2 gap-4 h-[75vh]">`);
                             const count = (q && q.answers) ? q.answers.length : (data.answerCount || 3);
                             for (let i = 0; i < count; i++) {
                                 btnHtml +=

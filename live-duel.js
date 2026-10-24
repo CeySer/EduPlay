@@ -905,7 +905,7 @@
                                 ${ruleHtml}${awayHtml}
                                 ${(q.grafik && String(q.grafik).indexOf("<svg") === 0)
                                     ? `<div class="mx-auto max-w-xs">${q.grafik}</div>`
-                                    : ""}
+                                    : (typeof frageBildHTML === "function" ? frageBildHTML(q, 140) : "")}
                                 <h2 class="text-lg font-bold text-pink-400 leading-snug">${q.question}</h2>
                                 <div class="flex flex-col gap-2.5">${optsHtml}</div>
                             </div>`;

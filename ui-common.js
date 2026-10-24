@@ -516,12 +516,47 @@
 //  Bewusst nur SVG: der Fragetext selbst bleibt weiterhin innerText,
 //  damit Zeichen wie < und > in normalen Fragen nichts kaputt machen.
 // ============================================================
+// Bilder zu Fragen (z. B. Flaggen) – auch in Duellen und im TV-Modus.
+// Reihenfolge: eigene Datei (relativ, klappt auf jedem Gerät) → gespeicherte
+// Adressen → Ersatz von flagcdn.com. Fällt alles aus, verschwindet das Bild.
+function frageBildQuellen(q) {
+    if (!q) return [];
+    const roh = [q.imageLocal, q.image].filter(Boolean).map(String);
+    const out = [];
+    roh.forEach(function (u) {
+        const m = u.match(/\/flags\/([a-z]{2})\.png/i) || u.match(/flagcdn\.com\/w\d+\/([a-z]{2})\.png/i);
+        if (m) out.push("img/flags/" + m[1].toLowerCase() + ".png");
+    });
+    roh.forEach(function (u) { out.push(u); });
+    return out.filter(function (u, i, a) { return a.indexOf(u) === i; });
+}
+function frageBildHTML(q, maxHoehe) {
+    const src = frageBildQuellen(q);
+    if (!src.length) return "";
+    const e = function (s) { return String(s || "").replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+    return '<img src="' + e(src[0]) + '" data-alt-src="' + e(src.slice(1).join("|")) + '" alt="' + e(q.imageAlt || "Bild zur Frage") + '"'
+        + ' style="display:block;margin:0 auto;max-width:100%;max-height:' + (maxHoehe || 150) + 'px;border-radius:10px;box-shadow:0 4px 18px rgba(0,0,0,.35)"'
+        + ' onerror="frageBildFehler(this)">';
+}
+function frageBildFehler(img) {
+    const rest = (img.getAttribute("data-alt-src") || "").split("|").filter(Boolean);
+    if (!rest.length) { img.style.display = "none"; return; }
+    img.setAttribute("data-alt-src", rest.slice(1).join("|"));
+    img.src = rest[0];
+}
+window.frageBildQuellen = frageBildQuellen;
+window.frageBildHTML = frageBildHTML;
+window.frageBildFehler = frageBildFehler;
+
 function renderFrageGrafik(q, wrapId) {
     const wrap = document.getElementById(wrapId || "question-grafik");
     if (!wrap) return;
     const svg = (q && typeof q.grafik === "string") ? q.grafik.trim() : "";
     if (svg.slice(0, 4).toLowerCase() === "<svg") {
         wrap.innerHTML = svg;
+        wrap.classList.remove("hidden");
+    } else if (q && (q.image || q.imageLocal)) {
+        wrap.innerHTML = frageBildHTML(q, 150);
         wrap.classList.remove("hidden");
     } else {
         wrap.innerHTML = "";

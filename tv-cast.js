@@ -784,6 +784,8 @@
                 };
                 if (q.grafik && String(q.grafik).indexOf("<svg") === 0) slim.grafik = String(q.grafik);
                 if (q.image) slim.image = String(q.image);
+                if (q.imageLocal) slim.imageLocal = String(q.imageLocal);
+                if (q.imageAlt) slim.imageAlt = String(q.imageAlt);
                 return slim;
             });
         }
@@ -876,7 +878,8 @@
                         </div>
                         ${(tvCurrentQ.grafik && String(tvCurrentQ.grafik).indexOf("<svg") === 0)
                             ? `<div class="tv-show-grafik mx-auto mb-2" style="max-width:min(280px,40vw)">${tvCurrentQ.grafik}</div>`
-                            : ""}
+                            : ((tvCurrentQ.image || tvCurrentQ.imageLocal) && typeof frageBildHTML === "function"
+                                ? `<div class="tv-show-grafik mx-auto mb-2">${frageBildHTML(tvCurrentQ, 220)}</div>` : "")}
                         <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                     </div>
                     <div class="tv-show-grid">${answersHtml}</div>
@@ -1023,7 +1026,8 @@
                         </div>
                         ${(tvCurrentQ.grafik && String(tvCurrentQ.grafik).indexOf("<svg") === 0)
                             ? `<div class="tv-show-grafik mx-auto mb-2" style="max-width:min(280px,40vw)">${tvCurrentQ.grafik}</div>`
-                            : ""}
+                            : ((tvCurrentQ.image || tvCurrentQ.imageLocal) && typeof frageBildHTML === "function"
+                                ? `<div class="tv-show-grafik mx-auto mb-2">${frageBildHTML(tvCurrentQ, 220)}</div>` : "")}
                         <h1 class="tv-show-question">${esc(tvCurrentQ.question)}</h1>
                         ${tvCurrentQ.explanation
                             ? `<p class="tv-show-explain">💡 ${esc(tvCurrentQ.explanation)}</p>`

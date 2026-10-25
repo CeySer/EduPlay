@@ -2212,6 +2212,7 @@
                                                 <option value="natur" ${data.wordTheme === "natur" ? "selected" : ""}>🌿 Natur</option>
                                                 <option value="zuhause" ${data.wordTheme === "zuhause" ? "selected" : ""}>🏠 Zuhause</option>
                                                 <option value="fahrzeuge" ${data.wordTheme === "fahrzeuge" ? "selected" : ""}>🚗 Fahrzeuge</option>
+                                                ${Object.keys(window.KIDS_THEME_LABELS || {}).filter(k => !["gemischt", "tiere", "schule", "essen", "sport", "natur", "zuhause", "fahrzeuge"].includes(k)).map(k => `<option value="${k}" ${data.wordTheme === k ? "selected" : ""}>${window.KIDS_THEME_LABELS[k]}</option>`).join("")}
                                             </select>
                                         </div>
                                         <select id="again-wr-difficulty" class="input-modern text-sm font-bold">

@@ -1886,7 +1886,7 @@ auth.createUserWithEmailAndPassword(e, p)
                         if (k === 'gemischt') return;
                         const n = Array.isArray(GERMAN_WORDS_KIDS_THEMES[k]) ? GERMAN_WORDS_KIDS_THEMES[k].length : 0;
                         const labels = { tiere: '🐾 Tiere', schule: '📚 Schule', essen: '🍎 Essen', sport: '⚽ Sport', natur: '🌿 Natur', zuhause: '🏠 Zuhause', fahrzeuge: '🚗 Fahrzeuge' };
-                        themeOpts += `<option value="${k}">${labels[k] || k} (${n})</option>`;
+                        themeOpts += `<option value="${k}">${labels[k] || (window.KIDS_THEME_LABELS || {})[k] || k} (${n})</option>`;
                     });
                 }
                 container.innerHTML = `

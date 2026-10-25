@@ -37,7 +37,7 @@
             const themeSel = document.getElementById("suchsel-word-theme");
             if (themeSel && !themeSel.dataset.filled && typeof GERMAN_WORDS_KIDS_THEMES !== "undefined") {
                 themeSel.innerHTML = Object.keys(GERMAN_WORDS_KIDS_THEMES)
-                    .map(k => `<option value="${k}">${SUCHSEL_THEME_LABELS[k] || k}</option>`).join("");
+                    .map(k => `<option value="${k}">${SUCHSEL_THEME_LABELS[k] || (typeof KIDS_THEME_LABELS !== "undefined" && KIDS_THEME_LABELS[k]) || k}</option>`).join("");
                 themeSel.dataset.filled = "1";
             }
             toggleSuchselThemeRow();
@@ -119,10 +119,11 @@
                     const themed = (typeof GERMAN_WORDS_KIDS_THEMES !== "undefined") ? GERMAN_WORDS_KIDS_THEMES[theme] : null;
                     pool = themed || GERMAN_WORDS_KIDS;
                 }
-                candidates = pool
-                    .filter(w => w.length >= 3 && w.length <= conf.size)
-                    .filter(w => typeof wrIstAnstoessig !== "function" || !wrIstAnstoessig(w, mode))
-                    .map(w => ({ word: w, clue: null }));
+                const sauber = pool
+                    .filter(w => /^[A-ZÄÖÜ]+$/.test(w) && w.length >= 3 && w.length <= conf.size)
+                    .filter(w => typeof wrIstAnstoessig !== "function" || !wrIstAnstoessig(w, mode));
+                const kurz = diffKey === "leicht" ? sauber.filter(w => w.length <= 6) : sauber;
+                candidates = (kurz.length >= conf.count ? kurz : sauber).map(w => ({ word: w, clue: null }));
             }
 
             const seen = new Set();
@@ -440,12 +441,12 @@
                 b.type = "button";
                 b.setAttribute("onclick", "suchselTipp()");
                 b.className = "block mx-auto font-black text-sm";
-                b.style.cssText = "background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1b1300;border:0;border-radius:999px;padding:10px 20px;box-shadow:0 6px 18px rgba(245,158,11,.35);cursor:pointer";
+                b.style.cssText = "margin-top:14px;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1b1300;border:0;border-radius:999px;padding:10px 20px;box-shadow:0 6px 18px rgba(245,158,11,.35);cursor:pointer";
                 grid.insertAdjacentElement("afterend", b);
                 const hinweis = document.createElement("div");
                 hinweis.id = "suchsel-tipp-hinweis";
                 hinweis.className = "text-center text-[11px] text-gray-500 font-bold";
-                hinweis.style.marginTop = "-6px";
+                hinweis.style.cssText = "margin:10px auto 0;max-width:280px;line-height:1.35";
                 hinweis.innerText = "Oder ein Wort oben antippen – dann leuchtet genau dessen Anfang.";
                 b.insertAdjacentElement("afterend", hinweis);
             }

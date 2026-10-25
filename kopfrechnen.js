@@ -782,6 +782,7 @@
                 const stern = s.falsch <= 1 && sek <= n * 5 ? 3 : (s.falsch <= 3 ? 2 : 1);
                 if (stern > (d.sterne[key] || 0)) d.sterne[key] = stern;
                 titel = sterneText(stern); emoji = stern === 3 ? "🌟" : "👍";
+                if (stern < 3) extra.push("Für ⭐⭐⭐: höchstens 1 Fehler und bis " + (n * 5) + " Sekunden");
             } else if (s.modus === "trick") {
                 titel = s.falsch === 0 ? "Trick sitzt!" : "Gut geübt!"; emoji = "💡";
             } else {

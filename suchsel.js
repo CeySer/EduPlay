@@ -446,7 +446,7 @@
                 hinweis.id = "suchsel-tipp-hinweis";
                 hinweis.className = "text-center text-[11px] text-gray-500 font-bold";
                 hinweis.style.marginTop = "-6px";
-                hinweis.innerText = "Tipp: Wort oben antippen, dann zeigt der Tipp genau dieses Wort.";
+                hinweis.innerText = "Oder ein Wort oben antippen – dann leuchtet genau dessen Anfang.";
                 b.insertAdjacentElement("afterend", hinweis);
             }
             suchselTippKnopfText();
@@ -462,11 +462,15 @@
             b.style.opacity = b.disabled ? ".45" : "1";
         }
 
+        // Wort in der Liste antippen = sofort Tipp für genau dieses Wort
         function suchselTippWahl(w) {
             if (!suchselState || suchselState.finished || suchselState.found.has(w)) return;
-            suchselState.tippWahl = suchselState.tippWahl === w ? null : w;
-            if (typeof SFX !== "undefined" && SFX.tap) SFX.tap();
-            renderSuchselWordlist();
+            if ((suchselState.tipps || 0) >= SUCHSEL_MAX_TIPPS) {
+                if (typeof showToast === "function") showToast("Keine Tipps mehr in dieser Runde.", "info");
+                return;
+            }
+            suchselState.tippWahl = w;
+            suchselTipp();
         }
 
         function suchselTipp() {
@@ -482,7 +486,7 @@
             }
             const stufe = Math.min(2, (suchselState.tippStufe[wort] || 0) + 1);
             suchselState.tippStufe[wort] = stufe;
-            suchselState.tippWahl = wort;
+            suchselState.tippWahl = null;
             suchselState.tipps = (suchselState.tipps || 0) + 1;
             const zellen = (suchselState.placements[wort] || []).slice(0, stufe);
             zellen.forEach(([r, c]) => {

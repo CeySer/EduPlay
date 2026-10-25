@@ -18,6 +18,40 @@
     const SPAET_MS = 20000;    // wer so spät dazukommt, spielt erst nächste Runde
     const MIX = ["k4_gross", "k5_quadrat", "k5_bruch", "k6_dezimal", "k7_prozent", "k7_negativ"];
     const MIX_STUFE = { id: "duell_mix", kl: 8, icon: "🔥", titel: "Profi-Mix (ab Kl. 7)" };
+    // Modus „Ziel“: Jeder rechnet ohne Zeitdruck, bis er 10 richtig hat. Die Runde
+    // endet erst, wenn alle 10 haben (Notbremse nach 10 Minuten). Reihenfolge
+    // des Ankommens bestimmt die Platzierung.
+    const ZIEL = 10;
+    const ZIEL_MAX = 600;      // Sekunden
+    const ZIEL_PUNKTE = [15, 12, 10, 8, 6];
+    let gewaehlterModus = "zeit";
+    try { if (localStorage.getItem("eduplayKopfDuellModus") === "ziel") gewaehlterModus = "ziel"; } catch (x) { }
+    function istZiel(data) { return !!(data && data.kModus === "ziel"); }
+    function dauerVon(data) { return istZiel(data) ? ZIEL_MAX : DAUER; }
+    function mmss(ms) { const s = Math.max(0, Math.round(ms / 1000)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+    function modusSetzen(m) {
+        gewaehlterModus = m === "ziel" ? "ziel" : "zeit";
+        try { localStorage.setItem("eduplayKopfDuellModus", gewaehlterModus); } catch (x) { }
+        document.querySelectorAll(".kd-modus-cb").forEach(function (cb) { cb.checked = gewaehlterModus === "ziel"; });
+        // Offene Live-Lobby (ich bin Gastgeber, noch nicht gestartet): Modus gleich mitteilen
+        try {
+            if (typeof liveDuelRef !== "undefined" && liveDuelRef && typeof isLiveDuelCreator !== "undefined" && isLiveDuelCreator && typJetzt() === "kopf") {
+                liveDuelRef.update({ kModus: gewaehlterModus }).catch(function () { });
+            }
+            if (typeof tvGameRef !== "undefined" && tvGameRef && typeof isTVHost !== "undefined" && isTVHost) {
+                tvGameRef.get().then(function (d) {
+                    if (d.exists && d.data().mode === "kopf" && d.data().status !== "playing") tvGameRef.update({ kModus: gewaehlterModus }).catch(function () { });
+                }).catch(function () { });
+            }
+        } catch (x) { }
+        sfx("tap");
+    }
+    function modusHtml() {
+        return `<label class="flex items-start gap-2.5 text-left cursor-pointer" style="background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.35);border-radius:14px;padding:10px 12px">
+            <input type="checkbox" class="kd-modus-cb w-5 h-5 shrink-0 mt-0.5" ${gewaehlterModus === "ziel" ? "checked" : ""} onchange="KopfDuell.modus(this.checked ? 'ziel' : 'zeit')">
+            <span><span class="block text-sm font-black text-emerald-300">🎯 Ohne Zeitdruck: Wer zuerst 10 richtig hat</span>
+            <span class="block text-[11px] text-gray-300">Alle rechnen, bis jeder 10 richtige Aufgaben hat. Wer zuerst fertig ist, gewinnt.</span></span></label>`;
+    }
 
     function ichKey() { return (typeof activePlayerKey !== "undefined" && activePlayerKey) || ""; }
     function e(s) { return (typeof esc === "function") ? esc(s) : String(s == null ? "" : s); }
@@ -109,7 +143,8 @@
               <div class="text-[11px] text-gray-300">Zu schwer oder zu leicht? Hier vor dem Start ändern.</div>
             </div>
             <div class="space-y-1 pt-1">${andere}</div>
-            <p class="text-[11px] text-gray-400">60 Sekunden – wer die meisten Aufgaben richtig hat, gewinnt.</p>`;
+            ${data.createdBy && data.createdBy === ichKey() ? modusHtml() : ""}
+            <p class="text-[11px] text-gray-400">${istZiel(data) ? "🎯 Ohne Zeitdruck – alle rechnen, bis jeder " + ZIEL + " richtig hat. Wer zuerst fertig ist, gewinnt." : "60 Sekunden – wer die meisten Aufgaben richtig hat, gewinnt."}</p>`;
     }
     function standardSetzen(data, ref) {
         const me = (data.players || {})[ichKey()];
@@ -131,7 +166,7 @@
         box.classList.remove("hidden");
         lobbyRef = ref;
         standardSetzen(data, ref);
-        const key = JSON.stringify(Object.keys(data.players || {}).sort().map(function (k) { return [k, data.players[k].name, data.players[k].kopfStufe]; }));
+        const key = (data.kModus || "") + JSON.stringify(Object.keys(data.players || {}).sort().map(function (k) { return [k, data.players[k].name, data.players[k].kopfStufe]; }));
         const sel = document.getElementById("kd-stufe-sel");
         if (key === lobbyKey && sel) return;
         if (sel && document.activeElement === sel) return;
@@ -147,7 +182,7 @@
         const players = snap.data().players || {};
         Object.keys(players).forEach(function (k) {
             const p = players[k];
-            p.score = 0; p.kRichtig = 0; p.kFalsch = 0; p.kFertig = false; p.kSpaet = null; p.kAufgabe = "";
+            p.score = 0; p.kRichtig = 0; p.kFalsch = 0; p.kFertig = false; p.kSpaet = null; p.kAufgabe = ""; p.kZeit = null;
             p.pending = false; p.hasAnswered = false; p.coinsClaimed = false; p.lastRoundPoints = 0;
         });
         const kdUpd = (typeof sicherPlayersUpdate === "function") ? function (u) { return sicherPlayersUpdate(ref, u); } : function (u) { return ref.update(u); };
@@ -155,7 +190,8 @@
             status: "playing",
             sprintId: "s" + Date.now().toString(36),
             sprintTs: Date.now(),
-            dauer: DAUER,
+            kModus: gewaehlterModus,
+            dauer: gewaehlterModus === "ziel" ? ZIEL_MAX : DAUER,
             answerDeadline: null,
             players: players
         });
@@ -165,15 +201,26 @@
     function hostPruefen(data, ref) {
         if (!ref || data.status !== "playing") return;
         if (!hostSprint || hostSprint.id !== data.sprintId) {
-            hostSprint = { id: data.sprintId, ende: Date.now() + VORLAUF + DAUER * 1000 };
+            hostSprint = { id: data.sprintId, ende: Date.now() + VORLAUF + dauerVon(data) * 1000 };
         }
         const aktiv = aktiveSpieler(data);
         const alleFertig = aktiv.length > 0 && aktiv.every(function (k) { return data.players[k].kFertig; });
         const spaet = Date.now() > hostSprint.ende + NACHLAUF;
         if ((alleFertig || spaet) && hostFertigGesendet !== data.sprintId) {
             hostFertigGesendet = data.sprintId;
+            const upd = { status: "finished", kEnde: Date.now() };
+            if (istZiel(data)) {
+                // Punkte nach Reihenfolge des Ankommens; wer es nicht geschafft hat, bekommt seine richtigen
+                const pl = data.players || {};
+                const fertig = aktiv.filter(function (k) { return pl[k].kZeit && (pl[k].kRichtig || 0) >= ZIEL; })
+                    .sort(function (a, b) { return pl[a].kZeit - pl[b].kZeit; });
+                aktiv.forEach(function (k) {
+                    const i = fertig.indexOf(k);
+                    upd["players." + k + ".score"] = i >= 0 ? (ZIEL_PUNKTE[i] || 5) : Math.min(ZIEL - 1, pl[k].kRichtig || 0);
+                });
+            }
             setTimeout(function () {
-                ref.update({ status: "finished", kEnde: Date.now() }).catch(function () { hostFertigGesendet = ""; });
+                ref.update(upd).catch(function () { hostFertigGesendet = ""; });
             }, alleFertig ? 1200 : 0);
         }
     }
@@ -221,14 +268,23 @@
     function boardHtml(data, gross) {
         const pl = data.players || {};
 
+        const ziel = istZiel(data) && data.status === "playing";
+        const wert = function (k) { return ziel ? (pl[k].kRichtig || 0) : (pl[k].score || 0); };
         const keys = Object.keys(pl).filter(function (k) { return !pl[k].pending; })
-            .sort(function (a, b) { return (pl[b].score || 0) - (pl[a].score || 0); });
-        const max = Math.max(1, ...keys.map(function (k) { return pl[k].score || 0; }));
+            .sort(function (a, b) {
+                if (ziel) {
+                    const fa = pl[a].kZeit && wert(a) >= ZIEL, fb = pl[b].kZeit && wert(b) >= ZIEL;
+                    if (fa && fb) return pl[a].kZeit - pl[b].kZeit;
+                    if (fa !== fb) return fa ? -1 : 1;
+                }
+                return wert(b) - wert(a);
+            });
+        const max = ziel ? ZIEL : Math.max(1, ...keys.map(function (k) { return pl[k].score || 0; }));
         const medals = ["🥇", "🥈", "🥉"];
         return keys.map(function (k, i) {
             const p = pl[k], ich = k === ichKey() && !gross;
-            const w = Math.round(((p.score || 0) / max) * 100);
-            const rang = keys.filter(function (x) { return (pl[x].score || 0) > (p.score || 0); }).length;
+            const w = Math.min(100, Math.round((wert(k) / max) * 100));
+            const rang = ziel ? i : keys.filter(function (x) { return (pl[x].score || 0) > (p.score || 0); }).length;
             const fs = gross ? "clamp(16px,2.6vw,30px)" : "13px";
             let blitz = "", aufgabeHtml = "";
             if (gross) {
@@ -243,11 +299,11 @@
                 aufgabeHtml = `<span style="flex:0 0 22%;text-align:center;font-size:.72em;font-weight:800;color:#c7d2fe;background:rgba(255,255,255,.06);border-radius:10px;padding:.25em .4em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t || "&nbsp;"}</span>`;
             }
             return `<div style="${blitz}transition:background .35s;display:flex;align-items:center;gap:${gross ? 14 : 8}px;font-size:${fs};font-weight:800;border-radius:12px;${gross ? "padding:.15em .3em" : ""}">
-                <span style="width:${gross ? 2.2 : 1.6}em;text-align:center">${(p.score || 0) > 0 && rang < 3 ? medals[rang] : (rang + 1) + "."}</span>
+                <span style="width:${gross ? 2.2 : 1.6}em;text-align:center">${wert(k) > 0 && rang < 3 ? medals[rang] : (rang + 1) + "."}</span>
                 <span style="flex:0 0 ${gross ? "28%" : "34%"};overflow:hidden;text-overflow:ellipsis;white-space:nowrap;${ich ? "color:#fcd34d" : ""}">${e(p.name)}${gross ? `<span style="display:block;font-size:.55em;opacity:.65;font-weight:700">${e(kurz(p.kopfStufe))}</span>` : ""}</span>
                 ${aufgabeHtml}
                 <span style="flex:1;height:${gross ? 26 : 10}px;border-radius:99px;background:rgba(255,255,255,.1);overflow:hidden"><span style="display:block;height:100%;width:${w}%;background:linear-gradient(90deg,#10b981,#f59e0b);transition:width .4s"></span></span>
-                <span style="min-width:2.2em;text-align:right;color:#6ee7b7">${p.score || 0}${p.kFertig ? " ✓" : ""}</span>
+                <span style="min-width:2.2em;text-align:right;color:#6ee7b7;white-space:nowrap">${ziel ? (p.kZeit && wert(k) >= ZIEL ? "✓ " + mmss(p.kZeit) : wert(k) + "/" + ZIEL) : (p.score || 0) + (p.kFertig ? " ✓" : "")}</span>
             </div>`;
         }).join("");
     }
@@ -267,6 +323,7 @@
         upd["players." + k + ".kFalsch"] = sp.falsch;
         upd["players." + k + ".kAufgabe"] = (!final && sp.aufgabe) ? String(sp.aufgabe.t) : "";
         if (final) upd["players." + k + ".kFertig"] = true;
+        if (final && sp.ziel && sp.zeit) upd["players." + k + ".kZeit"] = sp.zeit;
         sp.letztesSenden = Date.now();
         sp.ref.update(upd).catch(function () { });
     }
@@ -330,9 +387,19 @@
             if (fb) fb.innerText = a.t + " = " + zahl(a.l);
             sfx("wrong");
         }
-        const sc = el("kd-score"); if (sc) sc.innerText = "✓ " + sp.richtig;
+        const sc = el("kd-score"); if (sc) sc.innerText = sp.ziel ? "✓ " + sp.richtig + "/" + ZIEL : "✓ " + sp.richtig;
+        if (sp.ziel && sp.richtig >= ZIEL) {
+            sp.fertig = true;
+            sp.zeit = Date.now() - sp.start;
+            if (sp.schreibTimer) { clearTimeout(sp.schreibTimer); sp.schreibTimer = null; }
+            senden(true);
+            sfx("correct");
+            const bar = el("kd-bar"); if (bar) bar.style.width = "100%";
+            overlay(`<div style="font-size:44px">🎉</div><div style="font-size:22px">Geschafft!</div><div style="font-size:15px;margin-top:6px;color:#6ee7b7">${ZIEL} richtig in ${mmss(sp.zeit)}</div><div style="font-size:12px;opacity:.7;margin-top:8px">Warte auf die anderen …</div>`);
+            return;
+        }
         zwischenstand();
-        setTimeout(function () { if (laeuft()) naechste(); }, ok ? 220 : 1000);
+        setTimeout(function () { if (laeuft()) naechste(); }, ok ? 220 : (sp.ziel ? 2000 : 1000));
     }
 
     function ticken() {
@@ -341,11 +408,16 @@
         const z = el("kd-zeit"), bar = el("kd-bar");
         if (now < sp.start) {
             overlay(`<div style="font-size:15px;opacity:.8">Gleich geht's los!</div><div style="font-size:72px;line-height:1">${Math.ceil((sp.start - now) / 1000)}</div>`);
-            if (z) z.innerText = DAUER + "s";
+            if (z) z.innerText = sp.ziel ? "🎯 " + ZIEL : DAUER + "s";
             return;
         }
         if (now < sp.ende) {
             if (!sp.gestartet) { sp.gestartet = true; overlay(""); naechste(); sfx("tap"); }
+            if (sp.ziel) {
+                if (z) { z.innerText = mmss(now - sp.start); z.style.color = ""; }
+                if (bar) bar.style.width = Math.min(100, sp.richtig / ZIEL * 100) + "%";
+                return;
+            }
             const rest = sp.ende - now;
             if (z) { z.innerText = Math.ceil(rest / 1000) + "s"; z.style.color = rest <= 5000 ? "#fb7185" : ""; }
             if (bar) bar.style.width = (rest / (DAUER * 10)) + "%";
@@ -388,20 +460,20 @@
             const start = Date.now() + VORLAUF;
             sp = {
                 id: data.sprintId, ref: ref, key: ichKey(), stufe: me.kopfStufe || standardStufe(),
-                start: start, ende: start + DAUER * 1000, richtig: 0, falsch: 0, eingabe: "",
-                aufgabe: null, sperre: false, fertig: false, gestartet: false
+                start: start, ende: start + dauerVon(data) * 1000, richtig: 0, falsch: 0, eingabe: "",
+                aufgabe: null, sperre: false, fertig: false, gestartet: false, ziel: istZiel(data)
             };
             if (!me.kopfStufe) ref.update({ ["players." + ichKey() + ".kopfStufe"]: sp.stufe }).catch(function () { });
             if (!me.kFertig && (me.kRichtig || me.kFalsch) && data.sprintTs) {
                 sp.richtig = me.kRichtig || 0; sp.falsch = me.kFalsch || 0;
-                const soll = data.sprintTs + VORLAUF + DAUER * 1000;
-                sp.start = Date.now();
-                sp.ende = Math.max(Date.now() + 1000, Math.min(soll, Date.now() + DAUER * 1000));
+                const soll = data.sprintTs + VORLAUF + dauerVon(data) * 1000;
+                sp.start = sp.ziel ? data.sprintTs + VORLAUF : Date.now();
+                sp.ende = Math.max(Date.now() + 1000, Math.min(soll, Date.now() + dauerVon(data) * 1000));
             }
             if (me.kFertig) { sp.fertig = true; sp.richtig = me.kRichtig || 0; sp.falsch = me.kFalsch || 0; sp.start = sp.ende = 0; }
             setHtml(spielHtml(mitBoard));
             const st = el("kd-stufe"); if (st) st.innerText = kurz(sp.stufe);
-            if (sp.fertig) overlay(`<div style="font-size:22px">✅ Fertig!</div><div style="font-size:15px;margin-top:6px;color:#6ee7b7">${sp.richtig} richtig</div>`);
+            if (sp.fertig) overlay(`<div style="font-size:22px">✅ Fertig!</div><div style="font-size:15px;margin-top:6px;color:#6ee7b7">${sp.richtig} richtig${me.kZeit ? " in " + mmss(me.kZeit) : ""}</div>`);
             else { ticken(); tick = setInterval(ticken, 100); }
         }
         const b = el("kd-board"); if (b) b.innerHTML = boardHtml(data, false);
@@ -419,7 +491,7 @@
         const fr = document.getElementById("live-duel-force-resolve"); if (fr) fr.classList.add("hidden");
         if (istHost) {
             if (!hostSprint || hostSprint.id !== data.sprintId) {
-                hostSprint = { id: data.sprintId, ende: (sp && sp.id === data.sprintId && sp.ende) ? sp.ende : Date.now() + VORLAUF + DAUER * 1000 };
+                hostSprint = { id: data.sprintId, ende: (sp && sp.id === data.sprintId && sp.ende) ? sp.ende : Date.now() + VORLAUF + dauerVon(data) * 1000 };
             }
             hostPruefen(data, ref);
             hostTimerStarten(ref);
@@ -431,8 +503,9 @@
     function tvHost(data, ref, setHtml) {
         if (tvSprintId !== data.sprintId) {
             tvSprintId = data.sprintId;
-            const soll = data.sprintTs ? data.sprintTs + VORLAUF + DAUER * 1000 : 0;
-            hostSprint = { id: data.sprintId, ende: (soll && Math.abs(soll - Date.now()) < 120000) ? soll : Date.now() + VORLAUF + DAUER * 1000 };
+            const dauerMs = dauerVon(data) * 1000;
+            const soll = data.sprintTs ? data.sprintTs + VORLAUF + dauerMs : 0;
+            hostSprint = { id: data.sprintId, ende: (soll && Math.abs(soll - Date.now()) < dauerMs + 60000) ? soll : Date.now() + VORLAUF + dauerMs, dauerMs: dauerMs, ziel: istZiel(data) };
             setHtml(`<div style="min-height:100vh;padding:3vh 4vw;color:#fff;display:flex;flex-direction:column;gap:2.5vh">
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:16px">
                   <div style="font-size:clamp(22px,3.6vw,46px);font-weight:900">🧮 Kopfrechen-Duell</div>
@@ -441,15 +514,17 @@
                     <button onclick="appConfirmSwitch('TV-Spiel endet für alle.','Spiel verlassen?',null,function(){leaveTVGame(true);})" class="tv-show-exit" title="Spiel beenden">✕</button>
                   </div>
                 </div>
-                <div style="font-size:clamp(13px,1.7vw,20px);color:#a5b4fc;font-weight:700">Jeder rechnet auf seinem Handy – in seiner eigenen Stufe. Wer schafft die meisten?</div>
+                <div style="font-size:clamp(13px,1.7vw,20px);color:#a5b4fc;font-weight:700">${istZiel(data) ? "🎯 Ohne Zeitdruck: Jeder rechnet in seiner Stufe, bis er " + ZIEL + " richtig hat. Wer kommt zuerst ins Ziel?" : "Jeder rechnet auf seinem Handy – in seiner eigenen Stufe. Wer schafft die meisten?"}</div>
                 <div id="kd-tv-rows" style="display:flex;flex-direction:column;gap:2vh"></div>
             </div>`);
             if (hostTimer) { clearInterval(hostTimer); hostTimer = null; }
             hostTimer = setInterval(function () {
                 const z = document.getElementById("kd-tv-zeit");
                 if (!hostSprint) return;
-                const now = Date.now(), start = hostSprint.ende - DAUER * 1000;
-                if (z) z.innerText = now < start ? "⏳ " + Math.ceil((start - now) / 1000) : now < hostSprint.ende ? Math.ceil((hostSprint.ende - now) / 1000) + "s" : "⏰";
+                const now = Date.now(), start = hostSprint.ende - (hostSprint.dauerMs || DAUER * 1000);
+                if (z) z.innerText = now < start ? "⏳ " + Math.ceil((start - now) / 1000)
+                    : hostSprint.ziel ? "⏱ " + mmss(now - start)
+                    : now < hostSprint.ende ? Math.ceil((hostSprint.ende - now) / 1000) + "s" : "⏰";
                 if (now > hostSprint.ende + NACHLAUF && hostFertigGesendet !== hostSprint.id) {
                     ref.get().then(function (d) { if (d.exists) hostPruefen(d.data(), ref); }).catch(function () { });
                 }
@@ -474,7 +549,7 @@
             if (sp) stopp();
             lobbyRef = ref;
             standardSetzen(data, ref);
-            const key = "w:" + (myData.kopfStufe || "") + ":" + Object.keys(data.players || {}).map(function (k) { return k + (data.players[k].kopfStufe || ""); }).join(",");
+            const key = "w:" + (data.kModus || "") + ":" + (myData.kopfStufe || "") + ":" + Object.keys(data.players || {}).map(function (k) { return k + (data.players[k].kopfStufe || ""); }).join(",");
             const sel = document.getElementById("kd-tv-stufe-sel");
             if (key === tvWarteKey && sel) return;
             if (sel && document.activeElement === sel) return;
@@ -562,7 +637,8 @@
             d.className = "hidden space-y-2 text-center";
             d.innerHTML = `<div class="text-5xl">🧮</div>
                 <p class="text-sm font-bold text-white">60 Sekunden – so viele Aufgaben wie möglich.</p>
-                <p class="text-xs text-gray-400">Jeder wählt im Warteraum seine eigene Stufe aus dem Kopfrechen-Trainer. So haben Klein und Groß die gleiche Chance.</p>`;
+                <p class="text-xs text-gray-400">Jeder wählt im Warteraum seine eigene Stufe aus dem Kopfrechen-Trainer. So haben Klein und Groß die gleiche Chance.</p>
+                ${modusHtml()}`;
             q.insertAdjacentElement("afterend", d);
         }
         // TV-Modus: vierter Knopf + Optionen
@@ -579,7 +655,8 @@
                 d.id = "tv-kopf-mode-options";
                 d.className = "hidden space-y-2 mb-2";
                 d.innerHTML = `<p class="text-sm text-white font-bold">🧮 60-Sekunden-Sprint</p>
-                    <p class="text-xs text-gray-400">Jeder rechnet auf seinem Handy in seiner eigenen Stufe. Der Fernseher zeigt das Rennen live.</p>`;
+                    <p class="text-xs text-gray-400">Jeder rechnet auf seinem Handy in seiner eigenen Stufe. Der Fernseher zeigt das Rennen live.</p>
+                    ${modusHtml()}`;
                 w.insertAdjacentElement("afterend", d);
             }
         }
@@ -594,7 +671,7 @@
         if (typeof ensureProfileSessionLock === "function" && !(await ensureProfileSessionLock(true))) return;
         const ref = liveDuelCollectionRef().doc();
         const lobbyData = {
-            type: "kopf", status: "waiting", dauer: DAUER, createdBy: ichKey(),
+            type: "kopf", status: "waiting", dauer: DAUER, kModus: gewaehlterModus, createdBy: ichKey(),
             createdByName: currentPlayer.name, createdAt: Date.now(), hostLastSeen: Date.now(), players: {}
         };
         lobbyData.players[ichKey()] = {
@@ -648,7 +725,8 @@
             d.className = "hidden space-y-2 text-center";
             d.innerHTML = `<div class="text-4xl">🧮</div>
                 <p class="text-sm font-bold text-white">60-Sekunden-Kopfrechen-Sprint</p>
-                <p class="text-xs text-gray-400">Jeder wählt im Warteraum seine eigene Stufe. Wer die meisten Aufgaben richtig hat, gewinnt.</p>`;
+                <p class="text-xs text-gray-400">Jeder wählt im Warteraum seine eigene Stufe. Wer die meisten Aufgaben richtig hat, gewinnt.</p>
+                ${modusHtml()}`;
             vo.insertAdjacentElement("afterend", d);
         }
         if (typeof window.setCodedLobbyType === "function" && !window.setCodedLobbyType._kd) {
@@ -684,7 +762,7 @@
         try {
             const res = await reserveAndCreateLobby(function (code) {
                 return {
-                    type: "kopf", mode: "versus", isCoded: true, status: "waiting", dauer: DAUER,
+                    type: "kopf", mode: "versus", isCoded: true, status: "waiting", dauer: DAUER, kModus: gewaehlterModus,
                     createdBy: ichKey(), createdByName: name, players: players, code: code,
                     createdAt: Date.now(), hostLastSeen: Date.now(),
                     hostUid: (typeof auth !== "undefined" && auth.currentUser && auth.currentUser.uid) || null
@@ -712,6 +790,7 @@
     window.KopfDuell = {
         stufeWaehlen: stufeWaehlen, taste: taste, lobby: lobby, starten: starten, stopp: stopp,
         liveRender: liveRender, tvHost: tvHost, tvSpieler: tvSpieler, kurz: kurz,
+        modus: modusSetzen, _modus: function () { return gewaehlterModus; },
         _gen: gen, _stufen: alleStufen, _standard: standardStufe, _klasse: klasseVon, _leichter: leichter
     };
 })();

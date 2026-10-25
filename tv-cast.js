@@ -603,7 +603,7 @@
             const hostRef = db.collection("parents").doc(currentParentUser.uid).collection("tv_game").doc("lobby");
             let lobbyData;
             if (tvHostMode === 'kopf') {
-                lobbyData = { status: "waiting", mode: "kopf", dauer: 60, players: {} };
+                lobbyData = { status: "waiting", mode: "kopf", dauer: 60, kModus: (window.KopfDuell && KopfDuell._modus) ? KopfDuell._modus() : "zeit", players: {} };
             } else if (tvHostMode === 'scrabble') {
                 const difficulty = document.getElementById("tv-scrabble-difficulty").value;
                 const totalRounds = parseInt(document.getElementById("tv-scrabble-rounds").value);

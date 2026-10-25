@@ -16,7 +16,7 @@
     const NACHLAUF = 8000;     // so lange wartet der Host höchstens auf Nachzügler
     const SCHREIB_MS = 1000;   // Zwischenstand höchstens 1× pro Sekunde senden
     const SPAET_MS = 20000;    // wer so spät dazukommt, spielt erst nächste Runde
-    const MIX = ["k4_gross", "k5_quadrat", "k5_bruch", "k6_dezimal", "k7_prozent", "k7_negativ"];
+    const MIX = ["k4_gross", "k5_quadrat", "k5_bruch", "k5_tricks", "k6_dezimal", "k7_prozent", "k7_negativ", "k7_potenz", "k7_gleichung"];
     const MIX_STUFE = { id: "duell_mix", kl: 8, icon: "🔥", titel: "Profi-Mix (ab Kl. 7)" };
     // Modus „Ziel“: Jeder rechnet ohne Zeitdruck, bis er 10 richtig hat. Die Runde
     // endet erst, wenn alle 10 haben (Notbremse nach 10 Minuten). Reihenfolge
@@ -295,7 +295,7 @@
                 else if ((p.kFalsch || 0) > v.f) { farbe = "rgba(239,68,68,.4)"; bis = Date.now() + 900; }
                 tvVorher[id] = { r: p.kRichtig || 0, f: p.kFalsch || 0, bis: bis, farbe: farbe };
                 if (Date.now() < bis) blitz = "background:" + farbe + ";";
-                const t = (!p.kFertig && data.status === "playing" && p.kAufgabe) ? e(String(p.kAufgabe)).replace(/-/g, "−") + " = ?" : (p.kFertig ? "fertig ✓" : "");
+                const t = (!p.kFertig && data.status === "playing" && p.kAufgabe) ? e(String(p.kAufgabe)).replace(/-/g, "−") + (/\?/.test(String(p.kAufgabe)) ? "" : " = ?") : (p.kFertig ? "fertig ✓" : "");
                 aufgabeHtml = `<span style="flex:0 0 22%;text-align:center;font-size:.72em;font-weight:800;color:#c7d2fe;background:rgba(255,255,255,.06);border-radius:10px;padding:.25em .4em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${t || "&nbsp;"}</span>`;
             }
             return `<div style="${blitz}transition:background .35s;display:flex;align-items:center;gap:${gross ? 14 : 8}px;font-size:${fs};font-weight:800;border-radius:12px;${gross ? "padding:.15em .3em" : ""}">
@@ -344,11 +344,11 @@
         let a, n = 0;
         do { a = gen(sp.stufe); n++; } while (n < 8 && sp.letzte && a.t === sp.letzte);
         sp.letzte = a.t; sp.aufgabe = a; sp.eingabe = ""; sp.sperre = false;
-        const t = el("kd-task"); if (t) t.innerText = a.t + " =";
+        const t = el("kd-task"); if (t) { t.innerText = window.KOPF_FRAGE ? KOPF_FRAGE(a.t) : a.t + " ="; t.style.fontSize = a.t.length > 24 ? "26px" : (a.t.length > 15 ? "32px" : ""); }
         const inp = el("kd-input"); if (inp) { inp.className = "kr-input"; inp.innerHTML = "&nbsp;"; }
         const fb = el("kd-feedback"); if (fb) fb.innerText = "";
         const minus = a.l < 0 || a.st === "k7_negativ";
-        const komma = String(a.l).indexOf(".") !== -1 || a.st === "k6_dezimal" || a.st === "k7_prozent";
+        const komma = String(a.l).indexOf(".") !== -1 || a.st === "k6_dezimal" || a.st === "k7_prozent" || a.st === "k6_umwandeln";
         const km = el("kd-key-minus"), kk = el("kd-key-komma");
         if (km) km.style.visibility = minus ? "visible" : "hidden";
         if (kk) kk.style.visibility = komma ? "visible" : "hidden";
@@ -384,7 +384,7 @@
         } else {
             sp.falsch++;
             if (inp) { inp.className = "kr-input falsch"; inp.innerText = zahl(a.l); }
-            if (fb) fb.innerText = a.t + " = " + zahl(a.l);
+            if (fb) fb.innerText = window.KOPF_LOESUNG ? KOPF_LOESUNG(a.t, a.l) : a.t + " = " + zahl(a.l);
             sfx("wrong");
         }
         const sc = el("kd-score"); if (sc) sc.innerText = sp.ziel ? "✓ " + sp.richtig + "/" + ZIEL : "✓ " + sp.richtig;

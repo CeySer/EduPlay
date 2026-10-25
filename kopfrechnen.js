@@ -23,6 +23,9 @@
         return s.replace("-", "−");
     }
     function e(s) { return (typeof esc === "function") ? esc(s) : String(s); }
+    function hoch(n) { return String(n).split("").map(function (c) { return "⁰¹²³⁴⁵⁶⁷⁸⁹"[+c]; }).join(""); }
+    function frageText(t) { t = String(t).replace(/ (?=(€|ct|%|min|h|cm|mm|m|km|kg|g|s)(?![A-Za-zÄÖÜäöü]))/g, "\u00a0"); return /\?/.test(t) ? t : t + " ="; }
+    function loesungText(t, l) { return /\?/.test(t) ? t.replace("?", zahl(l)) : t + " = " + zahl(l); }
 
     // ---------------- Stufen ----------------
     // gen(reihe) liefert {t: Anzeige, l: Lösung (Zahl), r: Reihe für die 1×1-Übersicht}
@@ -34,6 +37,17 @@
         { id: "k1_20", kl: 1, icon: "🔟", titel: "Plus & Minus bis 20", gen: function () {
             if (Math.random() < 0.5) { const a = rnd(3, 9), b = rnd(11 - a, 9); return { t: a + " + " + b, l: a + b }; }
             const c = rnd(11, 18), b = rnd(c - 9, 9); return { t: c + " − " + b, l: c - b };
+        } },
+        { id: "k1_ergaenzen", kl: 1, icon: "🧩", titel: "Ergänzen bis 10 & 20", gen: function () {
+            const t = rnd(0, 3);
+            if (t === 0) { const a = rnd(1, 9); return { t: a + " + ? = 10", l: 10 - a }; }
+            if (t === 1) { const a = rnd(1, 9); return { t: "? + " + a + " = 10", l: 10 - a }; }
+            if (t === 2) { const a = rnd(11, 19); return { t: a + " + ? = 20", l: 20 - a }; }
+            const a = rnd(1, 9); return { t: "10 − ? = " + a, l: 10 - a };
+        } },
+        { id: "k1_zerlegen", kl: 1, icon: "🏠", titel: "Zahlenhaus: Zahlen zerlegen", gen: function () {
+            const n = rnd(5, 10), a = rnd(1, n - 1);
+            return Math.random() < 0.5 ? { t: n + " = " + a + " + ?", l: n - a } : { t: n + " = ? + " + a, l: n - a };
         } },
         { id: "k2_doppel", kl: 2, icon: "👯", titel: "Verdoppeln & Halbieren", gen: function () {
             if (Math.random() < 0.5) { const n = pick([rnd(2, 25), rnd(10, 50)]); return { t: "Das Doppelte von " + n, l: 2 * n }; }
@@ -52,6 +66,26 @@
             if (t === 1) { const a = rnd(2, 8) * 10, b = rnd(1, 9 - a / 10) * 10; return { t: a + " + " + b, l: a + b }; }
             if (t === 2) { const a = rnd(20, 99), b = rnd(11, a - 1); return { t: a + " − " + b, l: a - b }; }
             const a = rnd(11, 60), b = rnd(11, 100 - a); return { t: a + " + " + b, l: a + b };
+        } },
+        { id: "k2_ergaenzen", kl: 2, icon: "🎯", titel: "Ergänzen bis 100", gen: function () {
+            const t = rnd(0, 2);
+            if (t === 0) { const a = rnd(1, 9) * 10; return { t: a + " + ? = 100", l: 100 - a }; }
+            if (t === 1) { const a = rnd(11, 89); return { t: a + " + ? = 100", l: 100 - a }; }
+            const z = rnd(3, 9) * 10, a = rnd(z - 9, z - 1); return { t: a + " + ? = " + z, l: z - a };
+        } },
+        { id: "k2_geld", kl: 2, icon: "💶", titel: "Rechnen mit Geld", gen: function () {
+            const t = rnd(0, 3);
+            if (t === 0) { const e = rnd(1, 9), c = rnd(1, 19) * 5; return { t: e + " € " + c + " ct = ? ct", l: e * 100 + c }; }
+            if (t === 1) { const c = rnd(1, 19) * 5; return { t: "1 € − " + c + " ct = ? ct", l: 100 - c }; }
+            if (t === 2) { const a = rnd(1, 9) * 10, b = rnd(1, 9) * 5; return { t: a + " ct + " + b + " ct = ? ct", l: a + b }; }
+            const p = rnd(1, 9), z = pick([10, 20]); return { t: "Bezahlt " + z + " €, kostet " + p + " €. Zurück: ? €", l: z - p };
+        } },
+        { id: "k2_uhr", kl: 2, icon: "🕐", titel: "Uhr & Minuten", gen: function () {
+            const t = rnd(0, 3);
+            if (t === 0) { const h = rnd(7, 18), m = rnd(1, 11) * 5; return { t: "Von " + h + ":" + String(m).padStart(2, "0") + " bis " + (h + 1) + ":00 = ? min", l: 60 - m }; }
+            if (t === 1) { const x = pick([["1 Stunde", 60], ["½ Stunde", 30], ["¼ Stunde", 15], ["¾ Stunde", 45], ["2 Stunden", 120]]); return { t: x[0] + " = ? min", l: x[1] }; }
+            if (t === 2) { const h = rnd(7, 18), m = rnd(0, 6) * 5, d = rnd(1, 5) * 5; return { t: h + ":" + String(m).padStart(2, "0") + " + " + d + " min = " + h + ":?", l: m + d }; }
+            const h = rnd(1, 3), m = pick([15, 30, 45]); return { t: h + " h " + m + " min = ? min", l: h * 60 + m };
         } },
         { id: "k2_1x1", kl: 2, icon: "✖️", titel: "Kleines 1×1", reihen: [2, 3, 4, 5, 6, 7, 8, 9, 10], gen: function (r) {
             const a = r || rnd(2, 10), b = rnd(1, 10);
@@ -73,6 +107,22 @@
             if (t === 2) { const a = rnd(10, 99) * 10 + rnd(0, 5), b = rnd(6, 9); return { t: a + " − " + b, l: a - b }; }
             const a = rnd(100, 890), b = rnd(3, 9); return { t: a + " + " + b, l: a + b };
         } },
+        { id: "k3_kette", kl: 3, icon: "⛓️", titel: "Kettenaufgaben", gen: function () {
+            const t = rnd(0, 3);
+            if (t === 0) { const a = rnd(2, 9), b = rnd(2, 9), c = rnd(1, 20); return { t: a + " · " + b + " + " + c, l: a * b + c }; }
+            if (t === 1) { const a = rnd(2, 9), b = rnd(2, 9), c = rnd(1, a * b); return { t: a + " · " + b + " − " + c, l: a * b - c }; }
+            if (t === 2) { const a = rnd(10, 40), b = rnd(5, 30), c = rnd(2, 20); return { t: a + " + " + b + " + " + c, l: a + b + c }; }
+            const b = rnd(2, 9), x = rnd(2, 10), c = rnd(1, 15); return { t: (b * x) + " : " + b + " + " + c, l: x + c };
+        } },
+        { id: "k3_rest", kl: 3, icon: "🍬", titel: "Teilen mit Rest", gen: function () {
+            const b = rnd(2, 9), q = rnd(1, 9), r = rnd(1, b - 1), n = b * q + r;
+            return Math.random() < 0.5 ? { t: n + " : " + b + " = " + q + " Rest ?", l: r } : { t: n + " : " + b + " = ? Rest " + r, l: q };
+        } },
+        { id: "k3_groessen", kl: 3, icon: "📏", titel: "Größen umrechnen", gen: function () {
+            const x = pick([["m", "cm", 100], ["km", "m", 1000], ["kg", "g", 1000], ["h", "min", 60], ["min", "s", 60], ["€", "ct", 100], ["cm", "mm", 10]]);
+            const n = rnd(2, 9);
+            return Math.random() < 0.6 ? { t: n + " " + x[0] + " = ? " + x[1], l: n * x[2] } : { t: (n * x[2]) + " " + x[1] + " = ? " + x[0], l: n };
+        } },
         { id: "k4_gross", kl: 4, icon: "🧱", titel: "Großes 1×1", reihen: [11, 12, 13, 14, 15, 16, 17, 18, 19, 20], gen: function (r) {
             const a = r || rnd(11, 20), b = rnd(2, 10);
             return Math.random() < 0.7 ? { t: a + " · " + b, l: a * b } : { t: (a * b) + " : " + b, l: a };
@@ -84,6 +134,25 @@
             if (t === 2) return { t: (x * y * 10) + " : " + y, l: x * 10 };
             return { t: (x * y * 100) + " : " + y, l: x * 100 };
         } },
+        { id: "k4_klammer", kl: 4, icon: "🧮", titel: "Klammern & Punkt vor Strich", gen: function () {
+            const t = rnd(0, 3), a = rnd(2, 9), b = rnd(2, 9), c = rnd(2, 9);
+            if (t === 0) return { t: "(" + a + " + " + b + ") · " + c, l: (a + b) * c };
+            if (t === 1) { const g = b * c + rnd(1, 30); return { t: g + " − " + b + " · " + c, l: g - b * c }; }
+            if (t === 2) return { t: a + " + " + b + " · " + c, l: a + b * c };
+            const s = a + b + 2; return { t: "(" + s + " − " + b + ") · " + c, l: (s - b) * c };
+        } },
+        { id: "k4_runden", kl: 4, icon: "🎯", titel: "Runden", gen: function () {
+            const t = rnd(0, 2);
+            if (t === 0) { const n = rnd(11, 999); return { t: n + " auf Zehner gerundet", l: Math.round(n / 10) * 10 }; }
+            if (t === 1) { const n = rnd(101, 9999); return { t: n + " auf Hunderter gerundet", l: Math.round(n / 100) * 100 }; }
+            const n = rnd(1001, 99999); return { t: n + " auf Tausender gerundet", l: Math.round(n / 1000) * 1000 };
+        } },
+        { id: "k4_roemisch", kl: 4, icon: "🏛️", titel: "Römische Zahlen", gen: function () {
+            const n = Math.random() < 0.6 ? rnd(1, 40) : rnd(41, 2030);
+            const w = [[1000, "M"], [900, "CM"], [500, "D"], [400, "CD"], [100, "C"], [90, "XC"], [50, "L"], [40, "XL"], [10, "X"], [9, "IX"], [5, "V"], [4, "IV"], [1, "I"]];
+            let r = "", x = n; w.forEach(function (p) { while (x >= p[0]) { r += p[1]; x -= p[0]; } });
+            return { t: r + " = ?", l: n };
+        } },
         { id: "k5_quadrat", kl: 5, icon: "⬛", titel: "Quadratzahlen", gen: function () {
             const n = rnd(2, 20);
             return Math.random() < 0.6 ? { t: n + "²", l: n * n } : { t: "√" + (n * n), l: n };
@@ -94,12 +163,45 @@
             let z = rnd(1, d - 1); while (gt(z, d) !== 1) z = rnd(1, d - 1);
             return { t: z + "/" + d + " von " + (d * k), l: z * k };
         } },
+        { id: "k5_teiler", kl: 5, icon: "🔍", titel: "Teiler, Vielfache & Primzahlen", gen: function () {
+            const gt = function (x, y) { return y ? gt(y, x % y) : x; };
+            const prim = function (n) { if (n < 2) return false; for (let i = 2; i * i <= n; i++) if (n % i === 0) return false; return true; };
+            const t = rnd(0, 3);
+            if (t === 0) { const g = rnd(2, 9), a = g * rnd(2, 6); let b = g * rnd(2, 6); if (b === a) b += g; return { t: "ggT von " + a + " und " + b, l: gt(a, b) }; }
+            if (t === 1) { const a = rnd(2, 10); let b = rnd(2, 12); if (b === a) b++; return { t: "kgV von " + a + " und " + b, l: a * b / gt(a, b) }; }
+            if (t === 2) { const n = rnd(2, 60); let p = n + 1; while (!prim(p)) p++; return { t: "Nächste Primzahl nach " + n, l: p }; }
+            const n = pick([6, 8, 10, 12, 15, 16, 18, 20, 24, 30, 36]); let c = 0; for (let i = 1; i <= n; i++) if (n % i === 0) c++;
+            return { t: "Wie viele Teiler hat " + n + "?", l: c };
+        } },
+        { id: "k5_folgen", kl: 5, icon: "🔢", titel: "Zahlenfolgen fortsetzen", gen: function () {
+            const t = rnd(0, 3); let f = [];
+            if (t === 0) { const s = rnd(1, 20), d = rnd(2, 12); for (let i = 0; i < 5; i++) f.push(s + i * d); }
+            else if (t === 1) { const s = rnd(60, 120), d = rnd(3, 11); for (let i = 0; i < 5; i++) f.push(s - i * d); }
+            else if (t === 2) { const s = rnd(1, 5), q = pick([2, 3]); for (let i = 0; i < 5; i++) f.push(s * Math.pow(q, i)); }
+            else { const s = rnd(1, 6); for (let i = 0; i < 5; i++) f.push((s + i) * (s + i)); }
+            const l = f.pop();
+            return { t: f.join(", ") + ", ?", l: l };
+        } },
+        { id: "k5_tricks", kl: 5, icon: "✨", titel: "Rechentricks: · 5, · 9, · 11, · 25", gen: function () {
+            const t = rnd(0, 3);
+            if (t === 0) { const a = rnd(11, 99); return { t: a + " · 11", l: a * 11 }; }
+            if (t === 1) { const a = rnd(2, 40); return { t: a + " · 25", l: a * 25 }; }
+            if (t === 2) { const a = rnd(12, 98); return { t: a + " · 5", l: a * 5 }; }
+            const a = rnd(11, 30); return { t: a + " · 9", l: a * 9 };
+        } },
         { id: "k6_dezimal", kl: 6, icon: "🔣", titel: "Dezimalzahlen im Kopf", gen: function () {
             const t = rnd(0, 3);
             if (t === 0) { const a = rnd(1, 9), b = rnd(1, 9); return { t: zahl(a / 10) + " + " + zahl(b / 10), l: (a + b) / 10 }; }
             if (t === 1) { const a = rnd(11, 99), b = rnd(1, 9) * 5; return { t: zahl(a / 100) + " + " + zahl(b / 100), l: (a + b) / 100 }; }
             if (t === 2) { const a = rnd(11, 999), f = pick([10, 100]); return { t: zahl(a / 100) + " · " + f, l: a * f / 100 }; }
             const a = rnd(11, 99); return { t: a + " : 10", l: a / 10 };
+        } },
+        { id: "k6_umwandeln", kl: 6, icon: "🔄", titel: "Bruch, Dezimal & Prozent", gen: function () {
+            const x = pick([[1, 2], [1, 4], [3, 4], [1, 5], [2, 5], [3, 5], [4, 5], [1, 10], [3, 10], [7, 10], [1, 20], [1, 25], [1, 50]]);
+            const t = rnd(0, 2), dez = x[0] / x[1];
+            if (t === 0) return { t: x[0] + "/" + x[1] + " = ? %", l: dez * 100 };
+            if (t === 1) return { t: x[0] + "/" + x[1] + " als Dezimalzahl", l: dez };
+            return { t: zahl(dez) + " = ? %", l: Math.round(dez * 1000) / 10 };
         } },
         { id: "k7_prozent", kl: 7, icon: "💯", titel: "Prozent im Kopf", gen: function () {
             const p = pick([10, 50, 25, 20, 5, 1, 75]);
@@ -113,6 +215,26 @@
             if (t === 0) return { t: zahl(a) + " + " + kl(b), l: a + b };
             if (t === 1) return { t: zahl(a) + " − " + kl(b), l: a - b };
             const x = rnd(-9, 9) || 2, y = rnd(-9, 9) || -3; return { t: zahl(x) + " · " + kl(y), l: x * y };
+        } },
+        { id: "k7_potenz", kl: 7, icon: "⚡", titel: "Potenzen & Wurzeln", gen: function () {
+            const t = rnd(0, 3);
+            if (t === 0) { const n = rnd(2, 10); return { t: "2" + hoch(n), l: Math.pow(2, n) }; }
+            if (t === 1) { const b = rnd(2, 5), n = b === 2 ? rnd(3, 6) : (b <= 3 ? rnd(2, 4) : rnd(2, 3)); return { t: b + hoch(n), l: Math.pow(b, n) }; }
+            if (t === 2) { const n = rnd(11, 25); return { t: "√" + (n * n), l: n }; }
+            const n = rnd(2, 6); return { t: "∛" + (n * n * n), l: n };
+        } },
+        { id: "k7_gleichung", kl: 7, icon: "⚖️", titel: "Gleichungen lösen", gen: function () {
+            const t = rnd(0, 3), x = rnd(1, 12), a = rnd(2, 9), b = rnd(1, 20);
+            if (t === 0) return { t: a + "x + " + b + " = " + (a * x + b) + " → x = ?", l: x };
+            if (t === 1) return { t: a + "x − " + b + " = " + zahl(a * x - b) + " → x = ?", l: x };
+            if (t === 2) return { t: "x + " + b + " = " + (x + b * 2) + " → x = ?", l: x + b };
+            return { t: "x : " + a + " = " + x + " → x = ?", l: a * x };
+        } },
+        { id: "k7_dreisatz", kl: 7, icon: "🛒", titel: "Dreisatz & Rabatt", gen: function () {
+            const t = rnd(0, 2);
+            if (t === 0) { const p = rnd(2, 9), n = rnd(2, 5), m = rnd(3, 10); return { t: n + " Hefte kosten " + (n * p) + " €. " + m + " Hefte: ? €", l: m * p }; }
+            if (t === 1) { const r = pick([10, 20, 25, 50]), p = rnd(2, 20) * 20; return { t: p + " € − " + r + " % Rabatt = ? €", l: p * (100 - r) / 100 }; }
+            const g = rnd(2, 20) * 10, r = pick([10, 20, 50]); return { t: g + " € + " + r + " % = ? €", l: g * (100 + r) / 100 };
         } }
     ];
     function stufe(id) { return STUFEN.find(function (s) { return s.id === id; }); }
@@ -661,7 +783,8 @@
         sp.aufgabe = neueAufgabe();
         if (!sp.aufgabe) return fertig();
         sp.nr++; sp.eingabe = ""; sp.sperre = false; sp.t0 = Date.now(); sp.tippGezeigt = false;
-        document.getElementById("kr-task").innerText = sp.aufgabe.t + " =";
+        const kt = document.getElementById("kr-task"); kt.innerText = frageText(sp.aufgabe.t);
+        kt.style.fontSize = sp.aufgabe.t.length > 24 ? "26px" : (sp.aufgabe.t.length > 15 ? "32px" : "");
         const inp = document.getElementById("kr-input"); inp.className = "kr-input"; inp.innerHTML = "&nbsp;";
         document.getElementById("kr-feedback").innerText = "";
         document.getElementById("kr-play-score").innerText = "✓ " + sp.richtig;
@@ -670,7 +793,7 @@
             document.getElementById("kr-bar").style.width = ((sp.nr - 1) / sp.gesamt * 100) + "%";
         }
         const brauchtMinus = sp.aufgabe.l < 0 || sp.stufe === "k7_negativ";
-        const brauchtKomma = String(sp.aufgabe.l).indexOf(".") !== -1 || sp.stufe === "k6_dezimal" || sp.stufe === "k7_prozent";
+        const brauchtKomma = String(sp.aufgabe.l).indexOf(".") !== -1 || sp.stufe === "k6_dezimal" || sp.stufe === "k7_prozent" || sp.stufe === "k6_umwandeln";
         document.getElementById("kr-key-minus").style.visibility = brauchtMinus ? "visible" : "hidden";
         document.getElementById("kr-key-komma").style.visibility = brauchtKomma ? "visible" : "hidden";
     }
@@ -733,7 +856,7 @@
             inp.className = "kr-input falsch";
             inp.innerText = zahl(a.l);
             const tipp = trickHint(a, sp.stufe);
-            fb.innerText = (uebersprungen ? "Lösung: " + a.t + " = " + zahl(a.l) : "Richtig ist " + zahl(a.l)) + (tipp ? "\n💡 " + tipp : "");
+            fb.innerText = (uebersprungen ? "Lösung: " + loesungText(a.t, a.l) : "Richtig ist " + zahl(a.l)) + (tipp ? "\n💡 " + tipp : "");
             sp.tippGezeigt = !!tipp;
             if (typeof SFX !== "undefined" && SFX.wrong) SFX.wrong();
             merkeFehler(a);
@@ -1023,7 +1146,9 @@
         kopfTrickUeben: kopfTrickUeben, kopfTrickSammlung: kopfTrickSammlung, kopfNachTrick: kopfNachTrick, KOPF_TRICKS: TRICKS, kopfNochmal: kopfNochmal, kopfHerausfordern: kopfHerausfordern,
         kopfDashToggle: kopfDashToggle, kopfDashReihen: kopfDashReihen, kopfZuweisen: kopfZuweisen,
         kopfZuruecknehmen: kopfZuruecknehmen, kopfNoticeOk: kopfNoticeOk, kopfDashRender: kopfDashRender,
-        KOPF_STUFEN: STUFEN
+        KOPF_STUFEN: STUFEN,
+        KOPF_FRAGE: frageText,
+        KOPF_LOESUNG: loesungText
     });
 
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", einbauen);

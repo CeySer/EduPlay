@@ -155,12 +155,16 @@
                 dragStart: null,
                 startedAt: Date.now(),
                 timerInterval: null,
-                finished: false
+                finished: false,
+                tipps: 0,
+                tippStufe: {},
+                tippWahl: null
             };
 
             switchView("suchsel-play");
             renderSuchselGrid();
             renderSuchselWordlist();
+            suchselTippKnopf();
             startSuchselTimer();
         }
 
@@ -277,8 +281,13 @@
                 let style = "";
                 if (found) style = "text-decoration:line-through;opacity:.5;";
                 else if (revealed) style = "text-decoration:line-through;opacity:.6;color:#fbbf24;";
-                return `<span class="badge-pill" style="${style}">${revealed ? "🏳️ " : ""}${label}</span>`;
+                const gewaehlt = !found && suchselState.tippWahl === w;
+                if (gewaehlt) style += "outline:2px solid #fbbf24;outline-offset:1px;";
+                const tippZeichen = !found && suchselState.tippStufe && suchselState.tippStufe[w] ? "💡 " : "";
+                const klick = (!found && !suchselState.finished) ? ` onclick="suchselTippWahl('${esc(w).replace(/'/g, "&#39;")}')" style="cursor:pointer;${style}"` : ` style="${style}"`;
+                return `<span class="badge-pill"${klick}>${revealed ? "🏳️ " : ""}${tippZeichen}${label}</span>`;
             }).join("");
+            suchselTippKnopfText();
             const counter = document.getElementById("suchsel-found-count");
             if (counter) counter.innerText = `${suchselState.found.size}/${suchselState.words.length}`;
         }
@@ -393,6 +402,7 @@
         function markSuchselWordFound(word, cells) {
             if (!suchselState || suchselState.found.has(word)) return;
             suchselState.found.add(word);
+            if (suchselState.tippWahl === word) suchselState.tippWahl = null;
             cells.forEach(([r, c]) => {
                 suchselState.foundCellKeys.add(suchselCellKey(r, c));
                 const el = document.querySelector(`#suchsel-grid [data-r="${r}"][data-c="${c}"]`);
@@ -404,6 +414,95 @@
             if (typeof showPointsPopup === "function") showPointsPopup(3, word, wrap);
             if (suchselState.found.size >= suchselState.words.length) finishSuchsel();
         }
+
+        // ------------------------------------------------------------
+        //  TIPP: 1. Tipp = erster Buchstabe leuchtet, 2. Tipp fürs selbe
+        //  Wort = die ersten zwei (zeigt die Richtung). Höchstens 3 Tipps
+        //  pro Runde, jeder kostet 1 Coin vom Gewinn. Wort in der Liste
+        //  antippen = Tipp genau dafür, sonst sucht die App eins aus.
+        // ------------------------------------------------------------
+        const SUCHSEL_MAX_TIPPS = 3;
+
+        function suchselTippKnopf() {
+            const grid = document.getElementById("suchsel-grid");
+            if (!grid) return;
+            if (!document.getElementById("suchsel-tipp-stil")) {
+                const st = document.createElement("style");
+                st.id = "suchsel-tipp-stil";
+                st.textContent = "@keyframes suchselTipp{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,.0)}50%{box-shadow:0 0 0 4px rgba(251,191,36,.9)}}" +
+                    ".suchsel-tipp{background:rgba(251,191,36,.85)!important;color:#1b1300!important;animation:suchselTipp .7s ease-in-out 4}";
+                document.head.appendChild(st);
+            }
+            let b = document.getElementById("suchsel-tipp-btn");
+            if (!b) {
+                b = document.createElement("button");
+                b.id = "suchsel-tipp-btn";
+                b.type = "button";
+                b.setAttribute("onclick", "suchselTipp()");
+                b.className = "block mx-auto font-black text-sm";
+                b.style.cssText = "background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#1b1300;border:0;border-radius:999px;padding:10px 20px;box-shadow:0 6px 18px rgba(245,158,11,.35);cursor:pointer";
+                grid.insertAdjacentElement("afterend", b);
+                const hinweis = document.createElement("div");
+                hinweis.id = "suchsel-tipp-hinweis";
+                hinweis.className = "text-center text-[11px] text-gray-500 font-bold";
+                hinweis.style.marginTop = "-6px";
+                hinweis.innerText = "Tipp: Wort oben antippen, dann zeigt der Tipp genau dieses Wort.";
+                b.insertAdjacentElement("afterend", hinweis);
+            }
+            suchselTippKnopfText();
+        }
+
+        function suchselTippKnopfText() {
+            const b = document.getElementById("suchsel-tipp-btn");
+            if (!b || !suchselState) return;
+            const rest = SUCHSEL_MAX_TIPPS - (suchselState.tipps || 0);
+            const offen = suchselState.words.length - suchselState.found.size;
+            b.innerText = rest > 0 ? `💡 Tipp (noch ${rest}) · −1 🪙` : "💡 Keine Tipps mehr";
+            b.disabled = rest <= 0 || offen <= 0 || suchselState.finished;
+            b.style.opacity = b.disabled ? ".45" : "1";
+        }
+
+        function suchselTippWahl(w) {
+            if (!suchselState || suchselState.finished || suchselState.found.has(w)) return;
+            suchselState.tippWahl = suchselState.tippWahl === w ? null : w;
+            if (typeof SFX !== "undefined" && SFX.tap) SFX.tap();
+            renderSuchselWordlist();
+        }
+
+        function suchselTipp() {
+            if (!suchselState || suchselState.finished) return;
+            if ((suchselState.tipps || 0) >= SUCHSEL_MAX_TIPPS) return;
+            const offen = suchselState.words.filter(w => !suchselState.found.has(w) && suchselState.placements[w]);
+            if (!offen.length) return;
+            let wort = (suchselState.tippWahl && offen.indexOf(suchselState.tippWahl) !== -1) ? suchselState.tippWahl : null;
+            if (!wort) {
+                // Wort mit den wenigsten Tipps, bei Gleichstand das längste (schwerer zu finden)
+                wort = offen.slice().sort((a, b) =>
+                    ((suchselState.tippStufe[a] || 0) - (suchselState.tippStufe[b] || 0)) || (b.length - a.length))[0];
+            }
+            const stufe = Math.min(2, (suchselState.tippStufe[wort] || 0) + 1);
+            suchselState.tippStufe[wort] = stufe;
+            suchselState.tippWahl = wort;
+            suchselState.tipps = (suchselState.tipps || 0) + 1;
+            const zellen = (suchselState.placements[wort] || []).slice(0, stufe);
+            zellen.forEach(([r, c]) => {
+                const el = document.querySelector(`#suchsel-grid [data-r="${r}"][data-c="${c}"]`);
+                if (!el) return;
+                el.classList.remove("suchsel-tipp");
+                void el.offsetWidth;
+                el.classList.add("suchsel-tipp");
+                setTimeout(function () { el.classList.remove("suchsel-tipp"); }, 3200);
+            });
+            if (typeof SFX !== "undefined" && SFX.tap) SFX.tap();
+            const label = suchselState.clues[wort] || wort;
+            if (typeof showToast === "function") {
+                showToast(stufe === 1 ? `💡 „${label}“ fängt beim leuchtenden Buchstaben an`
+                    : `💡 „${label}“: die ersten zwei Buchstaben zeigen die Richtung`, "info");
+            }
+            renderSuchselWordlist();
+        }
+        window.suchselTipp = suchselTipp;
+        window.suchselTippWahl = suchselTippWahl;
 
         // ------------------------------------------------------------
         //  TIMER
@@ -487,7 +586,8 @@
             const foundCount = suchselState.found.size;
             const gaveUp = !!suchselState.gaveUp;
             const speedBonus = (!gaveUp && seconds <= total * 12) ? 5 : 0;
-            const coins = foundCount * 3 + speedBonus;
+            const tipps = suchselState.tipps || 0;
+            const coins = Math.max(0, foundCount * 3 + speedBonus - tipps);
 
             if (typeof addXP === "function") addXP(coins);
             if (typeof SFX !== "undefined") SFX[gaveUp ? "tap" : "win"]();
@@ -498,7 +598,8 @@
 
             const title = gaveUp ? "Aufgelöst – nächstes Mal klappt's!" : "Alle Wörter gefunden!";
             const emoji = gaveUp ? "🏳️" : "🔍";
-            const summary = gaveUp ? `${foundCount}/${total} selbst gefunden · +${coins} 🪙` : `${total} Wörter · +${coins} 🪙`;
+            const tippText = tipps ? ` · ${tipps} Tipp${tipps === 1 ? "" : "s"}` : "";
+            const summary = gaveUp ? `${foundCount}/${total} selbst gefunden${tippText} · +${coins} 🪙` : `${total} Wörter${tippText} · +${coins} 🪙`;
 
             const box = document.getElementById("test-result-content");
             if (box) {

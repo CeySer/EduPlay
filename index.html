@@ -1766,22 +1766,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </button>
                 </div>
 
-                <button onclick="showQuizSetup()" data-needs-questions
-                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
-                    style="background:linear-gradient(140deg,#10b981,#34d399);">
-                    <span class="text-3xl shrink-0">🧠</span>
-                    <span>
-                        <span class="block text-base font-black">Wissen</span>
-                        <span class="block text-xs font-bold text-emerald-100/80">Quiz nach Klasse und Fach</span>
-                    </span>
-                </button>
+                <div id="lernen-gruppe-neu" class="text-xs font-black text-gray-400 uppercase tracking-wider pt-3 px-1">📚 Neues lernen</div>
 
                 <button onclick="showKurse()" data-needs-questions
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#f59e0b,#ef4444);">
                     <span class="text-3xl shrink-0">📘</span>
                     <span>
-                        <span class="block text-base font-black">Kurse <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                        <span class="block text-base font-black">Kurse</span>
                         <span class="block text-xs font-bold text-amber-100/80">Schritt für Schritt lernen</span>
                     </span>
                 </button>
@@ -1791,8 +1783,20 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     style="background:linear-gradient(140deg,#ec4899,#f43f5e);">
                     <span class="text-3xl shrink-0">🎬</span>
                     <span>
-                        <span class="block text-base font-black">Videos <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                        <span class="block text-base font-black">Videos</span>
                         <span class="block text-xs font-bold text-rose-100/80">Kurze Erklärvideos</span>
+                    </span>
+                </button>
+
+                <div id="lernen-gruppe-ueben" class="text-xs font-black text-gray-400 uppercase tracking-wider pt-3 px-1">🎯 Üben & festigen</div>
+
+                <button onclick="showQuizSetup()" data-needs-questions
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#10b981,#34d399);">
+                    <span class="text-3xl shrink-0">🧠</span>
+                    <span>
+                        <span class="block text-base font-black">Wissen</span>
+                        <span class="block text-xs font-bold text-emerald-100/80">Quiz nach Klasse und Fach</span>
                     </span>
                 </button>
 
@@ -1811,10 +1815,14 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     style="background:linear-gradient(140deg,#f97316,#eab308);">
                     <span class="text-3xl shrink-0">🧮</span>
                     <span>
-                        <span class="block text-base font-black">Kopfrechnen <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                        <span class="block text-base font-black">Kopfrechnen</span>
                         <span class="block text-xs font-bold text-orange-100/80">Blitzrunde, 1×1-Training, Fehler üben</span>
                     </span>
                 </button>
+
+                <div id="lernen-gruppe-schule" class="text-xs font-black text-gray-400 uppercase tracking-wider pt-3 px-1">📝 Für die Schule</div>
+
+                <div id="lernen-gruppe-locker" class="text-xs font-black text-gray-400 uppercase tracking-wider pt-3 px-1">🎲 Locker zwischendurch</div>
 
                 <button onclick="switchView('suchsel-setup')"
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
@@ -2833,8 +2841,8 @@ VIEW: QUIZ SETUP
     <script src="app-misc.js?v=8.9"></script>
     <script src="kopfrechnen.js?v=4"></script>
     <script src="kopf-duell.js?v=4"></script>
-    <script src="karteikasten.js?v=1"></script>
-    <script src="klassenarbeit.js?v=1"></script>
+    <script src="karteikasten.js?v=2"></script>
+    <script src="klassenarbeit.js?v=2"></script>
     <script src="lobby-avatar.js?v=10.7"></script>
     <script src="eltern-bereich.js?v=1"></script>
     <script src="konto-loeschen.js?v=8.8"></script>

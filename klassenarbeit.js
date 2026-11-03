@@ -239,13 +239,13 @@
     }
     function knopf() {
         if (el("ka-lernen-btn")) return;
-        const vor = el("kk-lernen-btn") || document.querySelector("#view-lernen button[onclick=\"kopfOeffnen()\"]");
+        const vor = el("lernen-gruppe-schule") || el("kk-lernen-btn") || document.querySelector("#view-lernen button[onclick=\"kopfOeffnen()\"]");
         if (!vor) return;
         vor.insertAdjacentHTML("afterend", `<button id="ka-lernen-btn" onclick="arbeitOeffnen()"
             class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
             style="background:linear-gradient(140deg,#f43f5e,#f59e0b);">
             <span class="text-3xl shrink-0">📝</span>
-            <span><span class="block text-base font-black">Klassenarbeit vorbereiten <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+            <span><span class="block text-base font-black">Klassenarbeit</span>
             <span id="ka-lernen-sub" class="block text-xs font-bold text-amber-100/80">Stoff üben, bis du bereit bist – dann Probearbeit mit Note</span></span>
         </button>`);
     }
@@ -604,7 +604,7 @@
                 <div class="ka-bar"><div style="width:${bb}%"></div></div>
                 <div class="text-[11px] text-gray-400">${e(stoffText(a))}</div>
                 <div class="text-xs font-bold">Probearbeiten: ${noten}</div></div>`;
-        }).join("") : `<p class="text-xs text-gray-400">${e(p.name || "Das Kind")} bereitet gerade keine Klassenarbeit vor. Das geht unter Lernen → 📝 Klassenarbeit vorbereiten.</p>`;
+        }).join("") : `<p class="text-xs text-gray-400">${e(p.name || "Das Kind")} bereitet gerade keine Klassenarbeit vor. Das geht unter Lernen → 📝 Klassenarbeit.</p>`;
     }
 
     function haken() {

@@ -161,7 +161,7 @@
                 class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                 style="background:linear-gradient(140deg,#14b8a6,#6366f1);">
                 <span class="text-3xl shrink-0">🗂️</span>
-                <span><span class="block text-base font-black">Karteikasten <span class="text-[10px] bg-white/20 rounded-full px-2 py-0.5 align-middle">NEU</span></span>
+                <span><span class="block text-base font-black">Karteikasten</span>
                 <span id="kk-lernen-sub" class="block text-xs font-bold text-teal-100/80">1×1 und Vokabeln sicher auswendig lernen</span></span>
             </button>`);
         }

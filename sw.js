@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v123';
+const CACHE = 'eduplay-v124';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -41,6 +41,7 @@ const GRUNDGERUEST = [
     './kopfrechnen.js',
     './kopf-duell.js',
     './karteikasten.js',
+    './klassenarbeit.js',
 './lobby-avatar.js',
     './eltern-bereich.js',
     './konto-loeschen.js',

@@ -69,7 +69,8 @@
         "lektionen_zp10_k10.js?v=1",
         "lektionen_nachbarn_k2.js?v=1",
         "lektionen_k9_ausbau.js?v=1",
-        "lektionen_ing_k6.js?v=1"
+        "lektionen_ing_k6.js?v=1",
+        "lektionen_englisch_k5_stundenplan.js?v=1"
     ];
 
     var laufend = null;

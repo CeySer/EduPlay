@@ -97,6 +97,7 @@
             tvUnsubscribe = tvGameRef.onSnapshot((doc) => {
                 if (!doc.exists) return;
                 const data = doc.data();
+                data.players = bereinigeTVPlayers(data.players || {});
                 if (data.status === "waiting") {
                     renderTVPlayerList(data.players);
                     return;
@@ -278,10 +279,9 @@
             if (setup) setup.classList.remove("hidden");
             try {
                 const inp = document.getElementById("tv-join-code");
-                if (inp && !inp.value) {
-                    const last = (localStorage.getItem("eduplay_last_tv_code") || "").trim();
-                    if (last) inp.value = last;
-                }
+                // Kein alter Code vorausfüllen: nach „Neues Spiel“ hat der
+                // Fernseher einen neuen Code, der alte führte ins Leere.
+                if (inp) inp.value = "";
             } catch (_) {}
         }
         // TV-Host: zwingend Querformat (Gameshow-Look)
@@ -520,7 +520,7 @@
                     tvGameRef.update({ hostLastSeen: Date.now() }).catch(() => { });
                     return;
                 }
-                if (!activePlayerKey) return;
+                if (!activePlayerKey || window._tvNichtDrin) return;
                 sendeLebenszeichen(tvGameRef, activePlayerKey, null);
             };
             schlag();
@@ -539,7 +539,7 @@
                 tvGameRef.update({ hostLastSeen: Date.now() }).catch(() => { });
                 return;
             }
-            if (!activePlayerKey) return;
+            if (!activePlayerKey || window._tvNichtDrin) return;
             sendeLebenszeichen(tvGameRef, activePlayerKey, null);
         });
 
@@ -1459,10 +1459,11 @@
         function tvWrActiveOrder(data) {
             const players = (data && data.players) || {};
             let order = Array.isArray(data.order) ? data.order.slice() : Object.keys(players);
-            order = order.filter(function (k) { return players[k] && !players[k].left; });
+            const echt = function (k) { return players[k] && !players[k].left && players[k].name && String(players[k].name).trim(); };
+            order = order.filter(echt);
             // fehlende Keys nachziehen (Beitritt mitten im Spiel)
             Object.keys(players).forEach(function (k) {
-                if (!players[k].left && order.indexOf(k) < 0) order.push(k);
+                if (echt(k) && order.indexOf(k) < 0) order.push(k);
             });
             return order;
         }
@@ -2280,10 +2281,23 @@
             if (code.length === 4) {
                 try {
                     const mapSnap = await db.collection("tv_codes").doc(code).get();
-                    if (!mapSnap.exists) return showToast("Dieser TV-Code ist ungültig.", "error");
+                    if (!mapSnap.exists) {
+                        try { if ((localStorage.getItem("eduplay_last_tv_code") || "").toUpperCase() === code) localStorage.removeItem("eduplay_last_tv_code"); } catch (_) {}
+                        const inpAlt = document.getElementById("tv-join-code");
+                        if (inpAlt) inpAlt.value = "";
+                        // Gleiche Familie? Dann einfach in die eigene Lobby.
+                        let eigene = null;
+                        try { eigene = await lobbyRef.get(); } catch (_) {}
+                        const est = eigene && eigene.exists ? (eigene.data() || {}).status : null;
+                        if (est !== "waiting" && est !== "playing") {
+                            return showToast("Dieser Code ist abgelaufen. Bitte den neuen Code vom Fernseher eingeben.", "error");
+                        }
+                        code = "";
+                    } else {
                     const parentId = mapSnap.data().parentId;
                     if (!parentId) return showToast("TV-Code kaputt.", "error");
                     lobbyRef = db.collection("parents").doc(parentId).collection("tv_game").doc("lobby");
+                    }
                     window._pendingTVCode = null;
                 } catch (e) {
                     return showToast("TV-Code konnte nicht geprüft werden.", "error");
@@ -2338,6 +2352,7 @@
 
                 tvGameRef = lobbyRef;
                 isTVHost = false;
+                window._tvNichtDrin = false;
                 tvPlayerRenderReset();
                 starteTVLebenszeichen();
 
@@ -2371,7 +2386,11 @@
                     if (myData && data.status !== "finished" && !myData.coinsClaimed) {
                         tvCoinsClaimedLocal.delete(tvGameRef.id + ":" + activePlayerKey);
                     }
-                    if (!myData) {
+                    // Ohne Namen = kein echter Eintrag (z. B. nur ein Lebenszeichen
+                    // aus einer alten Runde). Dann nicht mehr melden, sonst
+                    // erscheint am Fernseher ein namenloser Geister-Spieler.
+                    window._tvNichtDrin = !myData || !myData.name;
+                    if (!myData || !myData.name) {
                         // Kann passieren, wenn die Auswertung eine aeltere Spielerliste
                         // zurueckschreibt. Frueher stand das Handy hier einfach stumm.
                         if (tvPlayerBrauchtNeu("weg")) {
@@ -2404,6 +2423,7 @@
                         stopTVActionMode();
                         if (window.KopfDuell) KopfDuell.stopp();
                         tvGameRef = null;
+                        showTVPlayerSetup();
                         showToast("🚪 " + esc(data.lastEvent.name || "Der Gastgeber") + " hat das Spiel beendet");
                         switchView(currentPlayer ? "menu" : "family-hub");
                         return;
@@ -2782,6 +2802,8 @@
             }
             const ref = tvGameRef;
             const wasHost = isTVHost;
+            const alterCode = wasHost ? window._activeTVCode : null;
+            if (wasHost) window._activeTVCode = null;
             if (tvUnsubscribe) {
                 try { tvUnsubscribe(); } catch (e) { }
                 tvUnsubscribe = null;
@@ -2815,9 +2837,8 @@
                         }, { merge: true });
                     } catch (e) { }
                     try { await ref.delete(); } catch (e) { }
-                    if (window._activeTVCode) {
-                        try { await db.collection("tv_codes").doc(window._activeTVCode).delete(); } catch (e) { }
-                        window._activeTVCode = null;
+                    if (alterCode) {
+                        try { await db.collection("tv_codes").doc(alterCode).delete(); } catch (e) { }
                     }
                 } else if (activePlayerKey) {
                     // Nie das ganze Lobby-Dokument loeschen: der Fernseher steht

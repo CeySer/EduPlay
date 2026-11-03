@@ -115,7 +115,7 @@
         const pl = data.players || {};
         return Object.keys(pl).filter(function (k) {
             const p = pl[k];
-            if (!p || p.pending || p.kSpaet === data.sprintId) return false;
+            if (!p || !p.name || p.pending || p.kSpaet === data.sprintId) return false;
             return p.kFertig || (typeof istAnwesend === "function" ? istAnwesend(p) : true);
         });
     }
@@ -270,7 +270,7 @@
 
         const ziel = istZiel(data) && data.status === "playing";
         const wert = function (k) { return ziel ? (pl[k].kRichtig || 0) : (pl[k].score || 0); };
-        const keys = Object.keys(pl).filter(function (k) { return !pl[k].pending; })
+        const keys = Object.keys(pl).filter(function (k) { return pl[k].name && !pl[k].pending; })
             .sort(function (a, b) {
                 if (ziel) {
                     const fa = pl[a].kZeit && wert(a) >= ZIEL, fb = pl[b].kZeit && wert(b) >= ZIEL;

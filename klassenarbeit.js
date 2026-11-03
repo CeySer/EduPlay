@@ -97,6 +97,8 @@
     function themenAngebot(fach, kl) {
         const vok = [], top = [];
         if (fach === "englisch") {
+            const ls = listen(kl);
+            Object.keys(ls).forEach(function (t) { vok.push({ id: "liste:" + t, label: ls[t].label, n: ls[t].ids.length }); });
             const s = vokSet(kl);
             if (s && s.themen) Object.keys(s.themen).forEach(function (t) {
                 const n = s.words.filter(function (w) { return w.thema === t; }).length;
@@ -122,9 +124,15 @@
         const f = FAECHER[a.fach] || {};
         return (f.name || a.fach) + " Kl. " + a.kl;
     }
+    function listen(kl) {
+        return (typeof VOCABULARY_LISTEN !== "undefined" && VOCABULARY_LISTEN.en && VOCABULARY_LISTEN.en["k" + kl]) || {};
+    }
     function stoffText(a) {
-        const s = vokSet(a.kl), teile = [];
-        (a.vok || []).forEach(function (t) { teile.push((s && s.themen && s.themen[t]) || t); });
+        const s = vokSet(a.kl), teile = [], ls = listen(a.kl);
+        (a.vok || []).forEach(function (t) {
+            if (t.indexOf("liste:") === 0) { const l = ls[t.slice(6)]; teile.push(l ? l.label.replace(/^\S+\s/, "") : t); }
+            else teile.push((s && s.themen && s.themen[t]) || t);
+        });
         (a.top || []).forEach(function (t) { teile.push(topicName(t)); });
         return teile.join(" · ");
     }
@@ -355,6 +363,11 @@
         const items = [];
         const s = vokSet(neu.kl);
         if (s) s.words.forEach(function (w) { if (vok.indexOf(w.thema) !== -1) items.push("v:" + w.id); });
+        const ls = listen(neu.kl);
+        vok.forEach(function (t) {
+            if (t.indexOf("liste:") !== 0 || !ls[t.slice(6)]) return;
+            ls[t.slice(6)].ids.forEach(function (id) { if (vokWort(id) && items.indexOf("v:" + id) === -1) items.push("v:" + id); });
+        });
         const alle = fragenFuer(neu.kl, neu.fach);
         top.forEach(function (t) {
             mischen(alle.filter(function (q) { return canon(q.topic) === t; })).slice(0, PRO_THEMA).forEach(function (q) { items.push("q:" + q.id); });
@@ -427,7 +440,7 @@
         el("ka-info").innerText = (sp.modus === "probe" ? "📝 Probearbeit · " : "🎯 Üben · ") + (sp.i + 1) + " / " + sp.tasks.length;
         el("ka-fort").style.width = (sp.i / sp.tasks.length * 100) + "%";
         zeitAnzeigen();
-        let h = `<div class="text-sm font-bold text-gray-300">${e(t.frage)}</div>`;
+        let h = `<div class="text-sm font-bold text-gray-300" style="white-space:pre-line">${e(t.frage)}</div>`;
         if (t.gross) h += `<div class="ka-gross">${e(t.gross)}</div>`;
         if (t.satz) h += `<div class="text-lg font-bold text-center leading-snug">${e(t.satz)}</div>`;
         if (t.typ === "mc") {

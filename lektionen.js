@@ -17534,7 +17534,7 @@ function handleLektionStepEnd() {
         finishLektion(pct);
     } else if (step === "review") {
         const base = currentLektion.reviewBase || { total: 0, correct: 0 };
-        const neuRichtig = base.correct + richtig;
+        const neuRichtig = Math.min(base.total, base.correct + richtig);
         const neuPct = base.total > 0 ? Math.round((neuRichtig / base.total) * 100) : pct;
         currentLektion.reviewBase = { total: base.total, correct: neuRichtig };
         finishLektion(neuPct);
@@ -17636,15 +17636,13 @@ function finishLektion(pct) {
     retryBtn.onclick = () => openLektion(daten.id);
 
     const reviewBtn = document.getElementById("lektion-ergebnis-review-btn");
-    const pool = [];
-    ["leicht", "mittel", "schwer"].forEach(function (s) {
-        (daten.uebung && daten.uebung[s] || []).forEach(function (q) { pool.push(q); });
+    // Nur die noch falschen Fragen aus DIESEM Abschlusstest (gleiche Kategorie + Frage).
+    // Früher kamen auch Übungsfehler und gleichlautende Fragen aus anderen Bereichen
+    // dazu – dann blieb ein Fehler „hängen“ und die Wertung lag über 100 %.
+    const falsch = ((currentPlayer && currentPlayer.wrongQuestions) || []);
+    window._lektionReviewQs = (daten.test || []).filter(function (q) {
+        return falsch.some(function (w) { return w.question === q.question && (!w.category || w.category === q.category); });
     });
-    (daten.test || []).forEach(function (q) { pool.push(q); });
-    const wrong = ((currentPlayer && currentPlayer.wrongQuestions) || [])
-        .map(function (w) { return pool.find(function (q) { return q.question === w.question; }); })
-        .filter(Boolean);
-    window._lektionReviewQs = wrong.slice(0, 3);
     if (reviewBtn) {
         if (window._lektionReviewQs.length) {
             reviewBtn.classList.remove("hidden");

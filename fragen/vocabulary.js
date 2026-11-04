@@ -379,7 +379,7 @@ const VOCABULARY_DATABASE = {
         {"id": "e03_146", "de": "verkaufen", "foreign": "sell", "thema": "shopping", "art": "v", "satz": "They sell toys here.", "formen": "sell – sold – sold"},
         {"id": "e03_147", "de": "billig", "foreign": "cheap", "thema": "shopping", "art": "adj", "satz": "This T-shirt is cheap."},
         {"id": "e03_148", "de": "teuer", "foreign": "expensive", "thema": "shopping", "art": "adj", "satz": "The bike is very expensive."},
-        {"id": "e03_149", "de": "geöffnet", "foreign": "open", "thema": "shopping", "art": "adj", "satz": "Is the shop open today?"},
+        {"id": "e03_149", "de": "geöffnet; öffnen", "foreign": "open", "thema": "shopping", "art": "adj", "satz": "Is the shop open today?"},
         {"id": "e03_150", "de": "geschlossen", "foreign": "closed", "thema": "shopping", "art": "adj", "satz": "Sorry, we're closed."},
         {"id": "e03_151", "de": "Wie viel kostet das?", "foreign": "How much is it?", "thema": "shopping", "art": "phr", "satz": "How much is it, please?", "alt": ["how much is it"]},
         {"id": "e03_152", "de": "Ich hätte gern …", "foreign": "I'd like", "thema": "shopping", "art": "phr", "satz": "I'd like a cake, please.", "alt": ["I would like"]}
@@ -751,7 +751,7 @@ const VOCABULARY_DATABASE = {
         {"id": "e05_195", "de": "aussuchen / wählen", "foreign": "choose", "thema": "verbs5", "art": "v", "satz": "Choose a card, please.", "formen": "choose – chose – chosen"},
         {"id": "e05_196", "de": "hoffen", "foreign": "hope", "thema": "verbs5", "art": "v", "satz": "I hope you can come."},
         {"id": "e05_197", "de": "sich erinnern", "foreign": "remember", "thema": "verbs5", "art": "v", "satz": "Do you remember her name?"},
-        {"id": "e05_198", "de": "zeigen", "foreign": "show", "thema": "verbs5", "art": "v", "satz": "Show me your new bike!", "formen": "show – showed – shown"},
+        {"id": "e05_198", "de": "zeigen; Show (Vorstellung)", "foreign": "show", "thema": "verbs5", "art": "v", "satz": "Show me your new bike!", "formen": "show – showed – shown"},
         {"id": "e05_199", "de": "hören", "foreign": "hear", "thema": "verbs5", "art": "v", "satz": "I can hear the birds.", "formen": "hear – heard – heard"},
         {"id": "e05_200", "de": "sich fühlen", "foreign": "feel", "thema": "verbs5", "art": "v", "satz": "I feel much better today.", "formen": "feel – felt – felt"},
         {"id": "e05_201", "de": "behalten", "foreign": "keep", "thema": "verbs5", "art": "v", "satz": "You can keep the book.", "formen": "keep – kept – kept"},
@@ -1976,3 +1976,14 @@ const VOCABULARY_DATABASE = {
     }
   }
 };
+
+// Listen aus dem Schulheft (Wörter können aus mehreren Klassen stammen).
+// Werden in „Klassenarbeit vorbereiten“ als eigenes Vokabelthema angeboten.
+const VOCABULARY_LISTEN = {
+  en: {
+    k5: {
+      unit1: { label: "📒 Unit 1 (Vokabelheft, alle Wörter)", ids: ["e05_244", "e05_257", "e03_088", "e05_254", "e01_004", "e05_252", "e01_027", "e05_312", "e05_198", "e01_050", "e01_032", "e01_033", "e01_034", "e01_035", "e01_036", "e01_037", "e01_038", "e01_039", "e01_040", "e01_041", "e01_001", "e05_245", "e05_256", "e04_020", "e05_264", "e05_253", "e05_260", "e04_037", "e06_095", "e05_255", "e05_266", "e05_246", "e05_251", "e01_044", "e03_041", "e05_281", "e05_247", "e02_102", "e01_008", "e05_248", "e05_249", "e05_265", "e05_263", "e05_276", "e05_277", "e02_103", "e02_112", "e01_079", "e02_111", "e02_113", "e02_119", "e02_116", "e05_285", "e05_305", "e05_306", "e05_307", "e05_209", "e02_078", "e03_102", "e03_094", "e05_308", "e05_101", "e01_059", "e05_250", "e05_309", "e04_073", "e02_032", "e05_287", "e02_067", "e05_310", "e05_311", "e05_279", "e05_280", "e05_278", "e05_267", "e01_029", "e01_030", "e05_269", "e04_018", "e05_182", "e02_031", "e03_103", "e01_007", "e05_268", "e05_303", "e05_270", "e05_294", "e01_003", "e04_038", "e05_298", "e05_299", "e05_300", "e03_149", "e05_302", "e05_301", "e05_304", "e04_007", "e04_099", "e05_295", "e05_271", "e05_273", "e05_284", "e05_259", "e05_261", "e01_012", "e05_286", "e05_262", "e05_272", "e05_296", "e05_275", "e05_175", "e06_065", "e05_258", "e05_274", "e05_282", "e05_283", "e05_297", "e02_070", "e02_061", "e05_288", "e05_289", "e06_032", "e06_031", "e05_290", "e05_291", "e06_034", "e05_292", "e05_293", "e06_037", "e06_050"] }
+    }
+  }
+};
+if (typeof window !== "undefined") window.VOCABULARY_LISTEN = VOCABULARY_LISTEN;

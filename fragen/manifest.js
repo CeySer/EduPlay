@@ -70,6 +70,7 @@ window.FRAGEN_VERZEICHNIS = [
   { datei: "fragen/klasse1/questions_k1_deutsch.js", name: "K1_DEUTSCH_QUESTIONS", n: 130, kat: ["k1_deutsch"] },
   { datei: "fragen/klasse1/questions_k1_mathe.js", name: "K1_MATHE_QUESTIONS", n: 140, kat: ["k1_mathe"] },
   { datei: "fragen/klasse1/questions_k1_sachunterricht.js", name: "K1_SACHUNTERRICHT_QUESTIONS", n: 130, kat: ["k1_sachunterricht"] },
+  { datei: "fragen/klasse1/questions_k1_englisch.js", name: "K1_ENGLISCH_QUESTIONS", n: 40, kat: ["k1_englisch"] },
   { datei: "fragen/klasse2/questions_k2_deutsch.js", name: "K2_DEUTSCH_QUESTIONS", n: 130, kat: ["k2_deutsch"] },
   { datei: "fragen/klasse2/questions_k2_englisch.js", name: "K2_ENGLISCH_QUESTIONS", n: 90, kat: ["k2_englisch"] },
   { datei: "fragen/klasse2/questions_k2_mathe.js", name: "K2_MATHE_QUESTIONS", n: 130, kat: ["k2_mathe"] },

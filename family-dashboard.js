@@ -2930,8 +2930,12 @@ auth.createUserWithEmailAndPassword(e, p)
         function getWeakestCategory(p) {
             if (!p || !p.stats) return null;
             let weakest = null;
+            const eigeneKlasse = (typeof playerGrade === "function") ? (playerGrade(p) || 0) : 0;
             Object.keys(p.stats).forEach(cat => {
-                if (isWeaknessDismissedToday(cat)) return; // weggeklickte Kategorie ausschließen, damit ein neues schwaches Thema trotzdem durchkommt
+                if (isWeaknessDismissedToday(cat)) return;
+                // Nur Stoff der eigenen Klasse vorschlagen (nicht Klasse-1-Vokabeln in Klasse 5)
+                const km = String(cat).match(/(?:^|[_:])k(\d+)(?:_|$|:)/);
+                if (eigeneKlasse && km && Number(km[1]) !== eigeneKlasse) return; // weggeklickte Kategorie ausschließen, damit ein neues schwaches Thema trotzdem durchkommt
                 const s = p.stats[cat];
                 if (s.attempts >= 3) {
                     const pct = s.correct / s.attempts;
@@ -3400,6 +3404,11 @@ auth.createUserWithEmailAndPassword(e, p)
             const goalActive = g && g.minutes && (!g.day || g.day === today);
 
             if (!goalActive) {
+                // Die Lernzeit steht jetzt oben in „Heute für dich“.
+                card.classList.add("hidden");
+                card.innerHTML = "";
+                if (typeof window.heuteBereichAktualisieren === "function") window.heuteBereichAktualisieren();
+                return;
                 card.innerHTML =
                     `<div class="glass-card p-3 flex items-center justify-between gap-3">
                         <div>
@@ -4044,7 +4053,10 @@ auth.createUserWithEmailAndPassword(e, p)
             if (!t || !t.faellig) return "";
             const d = new Date(t.faellig + "T12:00:00");
             if (isNaN(d)) return "";
-            return " · bis " + d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
+            const datum = d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
+            const heute = new Date(); heute.setHours(0, 0, 0, 0);
+            if (d < heute) return ' · <span style="color:#fb7185;font-weight:800">⚠️ überfällig seit ' + datum + '</span>';
+            return " · bis " + datum;
         }
 
         function renderAufgabenKarte() {
@@ -4794,3 +4806,38 @@ auth.createUserWithEmailAndPassword(e, p)
             }
         }
 
+// ============================================================
+//  Startseite: Bereich „Heute für dich“
+//  Zeigt die heutige Lernzeit in der Überschrift und einen
+//  Hinweis, wenn nichts offen ist.
+// ============================================================
+(function () {
+    function aktualisieren() {
+        const box = document.getElementById("heute-bereich");
+        if (!box) return;
+        const zeit = document.getElementById("heute-lernzeit");
+        if (zeit && typeof currentPlayer !== "undefined" && currentPlayer) {
+            const tag = new Date().toISOString().slice(0, 10);
+            const sek = (currentPlayer.studyLog && currentPlayer.studyLog[tag]) || 0;
+            const min = Math.floor(sek / 60);
+            const t = "⏱ " + (min ? min + " Min." : (sek ? sek + " Sek." : "0 Min.")) + " gelernt";
+            if (zeit.textContent !== t) zeit.textContent = t;
+        }
+        const leer = document.getElementById("heute-leer");
+        const sichtbar = [].slice.call(box.children).some(function (k) {
+            return k.id && k.id !== "heute-leer" && !k.classList.contains("hidden") && k.innerHTML.trim() !== "";
+        });
+        if (leer && leer.classList.contains("hidden") !== sichtbar) leer.classList.toggle("hidden", sichtbar);
+    }
+    window.heuteBereichAktualisieren = aktualisieren;
+    let geplant = false;
+    function planen() { if (geplant) return; geplant = true; setTimeout(function () { geplant = false; aktualisieren(); }, 50); }
+    function start() {
+        const box = document.getElementById("heute-bereich");
+        if (!box) return;
+        new MutationObserver(planen).observe(box, { childList: true, subtree: true, attributes: true, attributeFilter: ["class"] });
+        aktualisieren();
+        setInterval(aktualisieren, 60000);
+    }
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start); else start();
+})();

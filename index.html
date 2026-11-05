@@ -1576,46 +1576,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </div>
                 </div>
 
-                <!-- Kurzlink: volle Einladung unter Lernraum -->
-                <button type="button" onclick="switchView('lernen')"
-                    class="w-full glass-card p-3 flex items-center gap-3 text-left"
-                    style="border:1px solid rgba(99,102,241,0.25);">
-                    <span class="text-xl">👥</span>
-                    <span class="min-w-0">
-                        <span class="block text-sm font-black text-indigo-300">Mit Freunden üben</span>
-                        <span class="block text-[11px] text-gray-500">Einladen unter Lernraum</span>
-                    </span>
-                </button>
-
-                <div id="today-status-card" class="hidden"></div>
-
-                <!-- Weitermachen? – zeigt das zuletzt gespielte Thema -->
-                <div id="continue-card" class="hidden"></div>
-
-                <!-- Letzte Online-Lobbies (Wiedereinstieg) -->
-                <div id="letzte-lobbies-card" class="hidden"></div>
-
-                <!-- Schwächen-Karte & zugewiesener Test -->
-                <div id="weakness-card" class="hidden"></div>
-                <div id="study-goal-card" class="hidden"></div>
-                <div id="pending-test-card" class="hidden"></div>
-                <div id="pending-lesson-card" class="hidden"></div>
-                <div id="pending-kurs-card" class="hidden"></div>
-                <div id="open-duels-list" class="space-y-2"></div>
-                <div id="open-tv-list" class="space-y-2"></div>
-
-
-                <!-- Die zwei Wege -->
-                <button onclick="switchView('spielen')" data-needs-questions
-                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
-                    style="background:linear-gradient(140deg,#f43f5e,#ec4899);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
-                    <span class="text-4xl shrink-0">⚔️</span>
-                    <span>
-                        <span class="block text-lg font-black">Gegeneinander</span>
-                        <span class="block text-xs font-bold text-rose-100/80">Duelle, TV-Quiz, mit Freunden</span>
-                    </span>
-                </button>
-
+                <!-- 1. Lernen zuerst -->
                 <button onclick="switchView('lernen')" data-needs-questions
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#10b981,#34d399);box-shadow:0 4px 24px rgba(16,185,129,0.3);">
@@ -1626,6 +1587,37 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                     </span>
                 </button>
 
+                <!-- 2. Heute für dich: Aufgaben, Lernziel, Karteikasten, Weitermachen -->
+                <div id="heute-bereich" class="space-y-3">
+                    <div class="flex items-center justify-between px-1 pt-1">
+                        <span class="text-xs font-black text-gray-400 uppercase tracking-wider">📋 Heute für dich</span>
+                        <span id="heute-lernzeit" class="text-xs font-bold text-gray-400"></span>
+                    </div>
+                    <div id="pending-test-card" class="hidden"></div>
+                    <div id="study-goal-card" class="hidden"></div>
+                    <div id="pending-lesson-card" class="hidden"></div>
+                    <div id="pending-kurs-card" class="hidden"></div>
+                    <div id="continue-card" class="hidden"></div>
+                    <div id="heute-leer" class="hidden glass-card p-3 text-sm font-bold text-emerald-300">✅ Nichts offen – such dir im Lernraum etwas aus.</div>
+                </div>
+
+                <!-- 3. Einladungen und Wiedereinstieg -->
+                <div id="letzte-lobbies-card" class="hidden"></div>
+                <div id="open-duels-list" class="space-y-2"></div>
+                <div id="open-tv-list" class="space-y-2"></div>
+
+                <!-- 4. Gegeneinander -->
+                <button onclick="switchView('spielen')" data-needs-questions
+                    class="w-full flex items-center gap-4 p-5 rounded-2xl text-white text-left shadow-lg transition hover:scale-[1.02]"
+                    style="background:linear-gradient(140deg,#f43f5e,#ec4899);box-shadow:0 4px 24px rgba(244,63,94,0.3);">
+                    <span class="text-4xl shrink-0">⚔️</span>
+                    <span>
+                        <span class="block text-lg font-black">Gegeneinander</span>
+                        <span class="block text-xs font-bold text-rose-100/80">Duelle, TV-Quiz, mit Freunden</span>
+                    </span>
+                </button>
+
+                <!-- 5. Belohnungen -->
                 <button onclick="switchView('rewards')"
                     class="w-full flex items-center gap-4 p-5 rounded-2xl text-left shadow-lg transition hover:scale-[1.02]"
                     style="background:linear-gradient(140deg,#f59e0b,#fbbf24);color:#0b1020;">
@@ -1635,6 +1627,12 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                         <span class="block text-xs font-bold" style="color:rgba(11,16,32,0.65)">Coins gegen Wünsche tauschen</span>
                     </span>
                 </button>
+
+                <!-- 6. Ein Tipp (Kurs-Tipp oder Blitz-Übung) -->
+                <div id="weakness-card" class="hidden"></div>
+
+                <!-- Alte Status-Karte: Inhalt steckt jetzt in „Heute für dich“ -->
+                <div style="display:none"><div id="today-status-card" class="hidden"></div></div>
 
                 <!-- Abzeichen -->
                 <div id="menu-badges-row" class="flex gap-2 overflow-x-auto pb-1"></div>
@@ -2821,7 +2819,7 @@ VIEW: QUIZ SETUP
     <script src="confetti.js?v=1"></script>
     <script src="app-config.js?v=13.24"></script>
     <script src="app-ui.js?v=9.5"></script>
-    <script src="family-dashboard.js?v=11.46"></script>
+    <script src="family-dashboard.js?v=11.47"></script>
     <script src="dev-admin.js?v=1.7"></script>
     <script src="ui-common.js?v=9.5"></script>
     <script src="ki-coach.js?v=1.1"></script>

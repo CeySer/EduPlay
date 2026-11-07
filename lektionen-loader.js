@@ -72,7 +72,8 @@
         "lektionen_ing_k6.js?v=1",
         "lektionen_englisch_k5_stundenplan.js?v=1",
         "lektionen_englisch_k5_unit1.js?v=1",
-        "lektionen_englisch_k1.js?v=1"
+        "lektionen_englisch_k1.js?v=1",
+        "lektionen_englisch_k5_extra.js?v=1"
     ];
 
     var laufend = null;

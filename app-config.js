@@ -2018,13 +2018,13 @@ const geladen = _questionCounts[key] || 0;
             if (!soundOn) {
                 silenceAllAudio();
                 hapticPulse("tap");
-                if (typeof showToast === "function") showToast("🔇 Musik & Töne aus – Vorlesen läuft weiter", "success", "sound");
+                if (typeof showToast === "function") showToast("🔇 Töne aus – Vorlesen läuft weiter", "success", "sound");
             } else {
                 try { if (audioCtx && audioCtx.state === "suspended") audioCtx.resume(); } catch (e) { /* */ }
                 try { if (musicGain && musicCtx) musicGain.gain.setValueAtTime(musicVolume, musicCtx.currentTime); } catch (e) { /* */ }
                 if (musicVolume > 0) startBackgroundMusic();
                 SFX.tap();
-                if (typeof showToast === "function") showToast("🔊 Musik & Töne an", "success", "sound");
+                if (typeof showToast === "function") showToast("🔊 Töne an", "success", "sound");
             }
         }
         function toggleSound() { toggleQuietMode(); }
@@ -2241,7 +2241,11 @@ const geladen = _questionCounts[key] || 0;
             gameStep++;
         }
 
+        // Hintergrundmusik ist abgeschaltet (Ceyhun, 08.11.2026): spart 2 MB
+        // beim Start. Wieder an: MUSIK_AN = true und Regler in index.html zeigen.
+        const MUSIK_AN = false;
         function startBackgroundMusic() {
+            if (!MUSIK_AN) return;
             if (!soundOn || musicVolume <= 0) return;
             // Datei-BGM bevorzugen (wenn vorhanden)
             stopBackgroundMusic(true);

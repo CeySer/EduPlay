@@ -43,21 +43,6 @@
         'fragen/questions_school.js',   // CURRICULUM – Menübaum
         'fragen/questions_fun.js',      // FUN_CATEGORIES
         'fragen/fun/spass_flaggen.js',
-        'fragen/words_kids.js',         // Wort-Rätsel
-        'fragen/words_kids_themes.js',
-        'fragen/words_adult.js',
-        'fragen/vocabulary.js',         // Vokabel-Duell
-        'formula.js',
-        // Themen-Auswahl (Mathe/Deutsch/Englisch, Klasse 5-10): schon
-        // getaggte Fragen vorab laden, damit "Fach/Thema" im Wissen-Modus
-        // die Unterthemen sofort anzeigen kann (sonst wären sie erst nach
-        // dem Laden der ganzen Kategorie bekannt).
-        'fragen/klasse5/questions_k5_themen.js',
-        'fragen/klasse6/questions_k6_themen.js',
-        'fragen/klasse7/questions_k7_themen.js',
-        'fragen/klasse8/questions_k8_themen.js',
-        'fragen/klasse9/questions_k9_themen.js',
-        'fragen/klasse10/questions_k10_themen.js',
         // Klasse 1-4 Mathe: hier steckt das topic-Feld direkt im
         // Haupt-Fragenpool (keine eigene themen.js), deshalb hier
         // die ganze (kleine) Datei statt nur eines Auszugs.
@@ -65,6 +50,24 @@
         'fragen/klasse2/questions_k2_mathe.js',
         'fragen/klasse3/questions_k3_mathe.js',
         'fragen/klasse4/questions_k4_mathe.js'
+    ];
+
+    // Erst kurz NACH dem Start (die App ist dann schon bedienbar): Wörter,
+    // Vokabeln, Formeln und die Themen-Fragen Klasse 5-10. Spart beim Start
+    // rund 200 KB; danach wird "datenbanken-geladen" noch einmal gemeldet,
+    // damit die Themen-Auswahl ihre Unterpunkte bekommt.
+    const SPAETER_DATEIEN = [
+        'fragen/words_kids.js',         // Wort-Rätsel
+        'fragen/words_kids_themes.js',
+        'fragen/words_adult.js',
+        'fragen/vocabulary.js',         // Vokabeln, Vokabel-Duell
+        'formula.js',
+        'fragen/klasse5/questions_k5_themen.js',
+        'fragen/klasse6/questions_k6_themen.js',
+        'fragen/klasse7/questions_k7_themen.js',
+        'fragen/klasse8/questions_k8_themen.js',
+        'fragen/klasse9/questions_k9_themen.js',
+        'fragen/klasse10/questions_k10_themen.js'
     ];
 
     // Diese Namen liefern beim Start bereits Fragen mit.
@@ -417,6 +420,21 @@
                     detail: { count: ziel().length }
                 }));
             } catch (e) { /* egal */ }
+            setTimeout(spaeterLaden, 300);
+        });
+    }
+
+    function spaeterLaden() {
+        Promise.all(SPAETER_DATEIEN.map(ladeDatei)).then(function () {
+            REGISTRIERT.forEach(function (r) { mischeEin(r.name); });
+            window.datenbankKomplett = true;
+            try {
+                document.dispatchEvent(new CustomEvent('datenbanken-geladen', {
+                    detail: { count: ziel().length, nachgeladen: true }
+                }));
+            } catch (e) { /* egal */ }
+            // Startseiten-Karten (Karteikasten, Klassenarbeit) brauchen die Vokabeln
+            try { if (typeof window.renderAufgabenKarte === "function") window.renderAufgabenKarte(); } catch (e) { /* egal */ }
         });
     }
 

@@ -29,7 +29,7 @@
     <script src="vendor/firebase-10.12.3/firebase-auth-compat.js"></script>
     <script src="vendor/firebase-10.12.3/firebase-firestore-compat.js"></script>
 
-    <script src="datenbanken_loader.js?v=9.6"></script>
+    <script src="datenbanken_loader.js?v=9.7"></script>
 
     <link rel="icon" type="image/png" href="icons/favicon-64.png">
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -2054,9 +2054,9 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             <button type="button" data-sound-pack="crisp" onclick="setSoundPack('crisp')">Klar</button>
                             <button type="button" data-sound-pack="arcade" onclick="setSoundPack('arcade')">Arcade</button>
                         </div>
-                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Ganz aus über „Musik &amp; Töne" im Menü.</p>
+                        <p class="text-[11px] text-gray-500">Soft · Klar · Arcade. Ganz aus über „Töne" im Menü.</p>
                     </div>
-                    <div class="py-2 border-b border-white/5 space-y-2">
+                    <div class="py-2 border-b border-white/5 space-y-2" style="display:none">
                         <div class="flex items-center justify-between gap-3">
                             <span class="font-bold text-white">🎵 Musik</span>
                             <span id="music-volume-label" class="text-xs text-gray-400 font-bold">25%</span>
@@ -2082,7 +2082,7 @@ HEADER FÜR HAUPTMENÜ (UND ANDERE VIEWS)
                             mitgesprochen. Jede Antwort hat ihr eigenes 🔊 zum Nachhören.
                             „Automatisch" liest jede neue Frage von allein vor, „Nur auf Knopf" erst beim Tippen auf 🔊.
                             Ab Klasse 3 bleibt der Bildschirm ohne Vorlesen.
-                            Die Stimme kommt vom Gerät und läuft weiter, auch wenn „Musik &amp; Töne" aus ist.</p>
+                            Die Stimme kommt vom Gerät und läuft weiter, auch wenn „Töne" aus ist.</p>
                     </div>
                     <div class="pt-2 space-y-3">
                         <h3 class="text-sm font-black text-amber-400">🔑 Eltern-PIN</h3>
@@ -2817,7 +2817,7 @@ VIEW: QUIZ SETUP
     JAVASCRIPT MODULE
     ============================================================ -->
     <script src="confetti.js?v=1"></script>
-    <script src="app-config.js?v=13.24"></script>
+    <script src="app-config.js?v=13.25"></script>
     <script src="app-ui.js?v=9.5"></script>
     <script src="family-dashboard.js?v=11.47"></script>
     <script src="dev-admin.js?v=1.7"></script>
@@ -2901,7 +2901,7 @@ DRAWER 1: FAMILY HUB (ohne Dashboard)
         </div>
         <div class="flex flex-col gap-1 drawer-items-container">
             <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
-                <span class="icon sound-toggle-icon">🔊</span> <span>Musik &amp; Töne <span class="quiet-toggle-label">an</span></span>
+                <span class="icon sound-toggle-icon">🔊</span> <span>Töne <span class="quiet-toggle-label">an</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
                 <span class="icon">🔔</span> <span>Duell-Benachr. <span class="push-toggle-label">aus</span></span>
@@ -2950,7 +2950,7 @@ DRAWER 2: HAUPTMENÜ (mit Dashboard)
                 <span class="icon">🎛️</span> Kontrollzentrum
             </button>
             <button onclick="toggleQuietMode(); closeDrawer()" class="drawer-menu-item">
-                <span class="icon sound-toggle-icon">🔊</span> <span>Musik &amp; Töne <span class="quiet-toggle-label">an</span></span>
+                <span class="icon sound-toggle-icon">🔊</span> <span>Töne <span class="quiet-toggle-label">an</span></span>
             </button>
             <button onclick="closeDrawer(); togglePushNotifications()" class="drawer-menu-item">
                 <span class="icon">🔔</span> <span>Duell-Benachr. <span class="push-toggle-label">aus</span></span>

@@ -12,7 +12,7 @@
 //  würde ihn nur stören.
 // ============================================================
 
-const CACHE = 'eduplay-v124';
+const CACHE = 'eduplay-v125';
 
 // Alles, was die App zum Starten braucht. Die Fragen-Dateien landen
 // beim ersten Laden automatisch im Cache (siehe unten), damit diese
@@ -103,9 +103,13 @@ self.addEventListener('fetch', function (event) {
     // den Cache aktualisieren ("stale-while-revalidate"). So kommt jede
     // Änderung an einer Datei spätestens beim zweiten Laden automatisch an –
     // ganz ohne manuell gepflegte "?v="-Nummer, die man vergessen kann.
+    // Auch die Kurs-Dateien (lektionen*.js) sind reine Inhalte – über 50 Dateien,
+    // die sonst bei jedem Start komplett neu geladen würden. Die Liste selbst
+    // (lektionen-loader.js) kommt weiter immer frisch aus dem Netz.
     const istDatenDatei = url.indexOf('/fragen/') !== -1
         || url.indexOf('/audio/') !== -1
-        || url.indexOf('formula.js') !== -1;
+        || url.indexOf('formula.js') !== -1
+        || (/\/lektionen[^/]*\.js/.test(url) && url.indexOf('lektionen-loader') === -1);
 
     if (istDatenDatei) {
         event.respondWith(

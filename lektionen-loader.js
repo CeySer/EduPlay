@@ -78,23 +78,27 @@
 
     var laufend = null;
 
+    // Alle Dateien gleichzeitig laden (schnell), aber in der Reihenfolge der
+    // Liste ausführen (async = false). Früher kam eine Datei nach der anderen –
+    // bei über 50 Dateien dauerte das auf dem Handy 10 Sekunden und mehr.
+    var geladen = {};
     function ladeDatei(src) {
         return new Promise(function (fertig, fehler) {
             var s = document.createElement("script");
             s.src = src;
-            s.onload = function () { fertig(); };
+            s.async = false;
+            s.onload = function () { geladen[src] = true; fertig(); };
             s.onerror = function () { fehler(new Error("Konnte " + src + " nicht laden")); };
             document.head.appendChild(s);
         });
     }
 
-    // Lädt alle Kurs-Dateien der Reihe nach. Mehrfache Aufrufe teilen
-    // sich denselben Ladevorgang.
+    // Mehrfache Aufrufe teilen sich denselben Ladevorgang. Bei einem Fehler
+    // werden beim nächsten Versuch nur die fehlenden Dateien nachgeladen.
     function ladeLektionen() {
         if (laufend) return laufend;
-        laufend = DATEIEN.reduce(function (kette, src) {
-            return kette.then(function () { return ladeDatei(src); });
-        }, Promise.resolve()).then(function () {
+        var offen = DATEIEN.filter(function (src) { return !geladen[src]; });
+        laufend = Promise.all(offen.map(ladeDatei)).then(function () {
             window.LEKTIONEN_GELADEN = true;
             try { document.dispatchEvent(new CustomEvent("lektionen-geladen")); } catch (e) { }
         })["catch"](function (e) {

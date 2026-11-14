@@ -17677,6 +17677,20 @@ function finishLektion(pct) {
             wissenBtn.classList.add("hidden");
         }
     }
+    // Kurs komplett? Dann direkt den nächsten Kurs anbieten.
+    const naechsterBtn = document.getElementById("lektion-ergebnis-naechster-btn");
+    if (naechsterBtn) {
+        const nk = bestanden ? naechsterKursNach(daten.kurs) : null;
+        if (nk) {
+            document.getElementById("lektion-ergebnis-titel").innerText = "Kurs geschafft!";
+            document.getElementById("lektion-ergebnis-hinweis").innerText = "Super! Weiter geht's mit dem nächsten Kurs.";
+            naechsterBtn.innerText = "➡️ Nächster Kurs: " + (nk.icon || "📘") + " " + nk.title;
+            naechsterBtn.classList.remove("hidden");
+            naechsterBtn.onclick = function () { currentLektion = null; openKurs(nk.id); };
+        } else {
+            naechsterBtn.classList.add("hidden");
+        }
+    }
     if (typeof pruefeUndEmpfiehlKurs === "function") pruefeUndEmpfiehlKurs();
 
     switchView("lektion-ergebnis");
@@ -17688,6 +17702,26 @@ function finishLektion(pct) {
     if (typeof SFX !== "undefined") {
         if (bestanden) { if (SFX.correct) SFX.correct(); } else { if (SFX.wrong) SFX.wrong(); }
     }
+}
+
+// Nächster offener Kurs nach einem fertigen Kurs: gleiches Fach + Klasse, sonst nächste Klasse.
+function naechsterKursNach(kursId) {
+    if (typeof KURSE === "undefined") return null;
+    const kurs = KURSE.find(k => k.id === kursId);
+    if (!kurs) return null;
+    const fertig = k => { const l = getLektionenForKurs(k.id); return l.length > 0 && l.every(x => istLektionAbgeschlossen(x.id)); };
+    if (!fertig(kurs)) return null;
+    const offen = k => k.id !== kurs.id && !k.locked && getLektionenForKurs(k.id).length > 0 && !fertig(k);
+    const stufe = KURSE.filter(k => k.subject === kurs.subject && Number(k.grade) === Number(kurs.grade));
+    const i = stufe.indexOf(kurs);
+    const reihe = stufe.slice(i + 1).concat(stufe.slice(0, i));
+    let nk = reihe.find(offen);
+    if (!nk) {
+        const hoeher = KURSE.filter(k => k.subject === kurs.subject && Number(k.grade) > Number(kurs.grade))
+            .sort((a, b) => Number(a.grade) - Number(b.grade));
+        nk = hoeher.find(offen);
+    }
+    return nk || null;
 }
 
 function startLektionWiederholung() {

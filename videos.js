@@ -228,7 +228,22 @@
         { id: "modals_deduction_k10", titel: "must, might, can't – Vermutungen", klasse: 10, fach: "englisch", dauer: 49, kurs: "modals_deduction_k10" },
         { id: "present_perfect_progressive_k10", titel: "Present perfect progressive", klasse: 10, fach: "englisch", dauer: 45, kurs: "present_perfect_prog_k10" },
         { id: "sinusfunktion_k10", titel: "Die Sinusfunktion", klasse: 10, fach: "mathe", dauer: 49, kurs: "sinusfunktion_k10" },
-        { id: "fit_zp10_k10", titel: "Fit für die ZP10", klasse: 10, fach: "mathe", dauer: 60, kurs: "zp10_k10" },
+        { id: "fit_zp10_k10", titel: "Fit für die ZP10", klasse: 10, fach: "mathe", dauer: 60, kurs: "zp10_k10" },        // Welle 12 (07.11.2026): Englisch Kl. 1 + 5, Reading, Rechentricks
+        { id: "hello_en_k1", titel: "Hello! – Begrüßen auf Englisch", klasse: 1, fach: "englisch", dauer: 44, kurs: "hallo_en_k1" },
+        { id: "colours_numbers_en_k1", titel: "Colours & Numbers", klasse: 1, fach: "englisch", dauer: 47, kurs: "farben_zahlen_en_k1" },
+        { id: "toys_family_en_k1", titel: "Toys & Family", klasse: 1, fach: "englisch", dauer: 52, kurs: "toys_family_en_k1" },
+        { id: "farm_en_k1", titel: "On the farm – Tiere und Tierlaute", klasse: 1, fach: "englisch", dauer: 47, kurs: "farm_en_k1" },
+        { id: "is_are_k5", titel: "is oder are? – isn't, aren't", klasse: 5, fach: "englisch", dauer: 61, kurs: "be_havegot_k5" },
+        { id: "s_es_ies_k5", titel: "he, she, it – -s, -es oder -ies?", klasse: 5, fach: "englisch", dauer: 55, kurs: "simple_present_k5" },
+        { id: "a_an_k5", titel: "a oder an?", klasse: 5, fach: "englisch", dauer: 41, kurs: "kleine_woerter_k5" },
+        { id: "this_that_k5", titel: "this, that, these, those", klasse: 5, fach: "englisch", dauer: 39, kurs: "kleine_woerter_k5" },
+        { id: "i_me_my_k5", titel: "I – me – my: Pronomen", klasse: 5, fach: "englisch", dauer: 45, kurs: "kleine_woerter_k5" },
+        { id: "befehle_k5", titel: "Befehle: Open your books!", klasse: 5, fach: "englisch", dauer: 37, kurs: "classroom_k5" },
+        { id: "wo_ist_es_k5", titel: "Wo ist es? in, on, under …", klasse: 5, fach: "englisch", dauer: 41, kurs: "classroom_k5" },
+        { id: "short_forms_k5", titel: "Short forms: I'm, isn't, don't", klasse: 5, fach: "englisch", dauer: 42, kurs: "unit1_k5" },
+        { id: "reading_timetable_k5", titel: "Reading: Einen Stundenplan lesen", klasse: 5, fach: "englisch", dauer: 48, kurs: "unit1_k5" },
+        { id: "mal_11_k5", titel: "Rechentrick: mal 11 im Kopf", klasse: 5, fach: "mathe", dauer: 47, kurs: "" },
+        { id: "neuner_trick_k2", titel: "Die 9er-Reihe: 10 mal minus 1 mal", klasse: 2, fach: "mathe", dauer: 42, kurs: "einmaleins_k2" },
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

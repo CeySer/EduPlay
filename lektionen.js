@@ -17485,7 +17485,11 @@ function startLektionTest() {
     });
     const ok = need.every(function (s) { return currentLektion.passedStufen && currentLektion.passedStufen[s]; });
     if (!ok) {
-        if (typeof showToast === "function") showToast("Erst die Übungen bestehen.", "error");
+        // Nicht einfach stehen bleiben: die erste noch offene Übung direkt starten.
+        const offen = need.find(function (s) { return !(currentLektion.passedStufen && currentLektion.passedStufen[s]); });
+        const name = { leicht: "leichte", mittel: "mittlere", schwer: "schwere" }[offen] || "";
+        if (typeof showToast === "function") showToast("Erst die " + name + " Übung bestehen – sie startet jetzt.", "success");
+        startLektionUebung(offen);
         return;
     }
     currentLektion.step = "test";

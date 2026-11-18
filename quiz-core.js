@@ -555,7 +555,7 @@
                 // Wiedereinstieg zwar fertig gespielt, aber nicht als Lektion gewertet
                 // und nicht als bestanden gespeichert).
                 const lektion = (typeof currentLektion !== 'undefined' && currentLektion)
-                    ? { id: currentLektion.id, step: currentLektion.step }
+                    ? { id: currentLektion.id, step: currentLektion.step, passedStufen: currentLektion.passedStufen || {} }
                     : null;
                 localStorage.setItem(SOLO_MERK_SCHLUESSEL, JSON.stringify({
                     spielerKey: typeof activePlayerKey !== 'undefined' ? activePlayerKey : null,
@@ -692,7 +692,7 @@
             // nicht als Lektion (kein "bestanden", keine Freischaltung der nächsten).
             if (merk.lektion && typeof LEKTIONEN !== 'undefined') {
                 const daten = LEKTIONEN.find(l => l.id === merk.lektion.id);
-                if (daten) currentLektion = { id: merk.lektion.id, data: daten, step: merk.lektion.step };
+                if (daten) currentLektion = { id: merk.lektion.id, data: daten, step: merk.lektion.step, passedStufen: merk.lektion.passedStufen || {} };
             }
             document.getElementById("test-timer-bar").classList.add("hidden");
             switchView('quiz');

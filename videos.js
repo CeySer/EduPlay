@@ -244,6 +244,10 @@
         { id: "reading_timetable_k5", titel: "Reading: Einen Stundenplan lesen", klasse: 5, fach: "englisch", dauer: 48, kurs: "unit1_k5" },
         { id: "mal_11_k5", titel: "Rechentrick: mal 11 im Kopf", klasse: 5, fach: "mathe", dauer: 47, kurs: "" },
         { id: "neuner_trick_k2", titel: "Die 9er-Reihe: 10 mal minus 1 mal", klasse: 2, fach: "mathe", dauer: 42, kurs: "einmaleins_k2" },
+        { id: "zahlenstrahl_k5", titel: "Zahlen am Zahlenstrahl ablesen", klasse: 5, fach: "mathe", dauer: 59, kurs: "zahlen_verstehen_k5" },
+        { id: "zahlen_vergleichen_k5", titel: "Zahlen vergleichen: größer oder kleiner?", klasse: 5, fach: "mathe", dauer: 75, kurs: "zahlen_verstehen_k5" },
+        { id: "runden_k5", titel: "Zahlen runden – ganz einfach", klasse: 5, fach: "mathe", dauer: 79, kurs: "zahlen_verstehen_k5" },
+        { id: "stellenwerttafel_k5", titel: "Die Stellenwerttafel – große Zahlen lesen", klasse: 5, fach: "mathe", dauer: 57, kurs: "zahlen_verstehen_k5" },
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

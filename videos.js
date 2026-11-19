@@ -248,6 +248,7 @@
         { id: "zahlen_vergleichen_k5", titel: "Zahlen vergleichen: größer oder kleiner?", klasse: 5, fach: "mathe", dauer: 75, kurs: "zahlen_verstehen_k5" },
         { id: "runden_k5", titel: "Zahlen runden – ganz einfach", klasse: 5, fach: "mathe", dauer: 79, kurs: "zahlen_verstehen_k5" },
         { id: "stellenwerttafel_k5", titel: "Die Stellenwerttafel – große Zahlen lesen", klasse: 5, fach: "mathe", dauer: 57, kurs: "zahlen_verstehen_k5" },
+        { id: "runden_profi_k5", titel: "Runden für Profis – die 3 Fallen", klasse: 5, fach: "mathe", dauer: 97, kurs: "zahlen_verstehen_k5" },
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

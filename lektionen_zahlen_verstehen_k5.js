@@ -1896,6 +1896,472 @@
             }
         ],
         "bestehenAb": 0.8
+    },
+    {
+        "id": "zverst_k5_l5",
+        "kurs": "zahlen_verstehen_k5",
+        "order": 5,
+        "icon": "🏆",
+        "title": "Runden für Profis",
+        "kurz": "Kleine Zahlen, Millionen, Zahlenstern und Grenzen",
+        "erklaerung": {
+            "intro": "Für Profis gibt es drei Fallen: <b>1.</b> Ist die Zahl <b>kleiner</b> als die Rundungsstelle, wird sie zu <b>0</b> oder zur nächsten Stufe: 45 auf Hunderter ≈ <b>0</b>, 985 auf Tausender ≈ <b>1 000</b>. Nie einfach abschreiben! <b>2.</b> Bei großen Zahlen erst die Stelle in der Stellenwerttafel finden, dann rechts daneben schauen. <b>3.</b> Rückwärts: Zu jeder gerundeten Zahl gibt es eine <b>kleinste</b> und eine <b>größte</b> Zahl, die dorthin gerundet wird.",
+            "merksatz": "Rechts neben der Rundungsstelle schauen – auch wenn dort die erste Ziffer steht. Kleine Zahlen werden zu 0 oder zur nächsten Stufe.",
+            "beispiele": [
+                "45 auf Hunderter: 45 liegt zwischen 0 und 100, näher an 0 → 45 ≈ 0.<svg viewBox='0 0 340 76' style='width:100%;max-width:340px;height:auto;display:block;margin:8px auto' xmlns='http://www.w3.org/2000/svg'><line x1='14' y1='44' x2='330' y2='44' stroke='#38bdf8' stroke-width='2'/><polygon points='334,44 326,40 326,48' fill='#38bdf8'/><line x1='22.0' y1='35' x2='22.0' y2='53' stroke='#e5e7eb' stroke-width='2'/><line x1='51.6' y1='38' x2='51.6' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='81.2' y1='38' x2='81.2' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='110.8' y1='38' x2='110.8' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='140.4' y1='38' x2='140.4' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='170.0' y1='38' x2='170.0' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='199.6' y1='38' x2='199.6' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='229.2' y1='38' x2='229.2' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='258.8' y1='38' x2='258.8' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='288.4' y1='38' x2='288.4' y2='50' stroke='#38bdf8' stroke-width='2'/><line x1='318.0' y1='35' x2='318.0' y2='53' stroke='#e5e7eb' stroke-width='2'/><text x='22' y='68' text-anchor='middle' font-size='11' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>0</text><text x='318' y='68' text-anchor='middle' font-size='11' font-weight='700' font-family='sans-serif' fill='#e5e7eb'>100</text><line x1='155.2' y1='8' x2='155.2' y2='32' stroke='#f59e0b' stroke-width='2.5'/><polygon points='155.2,38 150.2,30 160.2,30' fill='#f59e0b'/></svg>",
+                "985 auf Tausender: 985 liegt zwischen 0 und 1 000, näher an 1 000 → 985 ≈ 1 000.",
+                "Zahlenstern 568 289 371: auf Zehner ≈ 568 289 370 · auf Zehntausender ≈ 568 290 000 · auf Millionen ≈ 568 000 000 · auf Hundertmillionen ≈ 600 000 000.",
+                "Auf Hunderter gerundet 1 100: kleinste Zahl 1 050, größte Zahl 1 149."
+            ]
+        },
+        "uebung": {
+            "leicht": [
+                {
+                    "id": "zverstk5l5u_leicht_1",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "leicht",
+                    "points": 5,
+                    "question": "Runde 45 auf Hunderter.",
+                    "answers": [
+                        "45",
+                        "100",
+                        "50",
+                        "0"
+                    ],
+                    "correct": 3,
+                    "explanation": "45 hat keine Hunderter. Es liegt zwischen 0 und 100 und ist näher an 0. Also 45 ≈ 0 – nicht einfach abschreiben!"
+                },
+                {
+                    "id": "zverstk5l5u_leicht_2",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "leicht",
+                    "points": 5,
+                    "question": "Runde 985 auf Tausender.",
+                    "answers": [
+                        "985",
+                        "0",
+                        "1 000",
+                        "2 000"
+                    ],
+                    "correct": 2,
+                    "explanation": "985 hat keine Tausender. Es liegt zwischen 0 und 1 000 und ist näher an 1 000. Also 985 ≈ 1 000 – nicht einfach abschreiben!"
+                },
+                {
+                    "id": "zverstk5l5u_leicht_3",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "leicht",
+                    "points": 5,
+                    "question": "Runde 82 926 auf Hunderter.",
+                    "answers": [
+                        "82 900",
+                        "82 800",
+                        "83 000",
+                        "82 930"
+                    ],
+                    "correct": 0,
+                    "explanation": "Auf Hunderter runden: Schau auf die Ziffer rechts daneben. Sie ist 2 → abrunden. 82 926 ≈ 82 900."
+                },
+                {
+                    "id": "zverstk5l5u_leicht_4",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "leicht",
+                    "points": 5,
+                    "question": "Runde 53 600 auf Tausender.",
+                    "answers": [
+                        "53 000",
+                        "55 000",
+                        "50 000",
+                        "54 000"
+                    ],
+                    "correct": 3,
+                    "explanation": "Auf Tausender runden: Schau auf die Ziffer rechts daneben. Sie ist 6 → aufrunden. 53 600 ≈ 54 000."
+                },
+                {
+                    "id": "zverstk5l5u_leicht_5",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "leicht",
+                    "points": 5,
+                    "question": "Runde 395 auf Tausender.",
+                    "answers": [
+                        "395",
+                        "1 000",
+                        "0",
+                        "400"
+                    ],
+                    "correct": 2,
+                    "explanation": "395 hat keine Tausender. Es liegt zwischen 0 und 1 000 und ist näher an 0. Also 395 ≈ 0 – nicht einfach abschreiben!"
+                }
+            ],
+            "mittel": [
+                {
+                    "id": "zverstk5l5u_mittel_1",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Runde 642 312 auf Hunderttausender.",
+                    "answers": [
+                        "500 000",
+                        "700 000",
+                        "1 000 000",
+                        "600 000"
+                    ],
+                    "correct": 3,
+                    "explanation": "Auf Hunderttausender runden: Schau auf die Ziffer rechts daneben. Sie ist 4 → abrunden. 642 312 ≈ 600 000."
+                },
+                {
+                    "id": "zverstk5l5u_mittel_2",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Runde 8 446 917 auf Hunderttausender.",
+                    "answers": [
+                        "8 300 000",
+                        "8 400 000",
+                        "8 500 000",
+                        "8 000 000"
+                    ],
+                    "correct": 1,
+                    "explanation": "Auf Hunderttausender runden: Schau auf die Ziffer rechts daneben. Sie ist 4 → abrunden. 8 446 917 ≈ 8 400 000."
+                },
+                {
+                    "id": "zverstk5l5u_mittel_3",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Runde 55 834 199 auf Millionen.",
+                    "answers": [
+                        "56 000 000",
+                        "55 000 000",
+                        "57 000 000",
+                        "60 000 000"
+                    ],
+                    "correct": 0,
+                    "explanation": "Auf Millionen runden: Schau auf die Ziffer rechts daneben. Sie ist 8 → aufrunden. 55 834 199 ≈ 56 000 000."
+                },
+                {
+                    "id": "zverstk5l5u_mittel_4",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Runde 375 100 auf Millionen.",
+                    "answers": [
+                        "375 100",
+                        "1 000 000",
+                        "0",
+                        "400 000"
+                    ],
+                    "correct": 2,
+                    "explanation": "375 100 hat keine Millionen. Es liegt zwischen 0 und 1 000 000 und ist näher an 0. Also 375 100 ≈ 0 – nicht einfach abschreiben!"
+                },
+                {
+                    "id": "zverstk5l5u_mittel_5",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "mittel",
+                    "points": 10,
+                    "question": "Runde 5 001 auf Zehntausender.",
+                    "answers": [
+                        "5 001",
+                        "10 000",
+                        "0",
+                        "5 000"
+                    ],
+                    "correct": 1,
+                    "explanation": "5 001 hat keine Zehntausender. Es liegt zwischen 0 und 10 000 und ist näher an 10 000. Also 5 001 ≈ 10 000 – nicht einfach abschreiben!"
+                }
+            ],
+            "schwer": [
+                {
+                    "id": "zverstk5l5u_schwer_1",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "schwer",
+                    "points": 15,
+                    "question": "Runde 568 289 371 auf Zehner.",
+                    "answers": [
+                        "568 289 360",
+                        "568 289 370",
+                        "568 289 380",
+                        "568 289 400"
+                    ],
+                    "correct": 1,
+                    "explanation": "Auf Zehner runden: Schau auf die Ziffer rechts daneben. Sie ist 1 → abrunden. 568 289 371 ≈ 568 289 370."
+                },
+                {
+                    "id": "zverstk5l5u_schwer_2",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "schwer",
+                    "points": 15,
+                    "question": "Runde 568 289 371 auf Zehntausender.",
+                    "answers": [
+                        "568 280 000",
+                        "568 300 000",
+                        "568 290 000",
+                        "568 289 000"
+                    ],
+                    "correct": 2,
+                    "explanation": "Auf Zehntausender runden: Schau auf die Ziffer rechts daneben. Sie ist 9 → aufrunden. 568 289 371 ≈ 568 290 000."
+                },
+                {
+                    "id": "zverstk5l5u_schwer_3",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "schwer",
+                    "points": 15,
+                    "question": "Runde 568 289 371 auf Hundertmillionen.",
+                    "answers": [
+                        "500 000 000",
+                        "700 000 000",
+                        "600 000 000",
+                        "1 000 000 000"
+                    ],
+                    "correct": 2,
+                    "explanation": "Auf Hundertmillionen runden: Schau auf die Ziffer rechts daneben. Sie ist 6 → aufrunden. 568 289 371 ≈ 600 000 000."
+                },
+                {
+                    "id": "zverstk5l5u_schwer_4",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "schwer",
+                    "points": 15,
+                    "question": "Welche ist die kleinste Zahl, die auf Hunderter gerundet 1 100 ergibt?",
+                    "answers": [
+                        "1 049",
+                        "1 000",
+                        "1 060",
+                        "1 050"
+                    ],
+                    "correct": 3,
+                    "explanation": "Ab 1 050 wird auf 1 100 aufgerundet. 1 049 wird noch auf 1 000 abgerundet."
+                },
+                {
+                    "id": "zverstk5l5u_schwer_5",
+                    "category": "kurs_zverst_k5_l5",
+                    "area": "schule",
+                    "grade": 5,
+                    "subject": "mathe",
+                    "topic": "runden",
+                    "difficulty": "schwer",
+                    "points": 15,
+                    "question": "Welche ist die größte Zahl, die auf Tausender gerundet 333 000 ergibt?",
+                    "answers": [
+                        "333 500",
+                        "333 499",
+                        "333 599",
+                        "333 999"
+                    ],
+                    "correct": 1,
+                    "explanation": "Bis 333 499 wird auf 333 000 abgerundet. Ab 333 500 rundet man schon auf 334 000 auf."
+                }
+            ]
+        },
+        "test": [
+            {
+                "id": "zverstk5l5_test_1",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Runde 15 100 auf Hunderttausender.",
+                "answers": [
+                    "15 100",
+                    "100 000",
+                    "0",
+                    "20 000"
+                ],
+                "correct": 2,
+                "explanation": "15 100 hat keine Hunderttausender. Es liegt zwischen 0 und 100 000 und ist näher an 0. Also 15 100 ≈ 0 – nicht einfach abschreiben!"
+            },
+            {
+                "id": "zverstk5l5_test_2",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Runde 999 088 777 auf Millionen.",
+                "answers": [
+                    "998 000 000",
+                    "1 000 000 000",
+                    "999 100 000",
+                    "999 000 000"
+                ],
+                "correct": 3,
+                "explanation": "Auf Millionen runden: Schau auf die Ziffer rechts daneben. Sie ist 0 → abrunden. 999 088 777 ≈ 999 000 000."
+            },
+            {
+                "id": "zverstk5l5_test_3",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Runde 19 545 112 auf Millionen.",
+                "answers": [
+                    "20 000 000",
+                    "19 000 000",
+                    "21 000 000",
+                    "19 500 000"
+                ],
+                "correct": 0,
+                "explanation": "Auf Millionen runden: Schau auf die Ziffer rechts daneben. Sie ist 5 → aufrunden. 19 545 112 ≈ 20 000 000."
+            },
+            {
+                "id": "zverstk5l5_test_4",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Runde 568 289 371 auf Hunderter.",
+                "answers": [
+                    "568 289 300",
+                    "568 289 400",
+                    "568 289 500",
+                    "568 289 000"
+                ],
+                "correct": 1,
+                "explanation": "Auf Hunderter runden: Schau auf die Ziffer rechts daneben. Sie ist 7 → aufrunden. 568 289 371 ≈ 568 289 400."
+            },
+            {
+                "id": "zverstk5l5_test_5",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Runde 568 289 371 auf Millionen.",
+                "answers": [
+                    "567 000 000",
+                    "569 000 000",
+                    "568 000 000",
+                    "570 000 000"
+                ],
+                "correct": 2,
+                "explanation": "Auf Millionen runden: Schau auf die Ziffer rechts daneben. Sie ist 2 → abrunden. 568 289 371 ≈ 568 000 000."
+            },
+            {
+                "id": "zverstk5l5_test_6",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Welche ist die größte Zahl, die auf Hunderter gerundet 1 100 ergibt?",
+                "answers": [
+                    "1 150",
+                    "1 159",
+                    "1 149",
+                    "1 199"
+                ],
+                "correct": 2,
+                "explanation": "Bis 1 149 wird auf 1 100 abgerundet. Ab 1 150 rundet man schon auf 1 200 auf."
+            },
+            {
+                "id": "zverstk5l5_test_7",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Welche ist die kleinste Zahl, die auf Hunderttausender gerundet 500 000 ergibt?",
+                "answers": [
+                    "449 999",
+                    "400 000",
+                    "460 000",
+                    "450 000"
+                ],
+                "correct": 3,
+                "explanation": "Ab 450 000 wird auf 500 000 aufgerundet. 449 999 wird noch auf 400 000 abgerundet."
+            },
+            {
+                "id": "zverstk5l5_test_8",
+                "category": "kurs_zverst_k5_l5",
+                "area": "schule",
+                "grade": 5,
+                "subject": "mathe",
+                "topic": "runden",
+                "difficulty": "mittel",
+                "points": 10,
+                "question": "Runde 4 999 auf Zehntausender.",
+                "answers": [
+                    "4 999",
+                    "0",
+                    "10 000",
+                    "5 000"
+                ],
+                "correct": 1,
+                "explanation": "4 999 hat keine Zehntausender. Es liegt zwischen 0 und 10 000 und ist näher an 0. Also 4 999 ≈ 0 – nicht einfach abschreiben!"
+            }
+        ],
+        "bestehenAb": 0.8
     }
 ];
     if (typeof KURSE !== "undefined" && Array.isArray(KURSE)) {

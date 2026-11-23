@@ -204,7 +204,8 @@
                 : `<div class="glass-card-glow p-5 text-center space-y-2"><div class="text-5xl">✅</div>
                     <div class="text-lg font-black">Für heute alles geschafft!</div>
                     <p class="text-sm text-gray-300">Morgen warten neue Karten auf dich.</p>
-                    <button onclick="karteiStart(true)" class="btn-secondary w-full text-center text-sm">🔁 Trotzdem üben (Fach 1–2)</button></div>`;
+                    ${z.neuOffen ? `<button onclick="karteiStart('mehr')" class="btn-primary w-full text-center text-sm" style="background:linear-gradient(140deg,#14b8a6,#6366f1);">➕ ${Math.min(NEU_PRO_TAG, z.neuOffen)} neue Karten extra lernen</button>` : ""}
+                    ${z.faecher[1] + z.faecher[2] ? `<button onclick="karteiStart(true)" class="btn-secondary w-full text-center text-sm">🔁 Trotzdem üben (Fach 1–2)</button>` : ""}</div>`;
         }
         document.getElementById("kk-faecher").innerHTML = faecherHtml(z);
         document.getElementById("kk-decks").innerHTML = d.decks.map(function (dk) {
@@ -267,12 +268,15 @@
     // ---------------- Lernen ----------------
     let sp = null;
     function karteiStart(extra) {
+        const mehr = extra === "mehr"; if (mehr) extra = false;
         const d = daten(), t = heute();
         const alle = {}; d.decks.forEach(function (dk) { deckKarten(dk).forEach(function (k) { alle[k] = true; }); });
-        let faellig = Object.keys(alle).filter(function (k) { return d.k[k] && (extra ? d.k[k][0] <= 2 : d.k[k][1] <= t); });
+        let faellig = mehr ? [] : Object.keys(alle).filter(function (k) { return d.k[k] && (extra ? d.k[k][0] <= 2 : d.k[k][1] <= t); });
+        // Nichts zum Wiederholen da (z. B. frischer Stapel)? Dann gleich neue Karten.
+        if (extra && !faellig.length) { extra = false; return karteiStart("mehr"); }
         let neu = [];
         if (!extra) {
-            const frei = Math.max(0, NEU_PRO_TAG - (d.tag.neu || 0));
+            const frei = mehr ? NEU_PRO_TAG : Math.max(0, NEU_PRO_TAG - (d.tag.neu || 0));
             // neue Karten der Reihe nach (1×1 reihenweise, Vokabeln in Listenreihenfolge)
             // gleichmäßig aus allen Stapeln (1×1 reihenweise, Vokabeln in Listenreihenfolge)
             const proDeck = d.decks.map(function (dk) { return deckKarten(dk).filter(function (k) { return !d.k[k]; }); });
@@ -283,7 +287,7 @@
         }
         faellig = mischen(faellig).sort(function (a, b) { return d.k[a][0] - d.k[b][0]; });
         const q = faellig.concat(mischen(neu)).filter(function (k) { return karte(k); });
-        if (!q.length) return showToast("Gerade ist nichts fällig. 🎉", "info");
+        if (!q.length) return showToast("Gerade ist nichts fällig. 🎉", "success");
         sp = { q: q, i: 0, ok: 0, falsch: 0, nochmal: {}, neu: {}, extra: !!extra, aufstieg: 0 };
         neu.forEach(function (k) { sp.neu[k] = true; });
         zeige("kk-play");

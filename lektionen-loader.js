@@ -74,7 +74,10 @@
         "lektionen_englisch_k5_unit1.js?v=1",
         "lektionen_englisch_k1.js?v=1",
         "lektionen_englisch_k5_extra.js?v=1",
-        "lektionen_zahlen_verstehen_k5.js?v=2"
+        "lektionen_zahlen_verstehen_k5.js?v=2",
+        "lektionen_groessen_rechnen_k5.js?v=2",
+        "lektionen_flaechen_ausbau_k7.js?v=1",
+        "lektionen_trig_ausbau_k9.js?v=1"
     ];
 
     var laufend = null;

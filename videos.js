@@ -249,6 +249,10 @@
         { id: "runden_k5", titel: "Zahlen runden – ganz einfach", klasse: 5, fach: "mathe", dauer: 79, kurs: "zahlen_verstehen_k5" },
         { id: "stellenwerttafel_k5", titel: "Die Stellenwerttafel – große Zahlen lesen", klasse: 5, fach: "mathe", dauer: 57, kurs: "zahlen_verstehen_k5" },
         { id: "runden_profi_k5", titel: "Runden für Profis – die 3 Fallen", klasse: 5, fach: "mathe", dauer: 97, kurs: "zahlen_verstehen_k5" },
+        { id: "groessen_umrechnen_k5", titel: "Längen und Gewichte umrechnen", klasse: 5, fach: "mathe", dauer: 63, kurs: "groessen_rechnen_k5" },
+        { id: "groessen_rechnen_k5", titel: "Mit Größen rechnen: 2 m + 35 cm", klasse: 5, fach: "mathe", dauer: 81, kurs: "groessen_rechnen_k5" },
+        { id: "flaechen_formeln_k7", titel: "Flächen berechnen: alle Formeln", klasse: 7, fach: "mathe", dauer: 69, kurs: "flaechen_k7" },
+        { id: "winkel_berechnen_k9", titel: "Winkel berechnen mit sin⁻¹, cos⁻¹, tan⁻¹", klasse: 9, fach: "mathe", dauer: 65, kurs: "trigonometrie_k9" },
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

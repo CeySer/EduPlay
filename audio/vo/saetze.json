@@ -1,0 +1,4377 @@
+{
+ "erzeugt": "2026-09-17",
+ "umfang": "Kurse Klasse 1",
+ "fragen": 216,
+ "saetze": [
+  {
+   "key": "dlxun7vdjact",
+   "text": "4",
+   "anzahl": 34,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt",
+    "Silben klatschen",
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "ezvv42t8y4zm",
+   "text": "3",
+   "anzahl": 33,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen",
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "efwnq4pynsa4",
+   "text": "1",
+   "anzahl": 31,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt",
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "f9vgt1s38xnb",
+   "text": "2",
+   "anzahl": 31,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt",
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "xivg0vcy6rtb",
+   "text": "Punkt",
+   "anzahl": 28,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "rmwj9o9iqemy",
+   "text": "Fragezeichen",
+   "anzahl": 28,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "r93jfwpcwnpk",
+   "text": "Ausrufezeichen",
+   "anzahl": 28,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "seovs02fhdv4",
+   "text": "Komma",
+   "anzahl": 27,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "sduwzcih29kw",
+   "text": "M",
+   "anzahl": 14,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "zlcvscpd1o90",
+   "text": "der Kreis",
+   "anzahl": 14,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "2uppey9sc9hs",
+   "text": "das Dreieck",
+   "anzahl": 14,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "ojaxa1puzb3t",
+   "text": "das Quadrat",
+   "anzahl": 14,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "soprfi8qyw4g",
+   "text": "das Rechteck",
+   "anzahl": 13,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "w9pcoysbxbpe",
+   "text": "S",
+   "anzahl": 12,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "fwrise72id4w",
+   "text": "Sonne",
+   "anzahl": 12,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören",
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "e5x215yntn2b",
+   "text": "6",
+   "anzahl": 11,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "gxt2yv1y3zrt",
+   "text": "8",
+   "anzahl": 11,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "7qvd50twdgvo",
+   "text": "10",
+   "anzahl": 11,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "uvrc83thmj1p",
+   "text": "T",
+   "anzahl": 10,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "8ku67xzb8yyd",
+   "text": "13",
+   "anzahl": 10,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "dby8y8wj8hp4",
+   "text": "5",
+   "anzahl": 9,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen",
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "gnth9w42p550",
+   "text": "9",
+   "anzahl": 9,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "8aukiyx6ntl6",
+   "text": "12",
+   "anzahl": 9,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt",
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "ekzuxw4dlafc",
+   "text": "Ball",
+   "anzahl": 9,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "80uytzw0ym8v",
+   "text": "11",
+   "anzahl": 8,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "6mwyd41fu4bk",
+   "text": "14",
+   "anzahl": 8,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "76w5r24q4h12",
+   "text": "16",
+   "anzahl": 8,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "pizwjxdc9gh7",
+   "text": "0 Ecken",
+   "anzahl": 8,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "zo85q8itkp90",
+   "text": "3 Ecken",
+   "anzahl": 8,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "q0q1qza2qlu9",
+   "text": "Maus",
+   "anzahl": 7,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "riuxa4g7pz9e",
+   "text": "Tisch",
+   "anzahl": 7,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören",
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "ynxqd58bpstz",
+   "text": "4 Ecken",
+   "anzahl": 7,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "r9wi7gxsg7b0",
+   "text": "A",
+   "anzahl": 6,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "u1sj56f6rwve",
+   "text": "K",
+   "anzahl": 6,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "7gvrg15vtodd",
+   "text": "17",
+   "anzahl": 6,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "6wwk232ljbnv",
+   "text": "15",
+   "anzahl": 5,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "5sy5a796412v",
+   "text": "19",
+   "anzahl": 5,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "4ku3yukge318",
+   "text": "Auto",
+   "anzahl": 5,
+   "art": "beides",
+   "kurse": [
+    "Silben klatschen",
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "7ixo9rq8fx9x",
+   "text": "schlafen",
+   "anzahl": 5,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "dvxgc60sesfi",
+   "text": "7",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "s3vbadzx1co7",
+   "text": "B",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "hpvm55jcvfsz",
+   "text": "Mama",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen",
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "ssmukfqd3fwn",
+   "text": "Mond",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören",
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "42nm3x5w6cq3",
+   "text": "essen",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "pgu7j0lqi3pq",
+   "text": "Banane",
+   "anzahl": 4,
+   "art": "beides",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "tzmzrbscjnn5",
+   "text": "2 Ecken",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "rym92qxtuwey",
+   "text": "5 Ecken",
+   "anzahl": 4,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "kacbcfjtexyr",
+   "text": "Welche Form ist das",
+   "anzahl": 4,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "g41dd68glytw",
+   "text": "Welche Form siehst du",
+   "anzahl": 4,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "3ay5jwqygvj8",
+   "text": "Wie viele Ecken hat diese Form",
+   "anzahl": 4,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "thtbr8bwhk5w",
+   "text": "I",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "snuiobgch47p",
+   "text": "L",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "t7tq29jmrgx7",
+   "text": "N",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "sxu4dalrcmae",
+   "text": "O",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "vzpqzzmx1tmp",
+   "text": "P",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "ql981l8i33t9",
+   "text": "Bus",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen",
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "sktxx666be6e",
+   "text": "Halt",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "8yg373y9uy75",
+   "text": "Schule",
+   "anzahl": 3,
+   "art": "beides",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "8lqwnkr7oz7o",
+   "text": "zählen",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "a8fjilxco6it",
+   "text": "eine Frage",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "8pzkw1nvss1h",
+   "text": "drei Seiten",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "arnkwrjplogl",
+   "text": "fünf Seiten",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "ebkrr77ew1ar",
+   "text": "vier Seiten",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "nuihl2yketec",
+   "text": "zwei Seiten",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "j38t47xd19fd",
+   "text": "gehen dürfen",
+   "anzahl": 3,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "qns5wb9ixjv3",
+   "text": "Ecken dieser Form",
+   "anzahl": 3,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "rlzagvj2o9ld",
+   "text": "≠",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "qfxp4j37bpdp",
+   "text": "D",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "q5y3fk5bwuqw",
+   "text": "E",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "qzwwih6hm237",
+   "text": "F",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "5iyjl880etqk",
+   "text": "18",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "3dviprpiz6ul",
+   "text": "20",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "vasgzasm4vhm",
+   "text": "Hut",
+   "anzahl": 2,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "ox0tiaxca9dg",
+   "text": "Baum",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen",
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "sfj06mhwp1ce",
+   "text": "Brot",
+   "anzahl": 2,
+   "art": "beides",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "fbnjys77yqgm",
+   "text": "Nase",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "5b778b8e0qcr",
+   "text": "Ofen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "4vf7tg27opsy",
+   "text": "gehen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "08a3rdbcb515",
+   "text": "Mütze",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "nts8e1049k57",
+   "text": "liegen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "dp6qz33e9vlv",
+   "text": "rennen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "hnnblt5evyfj",
+   "text": "Tomate",
+   "anzahl": 2,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "nh4sup2o3a6r",
+   "text": "1 Silbe",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "l8rac1mn4tyr",
+   "text": "beide S",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "liqw10orpzby",
+   "text": "beide T",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "c0m7vs6a60t2",
+   "text": "den Zoo",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ud4wegg484ku",
+   "text": "Elefant",
+   "anzahl": 2,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "weltsgnunnto",
+   "text": "schauen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "wjwgxq98632k",
+   "text": "2 Silben",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "fzjj3vy02mb1",
+   "text": "3 Silben",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "jrv23nhgisej",
+   "text": "nur Lärm",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "cwf42zie6jud",
+   "text": "ein Bruch",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "x7u3zmwyf1ds",
+   "text": "eine Ecke",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "8htrfrdbmwrl",
+   "text": "Eine Zahl",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "no7ljren3csp",
+   "text": "den Bäcker",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "x7z9hn6l69lz",
+   "text": "drei Ecken",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "oo1nvur9m1wm",
+   "text": "größer als",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "8fuxuvgg2bxj",
+   "text": "ist gleich",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "df61kqjk7yni",
+   "text": "nur Steine",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "bcuuywto3wji",
+   "text": "Schokolade",
+   "anzahl": 2,
+   "art": "beides",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "afq79xhldoxt",
+   "text": "vier Ecken",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "27z1d3ix40dr",
+   "text": "ein Artikel",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "73ubjj2ay7n7",
+   "text": "kleiner als",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "82yy54d0tlo2",
+   "text": "die Feuerwehr",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "jhmitkl7j8fk",
+   "text": "nur rückwärts",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "yz1xbwkd4mx6",
+   "text": "liegen bleiben",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "gyga9gwf9f6w",
+   "text": "Mond und Mütze",
+   "anzahl": 2,
+   "art": "beides",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "npp7wlww2z6t",
+   "text": "stehen bleiben",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ah90xsvoq3vc",
+   "text": "die Ampel essen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "dk16t2e8bdgq",
+   "text": "die Ampel anmalen",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "65zvlcn42x5y",
+   "text": "verschiedene Anlaute",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "v7v5uijd8gzo",
+   "text": "Beide haben drei Ecken",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "wn2la4vcbuce",
+   "text": "Beide haben vier Ecken",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "kxc83azwg5ia",
+   "text": "Es hat genau drei Ecken",
+   "anzahl": 2,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "f6v53076at7q",
+   "text": "Auf welche Zahl zeigt der Kreis",
+   "anzahl": 2,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "ulrqj4vm7oew",
+   "text": "U",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "33vx0sqooe6w",
+   "text": "21",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "oggd97gomo8r",
+   "text": "Au",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "n48p1pwl499x",
+   "text": "Los",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "j5rthqgp60ya",
+   "text": "Rot",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "4n786jvzabwz",
+   "text": "Zoo",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "8z12vec9xofa",
+   "text": "Grün",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "2pdvo6ugn04g",
+   "text": "Heiß",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "edhuvd0i3qmx",
+   "text": "Kalt",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "qlkbkv1rrnpn",
+   "text": "Laut",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "abuphau7z7f4",
+   "text": "Nass",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "k7x1f7b1qvyj",
+   "text": "nein",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "grf38b26y6rv",
+   "text": "Saft",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "408hzzmv4sm7",
+   "text": "Apfel",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "0nxvpsg9f7nu",
+   "text": "Feuer",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "fxboecdgtlb0",
+   "text": "Hören",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "md1wf3ivb4sh",
+   "text": "Kauen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "dx8ha5q978ep",
+   "text": "nicht",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "mnxcnw26hfss",
+   "text": "1 Ecke",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "7e9pqyjxx7ww",
+   "text": "Bäcker",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "0ac7wa9i0bmc",
+   "text": "Fragen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "b00wrqmhfkgi",
+   "text": "Kamera",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "bc0l8aes0w0w",
+   "text": "Laufen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "bxitb69awvqk",
+   "text": "sofort",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "85xova7ic2v4",
+   "text": "zu Fuß",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "pn8fj6v1v9hw",
+   "text": "Fenster",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "j47cgb9lext5",
+   "text": "Riechen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "gvc03gnqv3ke",
+   "text": "4 Silben",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "14u1wxcirmsv",
+   "text": "5 Silben",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "ogf32w36m7zs",
+   "text": "Augen zu",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "lnajz5ljbt6p",
+   "text": "Baum wie",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "d99hzy98wiq0",
+   "text": "den Mond",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "dydbfpaw0m0z",
+   "text": "die Post",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "hepusu3z255a",
+   "text": "Ein Name",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "01haneucmksq",
+   "text": "ja immer",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "3v7r0gwcgpno",
+   "text": "Mond wie",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "banwi956gqdr",
+   "text": "nirgends",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "gwp8irpjv5p1",
+   "text": "O allein",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "338crgdj36zs",
+   "text": "Saft wie",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "j0zbmnxwyx11",
+   "text": "springen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "cbzrxl2rsi1f",
+   "text": "12 und 13",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "zt6omddr6xmz",
+   "text": "12, 7, 15",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "5f073qutzdze",
+   "text": "13 und 15",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "b78pthkkrv8r",
+   "text": "14 und 15",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "nptr99bh9juf",
+   "text": "15 und 16",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "rawrhld01l0j",
+   "text": "15, 12, 7",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "ujzhgzy8p0ol",
+   "text": "7, 12, 15",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "1s7hf7fsa5b9",
+   "text": "7, 15, 12",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "i6gj9a20kr3y",
+   "text": "Feuerwehr",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "r5hpbb4i7hit",
+   "text": "losrennen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "uu4uzq499dru",
+   "text": "nur Autos",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "2gogybbvat4t",
+   "text": "nur Nomen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "p3es5pcjfwwr",
+   "text": "ohne Sinn",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "wm6jh5jib6df",
+   "text": "Schlitten",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "m1c3fmoqnsdq",
+   "text": "Bus Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "8e0vkpvajpcj",
+   "text": "ein Befehl",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "65b7cyq7zmni",
+   "text": "Eine Bitte",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "eg2q476lz5eb",
+   "text": "eine Karte",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "mj25pnc4y2if",
+   "text": "eine Mitte",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "qerwnxgacrd3",
+   "text": "fünf Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "vnr2ro4hhtnk",
+   "text": "Halt immer",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "nx993zf3hnel",
+   "text": "keine Ecke",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "o3koih54om2h",
+   "text": "keine Form",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "2dboxxg4vc7j",
+   "text": "nur Ampeln",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "c5dbs4330s0u",
+   "text": "nur Brüche",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "tyknc5r6e0sb",
+   "text": "nur nachts",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "vjajw47nwjw4",
+   "text": "nur Schnee",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "fa4bg49jr29m",
+   "text": "nur Zahlen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "psi8fpmfb315",
+   "text": "Verstecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "tcfzkt1cgqgx",
+   "text": "zählen nur",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "becbiimn2610",
+   "text": "zwei Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "c9vp3jx3pc6b",
+   "text": "am Satzende",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "ervi5u5cuzno",
+   "text": "Ampel essen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "hbj9aluapqkj",
+   "text": "Ball Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "n5mteu3ln9pa",
+   "text": "eine Fläche",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "8mbqo2w0owy8",
+   "text": "Mama Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "63pbxcx9jzum",
+   "text": "Maus Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "60ehst37p559",
+   "text": "Nase Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "xhz8n1q9re1l",
+   "text": "nur hüpfend",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "yqt5dwdkqeac",
+   "text": "Strichpunkt",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "m3eytksjgzs4",
+   "text": "alles Kommas",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "54euyk0bcq20",
+   "text": "Apfel Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "fnp4aq0nuvpw",
+   "text": "die Augen zu",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "s0yp4jhdg0xv",
+   "text": "Fisch Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "ipdg2pfeb2ux",
+   "text": "immer rennen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "h3o5oqi8z04w",
+   "text": "kurz schauen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "o7mcb9x9l62j",
+   "text": "nur Aussagen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "fqihk164mwp5",
+   "text": "nur Badehose",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "abvquau2qeoi",
+   "text": "nur das Oval",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "wkl1nhc4vcuz",
+   "text": "nur der Mond",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "gqy4wki5cece",
+   "text": "nur im Kreis",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "q8gmzwbbbz1u",
+   "text": "rennen blind",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "vkg3qf85jpnv",
+   "text": "Sonne Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "2fmgbb9v0mef",
+   "text": "Sonne Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "2xs6mfxx8oy9",
+   "text": "Sonnenöl nur",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "fvi2m11t0wf3",
+   "text": "Steine kauen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "j8r0d103oek1",
+   "text": "Tisch Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "sn7k5p1t5bal",
+   "text": "Tisch Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "6936w9dctlw9",
+   "text": "Was ist rund",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "tq0hnxy7hl75",
+   "text": "Banane Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "qufuxepvrsrk",
+   "text": "Kuchen Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "jimlamtupznw",
+   "text": "mit den Augen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "isgxyq572z1u",
+   "text": "mit den Füßen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "m49osicfw0t6",
+   "text": "mit den Ohren",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "j88jp0n203o8",
+   "text": "Nein, A und U",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "pron2q7rm3hy",
+   "text": "Nein, S und M",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "ru8p1aepqa68",
+   "text": "Nein, T und B",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "bvdx1l6sgvah",
+   "text": "nur der Kreis",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "9rr5d3u9i0il",
+   "text": "nur der Pilot",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "fdpzwrxm0jfr",
+   "text": "nur ein Nomen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "tfeabsn0xe3u",
+   "text": "Schule Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "xuo07itpyc3y",
+   "text": "Steine zählen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "kvpi7kwysvd4",
+   "text": "Ball und Sonne",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "3zi1syiw0p4a",
+   "text": "Beim Einkaufen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "y8kgkb184wz7",
+   "text": "Computer hat …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "lkmck1ab8qdt",
+   "text": "mit den Haaren",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "gd4oh7s5gnan",
+   "text": "Mond und Sonne",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "5uwwl5ajukld",
+   "text": "nur Dunkelheit",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ewgkph2tr5nr",
+   "text": "Tisch und Maus",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "wj1f6ftw7gbz",
+   "text": "Vor der Straße",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ao311bt5wbht",
+   "text": "16 ist gleich 9",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "u7rrnvhavafj",
+   "text": "Ball, Baum, Bus",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "2p56068a2n5a",
+   "text": "Bei einem Feuer",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "5yfyacg3a0s2",
+   "text": "Bei einer Party",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "jvxbkx0bmqvp",
+   "text": "beide sind rund",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "sd94wel50hbg",
+   "text": "Hilfe – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "6d50bodb3cs6",
+   "text": "Ja, beide mit O",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "yzpypf2tt553",
+   "text": "Licht und Wärme",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "0ktix3tykv6t",
+   "text": "Tisch, Tür, Tal",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "ecdnxjctxuil",
+   "text": "weil 1x1 wartet",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "saavyeuy6yne",
+   "text": "Womit siehst du",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "tfl9h3sx1cph",
+   "text": "Arzt oder Ärztin",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "lt565kr70vme",
+   "text": "Bei Rot gehst du",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "m9t8pktox5uc",
+   "text": "die Ampel küssen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "g2sp42k67n1i",
+   "text": "die Straße bauen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "sby86sp246ko",
+   "text": "ein Fragezeichen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "kxkiq9h6m0ef",
+   "text": "eine runde Linie",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "2m9sen6p11k9",
+   "text": "immer ein Befehl",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "j4mp258cyeyh",
+   "text": "jede eckige Form",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "cpk3795sz9p7",
+   "text": "keine von beiden",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "9tkz3np9yi97",
+   "text": "nur in der Mitte",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "evi6t1pif22v",
+   "text": "nur unter Wasser",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "kuuhdgvfwfhe",
+   "text": "ob sie rund sind",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "7bxult9rfooh",
+   "text": "Rot an der Ampel",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "k54q4ma01aj4",
+   "text": "Sofort losrennen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ie7jabibwusd",
+   "text": "Sonne, Saft, See",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "jbvyylr1c393",
+   "text": "Was bedeutet Rot",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "qsa2ad20le8v",
+   "text": "Wasser und Licht",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "6tpmz4gozek6",
+   "text": "Zähle die Ecken.",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "4akrk6fbs9ee",
+   "text": "Achtung – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "515z1m49rvmg",
+   "text": "Ampel rot heißt …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "8cp1p1ofobc7",
+   "text": "die Hände waschen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "8rzennhiqimn",
+   "text": "Eltern und Kinder",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "fbuvvn6sc65p",
+   "text": "gleichen Anlaut N",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "8mqboyskki06",
+   "text": "gleicher Anlaut M",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "evvw2dknozt9",
+   "text": "Grün an der Ampel",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "kw5j2tl5bdml",
+   "text": "Jacke oder Schirm",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "hrg0opkhpws7",
+   "text": "Maus, Mond, Mütze",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "62bh003hteok",
+   "text": "Mit dunkler Jacke",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "1ua114v9b646",
+   "text": "rennen ohne Blick",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "1442an5ziq6z",
+   "text": "Tür beginnt wie …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "2ls9cvgzfrdp",
+   "text": "Was bedeutet Grün",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "pn3ky5rs5rs7",
+   "text": "Auto beginnt mit …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "ks5j38op72k0",
+   "text": "Baum beginnt wie …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "rhsgnuioq294",
+   "text": "Bei Rot gehst du …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "865u0o4sixeu",
+   "text": "Die Augen zumachen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "to9qoz9d7wtd",
+   "text": "die Zahl der Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "j4mf5jpu1lt7",
+   "text": "Er hat keine Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "n8hw6ag7o64u",
+   "text": "ins Feuer springen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "1fs4y1ts9bob",
+   "text": "Mond beginnt wie …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "871tdji66mkx",
+   "text": "Nase beginnt mit …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "wiq33klrkf5a",
+   "text": "Ofen beginnt mit …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "me2xydp08s8v",
+   "text": "Saft beginnt wie …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "aasdzszknas8",
+   "text": "Vorsicht – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "2xpg0i9touby",
+   "text": "16 ist größer als 9",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "kkc4y2wx03pe",
+   "text": "9 ist größer als 16",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "y44yh89oxqjs",
+   "text": "Achtung, gleich rot",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "72hh7l0orssx",
+   "text": "Bei Grün trotzdem …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "i2c4jodqz1qm",
+   "text": "die Augen zu machen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "fjwb61xoq01f",
+   "text": "die Zahl der Seiten",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "uhgc7jq37907",
+   "text": "eine ruhige Aussage",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "i0fmnxh8kpw1",
+   "text": "Familie kann sein …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "e8gallm70cc3",
+   "text": "Fisch beginnt mit …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "mq5ejoaem268",
+   "text": "Mit heller Kleidung",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "5r7lag0e1ln4",
+   "text": "Was ergibt 4 plus 3",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "rsj9s2tlxoxe",
+   "text": "Was ergibt 5 plus 6",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "681yqmvqu1be",
+   "text": "Was ergibt 8 plus 5",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "xr640nr3b9yv",
+   "text": "Was ergibt 9 plus 9",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "s58z79f1go1z",
+   "text": "Was passt zum Kreis",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "qss88737aixb",
+   "text": "Welches hat 1 Silbe",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "rxx1fbtcz2wz",
+   "text": "Wie schön – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "e9zhphm1csbd",
+   "text": "Wir malen – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "gc9nu1qbo30l",
+   "text": "16 ist kleiner als 9",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "vbzkl6yix90w",
+   "text": "Bei den Hausaufgaben",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "vcpqfvnotc3l",
+   "text": "Bei Feuer rufst du …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "9eudzzhrha8b",
+   "text": "Einfach weiterrennen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "dtiuaegaolre",
+   "text": "Kuchen beginnt mit …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "6tgpt2f956vk",
+   "text": "Mit Mütze im Gesicht",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "h3p9g9ed609p",
+   "text": "nur mit dem Flugzeug",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "niei35byb519",
+   "text": "Papa liest – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "knv2d3peyx7h",
+   "text": "Ruf ist gleich . nur",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "kv2pq7b4jxit",
+   "text": "Vor das Rad springen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "0om7uew6y736",
+   "text": "Was ergibt 10 plus 6",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "sgt05b69nnj7",
+   "text": "Was ergibt 12 plus 3",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "cp938dn1qrbb",
+   "text": "Was ergibt 9 minus 3",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "y4yfpk6c3bvo",
+   "text": "weil Norden oben ist",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "prhwo29ehy5e",
+   "text": "Welches hat 4 Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "gt3nnvyvp71d",
+   "text": "Ein Hund an der Leine",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "1hkeyu932gk6",
+   "text": "Ente und Esel: Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "g1gr51e28xhj",
+   "text": "Nur die Steine zählen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ofhto61wdcfm",
+   "text": "Nuss und Nase haben …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "8oiz3qlmgf80",
+   "text": "Quadrat oder Rechteck",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "l1lzkyck34ni",
+   "text": "Was ergibt 15 minus 7",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "2x7r46hmizr8",
+   "text": "Was ergibt 18 minus 6",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "xn4xonggk10b",
+   "text": "Was ergibt 20 minus 8",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "001cg4g2svro",
+   "text": "Was passt zum Dreieck",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "32tglnw5fxdp",
+   "text": "Was passt zum Quadrat",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "k29c5kxe49u6",
+   "text": "Welches startet mit A",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "mz9wvxitcyk7",
+   "text": "ein Komma in der Mitte",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "nh4x1uu0mqyi",
+   "text": "Es hat gar keine Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "9utctxdcyudl",
+   "text": "nur der Schiedsrichter",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "gjzp7uyvr5z6",
+   "text": "Oma und Opa haben je …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "2c4lx7bmyy5n",
+   "text": "Seiten eines Rechtecks",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "rd50yysju2hs",
+   "text": "Was ergibt 20 minus 12",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "0rnudc9il0r0",
+   "text": "Was passt zum Rechteck",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "356zkdvxm1a5",
+   "text": "Wen rufst du bei Feuer",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "7thahjib2cu1",
+   "text": "Der Bus fährt – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "e0xgb89lmn9e",
+   "text": "Es hat genau fünf Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "nht3egbvjiv0",
+   "text": "Es hat genau vier Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "gbn8q18cn5up",
+   "text": "fertig und eine Aussage",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "u4hlixdkgkzd",
+   "text": "Ich heiße Mia – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "ju1ljidbmwqa",
+   "text": "Kommst du mit – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "ly3wd0p807e2",
+   "text": "Mit geschlossenen Augen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "lei496q9qrci",
+   "text": "nur vor dem ersten Wort",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "61eczeg46v0w",
+   "text": "Pflanzen brauchen oft …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "3s88chapqvxn",
+   "text": "Was hat ein Kreis nicht",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "422zk3al2565",
+   "text": "Zähne brauchst du zum …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "0k5n88autxf4",
+   "text": "beide haben keine Seiten",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "rqro9eumfega",
+   "text": "Ein anderes kleines Kind",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "657jihux12nf",
+   "text": "Ein Fremder mit dem Auto",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "e0mxzy7r94mk",
+   "text": "Er hat drei spitze Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "o7o2dar7ktr0",
+   "text": "Erst schauen, dann gehen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "evg79ul6kilo",
+   "text": "Hast du Hunger – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "iy04v1pkwyh7",
+   "text": "links und rechts schauen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "iewb8vamtjx9",
+   "text": "Mit dem Rad drüberfahren",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "pz6jipez6jnl",
+   "text": "Sei vorsichtig – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "mb1246qtit4m",
+   "text": "Wann kommt die Feuerwehr",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "qb66hb68jr0f",
+   "text": "weil Autos kommen können",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "3gqh1svqa85g",
+   "text": "Wie ist es im Winter oft",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "wy1d93qowm0x",
+   "text": "Wie viele Silben hat Bus",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "wvj0plw4ig0f",
+   "text": "Wohin gehst du – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "5sii0w4fw01a",
+   "text": "Bei Regen nimmst du oft …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "zrw8yojukh5q",
+   "text": "Es hat keine gerade Seite",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "u370lasgysy4",
+   "text": "Oma + Opa zusammen Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "jh5xfhtgvijr",
+   "text": "Welches Wort hat 3 Silben",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "iophnocvah5k",
+   "text": "Wie viele Silben hat Auto",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "jp89znbrrtxb",
+   "text": "Wie viele Silben hat Mama",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "8hdykgvudn72",
+   "text": "Wo ist der Ball – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "2nhmx0p4duus",
+   "text": "Zebrastreifen: trotzdem …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "y1z38llwz5l9",
+   "text": "Allein in den dunklen Wald",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "0c5ej5wtfekz",
+   "text": "Aufpassen und Platz machen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "rz9ya5wg2wkb",
+   "text": "Der Vogel fliegt – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "ps5oy8jhyp8w",
+   "text": "Er hat vier gleiche Seiten",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "o2me2purpe9l",
+   "text": "Heute ist Montag – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "30xm7pir4nvr",
+   "text": "Nur das Quadrat hat Seiten",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "93vbjqkaoj7i",
+   "text": "Nur das Rechteck hat Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "ffxu1ipkpkw4",
+   "text": "Oma backt Kuchen – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "28av1pdezytt",
+   "text": "Vor der Straße sollst du …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "o93d4vwkr813",
+   "text": "weil die Ampel hungrig ist",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "h9lqcged3i1g",
+   "text": "Welche Form hat drei Ecken",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "uehp8cthaq9w",
+   "text": "Welche Form hat mehr Ecken",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "pzqgqkcuzjkk",
+   "text": "Wie viele Silben hat Sonne",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "z8b9dum075p2",
+   "text": "Wie viele Silben hat Tisch",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "29gr4y4fuiei",
+   "text": "Zwei richtige Paare sind …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "i0i8nhswuky1",
+   "text": "Ein Fußgänger bewegt sich …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "yiwfusnv330w",
+   "text": "Ist das dein Buch – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "97schnn6tx4f",
+   "text": "Nur zwei Seiten sind gleich",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "2eukv3r3tmdp",
+   "text": "Vor dem Essen solltest du …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "ey16t0b1irdm",
+   "text": "Was hat vier gleiche Seiten",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "2wwlmabhq8eg",
+   "text": "Welche Form hat keine Ecken",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "afk0g3473an5",
+   "text": "Welches startet nicht mit B",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "hs863u7ev756",
+   "text": "Wie viele Silben hat Banane",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "erd7gpjy81ml",
+   "text": "Wie viele Silben hat Schule",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "y3hk0n0q6bzn",
+   "text": "Alle vier Seiten sind gleich",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "mb4bd4kvsr4s",
+   "text": "Er ist immer länger als hoch",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "dasmed2yfbvl",
+   "text": "Es hat überhaupt keine Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "u4vyng4cl72w",
+   "text": "Welche Zahl kommt nach der 7",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "gsl6tlg083cj",
+   "text": "Welche Zahl kommt vor der 10",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "iglyheanxvak",
+   "text": "Welche Zahl kommt vor der 20",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "99yhtuk576zy",
+   "text": "Welches Wort hat nur 1 Silbe",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "lt8sxcvvaxag",
+   "text": "Wie viele Silben hat Fenster",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Silben klatschen"
+   ]
+  },
+  {
+   "key": "nw3oenutimt3",
+   "text": "Zu einem fremden Hund am Weg",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "amxhaxawjjdp",
+   "text": "Alle Seiten sind rund gebogen",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "wl5ye67nayr2",
+   "text": "Bitte sei leise – was ist das",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "qdz1v1kmn4vh",
+   "text": "Darf ich mitspielen – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "kevdhm99sqts",
+   "text": "Gelb an der Ampel heißt oft …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "1mw12glofdh8",
+   "text": "Juhu wir haben frei – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "bzhs4b9t946t",
+   "text": "Kannst du schwimmen – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "7jvwvt68nxkz",
+   "text": "Mit einem Fremden im Auto mit",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "m88go36d9grp",
+   "text": "Raum das Zimmer auf – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "217o09fhormh",
+   "text": "Welche Zahl kommt nach der 15",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "l39j7gp1fvl4",
+   "text": "Welcher Anlaut steckt in Ball",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "qfrbqbvph50x",
+   "text": "Welcher Anlaut steckt in Maus",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "cxuykkbb0pae",
+   "text": "Wer hilft, wenn du krank bist",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "vcud4gr5rdjk",
+   "text": "Wie viele Ecken hat ein Kreis",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "d5isaibylxfu",
+   "text": "Die Sonne gibt uns vor allem …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "v3z9hnji1at7",
+   "text": "Ein Erwachsener, den du kennst",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "y91cv5g5983r",
+   "text": "Ein Punkt sagt: der Satz ist …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "6bi77pk1iprv",
+   "text": "Es hat genau drei spitze Ecken",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "75zbiij2ez98",
+   "text": "Oma und Ofen – gleicher Anlaut",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "sw45niemio10",
+   "text": "Warum erst schauen, dann gehen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "pld3l121fmvf",
+   "text": "Was machst du am Zebrastreifen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "4tdmbaiswqn4",
+   "text": "Welcher Anlaut steckt in Sonne",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "uvc6v536alur",
+   "text": "Welches Wort beginnt wie Sonne",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "rng772eg0n0e",
+   "text": "Wie heißt du – welches Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "j8eh8zp4xtj9",
+   "text": "Wie viele Jahreszeiten gibt es",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "pk1sor6wk6pn",
+   "text": "Wie viele Punkte bleiben übrig",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "p4ko43sozqop",
+   "text": "Wir gehen nach Hause – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "4zkcrs50ouc6",
+   "text": "ob alle Seiten gleich lang sind",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "9xku7ry4jhv3",
+   "text": "Welche Aussage stimmt: 16 und 9",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "qpgw6ng2c69r",
+   "text": "Welche Form ist länger als hoch",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "hvx87h7ocdp5",
+   "text": "Welcher Anlaut steckt in Teller",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "jvs4hpdv2nrp",
+   "text": "Wie viele Ecken hat ein Dreieck",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "lin4yhmnw4sn",
+   "text": "Ampel grün für Fußgänger heißt …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "0jsgzwoj0bxi",
+   "text": "Komm her ohne Zeichen ist eher …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "bgq3qs2z4y6i",
+   "text": "Welches Wort beginnt nicht mit M",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "j5miiohyicmk",
+   "text": "Welches Wort passt nicht zu Maus",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "lvv4lvjmdcwv",
+   "text": "Wie viele Seiten hat ein Dreieck",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "xavcr00nwcjs",
+   "text": "Wie viele Seiten hat ein Quadrat",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "dhd91md85w4a",
+   "text": "Heute scheint die Sonne – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "djc3bthh42oj",
+   "text": "Stopp – welches Zeichen passt oft",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "v00gesh9zokm",
+   "text": "Welche drei Wörter beginnen mit S",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "fny1k5gqeqth",
+   "text": "Welche Zahl ist größer: 13 oder 8",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "s0pxtmhtxe8i",
+   "text": "Welche Zahl ist größer: 6 oder 14",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "sp7klmnmyrxs",
+   "text": "Welches Zeichen passt? 17 Lücke 5",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "9fmq05ioaa61",
+   "text": "Welches Zeichen passt? 8 Lücke 15",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "2p28qgod66ay",
+   "text": "Wie viele Punkte sind es zusammen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "iueni6il3e9k",
+   "text": "Welche zwei Wörter passen zusammen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "czc5d2qd2leq",
+   "text": "Die Katze schläft – welches Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "kvwja4p4osps",
+   "text": "Lauf nicht auf die Straße – Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "bx3ndrvw79tt",
+   "text": "Sätze mit wer/wie/wo/was sind oft …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "jgmalw06u2z6",
+   "text": "Was sind die beiden Nachbarn der 14",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "zt6yya2h4tzy",
+   "text": "Wer darf dir über die Straße helfen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "hh5n6o1dynl0",
+   "text": "Zu einem Erwachsenen, den du kennst",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "bxqbun220fxl",
+   "text": "Gegenüberliegende Seiten sind gleich",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "kfnricvgq9mq",
+   "text": "Ordne von klein nach groß: 15, 7, 12",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "xayi1lonhked",
+   "text": "Quadrat und Rechteck: Was ist anders",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "u7or28nbyefu",
+   "text": "Wie sieht man dich im Dunkeln besser",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "zlevmn9eot07",
+   "text": "Welche Zahl fehlt? 15, 16, Lücke , 18",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "hwcqsrssuaq3",
+   "text": "Welche Zahl fehlt auf dem Zahlenstrahl",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "kpq9ic4cmxsy",
+   "text": "Wer kommt mit ohne Zeichen – was fehlt",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "uo0yda04kbn2",
+   "text": "Du hast dich verlaufen. Zu wem gehst du",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "oj14s1dqcljn",
+   "text": "Komm schnell her – eher welches Zeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "y78f8efwsofe",
+   "text": "Was ist bei Quadrat und Rechteck gleich",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "gst3wgu5v0fa",
+   "text": "Welche Satzart braucht ein Fragezeichen",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "y41p536wcrj3",
+   "text": "Apfel und Ameise haben denselben Anlaut …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Anlaute hören"
+   ]
+  },
+  {
+   "key": "vc596smnd73y",
+   "text": "Aussage ist gleich . und Frage ist gleich",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "rmxd4ke7dpou",
+   "text": "Frage ist gleich . und Aussage ist gleich",
+   "anzahl": 1,
+   "art": "antwort",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "fod9bja2qgqp",
+   "text": "Wie viele Zahlen liegen zwischen 6 und 11",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "4y6orkx0o0eu",
+   "text": "Auf dem Gehweg fährt ein Fahrrad. Was tust du",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Alltag & Welt"
+   ]
+  },
+  {
+   "key": "cyfh7i7hlayw",
+   "text": "Welche Form hat gleich viele Ecken und Seiten",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Formen erkennen"
+   ]
+  },
+  {
+   "key": "chbvofhrpzhz",
+   "text": "Punkt, Fragezeichen und Ausrufezeichen stehen …",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Satzzeichen . ? !"
+   ]
+  },
+  {
+   "key": "ppghvt7qr4cv",
+   "text": "Welche der drei Zahlen ist am größten: 12, 19, 16",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "wr0eea5oo63y",
+   "text": "Welche Zahl ist der Nachfolger der markierten Zahl",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "hqz5dl3u2aeb",
+   "text": "Ben hat 16 Bonbons. Er verschenkt 9. Wie viele bleiben ihm",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "cfoml6aaegzy",
+   "text": "Lea hat 9 Murmeln. Sie bekommt 6 dazu. Wie viele Murmeln hat sie jetzt",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "drqysz7armfr",
+   "text": "Paul sammelt 7 Kastanien, dann noch 8 mehr. Wie viele hat er insgesamt",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "7xbzmms6zz0k",
+   "text": "Mia hat 14 Sticker und klebt 5 davon ein. Wie viele Sticker hat sie noch",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  },
+  {
+   "key": "c45oae5jo3fo",
+   "text": "Was muss man zu 7 dazuzählen, damit 12 herauskommt? 7 + Lücke ist gleich 12",
+   "anzahl": 1,
+   "art": "frage",
+   "kurse": [
+    "Zahlen & Rechnen bis 20"
+   ]
+  }
+ ]
+}

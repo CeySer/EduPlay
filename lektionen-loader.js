@@ -98,6 +98,12 @@
         "lektionen_de_neu_rest.js?v=1",
         "lektionen_su_neu_rest.js?v=1",
         "lektionen_en_neu_rest.js?v=1",
+        "lektionen_k5_neu_mathe.js?v=1",
+        "lektionen_k5_neu_deutsch.js?v=1",
+        "lektionen_k5_neu_englisch.js?v=1",
+        "lektionen_k5_rest_mathe.js?v=1",
+        "lektionen_k5_rest_deutsch.js?v=1",
+        "lektionen_k5_rest_englisch.js?v=1",
         "lektionen_zusammenlegen.js?v=1"
     ];
 

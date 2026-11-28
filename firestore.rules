@@ -164,6 +164,15 @@ service cloud.firestore {
                           && bleibtGleich('hostUid')
                           && bleibtGleich('questions'))
 
+                         // Host-Übergabe: Gastgeber seit 45 s ohne
+                         // Lebenszeichen → ein Mitspieler aus der Lobby
+                         // übernimmt (createdBy wechselt, hostUid bleibt).
+                         || (bleibtGleich('type') && bleibtGleich('hostUid')
+                             && bleibtGleich('questions')
+                             && 'hostLastSeen' in resource.data
+                             && request.time.toMillis() - resource.data.hostLastSeen > 45000
+                             && request.resource.data.createdBy in resource.data.players)
+
                          // Ausnahme: abgelaufene Lobby wird mit demselben
                          // Code neu belegt (reserveAndCreateLobby schreibt
                          // per set, das zählt hier als update).

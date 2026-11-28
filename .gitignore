@@ -1,0 +1,11 @@
+# Nur lokal – nicht auf die Webseite
+_youtube/
+Claude outputs/
+_alt/
+_ausgliedern/
+_backup_kategorien/
+_tmp_claude/
+store-assets/
+store-screenshots/
+desktop.ini
+Thumbs.db

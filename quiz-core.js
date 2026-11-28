@@ -430,12 +430,13 @@
                 if (!currentPlayer.wrongQuestions) currentPlayer.wrongQuestions = [];
                 if (sel === cor) {
                     currentPlayer.stats[q.category].correct++;
-                    currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q.category && w.question === q.question));
+                    currentPlayer.wrongQuestions = currentPlayer.wrongQuestions.filter(w => !(w.category === q.category && ((w.id && q.id) ? w.id === q.id : w.question === q.question)));
                 } else {
-                    const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && w.question === q.question);
+                    const alreadyThere = currentPlayer.wrongQuestions.some(w => w.category === q.category && ((w.id && q.id) ? w.id === q.id : w.question === q.question));
                     if (!alreadyThere) currentPlayer.wrongQuestions.push({
                         category: q.category,
-                        question: q.question
+                        question: q.question,
+                        id: q.id || ""
                     });
                 }
                 // Themen-Statistik (über Kategorie+Thema, damit derselbe Topic-Schlüssel

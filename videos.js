@@ -253,6 +253,7 @@
         { id: "groessen_rechnen_k5", titel: "Mit Größen rechnen: 2 m + 35 cm", klasse: 5, fach: "mathe", dauer: 81, kurs: "groessen_rechnen_k5" },
         { id: "flaechen_formeln_k7", titel: "Flächen berechnen: alle Formeln", klasse: 7, fach: "mathe", dauer: 69, kurs: "flaechen_k7" },
         { id: "winkel_berechnen_k9", titel: "Winkel berechnen mit sin⁻¹, cos⁻¹, tan⁻¹", klasse: 9, fach: "mathe", dauer: 65, kurs: "trigonometrie_k9" },
+        { id: "umlaute_k2", titel: "Umlaute: ä, ö, ü und äu", klasse: 2, fach: "deutsch", dauer: 46, kurs: "umlaute_k2" },
     ];
     const FACH = {
         mathe: { icon: "🧮", label: "Mathematik" },

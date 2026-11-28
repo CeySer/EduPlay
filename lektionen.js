@@ -17645,7 +17645,7 @@ function finishLektion(pct) {
     // dazu – dann blieb ein Fehler „hängen“ und die Wertung lag über 100 %.
     const falsch = ((currentPlayer && currentPlayer.wrongQuestions) || []);
     window._lektionReviewQs = (daten.test || []).filter(function (q) {
-        return falsch.some(function (w) { return w.question === q.question && (!w.category || w.category === q.category); });
+        return falsch.some(function (w) { return (w.id && q.id) ? w.id === q.id : (w.question === q.question && (!w.category || w.category === q.category)); });
     });
     if (reviewBtn) {
         if (window._lektionReviewQs.length) {

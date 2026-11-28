@@ -79,7 +79,26 @@
         "lektionen_flaechen_ausbau_k7.js?v=1",
         "lektionen_trig_ausbau_k9.js?v=1",
         "lektionen_umlaute_k2.js?v=1",
-        "lektionen_ausbau_deutsch_k12.js?v=1"
+        "lektionen_ausbau_deutsch_k12.js?v=1",
+        "lektionen_ausbau_deutsch_k34.js?v=1",
+        "lektionen_deutsch_neu_k1k3.js?v=1",
+        "lektionen_mathe_neu_teilen.js?v=1",
+        "lektionen_ausbau_k1.js?v=1",
+        "lektionen_ausbau_k2.js?v=1",
+        "lektionen_ausbau_k3.js?v=1",
+        "lektionen_ausbau_k4.js?v=1",
+        "lektionen_su_neu_k2k4.js?v=1",
+        "lektionen_en_neu_k2k3.js?v=1",
+        "lektionen_de_neu_k3k4.js?v=1",
+        "lektionen_mathe_neu_stern.js?v=1",
+        "lektionen_de_neu_stern.js?v=1",
+        "lektionen_su_neu_stern.js?v=1",
+        "lektionen_en_neu_stern.js?v=1",
+        "lektionen_mathe_neu_rest.js?v=1",
+        "lektionen_de_neu_rest.js?v=1",
+        "lektionen_su_neu_rest.js?v=1",
+        "lektionen_en_neu_rest.js?v=1",
+        "lektionen_zusammenlegen.js?v=1"
     ];
 
     var laufend = null;
